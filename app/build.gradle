@@ -1,0 +1,179 @@
+plugins {
+    id 'com.android.application'
+    id "kotlin-android"
+    id "kotlin-parcelize"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+    id "com.github.ben-manes.versions"
+    id "com.adarshr.test-logger"
+    id "io.gitlab.arturbosch.detekt"
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "$rootDir/gradle/scripts/detekt.gradle"
+
+android {
+    compileSdkVersion AndroidSdk.compileSdk
+    defaultConfig {
+        applicationId AppVersion.applicationId
+        minSdkVersion AndroidSdk.minSdk
+        targetSdkVersion AndroidSdk.targetSdk
+        versionCode AppVersion.versionCode
+        versionName AppVersion.versionName
+        testInstrumentationRunner "dev.ohoussein.cryptoapp.MyTestRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //TO-DO signing keys
+            signingConfig debug.signingConfig
+        }
+    }
+    sourceSets {
+        def commonTestDir = 'src/commonTest/java'
+        test {
+            java.srcDir commonTestDir
+        }
+        androidTest {
+            java.srcDir commonTestDir
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        viewBinding true
+        compose true
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            freeCompilerArgs = [
+                    "-XXLanguage:+InlineClasses",
+                    "-Xopt-in=kotlin.RequiresOptIn",
+            ]
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/licenses/ASM'
+        exclude("META-INF/*.kotlin_module")
+        exclude "**/attach_hotspot_windows.dll"
+    }
+
+    lintOptions {
+        disable "UnsafeExperimentalUsageError",
+                "UnsafeExperimentalUsageWarning"
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.0.0-rc01" /*Libs.Versions.compose*/
+    }
+}
+
+allprojects {
+    configurations.all {
+        resolutionStrategy {
+            force("org.objenesis:objenesis:2.6")
+        }
+    }
+}
+
+kapt {
+    correctErrorTypes true
+}
+
+dependencies {
+    implementation project(path: ':data')
+    implementation project(path: ':domain')
+    implementation project(path: ':common')
+
+    //Common
+    implementation Libs.kotlinStdlib
+    implementation Libs.coroutinesCore
+    implementation Libs.coroutinesAndroid
+    implementation Libs.timber
+    implementation Libs.hiltAndroid
+    implementation Libs.hiltLifecycle
+
+    kapt Libs.hiltCompiler
+    kapt Libs.hiltAndroidCompiler
+
+    //Presentation
+    implementation Libs.appcompat
+    implementation Libs.recyclerview
+    implementation Libs.material
+    implementation Libs.constraintlayout
+    implementation Libs.lifecycle
+    implementation Libs.lifecycleViewModel
+    implementation Libs.lifecycleRuntime
+    implementation Libs.lifecycleLiveData
+    implementation Libs.fragmentKtx
+    //compose
+    implementation Libs.composeUI
+    implementation Libs.composeMaterial
+    implementation Libs.composeMaterialIconExtended
+    implementation Libs.composeUITooling
+    implementation Libs.composeActivity
+    implementation Libs.composeLivedata
+    implementation Libs.composeHiltViewModel
+    implementation Libs.composeNavigation
+    implementation Libs.composeCoil
+    implementation Libs.composeSwipeRefresh
+
+    //Data
+    implementation Libs.retofit
+    implementation Libs.retofitConverter
+
+    //Debug tools
+    debugImplementation DebugLibs.stetho
+    debugImplementation DebugLibs.stethoOkhttp
+    debugImplementation DebugLibs.okhttpLogging
+
+    //Android tests
+    debugImplementation AndroidTestLibs.fragmentTesting
+    androidTestImplementation TestLibs.hiltAndroid
+    kaptAndroidTest TestLibs.hiltAndroidCompiler
+    debugImplementation AndroidTestLibs.testCore
+    androidTestImplementation AndroidTestLibs.testCoreKtx
+    androidTestImplementation AndroidTestLibs.androidJUnit
+    androidTestImplementation AndroidTestLibs.androidJUnitKtx
+    androidTestImplementation AndroidTestLibs.rules
+    androidTestImplementation AndroidTestLibs.espresso
+    androidTestImplementation AndroidTestLibs.espressoContrib
+    androidTestImplementation TestLibs.mockito
+    androidTestImplementation AndroidTestLibs.mockitoAndroid
+    androidTestImplementation TestLibs.junit
+    androidTestImplementation TestLibs.archCoreTesting
+    androidTestImplementation TestLibs.coroutinesTest
+    androidTestImplementation AndroidTestLibs.composeTesting
+    debugImplementation AndroidTestLibs.composeTestingManifest
+
+    //Unit tests
+    implementation project(path: ':commonTest')
+    testImplementation TestLibs.hiltAndroid
+    kaptTest TestLibs.hiltAndroidCompiler
+    testImplementation TestLibs.mockito
+    testImplementation TestLibs.mockitoInline
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.archCoreTesting
+    testImplementation TestLibs.coroutinesTest
+
+    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}

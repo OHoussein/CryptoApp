@@ -1,0 +1,45 @@
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+    id "com.github.ben-manes.versions"
+    id "com.adarshr.test-logger"
+    id "io.gitlab.arturbosch.detekt"
+}
+
+apply from: "$rootDir/gradle/scripts/detekt.gradle"
+
+android {
+    compileSdkVersion AndroidSdk.compileSdk
+
+    defaultConfig {
+        minSdkVersion AndroidSdk.minSdk
+        targetSdkVersion AndroidSdk.targetSdk
+        versionCode AppVersion.versionCode
+        versionName AppVersion.versionName
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //TO-DO signing keys
+            signingConfig debug.signingConfig
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+}
+
+dependencies {
+    implementation Libs.kotlinStdlib
+    implementation Libs.coroutinesCore
+
+    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}

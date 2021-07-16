@@ -1,0 +1,12 @@
+plugins {
+    id "kotlin"
+}
+
+dependencies {
+    implementation Libs.kotlinStdlib
+    implementation Libs.coroutinesCore
+
+    implementation TestLibs.junit
+    implementation TestLibs.mockito
+    implementation TestLibs.coroutinesTest
+}

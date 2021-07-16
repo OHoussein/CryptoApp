@@ -1,0 +1,6 @@
+apply plugin: "io.gitlab.arturbosch.detekt"
+
+detekt {
+    failFast = false
+    config = files("$rootProject.projectDir/config/detekt.yml")
+}

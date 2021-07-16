@@ -1,0 +1,16 @@
+plugins {
+    id "kotlin"
+    id "com.adarshr.test-logger"
+    id "io.gitlab.arturbosch.detekt"
+}
+
+apply from: "$rootDir/gradle/scripts/detekt.gradle"
+
+dependencies {
+    implementation Libs.kotlinStdlib
+    implementation Libs.coroutinesCore
+
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.mockito
+    testImplementation TestLibs.mockitoInline
+}

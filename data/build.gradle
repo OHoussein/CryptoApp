@@ -1,0 +1,64 @@
+plugins {
+    id "com.android.library"
+    id "kotlin-android"
+    id "com.github.ben-manes.versions"
+    id "com.adarshr.test-logger"
+    id "io.gitlab.arturbosch.detekt"
+}
+
+apply from: "$rootDir/gradle/scripts/detekt.gradle"
+
+android {
+    compileSdkVersion AndroidSdk.compileSdk
+
+    defaultConfig {
+        minSdkVersion AndroidSdk.minSdk
+        targetSdkVersion AndroidSdk.targetSdk
+        versionCode AppVersion.versionCode
+        versionName AppVersion.versionName
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //TO-DO add signing keys
+            signingConfig debug.signingConfig
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            freeCompilerArgs = [
+                    "-XXLanguage:+InlineClasses",
+                    "-Xopt-in=kotlin.RequiresOptIn",
+            ]
+        }
+    }
+}
+
+dependencies {
+    implementation project(path: ':domain')
+    implementation project(path: ':common')
+
+    implementation Libs.kotlinStdlib
+    implementation Libs.retofit
+    implementation Libs.retofitConverter
+    implementation Libs.coroutinesCore
+    implementation Libs.annotation
+    testImplementation TestLibs.junit
+    testImplementation TestLibs.coroutinesTest
+    testImplementation TestLibs.mockito
+    testImplementation TestLibs.mockitoInline
+    testImplementation TestLibs.mockWebserver
+
+    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}

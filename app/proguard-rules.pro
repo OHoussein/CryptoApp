@@ -2,19 +2,25 @@
 -keep class androidx.core.app.NotificationCompat$* { *; }
 -keep public class * extends androidx.fragment.app.Fragment
 
--keepnames class kotlinx.coroutines.internal.MainDispatcherFactory {}
--keepnames class kotlinx.coroutines.CoroutineExceptionHandler {}
--keepclassmembernames class kotlinx.** {
-    volatile <fields>;
-}
+-keep class kotlinx.** { *; }
 
 # This is generated automatically by the Android Gradle plugin.-dontwarn org.bouncycastle.jsse.BCSSLParameters
--dontwarn org.bouncycastle.jsse.BCSSLSocket
--dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider
--dontwarn org.conscrypt.Conscrypt$Version
--dontwarn org.conscrypt.Conscrypt
--dontwarn org.conscrypt.ConscryptHostnameVerifier
--dontwarn org.openjsse.javax.net.ssl.SSLParameters
--dontwarn org.openjsse.javax.net.ssl.SSLSocket
--dontwarn org.openjsse.net.ssl.OpenJSSE
+-dontwarn edu.umd.cs.findbugs.annotations.SuppressFBWarnings
+-dontwarn java.lang.instrument.ClassDefinition
+-dontwarn java.lang.instrument.IllegalClassFormatException
+-dontwarn java.lang.instrument.UnmodifiableClassException
+-dontwarn java.lang.management.ManagementFactory
+-dontwarn java.lang.management.RuntimeMXBean
+-dontwarn org.junit.jupiter.api.extension.ExtendWith
+-dontwarn org.junit.jupiter.api.extension.ExtensionContext$Namespace
+-dontwarn org.junit.jupiter.api.extension.ExtensionContext$Store$CloseableResource
+-dontwarn org.junit.jupiter.api.extension.ExtensionContext$Store
+-dontwarn org.junit.jupiter.api.extension.ExtensionContext
+-dontwarn org.junit.jupiter.api.extension.InvocationInterceptor$Invocation
+-dontwarn org.junit.jupiter.api.extension.InvocationInterceptor
+-dontwarn org.junit.jupiter.api.extension.ReflectiveInvocationContext
+-dontwarn org.junit.jupiter.api.parallel.ResourceAccessMode
+-dontwarn org.junit.jupiter.api.parallel.ResourceLock
+-dontwarn org.junit.platform.commons.support.AnnotationSupport
+-dontwarn reactor.blockhound.BlockHound$Builder
 -dontwarn reactor.blockhound.integration.BlockHoundIntegration

@@ -1,7 +1,6 @@
 package dev.ohoussein.cryptoapp.ui.feature.cryptolist.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -47,7 +46,7 @@ fun CryptoItem(
                 ) {
                     CryptoImage(
                         modifier = Modifier.size(48.dp),
-                        imageUrl = crypto.imageUrl,
+                        imageUrl = crypto.base.imageUrl,
                     )
                     Column(Modifier.padding(horizontal = 8.dp)) {
                         Row(
@@ -56,7 +55,7 @@ fun CryptoItem(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
-                                text = crypto.name,
+                                text = crypto.base.name,
                                 style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
                                 color = MaterialTheme.colors.onSurface,
                             )
@@ -72,7 +71,7 @@ fun CryptoItem(
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Text(
-                                text = crypto.symbol,
+                                text = crypto.base.symbol,
                                 style = MaterialTheme.typography.subtitle1,
                                 color = MaterialTheme.colors.onSurface,
                                 modifier = Modifier.padding(top = 4.dp)

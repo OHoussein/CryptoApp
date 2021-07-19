@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.ohoussein.cryptoapp.R
@@ -42,7 +43,8 @@ fun StateError(
         Text(
             text = message,
             style = MaterialTheme.typography.h6,
-            color = MaterialTheme.colors.error
+            color = MaterialTheme.colors.error,
+            textAlign = TextAlign.Center,
         )
         if (onRetryClick != null) {
             Spacer(modifier = Modifier.padding(24.dp))

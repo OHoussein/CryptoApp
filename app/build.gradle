@@ -129,7 +129,13 @@ dependencies {
     implementation Libs.composeUI
     implementation Libs.composeMaterial
     implementation Libs.composeMaterialIconExtended
-    implementation Libs.composeUITooling
+    implementation(Libs.composeUITooling) {
+        version {
+            // TODO: Remove this when Android Studio has become compatible again
+            // Android Studio Bumblebee | 2021.1.1 Canary 3 is not compatible with module ui-tooling 1.0.0-rc01 or higher.
+            strictly("1.0.0-beta09")
+        }
+    }
     implementation Libs.composeActivity
     implementation Libs.composeLivedata
     implementation Libs.composeHiltViewModel

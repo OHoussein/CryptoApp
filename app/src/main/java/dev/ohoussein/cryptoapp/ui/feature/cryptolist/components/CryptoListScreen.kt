@@ -10,6 +10,8 @@ import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -20,12 +22,14 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.ohoussein.cryptoapp.R
 import dev.ohoussein.cryptoapp.debug.DataPreview.previewListCrypto
+import dev.ohoussein.cryptoapp.ui.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.ui.base.StateError
 import dev.ohoussein.cryptoapp.ui.base.StateLoading
 import dev.ohoussein.cryptoapp.ui.core.mapper.ErrorMessageMapper
 import dev.ohoussein.cryptoapp.ui.core.model.Crypto
 import dev.ohoussein.cryptoapp.ui.core.model.Resource
 import dev.ohoussein.cryptoapp.ui.core.model.Status
+import dev.ohoussein.cryptoapp.ui.feature.cryptolist.viewmodel.HomeViewModel
 import dev.ohoussein.cryptoapp.ui.theme.CryptoAppTheme
 
 @Suppress("TopLevelPropertyNaming")
@@ -55,7 +59,7 @@ fun CryptoList(
             items(cryptoList) { crypto ->
                 CryptoItem(
                     modifier = Modifier
-                        .testTag(CryptoItemTestTag + crypto.id)
+                        .testTag(CryptoItemTestTag + crypto.base.id)
                         .fillMaxWidth(),
                     crypto = crypto,
                     onClick = onClick,
@@ -66,7 +70,7 @@ fun CryptoList(
 }
 
 @Composable
-fun CryptoListScreen(
+fun CryptoListStateScreen(
     modifier: Modifier = Modifier,
     cryptoListState: Resource<List<Crypto>>,
     errorMessageMapper: ErrorMessageMapper,
@@ -109,6 +113,28 @@ fun CryptoListScreen(
         else -> {
             StateLoading()
         }
+    }
+}
+
+@Composable
+fun CryptoListScreen(
+    viewModel: HomeViewModel,
+    errorMessageMapper: ErrorMessageMapper,
+    onClick: (Crypto) -> Unit,
+) {
+    val cryptoListState: Resource<List<Crypto>> by viewModel.topCryptoList.observeAsState(
+        Resource.loading()
+    )
+    //there's a cast issue here, that's why I used an intermediate variable
+    val data: Resource<List<Crypto>> = cryptoListState
+
+    CryptoAppScaffold {
+        CryptoListStateScreen(
+            cryptoListState = data,
+            errorMessageMapper = errorMessageMapper,
+            onClick = onClick,
+            onRefresh = { viewModel.load(refresh = true) }
+        )
     }
 }
 

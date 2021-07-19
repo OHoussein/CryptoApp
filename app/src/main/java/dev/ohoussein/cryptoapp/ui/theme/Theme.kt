@@ -5,12 +5,8 @@ import androidx.compose.material.Colors
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
-import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import dev.ohoussein.cryptoapp.R
 
 private val DarkColorPalette = darkColors(
     primary = BlueGrey700,
@@ -34,10 +30,6 @@ private val LightColorPalette = lightColors(
     onBackground = Color.Black,
     onSurface = Color.Black,
     */
-)
-
-val PaytoneOneFontFamily = FontFamily(
-    Font(R.font.paytone_one_regular),
 )
 
 val AppbarFontFamily = PaytoneOneFontFamily

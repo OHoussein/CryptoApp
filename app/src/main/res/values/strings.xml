@@ -4,9 +4,15 @@
     <!-- Generics-->
     <string name="retry">RETRY</string>
     <string name="back">Back</string>
+    <string name="see_more">SEE MORE</string>
 
     <!-- Errors-->
     <string name="error_no_internet_connection">No internet connection</string>
     <string name="error_unknown_error_with_message">Internal error: %1$s</string>
     <string name="error_unknown_error">Internal error</string>
+
+    <string name="crypto_details_links_section">Links</string>
+    <string name="crypto_details_link_home">Home page</string>
+    <string name="crypto_details_link_source_code">Source code</string>
+    <string name="crypto_details_link_blockchain">Blockchain</string>
 </resources>

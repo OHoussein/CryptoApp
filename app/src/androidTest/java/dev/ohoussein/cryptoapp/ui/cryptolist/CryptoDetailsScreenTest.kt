@@ -2,14 +2,11 @@ package dev.ohoussein.cryptoapp.ui.cryptolist
 
 import android.content.res.Resources
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performGesture
-import androidx.compose.ui.test.swipeDown
-import androidx.compose.ui.test.swipeUp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.whenever
@@ -19,14 +16,12 @@ import dagger.hilt.android.testing.UninstallModules
 import dev.ohoussein.cryptoapp.R
 import dev.ohoussein.cryptoapp.di.CoreModule
 import dev.ohoussein.cryptoapp.di.DataRepoModule
-import dev.ohoussein.cryptoapp.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.domain.repo.ICryptoRepository
 import dev.ohoussein.cryptoapp.mock.TestDataFactory
 import dev.ohoussein.cryptoapp.ui.activity.RootActivity
-import dev.ohoussein.cryptoapp.ui.feature.cryptolist.components.CryptoItemTestTag
-import dev.ohoussein.cryptoapp.ui.feature.cryptolist.components.CryptoListScreen
-import dev.ohoussein.cryptoapp.ui.feature.cryptolist.components.CryptoListTestTag
-import dev.ohoussein.cryptoapp.ui.feature.cryptolist.viewmodel.HomeViewModel
+import dev.ohoussein.cryptoapp.ui.feature.cryptolist.components.CryptoDetailsScreen
+import dev.ohoussein.cryptoapp.ui.feature.cryptolist.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.ui.navigation.NavPath
 import dev.ohoussein.cryptoapp.ui.testutil.TestNavHost
 import kotlinx.coroutines.flow.flow
@@ -39,19 +34,21 @@ import javax.inject.Inject
 
 @HiltAndroidTest
 @UninstallModules(value = [CoreModule::class, DataRepoModule::class])
-class CryptoListScreenTest {
+class CryptoDetailsScreenTest {
 
     @Inject
     internal lateinit var cryptoRepo: ICryptoRepository
 
     @get:Rule(order = 1)
-    val hiltRule = HiltAndroidRule(this)
+    internal val hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 2)
-    val composeTestRule = createAndroidComposeRule<RootActivity>()
+    internal val composeTestRule = createAndroidComposeRule<RootActivity>()
 
     private val res: Resources
         get() = composeTestRule.activity.resources
+
+    private val cryptoId = "bitcoin"
 
     @Before
     fun setUp() {
@@ -59,12 +56,12 @@ class CryptoListScreenTest {
     }
 
     @Test
-    fun should_show_list_crypto() {
-        givenListOfCrypto { data ->
+    fun should_show_details() {
+        givenCrypto { data ->
             //When
             setupContent {
                 //Then
-                thenCryptoListShouldBeDisplayed(data)
+                thenCryptoDetailsShouldBeDisplayed(data)
             }
         }
     }
@@ -72,32 +69,15 @@ class CryptoListScreenTest {
     @Test
     fun should_show_error_screen_and_retry() {
         //Given error
-        givenErrorGetListOfCrypto {
+        givenError {
             //When
             setupContent {
                 //Then
                 thenShouldDisplayError()
-                givenListOfCrypto { data ->
+                givenCrypto { data ->
                     composeTestRule.onNodeWithText(res.getString(R.string.retry))
                         .performClick()
-                    thenCryptoItemShouldBeDisplayed(data.first())
-                }
-            }
-        }
-    }
-
-    @Test
-    fun should_show_error_message_and_retry_when_refreshing() {
-        givenListOfCrypto { data ->
-            //When
-            setupContent {
-                //check just the first item
-                thenCryptoItemShouldBeDisplayed(data.first())
-                givenErrorGetListOfCrypto {
-                    swipeToRefreshList()
-                    // Then should display error and still see the list
-                    thenShouldDisplayError()
-                    thenCryptoItemShouldBeDisplayed(data.first())
+                    thenCryptoDetailsShouldBeDisplayed(data)
                 }
             }
         }
@@ -111,50 +91,38 @@ class CryptoListScreenTest {
         next: ComposeContentTestRule.() -> Unit
     ) {
         composeTestRule.setContent {
-            TestNavHost(path = NavPath.HOME) {
-                val viewModel = hiltViewModel<HomeViewModel>()
-                CryptoListScreen(
+            TestNavHost(NavPath.CryptoDetailsPath.PATH) {
+                val viewModel = hiltViewModel<CryptoDetailsViewModel>()
+                CryptoDetailsScreen(
                     viewModel = viewModel,
+                    cryptoId = cryptoId,
                     errorMessageMapper = composeTestRule.activity.errorMessageMapper,
-                    onClick = {},
+                    externalNavigator = composeTestRule.activity.externalNavigator,
+                    onBackClicked = {}
                 )
             }
         }
         next(composeTestRule)
     }
 
-    private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
-        val data = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(flowOf(data))
+    private fun givenCrypto(next: (DomainCryptoDetails) -> Unit) {
+        val data = TestDataFactory.randomCryptoDetails(cryptoId)
+        whenever(cryptoRepo.getCryptoDetails(cryptoId)).thenReturn(flowOf(data))
         next(data)
     }
 
-    private fun givenErrorGetListOfCrypto(next: () -> Unit) {
-        val dataFlow = flow<List<DomainCrypto>> { throw IOException() }
-        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(dataFlow)
+    private fun givenError(next: () -> Unit) {
+        val dataFlow = flow<DomainCryptoDetails> { throw IOException() }
+        whenever(cryptoRepo.getCryptoDetails(any())).thenReturn(dataFlow)
         next()
     }
 
-    private fun swipeToRefreshList() {
-        composeTestRule.onNodeWithTag(CryptoListTestTag).performGesture {
-            swipeDown()
+    private fun thenCryptoDetailsShouldBeDisplayed(item: DomainCryptoDetails) {
+        with(composeTestRule) {
+            onNode(hasText(item.name, ignoreCase = true, substring = true)).assertIsDisplayed()
+            onNode(hasText(item.description, ignoreCase = true)).assertIsDisplayed()
         }
-    }
 
-    private fun thenCryptoListShouldBeDisplayed(data: List<DomainCrypto>) {
-        data.forEach { item ->
-            thenCryptoItemShouldBeDisplayed(item)
-            composeTestRule.onNodeWithTag(CryptoItemTestTag + item.id).performGesture {
-                swipeUp()
-            }
-        }
-    }
-
-    private fun thenCryptoItemShouldBeDisplayed(item: DomainCrypto) {
-        composeTestRule.onNodeWithText(
-            item.name,
-            useUnmergedTree = true
-        ).assertExists()
     }
 
     private fun thenShouldDisplayError() {

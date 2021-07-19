@@ -3,9 +3,11 @@ package dev.ohoussein.cryptoapp.data.repository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import dev.ohoussein.cryptoapp.data.mapper.DomainModelMapper
+import dev.ohoussein.cryptoapp.data.model.CryptoDetailsResponse
 import dev.ohoussein.cryptoapp.data.model.TopCryptoResponse
 import dev.ohoussein.cryptoapp.data.network.ApiCoinGeckoService
 import dev.ohoussein.cryptoapp.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.domain.repo.ICryptoRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
@@ -46,6 +48,22 @@ class RemoteCryptoRepositoryTest {
         whenever(mapper.convert(apiResponse)).thenReturn(domainData)
         //When
         val result = repository.getTopCryptoList(vsCurrency).first()
+        //Then
+        assertNotNull(result)
+        assertEquals(domainData, result)
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getCryptoDetails() = runBlockingTest {
+        //Given
+        val cryptoId = "bitcoin"
+        val apiResponse = mock<CryptoDetailsResponse>()
+        val domainData = mock<DomainCryptoDetails>()
+        whenever(apiService.getCryptoDetails(cryptoId)).thenReturn(apiResponse)
+        whenever(mapper.convert(apiResponse)).thenReturn(domainData)
+        //When
+        val result = repository.getCryptoDetails(cryptoId).first()
         //Then
         assertNotNull(result)
         assertEquals(domainData, result)

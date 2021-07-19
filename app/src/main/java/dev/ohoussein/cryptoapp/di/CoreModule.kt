@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.ohoussein.cryptoapp.common.coroutine.CoroutineContextProvider
+import java.util.Locale
 import javax.inject.Singleton
 
 @Module
@@ -13,4 +14,7 @@ object CoreModule {
     @Provides
     @Singleton
     fun provideCoroutineContextProvider(): CoroutineContextProvider = CoroutineContextProvider()
+
+    @Provides
+    fun provideLocale(): Locale = Locale.US
 }

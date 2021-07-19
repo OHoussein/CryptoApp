@@ -1,12 +1,12 @@
 package dev.ohoussein.cryptoapp.ui.core.mapper
 
 import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.android.qualifiers.ActivityContext
 import dev.ohoussein.cryptoapp.R
 import java.io.IOException
 import javax.inject.Inject
 
-class ErrorMessageMapper @Inject constructor(@ApplicationContext private val context: Context) {
+class ErrorMessageMapper @Inject constructor(@ActivityContext private val context: Context) {
 
     fun map(exception: Throwable?): String {
         return when (exception) {

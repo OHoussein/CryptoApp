@@ -79,7 +79,7 @@ object Libs {
     const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
     const val composeMaterialIconExtended =
         "androidx.compose.material:material-icons-extended:${Versions.compose}"
-    const val composeUITooling = "androidx.compose.ui:ui-tooling:1.0.0-beta09"
+    const val composeUITooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     const val composeActivity = "androidx.activity:activity-compose:1.3.0-alpha06"
     const val composeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     const val composeHiltViewModel = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha02"

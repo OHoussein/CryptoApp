@@ -11,6 +11,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Converter
 import retrofit2.Retrofit
+import java.util.Locale
 import javax.inject.Named
 import javax.inject.Singleton
 
@@ -42,6 +43,6 @@ object DataModule {
         NetworkBuilder.createApiService(retrofit)
 
     @Provides
-    fun provideDomainEntityMapper() = DomainModelMapper()
+    fun provideDomainEntityMapper(locale: Locale) = DomainModelMapper(locale)
 
 }

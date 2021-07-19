@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
 
-fun <T> Flow<T>.asResourceFlow(previousData: T?): Flow<Resource<T>> {
+fun <T> Flow<T>.asResourceFlow(previousData: T? = null): Flow<Resource<T>> {
     return this
         .map<T, Resource<T>> {
             Resource.success(it)

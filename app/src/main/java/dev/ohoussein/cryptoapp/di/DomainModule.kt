@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.ohoussein.cryptoapp.domain.repo.ICryptoRepository
+import dev.ohoussein.cryptoapp.domain.usecase.GetCryptoDetails
 import dev.ohoussein.cryptoapp.domain.usecase.GetTopCryptoList
 
 @Module
@@ -13,5 +14,8 @@ object DomainModule {
 
     @Provides
     fun provideGetTopCryptoListUseCase(repo: ICryptoRepository) = GetTopCryptoList(repo)
+
+    @Provides
+    fun provideGetCryptoDetailsUseCase(repo: ICryptoRepository) = GetCryptoDetails(repo)
 
 }

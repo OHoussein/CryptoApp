@@ -25,6 +25,7 @@ import org.junit.Test
 import org.junit.rules.TestRule
 import org.mockito.Mockito.times
 import java.io.IOException
+import java.util.Locale
 
 @ExperimentalCoroutinesApi
 class CryptoDetailsModelTest {
@@ -39,7 +40,7 @@ class CryptoDetailsModelTest {
     private lateinit var useCase: GetCryptoDetails
 
     private val uiMapper = DomainModelMapper(
-        UiCoreModule.providePriceFormatter(),
+        UiCoreModule.providePriceFormatter(Locale.US),
         UiCoreModule.providePercentFormatter(),
     )
     private val mockObserver = mock<Observer<Resource<CryptoDetails>>>()

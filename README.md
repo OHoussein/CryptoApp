@@ -1,4 +1,4 @@
-![Android Master CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Master%20CI/badge.svg)
+![Android Master CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Main%20CI/badge.svg)
 ![Android Develop CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Develop%20CI/badge.svg)
 
 ⚠️ This project works only with Android Studio 4 Bumblebee and above
@@ -11,6 +11,22 @@ Implementation of the clean architecture using:
 * **Unit test** with junit
 * **Instrumentation test** with Espresso
 * **Github Action**
+
+## Screenshots 📸
+
+### Dark mode 🌚
+
+<div  align="center">
+<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_list_dark.png" alt="architecture" align=center />
+&nbsp;
+<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_details_dark.png" alt="architecture" align=center />
+</div>
+### Light mode 🌕
+<div  align="center">
+<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_list_light.png" alt="architecture" align=center />
+&nbsp;
+<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_details_light.png" alt="architecture" align=center />
+</div>
 
 ## Layers
 

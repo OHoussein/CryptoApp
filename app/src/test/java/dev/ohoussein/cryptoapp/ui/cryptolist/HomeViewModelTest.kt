@@ -24,6 +24,7 @@ import org.junit.rules.TestRule
 import org.mockito.Mockito.atLeast
 import org.mockito.Mockito.times
 import java.io.IOException
+import java.util.Locale
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
@@ -38,7 +39,7 @@ class HomeViewModelTest {
     private lateinit var useCase: GetTopCryptoList
 
     private val uiMapper = DomainModelMapper(
-        UiCoreModule.providePriceFormatter(),
+        UiCoreModule.providePriceFormatter(Locale.US),
         UiCoreModule.providePercentFormatter(),
     )
 

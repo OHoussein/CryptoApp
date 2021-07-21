@@ -7,6 +7,7 @@ data class DomainCrypto(
     val price: Double,
     val symbol: String,
     val priceChangePercentIn24h: Double?,
+    val order: Int,
 )
 
 data class DomainCryptoDetails(

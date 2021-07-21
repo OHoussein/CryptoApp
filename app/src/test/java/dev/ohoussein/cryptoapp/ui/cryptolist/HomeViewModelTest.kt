@@ -3,31 +3,27 @@ package dev.ohoussein.cryptoapp.ui.cryptolist
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.atLeast
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import dev.ohoussein.cryptoapp.commonTest.mock.TestDataFactory
 import dev.ohoussein.cryptoapp.commonTest.rule.TestCoroutineRule
 import dev.ohoussein.cryptoapp.core.TestCoroutineContextProvider
-import dev.ohoussein.cryptoapp.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.domain.usecase.GetTopCryptoList
-import dev.ohoussein.cryptoapp.mock.TestDataFactory
 import dev.ohoussein.cryptoapp.ui.core.UiCoreModule
 import dev.ohoussein.cryptoapp.ui.core.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.ui.core.model.Crypto
 import dev.ohoussein.cryptoapp.ui.core.model.Resource
 import dev.ohoussein.cryptoapp.ui.feature.cryptolist.viewmodel.HomeViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
+import org.mockito.Mockito.atLeast
 import org.mockito.Mockito.times
 import java.io.IOException
-import java.text.NumberFormat
-import java.util.Locale
 
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
@@ -45,7 +41,8 @@ class HomeViewModelTest {
         UiCoreModule.providePriceFormatter(),
         UiCoreModule.providePercentFormatter(),
     )
-    private val mockCryptoListObserver = mock<Observer<Resource<List<Crypto>>>>()
+
+    private lateinit var stateObserver: Observer<Resource<Unit>>
 
     @Before
     fun setup() {
@@ -55,69 +52,68 @@ class HomeViewModelTest {
             useCase,
             uiMapper,
         )
+        stateObserver = mock()
+        tested.syncState.observeForever(stateObserver)
     }
 
     @Test
-    fun `should load top crypto list`() {
+    fun `should load top crypto list`() = runBlockingTest {
         //Given
-        tested.topCryptoList.observeForever(mockCryptoListObserver)
-        givenListOfCrypto { data ->
+        givenListOfCrypto {
             //When
-            tested.load()
+            tested.refresh(true)
             //Then
-            verify(mockCryptoListObserver).onChanged(Resource.loading())
-            verify(mockCryptoListObserver).onChanged(Resource.success(data))
+            verify(stateObserver, atLeast(1)).onChanged(Resource.loading())
+            verify(stateObserver, atLeast(1)).onChanged(Resource.success(Unit))
         }
     }
 
     @Test
-    fun `should get latest data when refreshing`() {
-
+    fun `should get latest data when refreshing`() = runBlockingTest {
         //Given
-        tested.topCryptoList.observeForever(mockCryptoListObserver)
-        givenListOfCrypto { data ->
+        givenListOfCrypto {
             //When
-            tested.load()
+            tested.refresh()
             //Then
-            verify(mockCryptoListObserver).onChanged(Resource.loading())
-            verify(mockCryptoListObserver).onChanged(Resource.success(data))
-
-            givenListOfCrypto { data2 ->
-                tested.load(refresh = true)
-                verify(mockCryptoListObserver).onChanged(Resource.loading(data))
-                verify(mockCryptoListObserver).onChanged(Resource.success(data2))
+            verify(stateObserver).onChanged(Resource.success(Unit))
+            runBlockingTest {
+                givenListOfCrypto {
+                    tested.refresh(force = true)
+                    verify(stateObserver, atLeast(1)).onChanged(Resource.loading())
+                    verify(stateObserver, times(2)).onChanged(Resource.success(Unit))
+                }
             }
         }
     }
 
     @Test
-    fun `should get error when loading crypto list`() {
+    fun `should get error when loading crypto list`() = runBlockingTest {
         //Given
-        tested.topCryptoList.observeForever(mockCryptoListObserver)
         givenErrorListOfCrypto { error ->
             //When
-            tested.load()
+            tested.refresh(true)
             //Then
-            verify(mockCryptoListObserver).onChanged(Resource.loading())
-            verify(mockCryptoListObserver).onChanged(Resource.error(error))
+            verify(stateObserver).onChanged(Resource.loading())
+            verify(stateObserver).onChanged(Resource.error(error))
         }
     }
 
     @Test
-    fun `should refresh after error`() {
+    fun `should refresh after error`() = runBlockingTest {
         //Given
-        tested.topCryptoList.observeForever(mockCryptoListObserver)
         givenErrorListOfCrypto { error ->
             //When
-            tested.load()
+            tested.refresh(true)
             //Then
-            verify(mockCryptoListObserver).onChanged(Resource.loading())
-            verify(mockCryptoListObserver).onChanged(Resource.error(error))
-            givenListOfCrypto { data ->
-                tested.load()
-                //Then
-                verify(mockCryptoListObserver, times(2)).onChanged(Resource.loading())
-                verify(mockCryptoListObserver).onChanged(Resource.success(data))
+            verify(stateObserver).onChanged(Resource.loading())
+            verify(stateObserver).onChanged(Resource.error(error))
+            runBlockingTest {
+                givenListOfCrypto {
+                    tested.refresh(true)
+                    //Then
+                    verify(stateObserver, times(2)).onChanged(Resource.loading())
+                    verify(stateObserver, atLeast(1)).onChanged(Resource.success(Unit))
+                }
             }
         }
     }
@@ -126,17 +122,16 @@ class HomeViewModelTest {
     // private methods
     ///////////////////////////////////////////////////////////////////////////
 
-    private fun givenListOfCrypto(next: (List<Crypto>) -> Unit) {
+    private suspend fun givenListOfCrypto(next: (List<Crypto>) -> Unit) {
         val data = TestDataFactory.makeCryptoList(10)
         val uiData = uiMapper.convert(data, "USD")
-        whenever(useCase(any())).thenReturn(flowOf(data))
+        whenever(useCase.refresh(any())).thenReturn(Unit)
         next(uiData)
     }
 
-    private fun givenErrorListOfCrypto(next: (Throwable) -> Unit) {
+    private suspend fun givenErrorListOfCrypto(next: (Throwable) -> Unit) {
         val error = IOException("")
-        val dataFlow = flow<List<DomainCrypto>> { throw error }
-        whenever(useCase(any())).thenReturn(dataFlow)
+        whenever(useCase.refresh(any())).thenAnswer { throw error }
         next(error)
     }
 }

@@ -8,5 +8,7 @@ interface ICryptoRepository {
 
     fun getTopCryptoList(vsCurrency: String): Flow<List<DomainCrypto>>
 
+    suspend fun refreshTopCryptoList(vsCurrency: String)
+
     fun getCryptoDetails(cryptoId: String): Flow<DomainCryptoDetails>
 }

@@ -6,11 +6,11 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
+import dev.ohoussein.cryptoapp.commonTest.mock.TestDataFactory
 import dev.ohoussein.cryptoapp.commonTest.rule.TestCoroutineRule
 import dev.ohoussein.cryptoapp.core.TestCoroutineContextProvider
 import dev.ohoussein.cryptoapp.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.domain.usecase.GetCryptoDetails
-import dev.ohoussein.cryptoapp.mock.TestDataFactory
 import dev.ohoussein.cryptoapp.ui.core.UiCoreModule
 import dev.ohoussein.cryptoapp.ui.core.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.ui.core.model.CryptoDetails

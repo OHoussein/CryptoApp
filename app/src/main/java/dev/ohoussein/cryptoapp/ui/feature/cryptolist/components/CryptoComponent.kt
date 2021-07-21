@@ -61,7 +61,7 @@ fun CryptoItem(
                             )
                             Text(
                                 text = crypto.price.labelValue.label,
-                                style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold),
+                                style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
                                 color = MaterialTheme.colors.onSurface,
                             )
                         }

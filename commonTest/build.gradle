@@ -1,12 +1,49 @@
 plugins {
-    id "kotlin"
+    id "com.android.library"
+    id "kotlin-android"
 }
 
+
+android {
+    compileSdkVersion AndroidSdk.compileSdk
+
+    defaultConfig {
+        minSdkVersion AndroidSdk.minSdk
+        targetSdkVersion AndroidSdk.targetSdk
+        versionCode AppVersion.versionCode
+        versionName AppVersion.versionName
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            //TO-DO signing keys
+            signingConfig debug.signingConfig
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    packagingOptions {
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+    }
+}
+
+
 dependencies {
+    implementation project(path: ':domain')
+
     implementation Libs.kotlinStdlib
     implementation Libs.coroutinesCore
 
     implementation TestLibs.junit
     implementation TestLibs.mockito
     implementation TestLibs.coroutinesTest
+    implementation TestLibs.mockWebserver
 }

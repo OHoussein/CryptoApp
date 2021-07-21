@@ -1,5 +1,6 @@
-package dev.ohoussein.cryptoapp.data.testutil
+package dev.ohoussein.cryptoapp.commonTest
 
+import android.content.Context
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
@@ -11,6 +12,10 @@ object NetworkUtils {
     fun readMockFile(fileName: String): String {
         val fileUri = javaClass.classLoader!!.getResource(fileName)
         return File(fileUri.path).readText()
+    }
+
+    fun readFromAsset(context: Context, fileName: String): String {
+        return context.assets.open(fileName).bufferedReader().readText()
     }
 
     fun MockWebServer.withResponse(response: MockResponse) {

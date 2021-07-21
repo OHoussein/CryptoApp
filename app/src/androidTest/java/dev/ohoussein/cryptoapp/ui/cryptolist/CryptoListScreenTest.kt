@@ -29,14 +29,18 @@ import dev.ohoussein.cryptoapp.ui.feature.cryptolist.components.CryptoListTestTa
 import dev.ohoussein.cryptoapp.ui.feature.cryptolist.viewmodel.HomeViewModel
 import dev.ohoussein.cryptoapp.ui.navigation.NavPath
 import dev.ohoussein.cryptoapp.ui.testutil.TestNavHost
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 import javax.inject.Inject
 
+@ExperimentalCoroutinesApi
 @HiltAndroidTest
 @UninstallModules(value = [CoreModule::class, DataRepoModule::class])
 class CryptoListScreenTest {
@@ -72,11 +76,12 @@ class CryptoListScreenTest {
     @Test
     fun should_show_error_screen_and_retry() {
         //Given error
-        givenErrorGetListOfCrypto {
+        givenErrorGetListOfCrypto { retry ->
             //When
             setupContent {
                 //Then
                 thenShouldDisplayError()
+                retry()
                 givenListOfCrypto { data ->
                     composeTestRule.onNodeWithText(res.getString(R.string.retry))
                         .performClick()
@@ -123,22 +128,27 @@ class CryptoListScreenTest {
         next(composeTestRule)
     }
 
-    private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
-        val data = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(flowOf(data))
-        next(data)
-    }
-
-    private fun givenErrorGetListOfCrypto(next: () -> Unit) {
-        val dataFlow = flow<List<DomainCrypto>> { throw IOException() }
-        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(dataFlow)
-        next()
-    }
-
     private fun swipeToRefreshList() {
         composeTestRule.onNodeWithTag(CryptoListTestTag).performGesture {
             swipeDown()
         }
+    }
+
+    private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+        val data = TestDataFactory.makeCryptoList(20)
+        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(flowOf(data))
+        runBlocking { whenever(cryptoRepo.refreshTopCryptoList(any())).thenReturn(Unit) }
+        next(data)
+    }
+
+    private fun givenErrorGetListOfCrypto(next: (() -> Unit) -> Unit) {
+        val flow = MutableSharedFlow<List<DomainCrypto>>()
+        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(flow)
+        runBlocking { whenever(cryptoRepo.refreshTopCryptoList(any())).thenAnswer { throw IOException() } }
+        val retry: () -> Unit = {
+            runBlockingTest { flow.emit(TestDataFactory.makeCryptoList(20)) }
+        }
+        next(retry)
     }
 
     private fun thenCryptoListShouldBeDisplayed(data: List<DomainCrypto>) {

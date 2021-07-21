@@ -4,9 +4,13 @@ import dev.ohoussein.cryptoapp.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.domain.repo.ICryptoRepository
 import kotlinx.coroutines.flow.Flow
 
-class GetTopCryptoList(private val remoteICryptoRepository: ICryptoRepository) {
+class GetTopCryptoList(private val cryptoRepository: ICryptoRepository) {
 
-    operator fun invoke(vsCurrency: String): Flow<List<DomainCrypto>> {
-        return remoteICryptoRepository.getTopCryptoList(vsCurrency)
+    fun get(vsCurrency: String): Flow<List<DomainCrypto>> {
+        return cryptoRepository.getTopCryptoList(vsCurrency)
+    }
+
+    suspend fun refresh(vsCurrency: String) {
+        cryptoRepository.refreshTopCryptoList(vsCurrency)
     }
 }

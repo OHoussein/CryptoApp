@@ -76,6 +76,7 @@ android {
         exclude 'META-INF/licenses/ASM'
         exclude("META-INF/*.kotlin_module")
         exclude "**/attach_hotspot_windows.dll"
+        exclude 'META-INF/DEPENDENCIES'
     }
 
     lintOptions {
@@ -146,6 +147,7 @@ dependencies {
     //Data
     implementation Libs.retofit
     implementation Libs.retofitConverter
+    implementation Libs.roomRuntime
 
     //Debug tools
     debugImplementation DebugLibs.stetho
@@ -153,6 +155,7 @@ dependencies {
     debugImplementation DebugLibs.okhttpLogging
 
     //Android tests
+    androidTestImplementation project(path: ':commonTest')
     debugImplementation AndroidTestLibs.fragmentTesting
     androidTestImplementation TestLibs.hiltAndroid
     kaptAndroidTest TestLibs.hiltAndroidCompiler
@@ -172,7 +175,7 @@ dependencies {
     debugImplementation AndroidTestLibs.composeTestingManifest
 
     //Unit tests
-    implementation project(path: ':commonTest')
+    testImplementation project(path: ':commonTest')
     testImplementation TestLibs.hiltAndroid
     kaptTest TestLibs.hiltAndroidCompiler
     testImplementation TestLibs.mockito

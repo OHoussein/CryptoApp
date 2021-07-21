@@ -12,25 +12,25 @@ import org.junit.Test
 class GetCryptoDetailsTest {
 
     private lateinit var tested: GetCryptoDetails
-    private lateinit var remoteRepository: ICryptoRepository
+    private lateinit var repository: ICryptoRepository
 
     private val cryptoId = "bitcoin"
 
     @Before
     fun setup() {
-        remoteRepository = mock()
-        tested = GetCryptoDetails(remoteRepository)
+        repository = mock()
+        tested = GetCryptoDetails(repository)
     }
 
     @Test
     fun `should call get crypto details`() {
         //Given
         val data = mock<DomainCryptoDetails>()
-        whenever(remoteRepository.getCryptoDetails(cryptoId)).thenReturn(flowOf(data))
+        whenever(repository.getCryptoDetails(cryptoId)).thenReturn(flowOf(data))
         //When
         tested(cryptoId)
         //Then
-        verify(remoteRepository).getCryptoDetails(cryptoId)
+        verify(repository).getCryptoDetails(cryptoId)
 
     }
 }

@@ -1,12 +1,13 @@
 package dev.ohoussein.cryptoapp.data.network
 
+import dev.ohoussein.cryptoapp.commonTest.NetworkUtils.readMockFile
+import dev.ohoussein.cryptoapp.commonTest.NetworkUtils.withResponse
 import dev.ohoussein.cryptoapp.data.network.NetworkBuilder.createApiService
 import dev.ohoussein.cryptoapp.data.network.NetworkBuilder.createRetrofit
-import dev.ohoussein.cryptoapp.data.testutil.NetworkUtils.readMockFile
-import dev.ohoussein.cryptoapp.data.testutil.NetworkUtils.withResponse
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
@@ -24,6 +25,11 @@ class ApiCoinGeckoServiceTest {
         mockWebServer.start()
 
         service = createApiService(createRetrofit(baseUrl = mockWebServer.url("/")))
+    }
+
+    @After
+    fun tearDown() {
+        mockWebServer.shutdown()
     }
 
     @Test

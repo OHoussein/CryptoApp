@@ -4,9 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import dev.ohoussein.cryptoapp.data.database.CryptoDatabase
 import dev.ohoussein.cryptoapp.data.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.data.network.ApiCoinGeckoService
-import dev.ohoussein.cryptoapp.data.repository.RemoteCryptoRepository
+import dev.ohoussein.cryptoapp.data.repository.CryptoRepository
 import dev.ohoussein.cryptoapp.domain.repo.ICryptoRepository
 import javax.inject.Singleton
 
@@ -18,8 +19,9 @@ object DataRepoModule {
     @Singleton
     fun provideCryptoRepository(
         service: ApiCoinGeckoService,
+        database: CryptoDatabase,
         mapper: DomainModelMapper
     ): ICryptoRepository =
-        RemoteCryptoRepository(service, mapper)
+        CryptoRepository(service, database, mapper)
 
 }

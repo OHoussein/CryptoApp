@@ -1,6 +1,6 @@
 @file:Suppress("MemberVisibilityCanBePrivate")
 
-package dev.ohoussein.cryptoapp.mock
+package dev.ohoussein.cryptoapp.commonTest.mock
 
 import dev.ohoussein.cryptoapp.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.domain.model.DomainCryptoDetails

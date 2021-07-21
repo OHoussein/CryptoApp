@@ -1,9 +1,12 @@
 package dev.ohoussein.cryptoapp.di
 
+import android.content.Context
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import dev.ohoussein.cryptoapp.data.database.CryptoDatabase
 import dev.ohoussein.cryptoapp.data.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.data.network.ApiCoinGeckoService
 import dev.ohoussein.cryptoapp.data.network.NetworkBuilder
@@ -45,4 +48,8 @@ object DataModule {
     @Provides
     fun provideDomainEntityMapper(locale: Locale) = DomainModelMapper(locale)
 
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): CryptoDatabase =
+        CryptoDatabase.build(context)
 }

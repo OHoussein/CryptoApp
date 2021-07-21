@@ -3,6 +3,7 @@ package dev.ohoussein.cryptoapp.data.network
 import dev.ohoussein.cryptoapp.data.BuildConfig
 import dev.ohoussein.cryptoapp.data.Config
 import okhttp3.HttpUrl
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Converter
@@ -28,7 +29,7 @@ object NetworkBuilder {
             .build()
 
     fun createRetrofit(
-        baseUrl: HttpUrl = HttpUrl.get(Config.API_BASE_URL),
+        baseUrl: HttpUrl = Config.API_BASE_URL.toHttpUrl(),
         okHttpClient: OkHttpClient = createOkHttp(emptyArray(), emptyArray()),
         converterFactory: Converter.Factory = createConverter(),
     ): Retrofit = Retrofit.Builder()

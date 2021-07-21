@@ -6,18 +6,19 @@ import com.nhaarman.mockitokotlin2.whenever
 import dev.ohoussein.cryptoapp.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.domain.repo.ICryptoRepository
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
 class GetTopCryptoListTest {
 
     private lateinit var tested: GetTopCryptoList
-    private lateinit var remoteRepository: ICryptoRepository
+    private lateinit var repository: ICryptoRepository
 
     @Before
     fun setup() {
-        remoteRepository = mock()
-        tested = GetTopCryptoList(remoteRepository)
+        repository = mock()
+        tested = GetTopCryptoList(repository)
     }
 
     @Test
@@ -26,11 +27,21 @@ class GetTopCryptoListTest {
         val data = mock<List<DomainCrypto>>()
         val dataFlow = flowOf(data)
         val vsCurrency = "USD"
-        whenever(remoteRepository.getTopCryptoList(vsCurrency)).thenReturn(dataFlow)
+        whenever(repository.getTopCryptoList(vsCurrency)).thenReturn(dataFlow)
         //When
-        tested.invoke(vsCurrency)
+        tested.get(vsCurrency)
         //Then
-        verify(remoteRepository).getTopCryptoList(vsCurrency)
+        verify(repository).getTopCryptoList(vsCurrency)
+    }
 
+    @Test
+    fun `should call get refresh top crypto list`(): Unit = runBlocking {
+        //Given
+        val vsCurrency = "USD"
+        whenever(repository.refreshTopCryptoList(vsCurrency)).thenReturn(Unit)
+        //When
+        tested.refresh(vsCurrency)
+        //Then
+        verify(repository).refreshTopCryptoList(vsCurrency)
     }
 }

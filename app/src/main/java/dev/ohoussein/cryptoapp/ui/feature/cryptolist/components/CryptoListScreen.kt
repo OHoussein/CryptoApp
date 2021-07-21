@@ -1,3 +1,4 @@
+@file:Suppress("LongParameterList")
 package dev.ohoussein.cryptoapp.ui.feature.cryptolist.components
 
 import androidx.compose.foundation.layout.Box
@@ -72,20 +73,21 @@ fun CryptoList(
 @Composable
 fun CryptoListStateScreen(
     modifier: Modifier = Modifier,
-    cryptoListState: Resource<List<Crypto>>,
+    cryptoList: List<Crypto>?,
+    cryptoListState: Resource<Unit>,
     errorMessageMapper: ErrorMessageMapper,
     onClick: (Crypto) -> Unit,
     onRefresh: () -> Unit,
 ) {
 
     when {
-        cryptoListState.data != null -> {
+        cryptoList != null -> {
             Box(
                 modifier.fillMaxSize(),
                 contentAlignment = Alignment.BottomCenter
             ) {
                 CryptoList(
-                    cryptoList = cryptoListState.data,
+                    cryptoList = cryptoList,
                     onClick = onClick,
                     onRefresh = onRefresh,
                     isRefreshing = cryptoListState.status == Status.LOADING
@@ -122,18 +124,16 @@ fun CryptoListScreen(
     errorMessageMapper: ErrorMessageMapper,
     onClick: (Crypto) -> Unit,
 ) {
-    val cryptoListState: Resource<List<Crypto>> by viewModel.topCryptoList.observeAsState(
-        Resource.loading()
-    )
-    //there's a cast issue here, that's why I used an intermediate variable
-    val data: Resource<List<Crypto>> = cryptoListState
+    val cryptoListState: Resource<Unit> by viewModel.syncState.observeAsState(Resource.loading<Unit>())
+    val cryptoList: List<Crypto>? by viewModel.topCryptoList.observeAsState()
 
     CryptoAppScaffold {
         CryptoListStateScreen(
-            cryptoListState = data,
+            cryptoList = cryptoList,
+            cryptoListState = cryptoListState,
             errorMessageMapper = errorMessageMapper,
             onClick = onClick,
-            onRefresh = { viewModel.load(refresh = true) }
+            onRefresh = { viewModel.refresh(force = true) }
         )
     }
 }

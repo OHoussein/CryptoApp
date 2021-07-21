@@ -14,8 +14,10 @@ object BuildPlugins {
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
-    const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltVersion}"
+    const val kotlinGradlePlugin =
+        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+    const val hiltGradlePlugin =
+        "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltVersion}"
     const val gradleVersionsTrackerPlugin = "com.github.ben-manes:gradle-versions-plugin:+"
     const val testLoggerPlugin = "com.adarshr:gradle-test-logger-plugin:2.1.1"
     const val detektPlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.17.1"
@@ -34,6 +36,7 @@ object Libs {
         const val lifecycle = "2.3.1"
         const val coroutines = "1.5.1"
         const val fragment = "1.3.5"
+        const val room = "2.3.0"
 
         const val stetho = "1.6.0"
 
@@ -45,7 +48,8 @@ object Libs {
         const val compose = "1.0.0-rc01"
     }
 
-    const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildPlugins.Versions.kotlinVersion}"
+    const val kotlinStdlib =
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildPlugins.Versions.kotlinVersion}"
     const val appcompat = "androidx.appcompat:appcompat:1.3.0"
     const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
     const val material = "com.google.android.material:material:1.4.0"
@@ -56,7 +60,8 @@ object Libs {
     const val retofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     const val retofitConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
 
-    const val hiltAndroid = "com.google.dagger:hilt-android:${BuildPlugins.Versions.daggerHiltVersion}"
+    const val hiltAndroid =
+        "com.google.dagger:hilt-android:${BuildPlugins.Versions.daggerHiltVersion}"
     const val hiltAndroidCompiler =
         "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
     const val hiltLifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
@@ -86,6 +91,10 @@ object Libs {
     const val composeNavigation = "androidx.navigation:navigation-compose:2.4.0-alpha04"
     const val composeCoil = "io.coil-kt:coil-compose:1.3.0"
     const val composeSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:0.14.0"
+
+    const val room = "androidx.room:room-ktx:${Versions.room}"
+    const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
+    const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
 }
 
 object DebugLibs {
@@ -97,13 +106,17 @@ object DebugLibs {
 //Android and unit tests
 object TestLibs {
     const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
-    const val hiltAndroid = "com.google.dagger:hilt-android-testing:${BuildPlugins.Versions.daggerHiltVersion}"
-    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
+    const val hiltAndroid =
+        "com.google.dagger:hilt-android-testing:${BuildPlugins.Versions.daggerHiltVersion}"
+    const val hiltAndroidCompiler =
+        "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
     const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Libs.Versions.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:2.21.0"
-    const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Libs.Versions.coroutines}"
+    const val coroutinesTest =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Libs.Versions.coroutines}"
     const val junit = "junit:junit:4.13.2"
     const val mockWebserver = "com.squareup.okhttp3:mockwebserver:4.9.0"
+    const val robolectric = "org.robolectric:robolectric:4.6.1"
 }
 
 object AndroidTestLibs {
@@ -118,9 +131,12 @@ object AndroidTestLibs {
     const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Libs.Versions.espresso}"
     const val fragmentTesting = "androidx.fragment:fragment-testing:${Libs.Versions.fragment}"
     const val mockitoAndroid = "org.mockito:mockito-android:3.11.2"
+    const val okhttpIdling = "com.jakewharton.espresso:okhttp3-idling-resource:1.0.0"
 
     const val composeTesting = "androidx.compose.ui:ui-test-junit4:${Libs.Versions.compose}"
     const val composeTestingManifest =
         "androidx.compose.ui:ui-test-manifest:${Libs.Versions.compose}"
+
+    const val roomTestHelper = "androidx.room:room-testing:${Libs.Versions.room}"
 
 }

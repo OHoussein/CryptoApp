@@ -16,7 +16,8 @@ object UiCoreModule {
 
     @Provides
     @Named(PRICE_FORMATTER)
-    fun providePriceFormatter(): NumberFormat = NumberFormat.getCurrencyInstance()
+    fun providePriceFormatter(locale: Locale): NumberFormat =
+        NumberFormat.getCurrencyInstance(locale)
 
     @Provides
     @Named(PERCENT_FORMATTER)

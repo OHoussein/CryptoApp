@@ -1,12 +1,12 @@
-name: Android Master CI
+name: Android Main CI
 
 on:
   pull_request:
     branches:
-      - 'master'
+      - 'main'
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   detekt:
@@ -55,39 +55,40 @@ jobs:
       - name: Run Domain Unit Tests
         run: bash ./gradlew :domain:test
 
-  instrumented-tests:
-    name: Run Android Tests
-    runs-on: macos-latest
-    timeout-minutes: 30
-    strategy:
-      matrix:
-        api-level: [29] #[21, 23, 29]
-        target: [default] #[default, google_apis]
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Set up JDK 11
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: 11
-
-      - name: Run All Android Tests
-        uses: reactivecircus/android-emulator-runner@v2
-        #continue-on-error: true
-        with:
-          api-level: ${{ matrix.api-level }}
-          target: ${{ matrix.target }}
-          arch: x86_64
-          script: bash ./gradlew connectedCheck
-
-      - name: Upload emulator tests artifact
-        uses: actions/upload-artifact@v1
-        with:
-          name: emulator_tests
-          path: ./app/build/reports/androidTests/connected
+  # Disable UI test because it takes too much time
+  #  instrumented-tests:
+  #    name: Run Android Tests
+  #    runs-on: macos-latest
+  #    timeout-minutes: 30
+  #    strategy:
+  #      matrix:
+  #        api-level: [29] #[21, 23, 29]
+  #        target: [default] #[default, google_apis]
+  #
+  #    steps:
+  #      - name: Checkout
+  #        uses: actions/checkout@v2
+  #
+  #      - name: Set up JDK 11
+  #        uses: actions/setup-java@v2
+  #        with:
+  #          distribution: 'adopt'
+  #          java-version: 11
+  #
+  #      - name: Run All Android Tests
+  #        uses: reactivecircus/android-emulator-runner@v2
+  #        #continue-on-error: true
+  #        with:
+  #          api-level: ${{ matrix.api-level }}
+  #          target: ${{ matrix.target }}
+  #          arch: x86_64
+  #          script: bash ./gradlew connectedCheck
+  #
+  #      - name: Upload emulator tests artifact
+  #        uses: actions/upload-artifact@v1
+  #        with:
+  #          name: emulator_tests
+  #          path: ./app/build/reports/androidTests/connected
 
   apk:
     name: Generate APK

@@ -1,4 +1,4 @@
-![Android Master CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Main%20CI/badge.svg)
+![Android Main CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Main%20CI/badge.svg)
 ![Android Develop CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Develop%20CI/badge.svg)
 
 ⚠️ This project works only with Android Studio 4 Bumblebee and above
@@ -21,6 +21,7 @@ Implementation of the clean architecture using:
 &nbsp;
 <img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_details_dark.png" alt="architecture" align=center />
 </div>
+
 ### Light mode 🌕
 <div  align="center">
 <img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_list_light.png" alt="architecture" align=center />

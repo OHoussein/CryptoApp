@@ -84,7 +84,7 @@ android {
                 "UnsafeExperimentalUsageWarning"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.0-rc01" /*Libs.Versions.compose*/
+        kotlinCompilerExtensionVersion "1.0.0" /*Libs.Versions.compose*/
     }
 }
 
@@ -118,25 +118,16 @@ dependencies {
 
     //Presentation
     implementation Libs.appcompat
-    implementation Libs.recyclerview
     implementation Libs.material
-    implementation Libs.constraintlayout
     implementation Libs.lifecycle
     implementation Libs.lifecycleViewModel
     implementation Libs.lifecycleRuntime
     implementation Libs.lifecycleLiveData
-    implementation Libs.fragmentKtx
     //compose
     implementation Libs.composeUI
     implementation Libs.composeMaterial
     implementation Libs.composeMaterialIconExtended
-    implementation(Libs.composeUITooling) {
-        version {
-            // TODO: Remove this when Android Studio has become compatible again
-            // Android Studio Bumblebee | 2021.1.1 Canary 3 is not compatible with module ui-tooling 1.0.0-rc01 or higher.
-            strictly("1.0.0-beta09")
-        }
-    }
+    implementation(Libs.composeUITooling)
     implementation Libs.composeActivity
     implementation Libs.composeLivedata
     implementation Libs.composeHiltViewModel
@@ -156,7 +147,6 @@ dependencies {
 
     //Android tests
     androidTestImplementation project(path: ':commonTest')
-    debugImplementation AndroidTestLibs.fragmentTesting
     androidTestImplementation TestLibs.hiltAndroid
     kaptAndroidTest TestLibs.hiltAndroidCompiler
     debugImplementation AndroidTestLibs.testCore

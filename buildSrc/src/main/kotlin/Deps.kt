@@ -10,7 +10,7 @@ object BuildPlugins {
     object Versions {
         const val androidGradlePlugin = "7.1.0-alpha03"
         const val kotlinVersion = "1.5.10"
-        const val daggerHiltVersion = "2.37"
+        const val daggerHiltVersion = "2.38.1"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
@@ -41,20 +41,17 @@ object Libs {
         const val stetho = "1.6.0"
 
         const val androidXTest = "1.4.0"
-        const val androidJUnit = "1.1.2"
-        const val espresso = "3.3.0"
+        const val androidJUnit = "1.1.3"
+        const val espresso = "3.4.0"
         const val mockito = "2.2.0"
 
-        const val compose = "1.0.0-rc01"
+        const val compose = "1.0.0"
     }
 
     const val kotlinStdlib =
         "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildPlugins.Versions.kotlinVersion}"
-    const val appcompat = "androidx.appcompat:appcompat:1.3.0"
-    const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"
+    const val appcompat = "androidx.appcompat:appcompat:1.3.1"
     const val material = "com.google.android.material:material:1.4.0"
-    const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.0.4"
-    const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragment}"
     const val annotation = "androidx.annotation:annotation:1.2.0"
 
     const val retofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
@@ -85,12 +82,12 @@ object Libs {
     const val composeMaterialIconExtended =
         "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val composeUITooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
-    const val composeActivity = "androidx.activity:activity-compose:1.3.0-alpha06"
+    const val composeActivity = "androidx.activity:activity-compose:1.3.0"
     const val composeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     const val composeHiltViewModel = "androidx.hilt:hilt-navigation-compose:1.0.0-alpha02"
-    const val composeNavigation = "androidx.navigation:navigation-compose:2.4.0-alpha04"
+    const val composeNavigation = "androidx.navigation:navigation-compose:2.4.0-alpha05"
     const val composeCoil = "io.coil-kt:coil-compose:1.3.0"
-    const val composeSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:0.14.0"
+    const val composeSwipeRefresh = "com.google.accompanist:accompanist-swiperefresh:0.15.0"
 
     const val room = "androidx.room:room-ktx:${Versions.room}"
     const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
@@ -111,11 +108,11 @@ object TestLibs {
     const val hiltAndroidCompiler =
         "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
     const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Libs.Versions.mockito}"
-    const val mockitoInline = "org.mockito:mockito-inline:2.21.0"
+    const val mockitoInline = "org.mockito:mockito-inline:3.11.2"
     const val coroutinesTest =
         "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Libs.Versions.coroutines}"
     const val junit = "junit:junit:4.13.2"
-    const val mockWebserver = "com.squareup.okhttp3:mockwebserver:4.9.0"
+    const val mockWebserver = "com.squareup.okhttp3:mockwebserver:4.9.1"
     const val robolectric = "org.robolectric:robolectric:4.6.1"
 }
 
@@ -126,10 +123,9 @@ object AndroidTestLibs {
     const val androidJUnit = "androidx.test.ext:junit:${Libs.Versions.androidJUnit}"
     const val androidJUnitKtx = "androidx.test.ext:junit-ktx:${Libs.Versions.androidJUnit}"
 
-    const val rules = "androidx.test:rules:1.3.0"
+    const val rules = "androidx.test:rules:1.4.0"
     const val espresso = "androidx.test.espresso:espresso-core:${Libs.Versions.espresso}"
     const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Libs.Versions.espresso}"
-    const val fragmentTesting = "androidx.fragment:fragment-testing:${Libs.Versions.fragment}"
     const val mockitoAndroid = "org.mockito:mockito-android:3.11.2"
     const val okhttpIdling = "com.jakewharton.espresso:okhttp3-idling-resource:1.0.0"
 

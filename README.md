@@ -1,7 +1,8 @@
-![Android Main CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Main%20CI/badge.svg)
-![Android Develop CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Develop%20CI/badge.svg)
+[![Android Main CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Main%20CI/badge.svg)](https://github.com/OHoussein/android-crypto-app/actions/workflows/main_ci.yml)
+[![Android Develop CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Develop%20CI/badge.svg)](https://github.com/OHoussein/android-crypto-app/actions/workflows/develop_ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OHoussein_android-crypto-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=OHoussein_android-crypto-app)
 
-⚠️ This project works only with Android Studio 4 Bumblebee and above
+⚠️ This project works only with Android Studio Arctic fox and above
 
 Implementation of the clean architecture using:
 

@@ -9,7 +9,7 @@ object AppVersion {
 object BuildPlugins {
     object Versions {
         const val androidGradlePlugin = "7.1.0-alpha03"
-        const val kotlinVersion = "1.5.10"
+        const val kotlinVersion = "1.5.31"
         const val daggerHiltVersion = "2.38.1"
     }
 
@@ -45,7 +45,7 @@ object Libs {
         const val espresso = "3.4.0"
         const val mockito = "2.2.0"
 
-        const val compose = "1.0.0"
+        const val compose = "1.0.4"
     }
 
     const val kotlinStdlib =

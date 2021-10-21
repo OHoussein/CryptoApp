@@ -84,7 +84,7 @@ android {
                 "UnsafeExperimentalUsageWarning"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.0" /*Libs.Versions.compose*/
+        kotlinCompilerExtensionVersion "1.0.4" /*Libs.Versions.compose*/
     }
 }
 

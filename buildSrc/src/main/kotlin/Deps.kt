@@ -8,9 +8,9 @@ object AppVersion {
 
 object BuildPlugins {
     object Versions {
-        const val androidGradlePlugin = "7.1.0-alpha03"
-        const val kotlinVersion = "1.5.31"
-        const val daggerHiltVersion = "2.38.1"
+        const val androidGradlePlugin = "7.3.0-beta04"
+        const val kotlinVersion = "1.6.21"
+        const val daggerHiltVersion = "2.42"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
@@ -25,7 +25,7 @@ object BuildPlugins {
 
 object AndroidSdk {
     const val minSdk = 21
-    const val compileSdk = 30
+    const val compileSdk = 32
     const val targetSdk = compileSdk
 }
 
@@ -36,7 +36,7 @@ object Libs {
         const val lifecycle = "2.3.1"
         const val coroutines = "1.5.1"
         const val fragment = "1.3.5"
-        const val room = "2.3.0"
+        const val room = "2.4.2"
 
         const val stetho = "1.6.0"
 
@@ -45,7 +45,7 @@ object Libs {
         const val espresso = "3.4.0"
         const val mockito = "2.2.0"
 
-        const val compose = "1.0.4"
+        const val compose = "1.2.0-rc02"
     }
 
     const val kotlinStdlib =
@@ -61,7 +61,6 @@ object Libs {
         "com.google.dagger:hilt-android:${BuildPlugins.Versions.daggerHiltVersion}"
     const val hiltAndroidCompiler =
         "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
-    const val hiltLifecycle = "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.daggerHiltJetpack}"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"

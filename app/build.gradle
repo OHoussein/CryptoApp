@@ -84,7 +84,7 @@ android {
                 "UnsafeExperimentalUsageWarning"
     }
     composeOptions {
-        kotlinCompilerExtensionVersion "1.0.4" /*Libs.Versions.compose*/
+        kotlinCompilerExtensionVersion "1.2.0-rc02" /*Libs.Versions.compose*/
     }
 }
 
@@ -111,7 +111,6 @@ dependencies {
     implementation Libs.coroutinesAndroid
     implementation Libs.timber
     implementation Libs.hiltAndroid
-    implementation Libs.hiltLifecycle
 
     kapt Libs.hiltCompiler
     kapt Libs.hiltAndroidCompiler

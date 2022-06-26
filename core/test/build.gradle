@@ -3,30 +3,14 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
+    id "io.gitlab.arturbosch.detekt"
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
+apply from: "$rootDir/androidModule.gradle"
 
 android {
     namespace 'dev.ohoussein.core.test'
-    compileSdk 32
-
-    defaultConfig {
-        minSdk 21
-        targetSdk 32
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
-    }
 }
 
 dependencies {

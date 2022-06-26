@@ -11,58 +11,16 @@ plugins {
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
+apply from: "$rootDir/androidModule.gradle"
 
 android {
-    compileSdkVersion AndroidSdk.compileSdk
     defaultConfig {
-        applicationId AppVersion.applicationId
-        minSdkVersion AndroidSdk.minSdk
-        targetSdkVersion AndroidSdk.targetSdk
-        versionCode AppVersion.versionCode
-        versionName AppVersion.versionName
-        testInstrumentationRunner "dev.ohoussein.cryptoapp.MyTestRunner"
-        vectorDrawables {
-            useSupportLibrary true
-        }
+        applicationId project.applicationId
     }
     buildTypes {
         release {
-            minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            //TO-DO signing keys
-            signingConfig debug.signingConfig
         }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = '1.8'
-    }
-    buildFeatures {
-        viewBinding true
-        compose true
-    }
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions {
-            freeCompilerArgs = [
-                    "-XXLanguage:+InlineClasses",
-                    "-Xopt-in=kotlin.RequiresOptIn",
-            ]
-        }
-    }
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
-    }
-
-    lintOptions {
-        disable "UnsafeExperimentalUsageError",
-                "UnsafeExperimentalUsageWarning"
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion "1.2.0-rc02" /*Libs.Versions.compose*/
     }
 }
 

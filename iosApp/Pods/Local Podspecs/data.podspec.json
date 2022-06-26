@@ -1,0 +1,30 @@
+{
+  "name": "data",
+  "version": "1.0",
+  "homepage": "https://github.com/OHoussein/android-crypto-app",
+  "source": {
+    "git": "Not Published",
+    "tag": "Cocoapods/data/1.0"
+  },
+  "authors": "",
+  "license": "",
+  "summary": "The data module for the crypto app",
+  "vendored_frameworks": "build/cocoapods/framework/kmmdata.framework",
+  "libraries": "c++",
+  "module_name": "data_umbrella",
+  "platforms": {
+    "ios": "14.1"
+  },
+  "pod_target_xcconfig": {
+    "KOTLIN_PROJECT_PATH": ":data",
+    "PRODUCT_MODULE_NAME": "data"
+  },
+  "script_phases": [
+    {
+      "name": "Build data",
+      "execution_position": "before_compile",
+      "shell_path": "/bin/sh",
+      "script": "                if [ \"YES\" = \"$COCOAPODS_SKIP_KOTLIN_BUILD\" ]; then\n                  echo \"Skipping Gradle build task invocation due to COCOAPODS_SKIP_KOTLIN_BUILD environment variable set to \"YES\"\"\n                  exit 0\n                fi\n                set -ev\n                REPO_ROOT=\"$PODS_TARGET_SRCROOT\"\n                \"$REPO_ROOT/../gradlew\" -p \"$REPO_ROOT\" $KOTLIN_PROJECT_PATH:syncFramework                     -Pkotlin.native.cocoapods.platform=$PLATFORM_NAME                     -Pkotlin.native.cocoapods.archs=\"$ARCHS\"                     -Pkotlin.native.cocoapods.configuration=$CONFIGURATION                     -Pkotlin.native.cocoapods.cflags=\"$OTHER_CFLAGS\"                     -Pkotlin.native.cocoapods.paths.headers=\"$HEADER_SEARCH_PATHS\"                     -Pkotlin.native.cocoapods.paths.frameworks=\"$FRAMEWORK_SEARCH_PATHS\"\n"
+    }
+  ]
+}

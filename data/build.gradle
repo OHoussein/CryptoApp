@@ -8,60 +8,13 @@ plugins {
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
+apply from: "$rootDir/androidModule.gradle"
 
 android {
-    compileSdkVersion AndroidSdk.compileSdk
-
-    defaultConfig {
-        minSdkVersion AndroidSdk.minSdk
-        targetSdkVersion AndroidSdk.targetSdk
-        versionCode AppVersion.versionCode
-        versionName AppVersion.versionName
-
-        consumerProguardFiles "consumer-rules.pro"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.schemaLocation":"$projectDir/schemas".toString(),
-                        "room.incremental":"true",
-                        "room.expandProjection":"true"]
-            }
-        }
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            //TO-DO add signing keys
-            signingConfig debug.signingConfig
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions {
-            freeCompilerArgs = [
-                    "-XXLanguage:+InlineClasses",
-                    "-Xopt-in=kotlin.RequiresOptIn",
-            ]
-        }
-    }
-
     testOptions {
         unitTests {
             includeAndroidResources = true
         }
-    }
-    packagingOptions {
-        exclude 'META-INF/AL2.0'
-        exclude 'META-INF/LGPL2.1'
     }
 }
 

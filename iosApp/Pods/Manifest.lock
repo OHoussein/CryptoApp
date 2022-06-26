@@ -1,0 +1,21 @@
+PODS:
+  - data (1.0)
+  - domain (1.0)
+
+DEPENDENCIES:
+  - data (from `../data`)
+  - domain (from `../domain`)
+
+EXTERNAL SOURCES:
+  data:
+    :path: "../data"
+  domain:
+    :path: "../domain"
+
+SPEC CHECKSUMS:
+  data: 5f4716d17f26233e8fd7d7fa11d131710c255fc9
+  domain: 52d20ea5453fe93e8cfe1e926d43dea660fdabec
+
+PODFILE CHECKSUM: a60e0551e9cb067cd04e1f27327896a50a795139
+
+COCOAPODS: 1.11.2

@@ -103,13 +103,13 @@ object DebugLibs {
 object TestLibs {
     const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
     const val hiltAndroid =
-        "com.google.dagger:hilt-android-testing:${BuildPlugins.Versions.daggerHiltVersion}"
+            "com.google.dagger:hilt-android-testing:${BuildPlugins.Versions.daggerHiltVersion}"
     const val hiltAndroidCompiler =
-        "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
+            "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
     const val mockito = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Libs.Versions.mockito}"
     const val mockitoInline = "org.mockito:mockito-inline:3.11.2"
     const val coroutinesTest =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Libs.Versions.coroutines}"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Libs.Versions.coroutines}"
     const val junit = "junit:junit:4.13.2"
     const val mockWebserver = "com.squareup.okhttp3:mockwebserver:4.9.1"
     const val robolectric = "org.robolectric:robolectric:4.6.1"
@@ -130,8 +130,7 @@ object AndroidTestLibs {
 
     const val composeTesting = "androidx.compose.ui:ui-test-junit4:${Libs.Versions.compose}"
     const val composeTestingManifest =
-        "androidx.compose.ui:ui-test-manifest:${Libs.Versions.compose}"
+            "androidx.compose.ui:ui-test-manifest:${Libs.Versions.compose}"
 
     const val roomTestHelper = "androidx.room:room-testing:${Libs.Versions.room}"
-
 }

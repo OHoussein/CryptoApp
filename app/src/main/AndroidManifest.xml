@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="UnusedAttribute">
         <activity
-            android:name="dev.ohoussein.cryptoapp.ui.activity.RootActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

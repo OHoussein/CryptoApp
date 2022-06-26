@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+}
+
+apply from: "$rootDir/gradle/scripts/detekt.gradle"
+
+android {
+    namespace 'dev.ohoussein.core.test'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+}
+
+dependencies {
+    implementation project(path: ':crypto:domain')
+    implementation Libs.appcompat
+    implementation Libs.kotlinStdlib
+    implementation Libs.coroutinesCore
+    implementation Libs.retofit
+    implementation Libs.hiltAndroid
+    implementation TestLibs.hiltAndroid
+    kapt Libs.hiltCompiler
+    kapt Libs.hiltAndroidCompiler
+
+    implementation TestLibs.coroutinesTest
+    implementation TestLibs.junit
+    implementation TestLibs.mockWebserver
+    implementation TestLibs.mockito
+
+    implementation AndroidTestLibs.rules
+}

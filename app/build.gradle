@@ -34,15 +34,6 @@ android {
             signingConfig debug.signingConfig
         }
     }
-    sourceSets {
-        def commonTestDir = 'src/commonTest/java'
-        test {
-            java.srcDir commonTestDir
-        }
-        androidTest {
-            java.srcDir commonTestDir
-        }
-    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -63,20 +54,7 @@ android {
         }
     }
     packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude 'META-INF/AL2.0'
-        exclude 'META-INF/LGPL2.1'
-        exclude 'META-INF/licenses/ASM'
-        exclude("META-INF/*.kotlin_module")
-        exclude "**/attach_hotspot_windows.dll"
-        exclude 'META-INF/DEPENDENCIES'
+        resources.excludes.add("META-INF/*")
     }
 
     lintOptions {
@@ -102,8 +80,7 @@ kapt {
 
 dependencies {
     implementation project(path: ':data')
-    implementation project(path: ':domain')
-    implementation project(path: ':common')
+    implementation project(path: ':crypto:presentation')
 
     //Common
     implementation Libs.kotlinStdlib
@@ -131,8 +108,6 @@ dependencies {
     implementation Libs.composeLivedata
     implementation Libs.composeHiltViewModel
     implementation Libs.composeNavigation
-    implementation Libs.composeCoil
-    implementation Libs.composeSwipeRefresh
 
     //Data
     implementation Libs.retofit
@@ -145,7 +120,6 @@ dependencies {
     debugImplementation DebugLibs.okhttpLogging
 
     //Android tests
-    androidTestImplementation project(path: ':commonTest')
     androidTestImplementation TestLibs.hiltAndroid
     kaptAndroidTest TestLibs.hiltAndroidCompiler
     debugImplementation AndroidTestLibs.testCore
@@ -154,8 +128,7 @@ dependencies {
     androidTestImplementation AndroidTestLibs.androidJUnitKtx
     androidTestImplementation AndroidTestLibs.rules
     androidTestImplementation AndroidTestLibs.espresso
-    androidTestImplementation AndroidTestLibs.espressoContrib
-    androidTestImplementation TestLibs.mockito
+    //androidTestImplementation TestLibs.mockito
     androidTestImplementation AndroidTestLibs.mockitoAndroid
     androidTestImplementation TestLibs.junit
     androidTestImplementation TestLibs.archCoreTesting
@@ -164,11 +137,11 @@ dependencies {
     debugImplementation AndroidTestLibs.composeTestingManifest
 
     //Unit tests
-    testImplementation project(path: ':commonTest')
+    testImplementation project(path: ':core:test')
     testImplementation TestLibs.hiltAndroid
     kaptTest TestLibs.hiltAndroidCompiler
     testImplementation TestLibs.mockito
-    testImplementation TestLibs.mockitoInline
+    //testImplementation TestLibs.mockitoInline
     testImplementation TestLibs.junit
     testImplementation TestLibs.archCoreTesting
     testImplementation TestLibs.coroutinesTest

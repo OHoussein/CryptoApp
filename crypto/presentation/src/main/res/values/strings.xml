@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="crypto_see_more">SEE MORE</string>
+    <string name="crypto_details_links_section">Links</string>
+    <string name="crypto_details_link_home">Home page</string>
+    <string name="crypto_details_link_source_code">Source code</string>
+    <string name="crypto_details_link_blockchain">Blockchain</string>
+</resources>

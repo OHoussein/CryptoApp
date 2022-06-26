@@ -1,0 +1,61 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id "kotlin-kapt"
+}
+
+android {
+    namespace 'dev.ohoussein.cryptoapp.presentation'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.2.0-rc02" /*Libs.Versions.compose*/
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':crypto:domain')
+    implementation project(path: ':crypto:data')
+
+    //Presentation
+    implementation Libs.lifecycle
+    implementation Libs.lifecycleViewModel
+    implementation Libs.lifecycleRuntime
+    implementation Libs.lifecycleLiveData
+    //compose
+    implementation Libs.composeUI
+    implementation Libs.composeMaterial
+    implementation Libs.composeMaterialIconExtended
+    implementation(Libs.composeUITooling)
+
+    implementation Libs.timber
+    implementation Libs.hiltAndroid
+    kapt Libs.hiltCompiler
+    kapt Libs.hiltAndroidCompiler
+}

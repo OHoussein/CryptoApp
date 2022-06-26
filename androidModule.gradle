@@ -1,0 +1,54 @@
+project.ext {
+    minSdkVersion = 23
+    compileSdkVersion = 32
+    targetSdkVersion = 32
+
+    applicationId = "dev.ohoussein.cryptoapp"
+    versionCode = 1
+    versionName = "1.0"
+
+    composeVersion = "1.2.0-rc02"
+}
+
+android {
+    compileSdkVersion project.compileSdkVersion
+    defaultConfig {
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode project.versionCode
+        versionName project.versionName
+        testInstrumentationRunner "dev.ohoussein.cryptoapp.MyTestRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //TO-DO signing keys
+            signingConfig debug.signingConfig
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs += [
+                "-XXLanguage:+InlineClasses",
+                "-Xopt-in=kotlin.RequiresOptIn",
+        ]
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
+    lintOptions {
+        disable "UnsafeExperimentalUsageError",
+                "UnsafeExperimentalUsageWarning"
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion project.composeVersion
+    }
+}

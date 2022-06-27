@@ -14,6 +14,7 @@ buildscript {
         classpath(BuildPlugins.gradleVersionsTrackerPlugin)
         classpath(BuildPlugins.testLoggerPlugin)
         classpath(BuildPlugins.detektPlugin)
+        classpath(BuildPlugins.detektFormatting)
     }
 }
 

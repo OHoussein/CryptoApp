@@ -21,6 +21,7 @@ object BuildPlugins {
     const val gradleVersionsTrackerPlugin = "com.github.ben-manes:gradle-versions-plugin:+"
     const val testLoggerPlugin = "com.adarshr:gradle-test-logger-plugin:2.1.1"
     const val detektPlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.17.1"
+    const val detektFormatting = "io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1"
 }
 
 object AndroidSdk {

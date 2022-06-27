@@ -1,4 +1,6 @@
-package dev.ohoussein.crypto.data.mock
+@file:Suppress("MemberVisibilityCanBePrivate", "MaxLineLength", "MagicNumber")
+
+package dev.ohoussein.cryptoapp.data.mock
 
 import dev.ohoussein.cryptoapp.data.database.DBCrypto
 import java.util.concurrent.atomic.AtomicLong

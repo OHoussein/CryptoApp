@@ -1,4 +1,4 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate", "MaxLineLength", "MagicNumber")
 
 package dev.ohoussein.core.test.mock
 

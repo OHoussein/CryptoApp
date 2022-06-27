@@ -18,8 +18,8 @@ class ApiDomainModelMapper(private val locale: Locale) {
             name = data.name,
             imageUrl = data.image,
             price = data.currentPrice,
-        priceChangePercentIn24h = data.priceChangePercentIn24h,
-        order = index,
+            priceChangePercentIn24h = data.priceChangePercentIn24h,
+            order = index,
     )
 
     fun convert(data: CryptoDetailsResponse) = DomainCryptoDetails(
@@ -30,7 +30,9 @@ class ApiDomainModelMapper(private val locale: Locale) {
             hashingAlgorithm = data.hashingAlgorithm,
             homePageUrl = data.links.homepage.firstOrNull(),
             blockchainSite = data.links.blockchainSite.firstOrNull(),
-            mainRepoUrl = data.links.reposUrl.firstNotNullOfOrNull { entry -> entry.value.firstOrNull { it.isNotEmpty() } },
+            mainRepoUrl = data.links.reposUrl.firstNotNullOfOrNull { entry ->
+                entry.value.firstOrNull { it.isNotEmpty() }
+            },
             sentimentUpVotesPercentage = data.sentimentUpVotesPercentage,
             sentimentDownVotesPercentage = data.sentimentDownVotesPercentage,
             description = data.description[locale.language]
@@ -40,12 +42,12 @@ class ApiDomainModelMapper(private val locale: Locale) {
     fun convertDBCrypto(data: List<DBCrypto>): List<DomainCrypto> = data.map { convert(it) }
 
     fun convert(data: DBCrypto) = DomainCrypto(
-        id = data.id,
-        symbol = data.symbol,
-        name = data.name,
-        imageUrl = data.imageUrl,
-        price = data.price,
-        priceChangePercentIn24h = data.priceChangePercentIn24h,
-        order = data.order,
+            id = data.id,
+            symbol = data.symbol,
+            name = data.name,
+            imageUrl = data.imageUrl,
+            price = data.price,
+            priceChangePercentIn24h = data.priceChangePercentIn24h,
+            order = data.order,
     )
 }

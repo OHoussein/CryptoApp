@@ -27,28 +27,29 @@ class DomainModelMapper @Inject constructor(
     fun convert(domain: DomainCrypto, vsCurrencyCode: String): Crypto {
         priceFormatter.currency = Currency.getInstance(vsCurrencyCode)
         return Crypto(
-                base = BaseCrypto(
-                        id = domain.id,
-                        name = domain.name,
-                        imageUrl = domain.imageUrl,
-                        symbol = domain.symbol.uppercase(),
-                ),
-                price = CryptoPrice(
-                        labelValue = LabelValue(domain.price, priceFormatter.format(domain.price)),
-                        vsCurrencyCode = vsCurrencyCode,
-                ),
-                priceChangePercentIn24h = domain.priceChangePercentIn24h?.let {
-                    LabelValue(it, percentFormatter.format(it / 100.0))
-                },
+            base = BaseCrypto(
+                id = domain.id,
+                name = domain.name,
+                imageUrl = domain.imageUrl,
+                symbol = domain.symbol.uppercase(),
+            ),
+            price = CryptoPrice(
+                labelValue = LabelValue(domain.price, priceFormatter.format(domain.price)),
+                vsCurrencyCode = vsCurrencyCode,
+            ),
+            priceChangePercentIn24h = domain.priceChangePercentIn24h?.let {
+                LabelValue(it, percentFormatter.format(it / 100.0))
+            },
         )
     }
 
-    fun convert(domain: DomainCryptoDetails) = dev.ohoussein.crypto.presentation.model.CryptoDetails(
+    fun convert(domain: DomainCryptoDetails) =
+        dev.ohoussein.crypto.presentation.model.CryptoDetails(
             base = dev.ohoussein.crypto.presentation.model.BaseCrypto(
-                    id = domain.id,
-                    name = domain.name,
-                    symbol = domain.symbol.uppercase(),
-                    imageUrl = domain.imageUrl,
+                id = domain.id,
+                name = domain.name,
+                symbol = domain.symbol.uppercase(),
+                imageUrl = domain.imageUrl,
             ),
             hashingAlgorithm = domain.hashingAlgorithm,
             homePageUrl = domain.homePageUrl,
@@ -61,6 +62,5 @@ class DomainModelMapper @Inject constructor(
                 dev.ohoussein.crypto.presentation.model.LabelValue(it, percentFormatter.format(it))
             },
             description = domain.description,
-    )
-
+        )
 }

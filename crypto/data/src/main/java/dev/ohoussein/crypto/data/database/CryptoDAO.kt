@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import dev.ohoussein.cryptoapp.data.database.DBCrypto
 import kotlinx.coroutines.flow.Flow
 
 @Dao

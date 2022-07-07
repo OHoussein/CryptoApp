@@ -85,7 +85,7 @@ class CryptoDetailsScreenTest {
                 thenShouldDisplayError()
                 givenCrypto { data ->
                     composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
-                        .performClick()
+                            .performClick()
                     thenCryptoDetailsShouldBeDisplayed(data)
                 }
             }
@@ -97,7 +97,7 @@ class CryptoDetailsScreenTest {
     ///////////////////////////////////////////////////////////////////////////
 
     private fun setupContent(
-        next: ComposeContentTestRule.() -> Unit
+            next: ComposeContentTestRule.() -> Unit,
     ) {
         composeTestRule.setContent {
             TestNavHost(NavPath.CryptoDetailsPath.PATH) {
@@ -131,7 +131,6 @@ class CryptoDetailsScreenTest {
             onNode(hasText(item.name, ignoreCase = true, substring = true)).assertIsDisplayed()
             onNode(hasText(item.description, ignoreCase = true)).assertIsDisplayed()
         }
-
     }
 
     private fun thenShouldDisplayError() {

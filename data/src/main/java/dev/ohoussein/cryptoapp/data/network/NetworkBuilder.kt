@@ -14,11 +14,11 @@ object NetworkBuilder {
     fun createConverter(): Converter.Factory = MoshiConverterFactory.create()
 
     fun createOkHttp(
-            httpInterceptor: Array<Interceptor>,
-            httpNetWorkInterceptor: Array<Interceptor>
+        httpInterceptor: Array<Interceptor>,
+        httpNetWorkInterceptor: Array<Interceptor>,
     ): OkHttpClient =
-            OkHttpClient.Builder()
-                    .apply {
+        OkHttpClient.Builder()
+            .apply {
                 httpInterceptor.forEach {
                     addInterceptor(it)
                 }
@@ -29,9 +29,9 @@ object NetworkBuilder {
             .build()
 
     fun createRetrofit(
-            baseUrl: HttpUrl = HttpUrl.parse(API_BASE_URL)!!,
-            okHttpClient: OkHttpClient = createOkHttp(emptyArray(), emptyArray()),
-            converterFactory: Converter.Factory = createConverter(),
+        baseUrl: HttpUrl = HttpUrl.parse(API_BASE_URL)!!,
+        okHttpClient: OkHttpClient = createOkHttp(emptyArray(), emptyArray()),
+        converterFactory: Converter.Factory = createConverter(),
     ): Retrofit = Retrofit.Builder()
         .addConverterFactory(converterFactory)
         .baseUrl(baseUrl)

@@ -1,7 +1,13 @@
 package dev.ohoussein.cryptoapp.presentation.base
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -44,7 +50,7 @@ fun StateError(
             Spacer(modifier = Modifier.padding(24.dp))
             TextButton(onClick = onRetryClick) {
                 Text(
-                        text = stringResource(id = R.string.core_retry),
+                    text = stringResource(id = R.string.core_retry),
                 )
             }
         }

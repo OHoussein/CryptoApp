@@ -8,14 +8,14 @@ data class BaseCrypto(
 )
 
 data class Crypto(
-        val base: BaseCrypto,
-        val price: CryptoPrice,
-        val priceChangePercentIn24h: LabelValue<Double>?,
+    val base: BaseCrypto,
+    val price: CryptoPrice,
+    val priceChangePercentIn24h: LabelValue<Double>?,
 )
 
 data class CryptoPrice(
-        val labelValue: LabelValue<Double>,
-        val vsCurrencyCode: String,
+    val labelValue: LabelValue<Double>,
+    val vsCurrencyCode: String,
 )
 
 data class LabelValue<V>(
@@ -24,12 +24,12 @@ data class LabelValue<V>(
 )
 
 data class CryptoDetails(
-        val base: BaseCrypto,
-        val hashingAlgorithm: String?,
-        val homePageUrl: String?,
-        val blockchainSite: String?,
-        val mainRepoUrl: String?,
-        val sentimentUpVotesPercentage: LabelValue<Double>?,
-        val sentimentDownVotesPercentage: LabelValue<Double>?,
-        val description: String,
+    val base: BaseCrypto,
+    val hashingAlgorithm: String?,
+    val homePageUrl: String?,
+    val blockchainSite: String?,
+    val mainRepoUrl: String?,
+    val sentimentUpVotesPercentage: LabelValue<Double>?,
+    val sentimentDownVotesPercentage: LabelValue<Double>?,
+    val description: String,
 )

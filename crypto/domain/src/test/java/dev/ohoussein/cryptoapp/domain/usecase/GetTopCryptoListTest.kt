@@ -24,25 +24,25 @@ class GetTopCryptoListTest {
 
     @Test
     fun `should call get top crypto list`() {
-        //Given
+        // Given
         val data = mock<List<DomainCrypto>>()
         val dataFlow = flowOf(data)
         val vsCurrency = "USD"
         whenever(repository.getTopCryptoList(vsCurrency)).thenReturn(dataFlow)
-        //When
+        // When
         tested.get(vsCurrency)
-        //Then
+        // Then
         verify(repository).getTopCryptoList(vsCurrency)
     }
 
     @Test
     fun `should call get refresh top crypto list`(): Unit = runBlocking {
-        //Given
+        // Given
         val vsCurrency = "USD"
         whenever(repository.refreshTopCryptoList(vsCurrency)).thenReturn(Unit)
-        //When
+        // When
         tested.refresh(vsCurrency)
-        //Then
+        // Then
         verify(repository).refreshTopCryptoList(vsCurrency)
     }
 }

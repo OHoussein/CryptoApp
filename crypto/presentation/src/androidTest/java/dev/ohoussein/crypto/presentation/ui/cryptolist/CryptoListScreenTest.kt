@@ -110,7 +110,7 @@ class CryptoListScreenTest {
     ///////////////////////////////////////////////////////////////////////////
 
     private fun setupContent(
-            next: ComposeContentTestRule.() -> Unit
+            next: ComposeContentTestRule.() -> Unit,
     ) {
         composeTestRule.setContent {
             TestNavHost(path = NavPath.HOME) {
@@ -151,9 +151,10 @@ class CryptoListScreenTest {
     private fun thenCryptoListShouldBeDisplayed(data: List<DomainCrypto>) {
         data.forEach { item ->
             thenCryptoItemShouldBeDisplayed(item)
-            composeTestRule.onNodeWithTag(dev.ohoussein.crypto.presentation.components.CryptoItemTestTag + item.id).performGesture {
-                swipeUp()
-            }
+            composeTestRule.onNodeWithTag(dev.ohoussein.crypto.presentation.components.CryptoItemTestTag + item.id)
+                    .performGesture {
+                        swipeUp()
+                    }
         }
     }
 

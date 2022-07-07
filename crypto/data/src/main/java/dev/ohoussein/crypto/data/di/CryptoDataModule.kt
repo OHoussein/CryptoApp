@@ -21,12 +21,12 @@ object CryptoDataModule {
     @Provides
     @Singleton
     fun provideCryptoRepository(
-            service: ApiCoinGeckoService,
-            database: CryptoDAO,
-            apiMapper: ApiDomainModelMapper,
-            dbMapper: DbDomainModelMapper,
+        service: ApiCoinGeckoService,
+        database: CryptoDAO,
+        apiMapper: ApiDomainModelMapper,
+        dbMapper: DbDomainModelMapper,
     ): ICryptoRepository =
-            CryptoRepository(service, database, apiMapper, dbMapper)
+        CryptoRepository(service, database, apiMapper, dbMapper)
 
     @Provides
     fun provideApiDomainModelMapper(locale: Locale) = ApiDomainModelMapper(locale)
@@ -36,6 +36,6 @@ object CryptoDataModule {
 
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiCoinGeckoService = ApiCoinGeckoService.create(retrofit)
-
+    fun provideApiService(retrofit: Retrofit): ApiCoinGeckoService =
+        ApiCoinGeckoService.create(retrofit)
 }

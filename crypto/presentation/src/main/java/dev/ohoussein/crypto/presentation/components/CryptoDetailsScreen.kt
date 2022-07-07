@@ -2,7 +2,12 @@
 
 package dev.ohoussein.crypto.presentation.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -26,32 +31,32 @@ import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
 
 @Composable
 fun CryptoDetails(
-        modifier: Modifier = Modifier,
-        crypto: CryptoDetails,
-        onHomePageClicked: (CryptoDetails) -> Unit,
-        onBlockchainSiteClicked: (CryptoDetails) -> Unit,
-        onSourceCodeClicked: (CryptoDetails) -> Unit,
+    modifier: Modifier = Modifier,
+    crypto: CryptoDetails,
+    onHomePageClicked: (CryptoDetails) -> Unit,
+    onBlockchainSiteClicked: (CryptoDetails) -> Unit,
+    onSourceCodeClicked: (CryptoDetails) -> Unit,
 ) {
 
     val scrollState = rememberScrollState()
 
     Column(
-            modifier
-                    .padding(horizontal = 12.dp)
-                    .verticalScroll(scrollState),
+        modifier
+            .padding(horizontal = 12.dp)
+            .verticalScroll(scrollState),
     ) {
         CryptoDetailsHeader(
-                Modifier.padding(top = 12.dp),
-                crypto = crypto,
+            Modifier.padding(top = 12.dp),
+            crypto = crypto,
         )
         CryptoLinks(
-                modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 24.dp),
-                crypto = crypto,
-                onHomePageClicked = onHomePageClicked,
-                onBlockchainSiteClicked = onBlockchainSiteClicked,
-                onSourceCodeClicked = onSourceCodeClicked,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 24.dp),
+            crypto = crypto,
+            onHomePageClicked = onHomePageClicked,
+            onBlockchainSiteClicked = onBlockchainSiteClicked,
+            onSourceCodeClicked = onSourceCodeClicked,
         )
         Spacer(modifier = Modifier.size(24.dp))
     }
@@ -59,21 +64,21 @@ fun CryptoDetails(
 
 @Composable
 fun CryptoDetailsStateScreen(
-        modifier: Modifier = Modifier,
-        cryptoDetailsState: Resource<CryptoDetails>,
-        errorMessageMapper: ErrorMessageMapper,
-        onRefresh: () -> Unit,
-        onHomePageClicked: (CryptoDetails) -> Unit,
-        onBlockchainSiteClicked: (CryptoDetails) -> Unit,
-        onSourceCodeClicked: (CryptoDetails) -> Unit,
+    modifier: Modifier = Modifier,
+    cryptoDetailsState: Resource<CryptoDetails>,
+    errorMessageMapper: ErrorMessageMapper,
+    onRefresh: () -> Unit,
+    onHomePageClicked: (CryptoDetails) -> Unit,
+    onBlockchainSiteClicked: (CryptoDetails) -> Unit,
+    onSourceCodeClicked: (CryptoDetails) -> Unit,
 ) {
     cryptoDetailsState.data?.let { data ->
         CryptoDetails(
-                modifier = modifier,
-                crypto = data,
-                onHomePageClicked = onHomePageClicked,
-                onBlockchainSiteClicked = onBlockchainSiteClicked,
-                onSourceCodeClicked = onSourceCodeClicked,
+            modifier = modifier,
+            crypto = data,
+            onHomePageClicked = onHomePageClicked,
+            onBlockchainSiteClicked = onBlockchainSiteClicked,
+            onSourceCodeClicked = onSourceCodeClicked,
         )
         return
     }
@@ -81,9 +86,9 @@ fun CryptoDetailsStateScreen(
     when (cryptoDetailsState.status) {
         Status.ERROR -> {
             StateError(
-                    modifier = modifier,
-                    message = errorMessageMapper.map(cryptoDetailsState.error),
-                    onRetryClick = onRefresh,
+                modifier = modifier,
+                message = errorMessageMapper.map(cryptoDetailsState.error),
+                onRetryClick = onRefresh,
             )
         }
         else -> {
@@ -94,11 +99,11 @@ fun CryptoDetailsStateScreen(
 
 @Composable
 fun CryptoDetailsScreen(
-        viewModel: CryptoDetailsViewModel,
-        cryptoId: String,
-        errorMessageMapper: ErrorMessageMapper,
-        externalNavigator: ExternalNavigator,
-        onBackClicked: () -> Unit,
+    viewModel: CryptoDetailsViewModel,
+    cryptoId: String,
+    errorMessageMapper: ErrorMessageMapper,
+    externalNavigator: ExternalNavigator,
+    onBackClicked: () -> Unit,
 ) {
 
     val state: Resource<CryptoDetails> by viewModel.cryptoDetails.observeAsState(Resource.loading())
@@ -109,19 +114,19 @@ fun CryptoDetailsScreen(
 
     CryptoAppScaffold(onBackButton = onBackClicked) {
         CryptoDetailsStateScreen(
-                Modifier.fillMaxSize(),
-                errorMessageMapper = errorMessageMapper,
-                cryptoDetailsState = state,
-                onRefresh = { viewModel.load(cryptoId) },
-                onHomePageClicked = { crypto ->
-                    crypto.homePageUrl?.let { externalNavigator.openWebUrl(it) }
-                },
-                onBlockchainSiteClicked = { crypto ->
-                    crypto.blockchainSite?.let { externalNavigator.openWebUrl(it) }
-                },
-                onSourceCodeClicked = { crypto ->
-                    crypto.mainRepoUrl?.let { externalNavigator.openWebUrl(it) }
-                },
+            Modifier.fillMaxSize(),
+            errorMessageMapper = errorMessageMapper,
+            cryptoDetailsState = state,
+            onRefresh = { viewModel.load(cryptoId) },
+            onHomePageClicked = { crypto ->
+                crypto.homePageUrl?.let { externalNavigator.openWebUrl(it) }
+            },
+            onBlockchainSiteClicked = { crypto ->
+                crypto.blockchainSite?.let { externalNavigator.openWebUrl(it) }
+            },
+            onSourceCodeClicked = { crypto ->
+                crypto.mainRepoUrl?.let { externalNavigator.openWebUrl(it) }
+            },
         )
     }
 }
@@ -131,10 +136,10 @@ fun CryptoDetailsScreen(
 private fun PreviewCryptoList() {
     CryptoAppTheme {
         CryptoDetails(
-                crypto = previewCryptoDetails,
-                onHomePageClicked = {},
-                onBlockchainSiteClicked = {},
-                onSourceCodeClicked = {},
+            crypto = previewCryptoDetails,
+            onHomePageClicked = {},
+            onBlockchainSiteClicked = {},
+            onSourceCodeClicked = {},
         )
     }
 }

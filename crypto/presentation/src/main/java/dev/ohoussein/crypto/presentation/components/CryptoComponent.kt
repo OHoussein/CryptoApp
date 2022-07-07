@@ -2,7 +2,13 @@ package dev.ohoussein.crypto.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -22,17 +28,15 @@ import dev.ohoussein.cryptoapp.presentation.theme.PositiveColor
 
 @Composable
 fun CryptoItem(
-        modifier: Modifier = Modifier,
-        crypto: Crypto,
-        onClick: (Crypto) -> Unit,
+    modifier: Modifier = Modifier,
+    crypto: Crypto,
+    onClick: (Crypto) -> Unit,
 ) {
-    Box(
-        modifier
-            .padding(horizontal = 12.dp, vertical = 8.dp)
-    ) {
+    Box(modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
         Card(elevation = 12.dp) {
-            // this additional bow is a workaround for the ripple on the card background corner
-            Box(modifier = Modifier.clickable { onClick(crypto) }
+            // this additional box is a workaround for the ripple on the card background corner
+            Box(
+                modifier = Modifier.clickable { onClick(crypto) }
             ) {
                 Row(
                     modifier = Modifier.padding(8.dp),

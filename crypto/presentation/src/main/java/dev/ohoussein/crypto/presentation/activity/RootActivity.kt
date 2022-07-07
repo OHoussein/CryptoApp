@@ -23,8 +23,8 @@ class RootActivity : ComponentActivity() {
 
         setContent {
             CryptoAppNavigation(
-                    errorMessageMapper = errorMessageMapper,
-                    externalNavigator = externalNavigator,
+                errorMessageMapper = errorMessageMapper,
+                externalNavigator = externalNavigator,
             )
         }
     }

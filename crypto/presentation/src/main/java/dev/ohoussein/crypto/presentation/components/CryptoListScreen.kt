@@ -1,4 +1,5 @@
 @file:Suppress("LongParameterList")
+
 package dev.ohoussein.crypto.presentation.components
 
 import androidx.compose.foundation.layout.Box
@@ -53,15 +54,15 @@ fun CryptoList(
     ) {
         LazyColumn(
             modifier = modifier
-                    .fillMaxSize()
-                    .testTag(CryptoListTestTag)
+                .fillMaxSize()
+                .testTag(CryptoListTestTag)
 
         ) {
             items(cryptoList) { crypto ->
                 CryptoItem(
                     modifier = Modifier
-                            .testTag(CryptoItemTestTag + crypto.base.id)
-                            .fillMaxWidth(),
+                        .testTag(CryptoItemTestTag + crypto.base.id)
+                        .fillMaxWidth(),
                     crypto = crypto,
                     onClick = onClick,
                 )
@@ -72,12 +73,12 @@ fun CryptoList(
 
 @Composable
 fun CryptoListStateScreen(
-        modifier: Modifier = Modifier,
-        cryptoList: List<Crypto>?,
-        cryptoListState: Resource<Unit>,
-        errorMessageMapper: ErrorMessageMapper,
-        onClick: (Crypto) -> Unit,
-        onRefresh: () -> Unit,
+    modifier: Modifier = Modifier,
+    cryptoList: List<Crypto>?,
+    cryptoListState: Resource<Unit>,
+    errorMessageMapper: ErrorMessageMapper,
+    onClick: (Crypto) -> Unit,
+    onRefresh: () -> Unit,
 ) {
 
     when {
@@ -108,8 +109,8 @@ fun CryptoListStateScreen(
         }
         cryptoListState.status == Status.ERROR -> {
             StateError(
-                    message = errorMessageMapper.map(cryptoListState.error),
-                    onRetryClick = onRefresh,
+                message = errorMessageMapper.map(cryptoListState.error),
+                onRetryClick = onRefresh,
             )
         }
         else -> {
@@ -120,20 +121,20 @@ fun CryptoListStateScreen(
 
 @Composable
 fun CryptoListScreen(
-        viewModel: HomeViewModel,
-        errorMessageMapper: ErrorMessageMapper,
-        onClick: (Crypto) -> Unit,
+    viewModel: HomeViewModel,
+    errorMessageMapper: ErrorMessageMapper,
+    onClick: (Crypto) -> Unit,
 ) {
     val cryptoListState: Resource<Unit> by viewModel.syncState.observeAsState(Resource.loading<Unit>())
     val cryptoList: List<Crypto>? by viewModel.topCryptoList.observeAsState()
 
     CryptoAppScaffold {
         CryptoListStateScreen(
-                cryptoList = cryptoList,
-                cryptoListState = cryptoListState,
-                errorMessageMapper = errorMessageMapper,
-                onClick = onClick,
-                onRefresh = { viewModel.refresh(force = true) }
+            cryptoList = cryptoList,
+            cryptoListState = cryptoListState,
+            errorMessageMapper = errorMessageMapper,
+            onClick = onClick,
+            onRefresh = { viewModel.refresh(force = true) }
         )
     }
 }

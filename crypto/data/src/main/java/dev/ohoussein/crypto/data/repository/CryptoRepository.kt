@@ -13,17 +13,17 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 
 class CryptoRepository(
-        private val service: ApiCoinGeckoService,
-        private val cryptoDao: CryptoDAO,
-        private val apiMapper: ApiDomainModelMapper,
-        private val dbMapper: DbDomainModelMapper,
+    private val service: ApiCoinGeckoService,
+    private val cryptoDao: CryptoDAO,
+    private val apiMapper: ApiDomainModelMapper,
+    private val dbMapper: DbDomainModelMapper,
 ) : ICryptoRepository {
 
     override fun getTopCryptoList(vsCurrency: String): Flow<List<DomainCrypto>> {
         return cryptoDao
-                .getAll()
-                .filter { it.isNotEmpty() }
-                .map { dbMapper.convertDBCrypto(it) }
+            .getAll()
+            .filter { it.isNotEmpty() }
+            .map { dbMapper.convertDBCrypto(it) }
     }
 
     override suspend fun refreshTopCryptoList(vsCurrency: String) {

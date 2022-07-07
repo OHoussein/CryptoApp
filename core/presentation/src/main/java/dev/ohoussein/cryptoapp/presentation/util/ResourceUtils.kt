@@ -1,7 +1,11 @@
 package dev.ohoussein.cryptoapp.presentation.util
 
 import dev.ohoussein.cryptoapp.presentation.model.Resource
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
 
 fun <T> Flow<T>.asResourceFlow(previousData: T? = null): Flow<Resource<T>> {

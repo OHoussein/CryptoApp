@@ -24,6 +24,7 @@ Implementation of the clean architecture using:
 </div>
 
 ### Light mode 🌕
+
 <div  align="center">
 <img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_list_light.png" alt="architecture" align=center />
 &nbsp;

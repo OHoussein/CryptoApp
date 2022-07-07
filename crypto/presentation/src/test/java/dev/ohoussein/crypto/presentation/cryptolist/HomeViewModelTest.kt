@@ -43,8 +43,8 @@ class HomeViewModelTest {
         useCase = mock()
         uiMapper = mock()
         tested = HomeViewModel(
-                useCase,
-                uiMapper,
+            useCase,
+            uiMapper,
         )
         stateObserver = mock()
         tested.syncState.observeForever(stateObserver)
@@ -52,11 +52,11 @@ class HomeViewModelTest {
 
     @Test
     fun `should load top crypto list`() = runBlockingTest {
-        //Given
+        // Given
         givenListOfCrypto {
-            //When
+            // When
             tested.refresh(true)
-            //Then
+            // Then
             verify(stateObserver, atLeast(1)).onChanged(Resource.loading())
             verify(stateObserver, atLeast(1)).onChanged(Resource.success(Unit))
         }
@@ -64,11 +64,11 @@ class HomeViewModelTest {
 
     @Test
     fun `should get latest data when refreshing`() = runBlockingTest {
-        //Given
+        // Given
         givenListOfCrypto {
-            //When
+            // When
             tested.refresh()
-            //Then
+            // Then
             verify(stateObserver).onChanged(Resource.success(Unit))
             runBlockingTest {
                 givenListOfCrypto {
@@ -82,11 +82,11 @@ class HomeViewModelTest {
 
     @Test
     fun `should get error when loading crypto list`() = runBlockingTest {
-        //Given
+        // Given
         givenErrorListOfCrypto { error ->
-            //When
+            // When
             tested.refresh(true)
-            //Then
+            // Then
             verify(stateObserver).onChanged(Resource.loading())
             verify(stateObserver).onChanged(Resource.error(error))
         }
@@ -94,17 +94,17 @@ class HomeViewModelTest {
 
     @Test
     fun `should refresh after error`() = runBlockingTest {
-        //Given
+        // Given
         givenErrorListOfCrypto { error ->
-            //When
+            // When
             tested.refresh(true)
-            //Then
+            // Then
             verify(stateObserver).onChanged(Resource.loading())
             verify(stateObserver).onChanged(Resource.error(error))
             runBlockingTest {
                 givenListOfCrypto {
                     tested.refresh(true)
-                    //Then
+                    // Then
                     verify(stateObserver, times(2)).onChanged(Resource.loading())
                     verify(stateObserver, atLeast(1)).onChanged(Resource.success(Unit))
                 }
@@ -112,9 +112,9 @@ class HomeViewModelTest {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // private methods
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private suspend fun givenListOfCrypto(next: (List<Crypto>) -> Unit) {
         val data: List<DomainCrypto> = mock()

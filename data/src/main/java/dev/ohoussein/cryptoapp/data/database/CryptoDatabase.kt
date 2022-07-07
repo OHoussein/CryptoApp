@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import dev.ohoussein.crypto.data.database.DBCrypto
 
 private const val DB_VERSION = 1
 private const val DB_NAME = "CryptoApp.db"
@@ -15,7 +16,7 @@ abstract class CryptoDatabase : RoomDatabase() {
 
     companion object {
         fun build(context: Context) =
-                Room.databaseBuilder(context, CryptoDatabase::class.java, DB_NAME).build()
+            Room.databaseBuilder(context, CryptoDatabase::class.java, DB_NAME).build()
 
         fun buildForTesting(context: Context) =
             Room.inMemoryDatabaseBuilder(context, CryptoDatabase::class.java)

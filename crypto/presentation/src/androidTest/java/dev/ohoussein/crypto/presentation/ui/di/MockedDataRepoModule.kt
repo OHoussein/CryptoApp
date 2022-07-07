@@ -15,6 +15,5 @@ object MockedDataRepoModule {
     @Provides
     @Singleton
     fun provideCryptoRepository(): ICryptoRepository = mock()
-
 }
 

@@ -8,6 +8,10 @@ import dev.ohoussein.crypto.presentation.activity.RootActivity
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(Intent(this, RootActivity::class.java))
+        startActivity(
+            Intent(
+                this, RootActivity::class.java
+            )
+        )
     }
 }

@@ -25,13 +25,12 @@ class GetCryptoDetailsTest {
 
     @Test
     fun `should call get crypto details`() {
-        //Given
+        // Given
         val data = mock<DomainCryptoDetails>()
         whenever(repository.getCryptoDetails(cryptoId)).thenReturn(flowOf(data))
-        //When
+        // When
         tested(cryptoId)
-        //Then
+        // Then
         verify(repository).getCryptoDetails(cryptoId)
-
     }
 }

@@ -45,19 +45,19 @@ class CryptoDetailsModelTest {
         useCase = mock()
         uiMapper = mock()
         tested = CryptoDetailsViewModel(
-                useCase,
-                uiMapper,
+            useCase,
+            uiMapper,
         )
         tested.cryptoDetails.observeForever(mockObserver)
     }
 
     @Test
     fun `should load top crypto list`() {
-        //Given
+        // Given
         givenCrypto { data ->
-            //When
+            // When
             tested.load(cryptoId)
-            //Then
+            // Then
             verify(mockObserver).onChanged(Resource.loading())
             verify(mockObserver).onChanged(Resource.success(data))
         }
@@ -65,11 +65,11 @@ class CryptoDetailsModelTest {
 
     @Test
     fun `should get error when loading crypto list`() {
-        //Given
+        // Given
         givenError { error ->
-            //When
+            // When
             tested.load(cryptoId)
-            //Then
+            // Then
             verify(mockObserver).onChanged(Resource.loading())
             verify(mockObserver).onChanged(Resource.error(error))
         }
@@ -77,25 +77,25 @@ class CryptoDetailsModelTest {
 
     @Test
     fun `should refresh after error`() {
-        //Given
+        // Given
         givenError { error ->
-            //When
+            // When
             tested.load(cryptoId)
-            //Then
+            // Then
             verify(mockObserver).onChanged(Resource.loading())
             verify(mockObserver).onChanged(Resource.error(error))
             givenCrypto { data ->
                 tested.load(cryptoId)
-                //Then
+                // Then
                 verify(mockObserver, times(2)).onChanged(Resource.loading())
                 verify(mockObserver).onChanged(Resource.success(data))
             }
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // private methods
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun givenCrypto(next: (CryptoDetails) -> Unit) {
         val data: DomainCryptoDetails = mock()

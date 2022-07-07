@@ -38,12 +38,12 @@ class CryptoDAOTest {
 
     @Test
     fun should_insert_and_get_crypto_list() = runBlockingTest {
-        //Given
+        // Given
         val dbData = TestDataFactory.makeDBCryptoList(100)
         dao.insert(dbData)
-        //Given
+        // Given
         val listFromDB = dao.getAll().first()
-        //Then
+        // Then
         assertEquals(dbData.size, listFromDB.size)
         assertEquals(dbData, listFromDB)
     }

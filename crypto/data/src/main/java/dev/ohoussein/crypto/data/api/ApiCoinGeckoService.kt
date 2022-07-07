@@ -15,6 +15,6 @@ interface ApiCoinGeckoService {
 
     companion object {
         fun create(retrofit: Retrofit): ApiCoinGeckoService =
-                retrofit.create(ApiCoinGeckoService::class.java)
+            retrofit.create(ApiCoinGeckoService::class.java)
     }
 }

@@ -17,5 +17,4 @@ object DomainModule {
 
     @Provides
     fun provideGetCryptoDetailsUseCase(repo: ICryptoRepository) = GetCryptoDetails(repo)
-
 }

@@ -26,22 +26,22 @@ object DataModule {
     @Provides
     @Singleton
     fun provideOkHttp(
-            @Named(DIConstants.Qualifier.HTTP_INTERCEPTOR) httpInterceptor: Array<Interceptor>,
-            @Named(DIConstants.Qualifier.HTTP_NETWORK_INTERCEPTOR) httpNetworkInterceptor: Array<Interceptor>,
+        @Named(DIConstants.Qualifier.HTTP_INTERCEPTOR) httpInterceptor: Array<Interceptor>,
+        @Named(DIConstants.Qualifier.HTTP_NETWORK_INTERCEPTOR) httpNetworkInterceptor: Array<Interceptor>,
     ): OkHttpClient = NetworkBuilder.createOkHttp(httpInterceptor, httpNetworkInterceptor)
 
     @Provides
     @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit =
-            NetworkBuilder.createRetrofit(
-                    okHttpClient = okHttpClient,
-                    converterFactory = converterFactory,
-            )
+        NetworkBuilder.createRetrofit(
+            okHttpClient = okHttpClient,
+            converterFactory = converterFactory,
+        )
 
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): CryptoDatabase =
-            CryptoDatabase.build(context)
+        CryptoDatabase.build(context)
 
     @Provides
     @Singleton

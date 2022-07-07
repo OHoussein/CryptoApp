@@ -17,8 +17,8 @@ import timber.log.Timber
 
 @Composable
 fun CryptoAppNavigation(
-        errorMessageMapper: ErrorMessageMapper,
-        externalNavigator: ExternalNavigator,
+    errorMessageMapper: ErrorMessageMapper,
+    externalNavigator: ExternalNavigator,
 ) {
     val navController = rememberNavController()
 
@@ -34,11 +34,14 @@ fun CryptoAppNavigation(
                 }
             )
         }
-        composable(NavPath.CryptoDetailsPath.PATH, arguments = listOf(
-            navArgument(NavPath.CryptoDetailsPath.ARG_CRYPTO_ID) {
-                type = NavType.StringType
-            }
-        )) { backStackEntry ->
+        composable(
+            NavPath.CryptoDetailsPath.PATH,
+            arguments = listOf(
+                navArgument(NavPath.CryptoDetailsPath.ARG_CRYPTO_ID) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
 
             val viewModel = hiltViewModel<CryptoDetailsViewModel>()
             backStackEntry.arguments?.getString(NavPath.CryptoDetailsPath.ARG_CRYPTO_ID)

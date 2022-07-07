@@ -11,8 +11,8 @@ import androidx.navigation.compose.rememberNavController
  */
 @Composable
 fun TestNavHost(
-    path: String,
-    content: @Composable () -> Unit
+        path: String,
+        content: @Composable () -> Unit,
 ) {
     val navController = rememberNavController()
 

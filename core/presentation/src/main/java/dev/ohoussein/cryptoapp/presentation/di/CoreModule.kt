@@ -18,7 +18,7 @@ object CoreModule {
     @Provides
     @Named(DIConstants.Qualifier.PRICE_FORMATTER)
     fun providePriceFormatter(locale: Locale): NumberFormat =
-            NumberFormat.getCurrencyInstance(locale)
+        NumberFormat.getCurrencyInstance(locale)
 
     @Provides
     @Named(DIConstants.Qualifier.PERCENT_FORMATTER)

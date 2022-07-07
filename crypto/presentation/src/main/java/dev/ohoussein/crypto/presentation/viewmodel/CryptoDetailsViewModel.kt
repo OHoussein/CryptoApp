@@ -1,6 +1,10 @@
 package dev.ohoussein.crypto.presentation.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.switchMap
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
@@ -13,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class CryptoDetailsViewModel @Inject constructor(
     private val useCase: GetCryptoDetails,
-    private val modelMapper: DomainModelMapper
+    private val modelMapper: DomainModelMapper,
 ) : ViewModel() {
 
     private val _cryptoId = MutableLiveData<String>()

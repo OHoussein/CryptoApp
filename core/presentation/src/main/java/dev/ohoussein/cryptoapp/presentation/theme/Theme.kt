@@ -22,14 +22,14 @@ private val LightColorPalette = lightColors(
     secondary = LightBlue500,
     onPrimary = Color.White,
     surface = BlueGrey50,
-    /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
-    onSecondary = Color.Black,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    */
+        /* Other default colors to override
+        background = Color.White,
+        surface = Color.White,
+        onPrimary = Color.White,
+        onSecondary = Color.Black,
+        onBackground = Color.Black,
+        onSurface = Color.Black,
+        */
 )
 
 val AppbarFontFamily = PaytoneOneFontFamily
@@ -41,7 +41,7 @@ val NegativeColor = Red500
 fun CryptoAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     colors: Colors? = null,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val themeColors = colors ?: if (darkTheme) {
         DarkColorPalette

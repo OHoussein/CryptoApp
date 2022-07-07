@@ -4,11 +4,13 @@ import dev.ohoussein.core.test.network.NetworkUtils.readMockFile
 import dev.ohoussein.core.test.network.NetworkUtils.withResponse
 import dev.ohoussein.crypto.data.api.ApiCoinGeckoService
 import dev.ohoussein.cryptoapp.data.network.NetworkBuilder.createRetrofit
+import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -74,5 +76,4 @@ class ApiCoinGeckoServiceTest {
         assertTrue(details.links.homepage.isNotEmpty())
         assertTrue(details.links.reposUrl.isNotEmpty())
     }
-
 }

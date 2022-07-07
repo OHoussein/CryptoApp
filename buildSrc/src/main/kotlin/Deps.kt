@@ -11,17 +11,18 @@ object BuildPlugins {
         const val androidGradlePlugin = "7.3.0-beta04"
         const val kotlinVersion = "1.6.21"
         const val daggerHiltVersion = "2.42"
+        const val detektVersion = "1.20.0"
     }
 
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
     const val kotlinGradlePlugin =
-        "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
+            "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinVersion}"
     const val hiltGradlePlugin =
-        "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltVersion}"
+            "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltVersion}"
     const val gradleVersionsTrackerPlugin = "com.github.ben-manes:gradle-versions-plugin:+"
     const val testLoggerPlugin = "com.adarshr:gradle-test-logger-plugin:2.1.1"
-    const val detektPlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.17.1"
-    const val detektFormatting = "io.gitlab.arturbosch.detekt:detekt-formatting:1.17.1"
+    const val detektPlugin = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detektVersion}"
+    const val detektFormatting = "io.gitlab.arturbosch.detekt:detekt-formatting:${Versions.detektVersion}"
 }
 
 object AndroidSdk {
@@ -50,7 +51,7 @@ object Libs {
     }
 
     const val kotlinStdlib =
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildPlugins.Versions.kotlinVersion}"
+            "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${BuildPlugins.Versions.kotlinVersion}"
     const val appcompat = "androidx.appcompat:appcompat:1.3.1"
     const val material = "com.google.android.material:material:1.4.0"
     const val annotation = "androidx.annotation:annotation:1.2.0"
@@ -59,9 +60,9 @@ object Libs {
     const val retofitConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}"
 
     const val hiltAndroid =
-        "com.google.dagger:hilt-android:${BuildPlugins.Versions.daggerHiltVersion}"
+            "com.google.dagger:hilt-android:${BuildPlugins.Versions.daggerHiltVersion}"
     const val hiltAndroidCompiler =
-        "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
+            "com.google.dagger:hilt-android-compiler:${BuildPlugins.Versions.daggerHiltVersion}"
     const val hiltCompiler = "androidx.hilt:hilt-compiler:${Versions.daggerHiltJetpack}"
 
     const val timber = "com.jakewharton.timber:timber:4.7.1"
@@ -70,17 +71,17 @@ object Libs {
     const val lifecycleRuntime = "androidx.lifecycle:lifecycle-runtime-ktx:2.3.1"
     const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"
     const val lifecycleViewModel =
-        "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
     const val coroutinesCore =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     const val coroutinesAndroid =
-        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
 
     const val composeUI = "androidx.compose.ui:ui:${Versions.compose}"
     const val composeMaterial = "androidx.compose.material:material:${Versions.compose}"
     const val composeMaterialIconExtended =
-        "androidx.compose.material:material-icons-extended:${Versions.compose}"
+            "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val composeUITooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
     const val composeActivity = "androidx.activity:activity-compose:1.3.0"
     const val composeLivedata = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"

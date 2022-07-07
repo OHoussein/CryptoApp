@@ -31,7 +31,17 @@ tasks.register("clean").configure {
 
 tasks {
     withType<io.gitlab.arturbosch.detekt.Detekt> {
-        // Target version of the generated JVM bytecode. It is used for type resolution.
         this.jvmTarget = "1.8"
     }
 }
+
+tasks.register<Copy>("installGitHook") {
+    from(File(rootProject.rootDir, "scripts/pre-commit.sh")) {
+        rename { it.removeSuffix(".sh") }
+    }
+    fileMode = 0x777
+    into(File(rootProject.rootDir, ".git/hooks"))
+}
+
+tasks.getByPath(":app:preBuild").dependsOn(":installGitHook")
+

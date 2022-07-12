@@ -1,5 +1,6 @@
 package dev.ohoussein.crypto.presentation.ui.cryptolist
 
+import dev.ohoussein.cryptoapp.crypto.presentation.R as coreR
 import android.content.res.Resources
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
@@ -22,6 +23,8 @@ import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
 import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
+import java.io.IOException
+import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
@@ -29,9 +32,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.io.IOException
-import javax.inject.Inject
-import dev.ohoussein.cryptoapp.presentation.R as coreR
 
 @ExperimentalCoroutinesApi
 @HiltAndroidTest

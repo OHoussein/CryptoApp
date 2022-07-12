@@ -115,6 +115,7 @@ object TestLibs {
     const val junit = "junit:junit:4.13.2"
     const val mockWebserver = "com.squareup.okhttp3:mockwebserver:4.9.1"
     const val robolectric = "org.robolectric:robolectric:4.6.1"
+    const val byteBuddy = "net.bytebuddy:byte-buddy:1.12.12"
 }
 
 object AndroidTestLibs {

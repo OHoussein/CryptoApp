@@ -9,7 +9,7 @@ apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
 
 android {
-    namespace 'dev.ohoussein.cryptoapp.presentation'
+    namespace 'dev.ohoussein.cryptoapp.core.presentation'
 
     buildFeatures {
         compose true
@@ -17,10 +17,6 @@ android {
 }
 
 dependencies {
-
-    implementation project(path: ':crypto:domain')
-    implementation project(path: ':crypto:data')
-
     //Presentation
     implementation Libs.lifecycle
     implementation Libs.lifecycleViewModel

@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.presentation.di
+package dev.ohoussein.core.injection
 
 import dagger.Module
 import dagger.Provides

@@ -17,7 +17,7 @@ android {
         targetSdkVersion project.targetSdkVersion
         versionCode project.versionCode
         versionName project.versionName
-        testInstrumentationRunner "dev.ohoussein.cryptoapp.MyTestRunner"
+        testInstrumentationRunner "dev.ohoussein.core.test.MyTestRunner"
     }
     buildTypes {
         release {

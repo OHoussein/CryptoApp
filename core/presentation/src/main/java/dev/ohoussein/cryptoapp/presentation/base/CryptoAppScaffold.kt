@@ -22,7 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.ohoussein.cryptoapp.presentation.R
+import dev.ohoussein.cryptoapp.core.presentation.R
 import dev.ohoussein.cryptoapp.presentation.theme.AppbarFontFamily
 import dev.ohoussein.cryptoapp.presentation.theme.CryptoAppTheme
 

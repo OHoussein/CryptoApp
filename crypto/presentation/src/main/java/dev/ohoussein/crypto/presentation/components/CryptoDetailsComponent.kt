@@ -38,7 +38,7 @@ import dev.ohoussein.crypto.presentation.UIConfig.CRYPTO_DESCRIPTION_MAX_LINES
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.model.LabelValue
-import dev.ohoussein.crypto.ui.R
+import dev.ohoussein.cryptoapp.crypto.presentation.R
 import dev.ohoussein.cryptoapp.presentation.theme.NegativeColor
 import dev.ohoussein.cryptoapp.presentation.theme.PositiveColor
 import dev.ohoussein.cryptoapp.presentation.util.asAnnotatedString

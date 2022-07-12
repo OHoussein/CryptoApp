@@ -5,7 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.core.app.ApplicationProvider
 import dev.ohoussein.core.test.coroutine.TestCoroutineRule
 import dev.ohoussein.crypto.data.database.CryptoDAO
-import dev.ohoussein.cryptoapp.data.mock.TestDataFactory
+import dev.ohoussein.cryptoapp.data.testutils.TestDataFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runBlockingTest

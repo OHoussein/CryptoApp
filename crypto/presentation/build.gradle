@@ -10,7 +10,7 @@ apply from: "$rootDir/androidModule.gradle"
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 
 android {
-    namespace 'dev.ohoussein.crypto.ui'
+    namespace 'dev.ohoussein.cryptoapp.crypto.presentation'
 
     buildFeatures {
         compose true
@@ -21,6 +21,7 @@ dependencies {
 
     implementation project(path: ':crypto:domain')
     implementation project(path: ':core:presentation')
+    androidTestImplementation project(path: ':core:injection')
 
     //Presentation
     implementation Libs.lifecycle
@@ -60,8 +61,7 @@ dependencies {
     androidTestImplementation AndroidTestLibs.espresso
     androidTestImplementation TestLibs.mockito
     androidTestImplementation AndroidTestLibs.mockitoAndroid
-    androidTestImplementation("net.bytebuddy:byte-buddy:1.12.9")
-    //androidTestImplementation TestLibs.mockitoInline
+    androidTestImplementation TestLibs.byteBuddy
     androidTestImplementation TestLibs.junit
     androidTestImplementation TestLibs.archCoreTesting
     androidTestImplementation TestLibs.coroutinesTest

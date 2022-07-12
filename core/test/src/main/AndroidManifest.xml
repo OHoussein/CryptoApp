@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".activity.TestActivity"
+            android:name="dev.ohoussein.core.test.activity.TestActivity"
             android:exported="false" />
     </application>
 </manifest>

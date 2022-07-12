@@ -6,18 +6,15 @@ import dev.ohoussein.crypto.presentation.model.BaseCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.model.CryptoPrice
 import dev.ohoussein.crypto.presentation.model.LabelValue
-import dev.ohoussein.cryptoapp.presentation.di.DIConstants.Qualifier.PERCENT_FORMATTER
-import dev.ohoussein.cryptoapp.presentation.di.DIConstants.Qualifier.PRICE_FORMATTER
-import java.text.NumberFormat
-import java.util.*
+import dev.ohoussein.cryptoapp.presentation.mapper.PercentMapper
+import dev.ohoussein.cryptoapp.presentation.mapper.PriceMapper
 import javax.inject.Inject
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Singleton
 class DomainModelMapper @Inject constructor(
-    @Named(PRICE_FORMATTER) private val priceFormatter: NumberFormat,
-    @Named(PERCENT_FORMATTER) private val percentFormatter: NumberFormat,
+    private val priceMapper: PriceMapper,
+    private val percentMapper: PercentMapper,
 ) {
     fun convert(domain: List<DomainCrypto>, vsCurrencyCode: String): List<Crypto> {
         return domain.map { convert(it, vsCurrencyCode) }
@@ -25,7 +22,6 @@ class DomainModelMapper @Inject constructor(
 
     @Suppress("MagicNumber")
     fun convert(domain: DomainCrypto, vsCurrencyCode: String): Crypto {
-        priceFormatter.currency = Currency.getInstance(vsCurrencyCode)
         return Crypto(
             base = BaseCrypto(
                 id = domain.id,
@@ -34,18 +30,18 @@ class DomainModelMapper @Inject constructor(
                 symbol = domain.symbol.uppercase(),
             ),
             price = CryptoPrice(
-                labelValue = LabelValue(domain.price, priceFormatter.format(domain.price)),
+                labelValue = LabelValue(domain.price, priceMapper(domain.price, vsCurrencyCode)),
                 vsCurrencyCode = vsCurrencyCode,
             ),
             priceChangePercentIn24h = domain.priceChangePercentIn24h?.let {
-                LabelValue(it, percentFormatter.format(it / 100.0))
+                LabelValue(it, percentMapper(it / 100.0))
             },
         )
     }
 
     fun convert(domain: DomainCryptoDetails) =
         dev.ohoussein.crypto.presentation.model.CryptoDetails(
-            base = dev.ohoussein.crypto.presentation.model.BaseCrypto(
+            base = BaseCrypto(
                 id = domain.id,
                 name = domain.name,
                 symbol = domain.symbol.uppercase(),
@@ -56,10 +52,10 @@ class DomainModelMapper @Inject constructor(
             blockchainSite = domain.blockchainSite,
             mainRepoUrl = domain.mainRepoUrl,
             sentimentUpVotesPercentage = domain.sentimentUpVotesPercentage?.let {
-                dev.ohoussein.crypto.presentation.model.LabelValue(it, percentFormatter.format(it))
+                LabelValue(it, percentMapper(it))
             },
             sentimentDownVotesPercentage = domain.sentimentDownVotesPercentage?.let {
-                dev.ohoussein.crypto.presentation.model.LabelValue(it, percentFormatter.format(it))
+                LabelValue(it, percentMapper(it))
             },
             description = domain.description,
         )

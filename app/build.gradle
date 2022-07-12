@@ -39,6 +39,7 @@ kapt {
 dependencies {
     implementation project(path: ':data')
     implementation project(path: ':crypto:presentation')
+    implementation project(path: ':core:injection')
 
     //Common
     implementation Libs.kotlinStdlib

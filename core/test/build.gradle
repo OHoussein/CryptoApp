@@ -10,7 +10,7 @@ apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
 
 android {
-    namespace 'dev.ohoussein.core.test'
+    namespace 'dev.ohoussein.cryptoapp.core.test'
 }
 
 dependencies {

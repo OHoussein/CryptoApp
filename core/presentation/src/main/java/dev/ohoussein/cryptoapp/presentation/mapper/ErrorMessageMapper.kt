@@ -2,7 +2,7 @@ package dev.ohoussein.cryptoapp.presentation.mapper
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.ohoussein.cryptoapp.presentation.R
+import dev.ohoussein.cryptoapp.core.presentation.R
 import java.io.IOException
 import javax.inject.Inject
 

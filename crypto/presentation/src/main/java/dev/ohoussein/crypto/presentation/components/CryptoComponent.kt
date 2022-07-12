@@ -22,7 +22,7 @@ import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
-import dev.ohoussein.crypto.ui.R
+import dev.ohoussein.cryptoapp.crypto.presentation.R
 import dev.ohoussein.cryptoapp.presentation.theme.NegativeColor
 import dev.ohoussein.cryptoapp.presentation.theme.PositiveColor
 

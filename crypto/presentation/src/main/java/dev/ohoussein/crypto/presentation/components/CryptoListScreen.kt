@@ -25,7 +25,7 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.crypto.ui.R
+import dev.ohoussein.cryptoapp.crypto.presentation.R
 import dev.ohoussein.cryptoapp.presentation.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.presentation.base.StateError
 import dev.ohoussein.cryptoapp.presentation.base.StateLoading

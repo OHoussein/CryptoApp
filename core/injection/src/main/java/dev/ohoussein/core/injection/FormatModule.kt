@@ -6,6 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.ohoussein.cryptoapp.presentation.mapper.PercentMapper
 import dev.ohoussein.cryptoapp.presentation.mapper.PriceMapper
+import java.util.Locale
 
 @Module
 @InstallIn(SingletonComponent::class)

@@ -1,7 +1,6 @@
 plugins {
     id "kotlin"
     id "com.adarshr.test-logger"
-    id "io.gitlab.arturbosch.detekt"
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"

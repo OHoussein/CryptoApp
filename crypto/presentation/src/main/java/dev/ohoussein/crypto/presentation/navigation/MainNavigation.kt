@@ -7,12 +7,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
-import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import timber.log.Timber
 
 @Composable

@@ -1,13 +1,13 @@
 package dev.ohoussein.crypto.presentation.mapper
 
-import dev.ohoussein.core.formatter.PercentFormatter
-import dev.ohoussein.core.formatter.PriceFormatter
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.presentation.model.BaseCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.model.CryptoPrice
 import dev.ohoussein.crypto.presentation.model.LabelValue
+import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
+import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
 import javax.inject.Inject
 import javax.inject.Singleton
 

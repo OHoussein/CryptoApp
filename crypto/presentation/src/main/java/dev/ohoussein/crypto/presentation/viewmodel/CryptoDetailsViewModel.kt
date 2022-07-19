@@ -9,8 +9,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
-import dev.ohoussein.cryptoapp.presentation.resource.Resource
-import dev.ohoussein.cryptoapp.presentation.resource.asResourceFlow
+import dev.ohoussein.cryptoapp.common.resource.Resource
+import dev.ohoussein.cryptoapp.common.resource.asResourceFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 

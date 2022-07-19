@@ -22,17 +22,17 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import dev.ohoussein.core.designsystem.base.CryptoAppScaffold
-import dev.ohoussein.core.designsystem.base.StateError
-import dev.ohoussein.core.designsystem.base.StateLoading
-import dev.ohoussein.core.designsystem.theme.CryptoAppTheme
-import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
+import dev.ohoussein.cryptoapp.common.resource.Resource
+import dev.ohoussein.cryptoapp.common.resource.Status
+import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
+import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
+import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
+import dev.ohoussein.cryptoapp.core.designsystem.theme.CryptoAppTheme
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.R
-import dev.ohoussein.cryptoapp.presentation.resource.Resource
-import dev.ohoussein.cryptoapp.presentation.resource.Status
 
 @Suppress("TopLevelPropertyNaming")
 const val CryptoListTestTag = "CryptoListTestTag"

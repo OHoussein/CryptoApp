@@ -1,4 +1,4 @@
-package dev.ohoussein.core.formatter
+package dev.ohoussein.cryptoapp.core.formatter
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext

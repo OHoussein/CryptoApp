@@ -1,6 +1,6 @@
 package dev.ohoussein.crypto.presentation.ui.cryptolist
 
-import dev.ohoussein.core.designsystem.R as coreR
+import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
@@ -22,7 +22,7 @@ import dev.ohoussein.crypto.presentation.components.CryptoListTestTag
 import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.core.formatter.ErrorMessageFormatter
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi

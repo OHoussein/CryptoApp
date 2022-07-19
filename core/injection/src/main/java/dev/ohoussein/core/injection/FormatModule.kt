@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.ohoussein.core.formatter.PercentFormatter
-import dev.ohoussein.core.formatter.PriceFormatter
+import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
+import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
 import java.util.Locale
 
 @Module

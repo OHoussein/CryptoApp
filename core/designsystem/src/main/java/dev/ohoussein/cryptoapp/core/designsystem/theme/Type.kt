@@ -1,4 +1,4 @@
-package dev.ohoussein.core.designsystem.theme
+package dev.ohoussein.cryptoapp.core.designsystem.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import dev.ohoussein.core.designsystem.R
+import dev.ohoussein.cryptoapp.core.designsystem.R
 
 val PaytoneOneFontFamily = FontFamily(
     Font(R.font.paytone_one_regular),

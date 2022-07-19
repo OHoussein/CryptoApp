@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber")
 
-package dev.ohoussein.core.designsystem.theme
+package dev.ohoussein.cryptoapp.core.designsystem.theme
 
 import androidx.compose.ui.graphics.Color
 

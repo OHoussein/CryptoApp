@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.presentation.navigation
+package dev.ohoussein.cryptoapp.common.navigation
 
 import android.content.Context
 import android.content.Intent

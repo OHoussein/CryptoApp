@@ -1,4 +1,4 @@
-package dev.ohoussein.core.formatter
+package dev.ohoussein.cryptoapp.core.formatter
 
 import java.text.NumberFormat
 import java.util.Currency

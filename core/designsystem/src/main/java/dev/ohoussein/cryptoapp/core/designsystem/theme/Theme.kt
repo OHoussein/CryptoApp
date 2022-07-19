@@ -1,4 +1,4 @@
-package dev.ohoussein.core.designsystem.theme
+package dev.ohoussein.cryptoapp.core.designsystem.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.Colors

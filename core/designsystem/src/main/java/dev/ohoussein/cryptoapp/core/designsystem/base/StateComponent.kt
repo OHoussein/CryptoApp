@@ -1,4 +1,4 @@
-package dev.ohoussein.core.designsystem.base
+package dev.ohoussein.cryptoapp.core.designsystem.base
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.ohoussein.core.designsystem.R
+import dev.ohoussein.cryptoapp.core.designsystem.R
 
 @Composable
 fun StateError(

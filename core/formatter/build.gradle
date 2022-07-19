@@ -8,7 +8,7 @@ apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
 
 android {
-    namespace 'dev.ohoussein.core.formatter'
+    namespace 'dev.ohoussein.cryptoapp.core.formatter'
 }
 
 dependencies {

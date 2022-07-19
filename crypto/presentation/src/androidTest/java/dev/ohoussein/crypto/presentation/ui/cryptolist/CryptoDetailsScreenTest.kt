@@ -23,8 +23,8 @@ import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.core.formatter.ErrorMessageFormatter
-import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
+import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
@@ -32,7 +32,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 import javax.inject.Inject
-import dev.ohoussein.core.designsystem.R as coreR
+import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 
 @HiltAndroidTest
 @UninstallModules(value = [CryptoDataModule::class])

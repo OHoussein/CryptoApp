@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
-import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.navigation.CryptoAppNavigation
-import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import javax.inject.Inject
 
 @AndroidEntryPoint

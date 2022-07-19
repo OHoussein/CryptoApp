@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.presentation.resource
+package dev.ohoussein.cryptoapp.common.resource
 
 /**
  * A generic class that holds a value with its loading status.

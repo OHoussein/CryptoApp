@@ -20,10 +20,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import coil.transform.CircleCropTransformation
-import dev.ohoussein.core.designsystem.theme.NegativeColor
-import dev.ohoussein.core.designsystem.theme.PositiveColor
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
+import dev.ohoussein.cryptoapp.core.designsystem.theme.NegativeColor
+import dev.ohoussein.cryptoapp.core.designsystem.theme.PositiveColor
 import dev.ohoussein.cryptoapp.crypto.presentation.R
 
 @Composable

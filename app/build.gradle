@@ -36,8 +36,8 @@ kapt {
 }
 
 dependencies {
-    implementation project(path: ':data')
     implementation project(path: ':data:network')
+    implementation project(path: ':data:database')
     implementation project(path: ':crypto:presentation')
     implementation project(path: ':core:injection')
 

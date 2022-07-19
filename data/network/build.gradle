@@ -11,12 +11,6 @@ apply from: "$rootDir/androidModule.gradle"
 
 android {
     namespace 'dev.ohoussein.cryptoapp.data.network'
-
-    testOptions {
-        unitTests {
-            includeAndroidResources = true
-        }
-    }
 }
 
 

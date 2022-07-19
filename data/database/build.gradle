@@ -1,15 +1,16 @@
+
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
     id "kotlin-kapt"
-    id "com.github.ben-manes.versions"
-    id "com.adarshr.test-logger"
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
 
 android {
+    namespace 'dev.ohoussein.cryptoapp.data.database'
+
     testOptions {
         unitTests {
             includeAndroidResources = true
@@ -20,12 +21,6 @@ android {
 dependencies {
     implementation project(path: ':crypto:data')
 
-    implementation Libs.kotlinStdlib
-    implementation Libs.retofit
-    implementation Libs.retofitConverter
-    implementation Libs.coroutinesCore
-    implementation Libs.annotation
-
     implementation Libs.hiltAndroid
     kapt Libs.hiltCompiler
     kapt Libs.hiltAndroidCompiler
@@ -34,17 +29,16 @@ dependencies {
     annotationProcessor Libs.roomCompiler
     kapt Libs.roomCompiler
 
+    testImplementation project(path: ':core:test')
     testImplementation TestLibs.junit
     testImplementation TestLibs.coroutinesTest
     testImplementation TestLibs.mockito
     testImplementation TestLibs.mockitoInline
 
-    testImplementation project(path: ':core:test')
     testImplementation TestLibs.robolectric
+    testImplementation AndroidTestLibs.roomTestHelper
     testImplementation Libs.lifecycleLiveData
     testImplementation AndroidTestLibs.testCoreKtx
     testImplementation TestLibs.archCoreTesting
-    testImplementation AndroidTestLibs.roomTestHelper
 
-    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
 }

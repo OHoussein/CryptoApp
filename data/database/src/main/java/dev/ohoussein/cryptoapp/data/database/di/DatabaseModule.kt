@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.data.di
+package dev.ohoussein.cryptoapp.data.database.di
 
 import android.content.Context
 import dagger.Module
@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+object DatabaseModule {
 
     @Provides
     @Singleton

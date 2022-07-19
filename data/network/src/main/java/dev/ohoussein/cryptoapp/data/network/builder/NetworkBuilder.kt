@@ -1,6 +1,6 @@
-package dev.ohoussein.cryptoapp.data.network
+package dev.ohoussein.cryptoapp.data.network.builder
 
-import dev.ohoussein.cryptoapp.data.BuildConfig
+import dev.ohoussein.cryptoapp.data.network.BuildConfig
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

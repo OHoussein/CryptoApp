@@ -32,6 +32,7 @@ dependencies {
 
     testImplementation project(path: ':core:test')
     testImplementation project(path: ':data')
+    testImplementation project(path: ':data:network')
     testImplementation TestLibs.mockWebserver
     testImplementation TestLibs.coroutinesTest
 

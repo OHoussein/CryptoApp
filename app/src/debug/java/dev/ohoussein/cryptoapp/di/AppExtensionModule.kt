@@ -7,7 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.ohoussein.cryptoapp.config.DebuggableAppSetup
 import dev.ohoussein.cryptoapp.config.IAppFlavorSetup
-import dev.ohoussein.cryptoapp.data.di.DIConstants
+import dev.ohoussein.cryptoapp.data.network.di.DIConstants
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Named

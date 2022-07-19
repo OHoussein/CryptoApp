@@ -6,8 +6,9 @@ import dev.ohoussein.crypto.data.database.DBCrypto
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import java.util.*
+import javax.inject.Inject
 
-class ApiDomainModelMapper(private val locale: Locale) {
+class ApiDomainModelMapper @Inject constructor(private val locale: Locale) {
 
     fun convert(data: List<TopCryptoResponse>): List<DomainCrypto> =
         data.mapIndexed { index, item -> convert(item, index) }

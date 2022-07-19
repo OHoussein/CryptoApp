@@ -11,8 +11,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class CryptoRepository(
+class CryptoRepository @Inject constructor(
     private val service: ApiCoinGeckoService,
     private val cryptoDao: CryptoDAO,
     private val apiMapper: ApiDomainModelMapper,

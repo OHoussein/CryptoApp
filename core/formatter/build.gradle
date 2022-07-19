@@ -8,12 +8,10 @@ apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
 
 android {
-    namespace 'dev.ohoussein.cryptoapp.core.injection'
+    namespace 'dev.ohoussein.core.formatter'
 }
 
 dependencies {
-    implementation project(path: ':crypto:domain')
-    implementation project(path: ':core:formatter')
     implementation Libs.hiltAndroid
     kapt Libs.hiltCompiler
     kapt Libs.hiltAndroidCompiler

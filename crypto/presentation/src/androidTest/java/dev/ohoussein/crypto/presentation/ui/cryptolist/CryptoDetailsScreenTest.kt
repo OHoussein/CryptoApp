@@ -23,7 +23,7 @@ import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
+import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
@@ -43,7 +43,7 @@ class CryptoDetailsScreenTest {
     internal lateinit var cryptoRepo: ICryptoRepository
 
     @Inject
-    lateinit var errorMessageMapper: ErrorMessageMapper
+    lateinit var errorMessageMapper: ErrorMessageFormatter
 
     @Inject
     lateinit var externalNavigator: ExternalNavigator
@@ -105,7 +105,7 @@ class CryptoDetailsScreenTest {
                 CryptoDetailsScreen(
                         viewModel = viewModel,
                         cryptoId = cryptoId,
-                        errorMessageMapper = errorMessageMapper,
+                        errorMessageFormatter = errorMessageMapper,
                         externalNavigator = externalNavigator,
                         onBackClicked = {}
                 )

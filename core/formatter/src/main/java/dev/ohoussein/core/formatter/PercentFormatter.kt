@@ -1,10 +1,10 @@
-package dev.ohoussein.cryptoapp.presentation.mapper
+package dev.ohoussein.core.formatter
 
 import java.text.NumberFormat
 import java.util.Locale
 import javax.inject.Inject
 
-class PercentMapper @Inject constructor(private val locale: Locale) {
+class PercentFormatter @Inject constructor(private val locale: Locale) {
 
     operator fun invoke(value: Double): String {
         return NumberFormat.getPercentInstance(locale).run {

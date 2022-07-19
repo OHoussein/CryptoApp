@@ -22,7 +22,7 @@ import dev.ohoussein.crypto.presentation.components.CryptoListTestTag
 import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
+import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -43,7 +43,7 @@ class CryptoListScreenTest {
     internal lateinit var cryptoRepo: ICryptoRepository
 
     @Inject
-    lateinit var errorMessageMapper: ErrorMessageMapper
+    lateinit var errorMessageMapper: ErrorMessageFormatter
 
     @get:Rule(order = 1)
     val hiltRule = HiltAndroidRule(this)

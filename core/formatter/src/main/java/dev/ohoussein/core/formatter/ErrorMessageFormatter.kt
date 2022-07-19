@@ -1,12 +1,11 @@
-package dev.ohoussein.cryptoapp.presentation.mapper
+package dev.ohoussein.core.formatter
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.ohoussein.cryptoapp.core.presentation.R
 import java.io.IOException
 import javax.inject.Inject
 
-class ErrorMessageMapper @Inject constructor(@ApplicationContext private val context: Context) {
+class ErrorMessageFormatter @Inject constructor(@ApplicationContext private val context: Context) {
 
     fun map(exception: Throwable?): String {
         return when (exception) {

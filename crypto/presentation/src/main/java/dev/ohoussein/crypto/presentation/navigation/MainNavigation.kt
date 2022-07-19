@@ -7,17 +7,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
 import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
 import timber.log.Timber
 
 @Composable
 fun CryptoAppNavigation(
-    errorMessageMapper: ErrorMessageMapper,
+    errorMessageMapper: ErrorMessageFormatter,
     externalNavigator: ExternalNavigator,
 ) {
     val navController = rememberNavController()
@@ -49,7 +49,7 @@ fun CryptoAppNavigation(
                     CryptoDetailsScreen(
                         viewModel = viewModel,
                         cryptoId = cryptoId,
-                        errorMessageMapper = errorMessageMapper,
+                        errorMessageFormatter = errorMessageMapper,
                         externalNavigator = externalNavigator,
                         onBackClicked = { navController.popBackStack() }
                     )

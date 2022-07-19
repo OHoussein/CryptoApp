@@ -21,10 +21,10 @@ import dev.ohoussein.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.core.designsystem.base.StateError
 import dev.ohoussein.core.designsystem.base.StateLoading
 import dev.ohoussein.core.designsystem.theme.CryptoAppTheme
+import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
 import dev.ohoussein.cryptoapp.presentation.model.Resource
 import dev.ohoussein.cryptoapp.presentation.model.Status
 import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
@@ -66,7 +66,7 @@ fun CryptoDetails(
 fun CryptoDetailsStateScreen(
     modifier: Modifier = Modifier,
     cryptoDetailsState: Resource<CryptoDetails>,
-    errorMessageMapper: ErrorMessageMapper,
+    errorMessageMapper: ErrorMessageFormatter,
     onRefresh: () -> Unit,
     onHomePageClicked: (CryptoDetails) -> Unit,
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
@@ -101,7 +101,7 @@ fun CryptoDetailsStateScreen(
 fun CryptoDetailsScreen(
     viewModel: CryptoDetailsViewModel,
     cryptoId: String,
-    errorMessageMapper: ErrorMessageMapper,
+    errorMessageFormatter: ErrorMessageFormatter,
     externalNavigator: ExternalNavigator,
     onBackClicked: () -> Unit,
 ) {
@@ -115,7 +115,7 @@ fun CryptoDetailsScreen(
     CryptoAppScaffold(onBackButton = onBackClicked) {
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
-            errorMessageMapper = errorMessageMapper,
+            errorMessageMapper = errorMessageFormatter,
             cryptoDetailsState = state,
             onRefresh = { viewModel.load(cryptoId) },
             onHomePageClicked = { crypto ->

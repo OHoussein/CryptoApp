@@ -1,11 +1,11 @@
-package dev.ohoussein.cryptoapp.presentation.mapper
+package dev.ohoussein.core.formatter
 
 import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
 import javax.inject.Inject
 
-class PriceMapper @Inject constructor(private val locale: Locale) {
+class PriceFormatter @Inject constructor(private val locale: Locale) {
 
     operator fun invoke(price: Double, currencyCode: String): String {
         return NumberFormat.getCurrencyInstance(locale).run {

@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.ohoussein.cryptoapp.presentation.mapper.PercentMapper
-import dev.ohoussein.cryptoapp.presentation.mapper.PriceMapper
+import dev.ohoussein.core.formatter.PercentFormatter
+import dev.ohoussein.core.formatter.PriceFormatter
 import java.util.Locale
 
 @Module
@@ -16,8 +16,8 @@ object FormatModule {
     fun provideLocale(): Locale = Locale.US
 
     @Provides
-    fun providePriceFormatter(locale: Locale): PriceMapper = PriceMapper(locale)
+    fun providePriceFormatter(locale: Locale): PriceFormatter = PriceFormatter(locale)
 
     @Provides
-    fun providePercentFormatter(locale: Locale): PercentMapper = PercentMapper(locale)
+    fun providePercentFormatter(locale: Locale): PercentFormatter = PercentFormatter(locale)
 }

@@ -26,11 +26,11 @@ import dev.ohoussein.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.core.designsystem.base.StateError
 import dev.ohoussein.core.designsystem.base.StateLoading
 import dev.ohoussein.core.designsystem.theme.CryptoAppTheme
+import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.R
-import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
 import dev.ohoussein.cryptoapp.presentation.model.Resource
 import dev.ohoussein.cryptoapp.presentation.model.Status
 
@@ -76,7 +76,7 @@ fun CryptoListStateScreen(
     modifier: Modifier = Modifier,
     cryptoList: List<Crypto>?,
     cryptoListState: Resource<Unit>,
-    errorMessageMapper: ErrorMessageMapper,
+    errorMessageMapper: ErrorMessageFormatter,
     onClick: (Crypto) -> Unit,
     onRefresh: () -> Unit,
 ) {
@@ -122,7 +122,7 @@ fun CryptoListStateScreen(
 @Composable
 fun CryptoListScreen(
     viewModel: HomeViewModel,
-    errorMessageMapper: ErrorMessageMapper,
+    errorMessageMapper: ErrorMessageFormatter,
     onClick: (Crypto) -> Unit,
 ) {
     val cryptoListState: Resource<Unit> by viewModel.syncState.observeAsState(Resource.loading<Unit>())

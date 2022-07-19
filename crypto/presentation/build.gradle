@@ -21,6 +21,7 @@ dependencies {
     implementation project(path: ':crypto:domain')
     implementation project(path: ':core:presentation')
     implementation project(path: ':core:designsystem')
+    implementation project(path: ':core:formatter')
     androidTestImplementation project(path: ':core:injection')
 
     //Presentation

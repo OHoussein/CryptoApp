@@ -4,8 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
+import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.navigation.CryptoAppNavigation
-import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
 import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
 import javax.inject.Inject
 
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class RootActivity : ComponentActivity() {
 
     @Inject
-    lateinit var errorMessageMapper: ErrorMessageMapper
+    lateinit var errorMessageMapper: ErrorMessageFormatter
 
     @Inject
     lateinit var externalNavigator: ExternalNavigator

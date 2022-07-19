@@ -12,13 +12,13 @@ import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
+import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
 import timber.log.Timber
 
 @Composable
 fun CryptoAppNavigation(
     errorMessageMapper: ErrorMessageFormatter,
-    externalNavigator: ExternalNavigator,
+    externalRouter: ExternalRouter,
 ) {
     val navController = rememberNavController()
 
@@ -50,7 +50,7 @@ fun CryptoAppNavigation(
                         viewModel = viewModel,
                         cryptoId = cryptoId,
                         errorMessageFormatter = errorMessageMapper,
-                        externalNavigator = externalNavigator,
+                        externalRouter = externalRouter,
                         onBackClicked = { navController.popBackStack() }
                     )
                 }

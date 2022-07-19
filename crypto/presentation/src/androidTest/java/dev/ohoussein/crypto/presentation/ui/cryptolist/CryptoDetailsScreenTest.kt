@@ -24,7 +24,7 @@ import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.core.formatter.ErrorMessageFormatter
-import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
+import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
@@ -46,7 +46,7 @@ class CryptoDetailsScreenTest {
     lateinit var errorMessageMapper: ErrorMessageFormatter
 
     @Inject
-    lateinit var externalNavigator: ExternalNavigator
+    lateinit var externalRouter: ExternalRouter
 
     @get:Rule(order = 1)
     internal val hiltRule = HiltAndroidRule(this)
@@ -106,7 +106,7 @@ class CryptoDetailsScreenTest {
                         viewModel = viewModel,
                         cryptoId = cryptoId,
                         errorMessageFormatter = errorMessageMapper,
-                        externalNavigator = externalNavigator,
+                        externalRouter = externalRouter,
                         onBackClicked = {}
                 )
             }

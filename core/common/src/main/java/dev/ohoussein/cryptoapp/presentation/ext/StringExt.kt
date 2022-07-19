@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.presentation.util
+package dev.ohoussein.cryptoapp.presentation.ext
 
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.core.text.HtmlCompat

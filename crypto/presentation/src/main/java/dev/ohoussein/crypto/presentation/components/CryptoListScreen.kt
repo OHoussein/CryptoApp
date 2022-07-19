@@ -31,8 +31,8 @@ import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.R
-import dev.ohoussein.cryptoapp.presentation.model.Resource
-import dev.ohoussein.cryptoapp.presentation.model.Status
+import dev.ohoussein.cryptoapp.presentation.resource.Resource
+import dev.ohoussein.cryptoapp.presentation.resource.Status
 
 @Suppress("TopLevelPropertyNaming")
 const val CryptoListTestTag = "CryptoListTestTag"

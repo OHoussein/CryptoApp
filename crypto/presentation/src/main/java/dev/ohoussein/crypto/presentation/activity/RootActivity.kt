@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
 import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.navigation.CryptoAppNavigation
-import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
+import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -16,7 +16,7 @@ class RootActivity : ComponentActivity() {
     lateinit var errorMessageMapper: ErrorMessageFormatter
 
     @Inject
-    lateinit var externalNavigator: ExternalNavigator
+    lateinit var externalRouter: ExternalRouter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +24,7 @@ class RootActivity : ComponentActivity() {
         setContent {
             CryptoAppNavigation(
                 errorMessageMapper = errorMessageMapper,
-                externalNavigator = externalNavigator,
+                externalRouter = externalRouter,
             )
         }
     }

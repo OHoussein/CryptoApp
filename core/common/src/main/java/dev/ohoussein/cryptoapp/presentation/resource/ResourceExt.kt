@@ -1,6 +1,5 @@
-package dev.ohoussein.cryptoapp.presentation.util
+package dev.ohoussein.cryptoapp.presentation.resource
 
-import dev.ohoussein.cryptoapp.presentation.model.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

@@ -25,9 +25,9 @@ import dev.ohoussein.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.cryptoapp.presentation.model.Resource
-import dev.ohoussein.cryptoapp.presentation.model.Status
-import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
+import dev.ohoussein.cryptoapp.presentation.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.presentation.resource.Resource
+import dev.ohoussein.cryptoapp.presentation.resource.Status
 
 @Composable
 fun CryptoDetails(
@@ -102,7 +102,7 @@ fun CryptoDetailsScreen(
     viewModel: CryptoDetailsViewModel,
     cryptoId: String,
     errorMessageFormatter: ErrorMessageFormatter,
-    externalNavigator: ExternalNavigator,
+    externalRouter: ExternalRouter,
     onBackClicked: () -> Unit,
 ) {
 
@@ -119,13 +119,13 @@ fun CryptoDetailsScreen(
             cryptoDetailsState = state,
             onRefresh = { viewModel.load(cryptoId) },
             onHomePageClicked = { crypto ->
-                crypto.homePageUrl?.let { externalNavigator.openWebUrl(it) }
+                crypto.homePageUrl?.let { externalRouter.openWebUrl(it) }
             },
             onBlockchainSiteClicked = { crypto ->
-                crypto.blockchainSite?.let { externalNavigator.openWebUrl(it) }
+                crypto.blockchainSite?.let { externalRouter.openWebUrl(it) }
             },
             onSourceCodeClicked = { crypto ->
-                crypto.mainRepoUrl?.let { externalNavigator.openWebUrl(it) }
+                crypto.mainRepoUrl?.let { externalRouter.openWebUrl(it) }
             },
         )
     }

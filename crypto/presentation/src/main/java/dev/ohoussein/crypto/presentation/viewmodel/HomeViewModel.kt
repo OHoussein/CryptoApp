@@ -9,9 +9,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.Crypto
-import dev.ohoussein.cryptoapp.presentation.model.Resource
-import dev.ohoussein.cryptoapp.presentation.model.Status
-import dev.ohoussein.cryptoapp.presentation.util.asResourceFlow
+import dev.ohoussein.cryptoapp.presentation.resource.Resource
+import dev.ohoussein.cryptoapp.presentation.resource.Status
+import dev.ohoussein.cryptoapp.presentation.resource.asResourceFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import timber.log.Timber

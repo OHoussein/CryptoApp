@@ -12,7 +12,7 @@ import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
-import dev.ohoussein.cryptoapp.presentation.model.Resource
+import dev.ohoussein.cryptoapp.presentation.resource.Resource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before

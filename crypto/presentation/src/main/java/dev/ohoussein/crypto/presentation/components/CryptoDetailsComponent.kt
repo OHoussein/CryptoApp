@@ -41,7 +41,7 @@ import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.model.LabelValue
 import dev.ohoussein.cryptoapp.crypto.presentation.R
-import dev.ohoussein.cryptoapp.presentation.util.asAnnotatedString
+import dev.ohoussein.cryptoapp.presentation.ext.asAnnotatedString
 
 @Composable
 fun CryptoDetailsHeader(

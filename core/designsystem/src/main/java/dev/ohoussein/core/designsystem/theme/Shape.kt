@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.presentation.theme
+package dev.ohoussein.core.designsystem.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

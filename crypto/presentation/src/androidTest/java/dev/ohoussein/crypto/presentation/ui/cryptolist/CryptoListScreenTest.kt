@@ -1,6 +1,6 @@
 package dev.ohoussein.crypto.presentation.ui.cryptolist
 
-import dev.ohoussein.cryptoapp.crypto.presentation.R as coreR
+import dev.ohoussein.core.designsystem.R as coreR
 import android.content.res.Resources
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.ComposeContentTestRule

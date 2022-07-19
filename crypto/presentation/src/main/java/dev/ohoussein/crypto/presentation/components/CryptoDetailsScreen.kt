@@ -17,16 +17,16 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import dev.ohoussein.core.designsystem.base.CryptoAppScaffold
+import dev.ohoussein.core.designsystem.base.StateError
+import dev.ohoussein.core.designsystem.base.StateLoading
+import dev.ohoussein.core.designsystem.theme.CryptoAppTheme
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.cryptoapp.presentation.base.CryptoAppScaffold
-import dev.ohoussein.cryptoapp.presentation.base.StateError
-import dev.ohoussein.cryptoapp.presentation.base.StateLoading
 import dev.ohoussein.cryptoapp.presentation.mapper.ErrorMessageMapper
 import dev.ohoussein.cryptoapp.presentation.model.Resource
 import dev.ohoussein.cryptoapp.presentation.model.Status
-import dev.ohoussein.cryptoapp.presentation.theme.CryptoAppTheme
 import dev.ohoussein.cryptoapp.presentation.util.ExternalNavigator
 
 @Composable

@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.presentation.base
+package dev.ohoussein.core.designsystem.base
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.ohoussein.cryptoapp.core.presentation.R
+import dev.ohoussein.core.designsystem.R
 
 @Composable
 fun StateError(
@@ -75,7 +75,7 @@ fun StateLoading(modifier: Modifier = Modifier) {
 @Composable
 private fun PreviewErrorState() {
     StateError(
-        message = stringResource(id = R.string.error_no_internet_connection),
+        message = "No internet connection",
         onRetryClick = {}
     )
 }

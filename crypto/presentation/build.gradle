@@ -20,6 +20,7 @@ dependencies {
 
     implementation project(path: ':crypto:domain')
     implementation project(path: ':core:presentation')
+    implementation project(path: ':core:designsystem')
     androidTestImplementation project(path: ':core:injection')
 
     //Presentation

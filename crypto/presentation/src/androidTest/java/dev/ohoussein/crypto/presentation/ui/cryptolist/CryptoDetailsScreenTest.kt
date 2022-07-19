@@ -32,7 +32,7 @@ import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 import javax.inject.Inject
-import dev.ohoussein.cryptoapp.crypto.presentation.R as coreR
+import dev.ohoussein.core.designsystem.R as coreR
 
 @HiltAndroidTest
 @UninstallModules(value = [CryptoDataModule::class])

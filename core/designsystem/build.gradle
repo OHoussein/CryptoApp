@@ -1,0 +1,23 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+}
+
+apply from: "$rootDir/gradle/scripts/detekt.gradle"
+apply from: "$rootDir/androidModule.gradle"
+
+android {
+    namespace 'dev.ohoussein.core.designsystem'
+
+    buildFeatures {
+        compose true
+    }
+}
+
+dependencies {
+    //compose
+    implementation Libs.composeUI
+    implementation Libs.composeMaterial
+    implementation Libs.composeMaterialIconExtended
+    implementation(Libs.composeUITooling)
+}

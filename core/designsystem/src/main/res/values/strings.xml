@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="core_app_bar_title">CryptoApp</string>
+
+    <string name="core_retry">RETRY</string>
+    <string name="core_back">Back</string>
+</resources>

@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="core_app_bar_title">CryptoApp</string>
-    <!-- Generics-->
-    <string name="core_retry">RETRY</string>
-    <string name="core_back">Back</string>
     <!-- Errors-->
     <string name="error_no_internet_connection">No internet connection</string>
     <string name="error_unknown_error_with_message">Internal error: %1$s</string>

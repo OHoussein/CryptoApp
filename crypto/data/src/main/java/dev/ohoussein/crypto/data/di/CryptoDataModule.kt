@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.ohoussein.crypto.data.api.ApiCoinGeckoService
+import dev.ohoussein.crypto.data.api.ApiCryptoService
 import dev.ohoussein.crypto.data.repository.CryptoRepository
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import retrofit2.Retrofit
@@ -22,7 +22,7 @@ abstract class CryptoDataModule {
     companion object {
         @Provides
         @Singleton
-        fun provideApiService(retrofit: Retrofit): ApiCoinGeckoService =
-            ApiCoinGeckoService.create(retrofit)
+        fun provideApiService(retrofit: Retrofit): ApiCryptoService =
+            ApiCryptoService.create(retrofit)
     }
 }

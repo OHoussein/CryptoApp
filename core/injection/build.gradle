@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation project(path: ':crypto:domain')
+    implementation project(path: ':crypto:data')
     implementation project(path: ':core:formatter')
     implementation Libs.hiltAndroid
     kapt Libs.hiltCompiler

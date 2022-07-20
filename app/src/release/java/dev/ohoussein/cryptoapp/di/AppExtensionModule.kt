@@ -6,10 +6,10 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.ohoussein.cryptoapp.config.IAppFlavorSetup
 import dev.ohoussein.cryptoapp.config.ReleaseAppSetup
-import dev.ohoussein.cryptoapp.data.di.DIConstants
-import okhttp3.Interceptor
+import dev.ohoussein.cryptoapp.data.network.di.DIConstants
 import javax.inject.Named
 import javax.inject.Singleton
+import okhttp3.Interceptor
 
 @Module
 @InstallIn(SingletonComponent::class)

@@ -1,6 +1,6 @@
 package dev.ohoussein.crypto.data.repository
 
-import dev.ohoussein.crypto.data.api.ApiCoinGeckoService
+import dev.ohoussein.crypto.data.api.ApiCryptoService
 import dev.ohoussein.crypto.data.api.mapper.ApiDomainModelMapper
 import dev.ohoussein.crypto.data.database.CryptoDAO
 import dev.ohoussein.crypto.data.database.mapper.DbDomainModelMapper
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class CryptoRepository @Inject constructor(
-    private val service: ApiCoinGeckoService,
+    private val service: ApiCryptoService,
     private val cryptoDao: CryptoDAO,
     private val apiMapper: ApiDomainModelMapper,
     private val dbMapper: DbDomainModelMapper,

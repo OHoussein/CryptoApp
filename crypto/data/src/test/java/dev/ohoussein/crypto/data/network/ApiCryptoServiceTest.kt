@@ -2,8 +2,8 @@ package dev.ohoussein.crypto.data.network
 
 import dev.ohoussein.core.test.network.NetworkUtils.readMockFile
 import dev.ohoussein.core.test.network.NetworkUtils.withResponse
-import dev.ohoussein.crypto.data.api.ApiCoinGeckoService
-import dev.ohoussein.cryptoapp.data.network.NetworkBuilder.createRetrofit
+import dev.ohoussein.crypto.data.api.ApiCryptoService
+import dev.ohoussein.cryptoapp.data.network.builder.NetworkBuilder.createRetrofit
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
 import junit.framework.TestCase.assertTrue
@@ -14,17 +14,17 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 
-class ApiCoinGeckoServiceTest {
+class ApiCryptoServiceTest {
 
     private lateinit var mockWebServer: MockWebServer
-    private lateinit var service: ApiCoinGeckoService
+    private lateinit var service: ApiCryptoService
 
     @Before
     fun setUp() {
         mockWebServer = MockWebServer()
         mockWebServer.start()
 
-        service = ApiCoinGeckoService.create(createRetrofit(baseUrl = mockWebServer.url("/")))
+        service = ApiCryptoService.create(createRetrofit(baseUrl = mockWebServer.url("/")))
     }
 
     @After

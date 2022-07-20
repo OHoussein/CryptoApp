@@ -3,7 +3,7 @@ package dev.ohoussein.crypto.data.network.repository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import dev.ohoussein.crypto.data.api.ApiCoinGeckoService
+import dev.ohoussein.crypto.data.api.ApiCryptoService
 import dev.ohoussein.crypto.data.api.CryptoDetailsResponse
 import dev.ohoussein.crypto.data.api.TopCryptoResponse
 import dev.ohoussein.crypto.data.api.mapper.ApiDomainModelMapper
@@ -32,7 +32,7 @@ class CryptoRepositoryTest {
     private lateinit var repository: ICryptoRepository
 
     @Mock
-    private lateinit var apiService: ApiCoinGeckoService
+    private lateinit var apiService: ApiCryptoService
 
     @Mock
     private lateinit var apiDomainModelMapper: ApiDomainModelMapper

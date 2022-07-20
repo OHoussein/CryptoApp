@@ -39,8 +39,8 @@ tasks.register<Copy>("installGitHook") {
     from(File(rootProject.rootDir, "scripts/pre-commit.sh")) {
         rename { it.removeSuffix(".sh") }
     }
-    fileMode = 0x777
     into(File(rootProject.rootDir, ".git/hooks"))
+    fileMode = 0b111_111_111
 }
 
 tasks.getByPath(":app:preBuild").dependsOn(":installGitHook")

@@ -1,0 +1,62 @@
+apply plugin: "com.github.ben-manes.versions"
+apply from: "dependencies.gradle"
+
+buildscript {
+    ext {
+        androidGradlePlugin = "7.3.0-beta04"
+        kotlinVersion = "1.6.21"
+        daggerHiltVersion = "2.42"
+        detektVersion = "1.20.0"
+    }
+
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:${androidGradlePlugin}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}")
+        classpath("com.google.dagger:hilt-android-gradle-plugin:${daggerHiltVersion}")
+        classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
+        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detektVersion}")
+        classpath("io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}")
+    }
+}
+
+allprojects {
+    repositories {
+        mavenCentral()
+        google()
+    }
+}
+
+tasks.register("clean").configure {
+    delete("build")
+}
+
+tasks.register("installGitHook", Copy) {
+    from(new File(rootProject.rootDir, "scripts/pre-commit.sh")) {
+        rename { it.substring(0, it.lastIndexOf('.')) }
+    }
+    into { new File(rootProject.rootDir, ".git/hooks") }
+    fileMode = 0b111_111_111
+}
+
+tasks.getByPath(":app:preBuild").dependsOn(":installGitHook")
+
+
+tasks.named("dependencyUpdates").configure {
+    resolutionStrategy {
+        componentSelection { rules ->
+            rules.all { ComponentSelection selection ->
+                boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+                    selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+                }
+                if (rejected) {
+                    selection.reject('Release candidate')
+                }
+            }
+        }
+    }
+}

@@ -16,5 +16,5 @@ tasks.named("detekt").configure {
 }
 
 dependencies {
-    detektPlugins BuildPlugins.detektFormatting
+    detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}"
 }

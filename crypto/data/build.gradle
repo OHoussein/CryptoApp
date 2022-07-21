@@ -15,34 +15,27 @@ android {
 dependencies {
     implementation project(path: ':crypto:domain')
 
-    implementation Libs.kotlinStdlib
-    implementation Libs.coroutinesCore
+    implementation core.kotlin.coroutinesCore
 
-    implementation Libs.retofit
-    implementation Libs.retofitConverter
+    implementation data.retofit
 
-    implementation Libs.room
-    implementation Libs.roomRuntime
-    annotationProcessor Libs.roomCompiler
-    kapt Libs.roomCompiler
+    implementation data.room.lib
+    implementation data.room.runtime
+    annotationProcessor data.room.compiler
+    kapt data.room.compiler
 
-    implementation Libs.hiltAndroid
-    kapt Libs.hiltCompiler
-    kapt Libs.hiltAndroidCompiler
+    implementation core.hilt.android
+    kapt core.hilt.compiler
+    kapt core.hilt.androidCompiler
 
     testImplementation project(path: ':core:test')
     testImplementation project(path: ':data:network')
     testImplementation project(path: ':data:database')
-    testImplementation TestLibs.mockWebserver
-    testImplementation TestLibs.coroutinesTest
+    implementation test.mockWebserver
+    testImplementation test.coroutinesTest
 
-
-    testImplementation TestLibs.robolectric
-    //To Use livedata in room with robolectric tests
-    testImplementation Libs.lifecycleLiveData
-    testImplementation AndroidTestLibs.testCoreKtx
-    testImplementation TestLibs.archCoreTesting
-    testImplementation AndroidTestLibs.roomTestHelper
-    testImplementation TestLibs.mockito
-    testImplementation TestLibs.mockitoInline
+    testImplementation androidTest.testCoreKtx
+    testImplementation test.archCoreTesting
+    testImplementation test.mockito
+    testImplementation test.mockitoInline
 }

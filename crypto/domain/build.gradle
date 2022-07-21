@@ -1,15 +1,14 @@
 plugins {
     id "kotlin"
-    id "com.adarshr.test-logger"
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
+apply from: "$rootDir/dependencies.gradle"
 
 dependencies {
-    implementation Libs.kotlinStdlib
-    implementation Libs.coroutinesCore
+    implementation core.kotlin.coroutinesCore
 
-    testImplementation TestLibs.junit
-    testImplementation TestLibs.mockito
-    testImplementation TestLibs.mockitoInline
+    testImplementation test.junit
+    testImplementation test.mockito
+    testImplementation test.mockitoInline
 }

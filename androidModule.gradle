@@ -1,3 +1,5 @@
+apply from: "$rootDir/dependencies.gradle"
+
 project.ext {
     minSdkVersion = 23
     compileSdkVersion = 32
@@ -6,8 +8,6 @@ project.ext {
     applicationId = "dev.ohoussein.cryptoapp"
     versionCode = 1
     versionName = "1.0"
-
-    composeVersion = "1.2.0-rc02"
 }
 
 android {

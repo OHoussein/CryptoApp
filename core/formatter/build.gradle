@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    implementation Libs.hiltAndroid
-    kapt Libs.hiltCompiler
-    kapt Libs.hiltAndroidCompiler
+    implementation core.hilt.android
+    kapt core.hilt.compiler
+    kapt core.hilt.androidCompiler
 }

@@ -7,6 +7,7 @@ plugins {
 
 apply from: "$rootDir/androidModule.gradle"
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
+apply from: "$rootDir/dependencies.gradle"
 
 android {
     namespace 'dev.ohoussein.cryptoapp.crypto.presentation'
@@ -25,47 +26,36 @@ dependencies {
     androidTestImplementation project(path: ':core:injection')
 
     //Presentation
-    implementation Libs.lifecycle
-    implementation Libs.lifecycleViewModel
-    implementation Libs.lifecycleRuntime
-    implementation Libs.lifecycleLiveData
-    //compose
-    implementation Libs.composeUI
-    implementation Libs.composeMaterial
-    implementation Libs.composeMaterialIconExtended
-    implementation(Libs.composeUITooling)
-    implementation Libs.composeLivedata
-    implementation Libs.composeHiltViewModel
-    implementation Libs.composeNavigation
-    implementation Libs.composeCoil
-    implementation Libs.composeSwipeRefresh
+    implementation android.jetpack.lifecycle
+    implementation android.jetpack.livedata
+    implementation android.compose
 
-    implementation Libs.timber
-    implementation Libs.hiltAndroid
-    kapt Libs.hiltCompiler
-    kapt Libs.hiltAndroidCompiler
+    implementation core.timber
+
+    implementation core.hilt.android
+    kapt core.hilt.compiler
+    kapt core.hilt.androidCompiler
 
     testImplementation project(path: ':core:test')
-    testImplementation TestLibs.mockito
-    testImplementation TestLibs.mockitoInline
-    testImplementation TestLibs.junit
-    testImplementation TestLibs.archCoreTesting
-    testImplementation TestLibs.coroutinesTest
+    testImplementation test.mockito
+    testImplementation test.mockitoInline
+    testImplementation test.junit
+    testImplementation test.archCoreTesting
+    testImplementation test.coroutinesTest
 
     androidTestImplementation project(path: ':crypto:data')
     androidTestImplementation project(path: ':core:test')
-    androidTestImplementation TestLibs.hiltAndroid
-    kaptAndroidTest TestLibs.hiltAndroidCompiler
-    androidTestImplementation AndroidTestLibs.androidJUnit
-    androidTestImplementation AndroidTestLibs.androidJUnitKtx
-    androidTestImplementation AndroidTestLibs.rules
-    androidTestImplementation AndroidTestLibs.espresso
-    androidTestImplementation TestLibs.mockito
-    androidTestImplementation AndroidTestLibs.mockitoAndroid
-    androidTestImplementation TestLibs.byteBuddy
-    androidTestImplementation TestLibs.junit
-    androidTestImplementation TestLibs.archCoreTesting
-    androidTestImplementation TestLibs.coroutinesTest
-    androidTestImplementation AndroidTestLibs.composeTesting
-    debugImplementation AndroidTestLibs.composeTestingManifest
+    androidTestImplementation androidTest.hiltTesting
+    kaptAndroidTest core.hilt.androidCompiler
+
+    androidTestImplementation androidTest.androidJunit
+    androidTestImplementation androidTest.rules
+    androidTestImplementation androidTest.espresso
+    androidTestImplementation test.mockito
+    androidTestImplementation androidTest.mockitoAndroid
+    androidTestImplementation test.byteBuddy
+    androidTestImplementation test.junit
+    androidTestImplementation test.coroutinesTest
+    androidTestImplementation androidTest.composeTesting
+    debugImplementation androidTest.composeTestingManifest
 }

@@ -7,6 +7,7 @@ plugins {
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
+apply from: "$rootDir/dependencies.gradle"
 
 android {
     namespace 'dev.ohoussein.cryptoapp.core.test'
@@ -14,19 +15,22 @@ android {
 
 dependencies {
     implementation project(path: ':crypto:domain')
-    implementation Libs.appcompat
-    implementation Libs.kotlinStdlib
-    implementation Libs.coroutinesCore
-    implementation Libs.retofit
-    implementation Libs.hiltAndroid
-    implementation TestLibs.hiltAndroid
-    kapt Libs.hiltCompiler
-    kapt Libs.hiltAndroidCompiler
+    //TODO check those deps
+    implementation android.jetpack.appcompat
+    implementation core.kotlin.coroutinesCore
 
-    implementation TestLibs.coroutinesTest
-    implementation TestLibs.junit
-    implementation TestLibs.mockWebserver
-    implementation TestLibs.mockito
+    implementation data.retofit
 
-    implementation AndroidTestLibs.rules
+
+    implementation core.hilt.android
+    implementation androidTest.hiltTesting
+    kapt core.hilt.compiler
+    kapt core.hilt.androidCompiler
+
+    implementation test.coroutinesTest
+    implementation test.junit
+    implementation test.mockWebserver
+    implementation test.mockito
+
+    implementation androidTest.rules
 }

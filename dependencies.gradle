@@ -1,0 +1,97 @@
+ext {
+    def coroutinesVersion = "1.5.1"
+    def daggerHiltVersion = "2.42"
+    def daggerHiltJetpackVersion = "1.0.0"
+    def lifecycleVersion = "2.3.1"
+    composeVersion = "1.2.0-rc02"
+    def retrofitVersion = "2.9.0"
+    def roomVersion = "2.4.2"
+    def androidXTestVersion = "1.4.0"
+    def mockito = "2.2.0"
+    core = [
+            kotlin:
+                    [
+                            coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion",
+                            coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion",
+                    ],
+            timber: "com.jakewharton.timber:timber:4.7.1",
+            hilt  : [
+                    android        : "com.google.dagger:hilt-android:$daggerHiltVersion",
+                    compiler       : "androidx.hilt:hilt-compiler:$daggerHiltJetpackVersion",
+                    androidCompiler: "com.google.dagger:hilt-android-compiler:$daggerHiltVersion",
+            ],
+    ]
+
+    android =
+            [
+                    jetpack: [
+                            appcompat: "androidx.appcompat:appcompat:1.3.1",
+                            material : "com.google.android.material:material:1.4.0",
+                            livedata : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
+                            lifecycle: [
+                                    "androidx.lifecycle:lifecycle-extensions:2.2.0",
+                                    "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
+                                    "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+                            ],
+                    ],
+
+                    compose: [
+                            "androidx.compose.ui:ui:$composeVersion",
+                            "androidx.compose.material:material:$composeVersion",
+                            "androidx.compose.material:material-icons-extended:$composeVersion",
+                            "androidx.compose.ui:ui-tooling:$composeVersion",
+                            "androidx.activity:activity-compose:$composeVersion",
+                            "androidx.compose.runtime:runtime-livedata:$composeVersion",
+                            "androidx.hilt:hilt-navigation-compose:1.0.0-alpha02",
+                            "androidx.navigation:navigation-compose:2.4.0-alpha05",
+                            "io.coil-kt:coil-compose:1.3.0",
+                            "com.google.accompanist:accompanist-swiperefresh:0.15.0",
+                    ],
+
+            ]
+
+    data = [
+            retofit: [
+                    "com.squareup.retrofit2:retrofit:$retrofitVersion",
+                    "com.squareup.retrofit2:converter-moshi:$retrofitVersion",
+            ],
+            room   : [
+                    runtime : "androidx.room:room-runtime:$roomVersion",
+                    lib     : "androidx.room:room-ktx:$roomVersion",
+                    compiler: "androidx.room:room-compiler:$roomVersion",
+            ]
+    ]
+
+    debug = [
+            "com.facebook.stetho:stetho:1.6.0",
+            "com.facebook.stetho:stetho-okhttp3:1.6.0",
+            "com.squareup.okhttp3:logging-interceptor:4.9.1",
+    ]
+
+    androidTest = [
+            hiltTesting           : "com.google.dagger:hilt-android-testing:$daggerHiltVersion",
+            testCore              : "androidx.test:core:$androidXTestVersion",
+            testCoreKtx           : "androidx.test:core-ktx:$androidXTestVersion",
+            androidJunit          : [
+                    "androidx.test.ext:junit:1.1.3",
+                    "androidx.test.ext:junit-ktx:1.1.3",
+            ],
+            rules                 : "androidx.test:rules:1.4.0",
+            espresso              : "androidx.test.espresso:espresso-core:3.4.0",
+            mockitoAndroid        : "org.mockito:mockito-android:3.11.2",
+            composeTesting        : "androidx.compose.ui:ui-test-junit4:$composeVersion",
+            composeTestingManifest: "androidx.compose.ui:ui-test-manifest:$composeVersion",
+            roomTestHelper        : "androidx.room:room-testing:$roomVersion",
+    ]
+
+    test = [
+            junit          : "junit:junit:4.13",
+            mockito        : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito",
+            mockitoInline  : "org.mockito:mockito-inline:3.11.2",
+            archCoreTesting: "androidx.arch.core:core-testing:2.1.0",
+            coroutinesTest : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
+            mockWebserver  : "com.squareup.okhttp3:mockwebserver:4.9.1",
+            byteBuddy      : "net.bytebuddy:byte-buddy:1.12.12",
+            robolectric    : "org.robolectric:robolectric:4.6.1",
+    ]
+}

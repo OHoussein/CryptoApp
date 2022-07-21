@@ -4,13 +4,12 @@ plugins {
     id "kotlin-parcelize"
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
-    id "com.github.ben-manes.versions"
-    id "com.adarshr.test-logger"
     id 'org.jetbrains.kotlin.android'
 }
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
+apply from: "$rootDir/dependencies.gradle"
 
 android {
     defaultConfig {
@@ -42,68 +41,44 @@ dependencies {
     implementation project(path: ':core:injection')
 
     //Common
-    implementation Libs.kotlinStdlib
-    implementation Libs.coroutinesCore
-    implementation Libs.coroutinesAndroid
-    implementation Libs.timber
-    implementation Libs.hiltAndroid
+    implementation core.kotlin.coroutinesCore
+    implementation core.kotlin.coroutinesAndroid
+    implementation core.timber
 
-    kapt Libs.hiltCompiler
-    kapt Libs.hiltAndroidCompiler
+    implementation core.hilt.android
+    kapt core.hilt.compiler
+    kapt core.hilt.androidCompiler
 
     //Presentation
-    implementation Libs.appcompat
-    implementation Libs.material
-    implementation Libs.lifecycle
-    implementation Libs.lifecycleViewModel
-    implementation Libs.lifecycleRuntime
-    implementation Libs.lifecycleLiveData
-    //compose
-    implementation Libs.composeUI
-    implementation Libs.composeMaterial
-    implementation Libs.composeMaterialIconExtended
-    implementation(Libs.composeUITooling)
-    implementation Libs.composeActivity
-    implementation Libs.composeLivedata
-    implementation Libs.composeHiltViewModel
-    implementation Libs.composeNavigation
+    implementation android.jetpack.appcompat
+    implementation android.jetpack.material
+    implementation android.jetpack.lifecycle
+    implementation android.jetpack.livedata
+    implementation android.compose
 
     //Data
-    implementation Libs.retofit
-    implementation Libs.retofitConverter
-    implementation Libs.roomRuntime
+    implementation data.retofit
+    implementation data.room.runtime
 
     //Debug tools
-    debugImplementation DebugLibs.stetho
-    debugImplementation DebugLibs.stethoOkhttp
-    debugImplementation DebugLibs.okhttpLogging
+    debugImplementation debug
 
-    //Android tests
-    androidTestImplementation TestLibs.hiltAndroid
-    kaptAndroidTest TestLibs.hiltAndroidCompiler
-    debugImplementation AndroidTestLibs.testCore
-    androidTestImplementation AndroidTestLibs.testCoreKtx
-    androidTestImplementation AndroidTestLibs.androidJUnit
-    androidTestImplementation AndroidTestLibs.androidJUnitKtx
-    androidTestImplementation AndroidTestLibs.rules
-    androidTestImplementation AndroidTestLibs.espresso
-    //androidTestImplementation TestLibs.mockito
-    androidTestImplementation AndroidTestLibs.mockitoAndroid
-    androidTestImplementation TestLibs.junit
-    androidTestImplementation TestLibs.archCoreTesting
-    androidTestImplementation TestLibs.coroutinesTest
-    androidTestImplementation AndroidTestLibs.composeTesting
-    debugImplementation AndroidTestLibs.composeTestingManifest
+    //Android tests;
+    androidTestImplementation androidTest.hiltTesting
+    kaptAndroidTest core.hilt.androidCompiler
+    androidTestImplementation androidTest.androidJunit
+    androidTestImplementation androidTest.rules
+    androidTestImplementation androidTest.espresso
+    androidTestImplementation androidTest.mockitoAndroid
+    androidTestImplementation test.junit
+    androidTestImplementation test.coroutinesTest
+    androidTestImplementation androidTest.composeTesting
+    debugImplementation androidTest.composeTestingManifest
 
     //Unit tests
     testImplementation project(path: ':core:test')
-    testImplementation TestLibs.hiltAndroid
-    kaptTest TestLibs.hiltAndroidCompiler
-    testImplementation TestLibs.mockito
-    //testImplementation TestLibs.mockitoInline
-    testImplementation TestLibs.junit
-    testImplementation TestLibs.archCoreTesting
-    testImplementation TestLibs.coroutinesTest
-
-    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+    testImplementation test.mockito
+    testImplementation test.junit
+    testImplementation test.archCoreTesting
+    testImplementation test.coroutinesTest
 }

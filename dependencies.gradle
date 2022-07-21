@@ -7,7 +7,7 @@ ext {
     def retrofitVersion = "2.9.0"
     def roomVersion = "2.4.2"
     def androidXTestVersion = "1.4.0"
-    def mockito = "2.2.0"
+    def mockitoVersion = "4.0.0"
     core = [
             kotlin:
                     [
@@ -78,7 +78,7 @@ ext {
             ],
             rules                 : "androidx.test:rules:1.4.0",
             espresso              : "androidx.test.espresso:espresso-core:3.4.0",
-            mockitoAndroid        : "org.mockito:mockito-android:3.11.2",
+            mockitoAndroid        : "org.mockito:mockito-android:$mockitoVersion",
             composeTesting        : "androidx.compose.ui:ui-test-junit4:$composeVersion",
             composeTestingManifest: "androidx.compose.ui:ui-test-manifest:$composeVersion",
             roomTestHelper        : "androidx.room:room-testing:$roomVersion",
@@ -86,8 +86,8 @@ ext {
 
     test = [
             junit          : "junit:junit:4.13",
-            mockito        : "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockito",
-            mockitoInline  : "org.mockito:mockito-inline:3.11.2",
+            mockito        : "org.mockito.kotlin:mockito-kotlin:$mockitoVersion",
+            mockitoInline  : "org.mockito:mockito-inline:$mockitoVersion",
             archCoreTesting: "androidx.arch.core:core-testing:2.1.0",
             coroutinesTest : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
             mockWebserver  : "com.squareup.okhttp3:mockwebserver:4.9.1",

@@ -1,8 +1,5 @@
 package dev.ohoussein.crypto.data.network.repository
 
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import dev.ohoussein.crypto.data.api.ApiCryptoService
 import dev.ohoussein.crypto.data.api.CryptoDetailsResponse
 import dev.ohoussein.crypto.data.api.TopCryptoResponse
@@ -25,6 +22,9 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
+import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
 class CryptoRepositoryTest {

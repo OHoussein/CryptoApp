@@ -9,8 +9,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.test.filters.LargeTest
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.whenever
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -33,6 +31,8 @@ import org.junit.Test
 import java.io.IOException
 import javax.inject.Inject
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
+import org.mockito.kotlin.any
+import org.mockito.kotlin.whenever
 
 @HiltAndroidTest
 @UninstallModules(value = [CryptoDataModule::class])

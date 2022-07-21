@@ -62,14 +62,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Run Presentation Unit Tests
-        run: bash ./gradlew :app:testDebugUnitTest
-
-      - name: Run Data Unit Tests
-        run: bash ./gradlew :data:testDebugUnitTest
-
-      - name: Run Domain Unit Tests
-        run: bash ./gradlew :domain:test
+      - name: Run Debug Unit Tests
+        run: bash ./gradlew testDebugUnitTest
 
 # Disable UI test because it takes too much time
 #  instrumented-tests:

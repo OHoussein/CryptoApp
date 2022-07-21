@@ -46,14 +46,8 @@ jobs:
           distribution: 'adopt'
           java-version: 11
 
-      - name: Run Presentation Unit Tests
-        run: bash ./gradlew :app:testDebugUnitTest
-
-      - name: Run Data Unit Tests
-        run: bash ./gradlew :data:testDebugUnitTest
-
-      - name: Run Domain Unit Tests
-        run: bash ./gradlew :domain:test
+      - name: Run Releasee Unit Tests
+        run: bash ./gradlew testReleaseUnitTest
 
   # Disable UI test because it takes too much time
   #  instrumented-tests:

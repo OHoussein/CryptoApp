@@ -8,7 +8,7 @@ import dev.ohoussein.crypto.data.database.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.testutils.TestDataFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -37,7 +37,7 @@ class CryptoDAOTest {
     }
 
     @Test
-    fun should_insert_and_get_crypto_list() = runBlockingTest {
+    fun should_insert_and_get_crypto_list() = runTest {
         // Given
         val dbData = TestDataFactory.makeDBCryptoList(100)
         dao.insert(dbData)

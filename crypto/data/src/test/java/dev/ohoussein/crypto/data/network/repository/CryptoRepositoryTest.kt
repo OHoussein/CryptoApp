@@ -14,7 +14,7 @@ import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -53,7 +53,7 @@ class CryptoRepositoryTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun getTopCryptoTest() = runBlockingTest {
+    fun getTopCryptoTest() = runTest {
         // Given
         val dbList = mock<List<DBCrypto>>()
         val domainData = mock<List<DomainCrypto>>()
@@ -68,7 +68,7 @@ class CryptoRepositoryTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun refreshTopCryptoTest() = runBlockingTest {
+    fun refreshTopCryptoTest() = runTest {
         // Given
         val apiResponse = mock<List<TopCryptoResponse>>()
         val domainData = mock<List<DomainCrypto>>()
@@ -84,7 +84,7 @@ class CryptoRepositoryTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun getCryptoDetails() = runBlockingTest {
+    fun getCryptoDetails() = runTest {
         // Given
         val cryptoId = "bitcoin"
         val apiResponse = mock<CryptoDetailsResponse>()

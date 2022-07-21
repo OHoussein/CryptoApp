@@ -1,5 +1,5 @@
 ext {
-    def coroutinesVersion = "1.5.1"
+    def coroutinesVersion = "1.6.4"
     def daggerHiltVersion = "2.42"
     def daggerHiltJetpackVersion = "1.0.0"
     def lifecycleVersion = "2.3.1"

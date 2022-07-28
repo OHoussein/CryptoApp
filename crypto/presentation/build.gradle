@@ -15,6 +15,10 @@ android {
     buildFeatures {
         compose true
     }
+
+    tasks.withType(Test) {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
@@ -39,9 +43,8 @@ dependencies {
     testImplementation project(path: ':core:test')
     testImplementation test.mockito
     testImplementation test.mockitoInline
-    testImplementation test.junit
-    testImplementation test.archCoreTesting
     testImplementation test.coroutinesTest
+    testImplementation test.kotest
 
     androidTestImplementation project(path: ':crypto:data')
     androidTestImplementation project(path: ':core:test')

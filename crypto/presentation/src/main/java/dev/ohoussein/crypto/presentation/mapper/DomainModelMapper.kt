@@ -4,6 +4,7 @@ import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.presentation.model.BaseCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
+import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoPrice
 import dev.ohoussein.crypto.presentation.model.LabelValue
 import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
@@ -21,7 +22,7 @@ class DomainModelMapper @Inject constructor(
     }
 
     @Suppress("MagicNumber")
-    fun convert(domain: DomainCrypto, vsCurrencyCode: String): Crypto {
+    private fun convert(domain: DomainCrypto, vsCurrencyCode: String): Crypto {
         return Crypto(
             base = BaseCrypto(
                 id = domain.id,
@@ -40,7 +41,7 @@ class DomainModelMapper @Inject constructor(
     }
 
     fun convert(domain: DomainCryptoDetails) =
-        dev.ohoussein.crypto.presentation.model.CryptoDetails(
+        CryptoDetails(
             base = BaseCrypto(
                 id = domain.id,
                 name = domain.name,

@@ -7,12 +7,19 @@ plugins {
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/androidModule.gradle"
 apply from: "$rootDir/dependencies.gradle"
+apply from: "$rootDir/gradle/robolectric.gradle"
 
 android {
     namespace 'dev.ohoussein.cryptoapp.core.common'
 
     buildFeatures {
         compose true
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
     }
 }
 
@@ -27,4 +34,7 @@ dependencies {
     implementation core.hilt.android
     kapt core.hilt.compiler
     kapt core.hilt.androidCompiler
+
+    testImplementation test.kotest
+    testImplementation test.turbine
 }

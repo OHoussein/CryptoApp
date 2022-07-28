@@ -41,7 +41,9 @@ android {
     }
 
     packagingOptions {
+        resources.excludes.add("**/attach_hotspot_windows.dll")
         resources.excludes.add("META-INF/*")
+        exclude "META-INF/licenses/**"
     }
 
     lintOptions {

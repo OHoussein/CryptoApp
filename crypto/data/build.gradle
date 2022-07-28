@@ -10,6 +10,9 @@ apply from: "$rootDir/gradle/scripts/detekt.gradle"
 
 android {
     namespace 'dev.ohoussein.cryptoapp.crypto.data'
+    tasks.withType(Test) {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
@@ -31,11 +34,11 @@ dependencies {
     testImplementation project(path: ':core:test')
     testImplementation project(path: ':data:network')
     testImplementation project(path: ':data:database')
-    implementation test.mockWebserver
-    testImplementation test.coroutinesTest
+    testImplementation test.mockWebserver
 
-    testImplementation androidTest.testCoreKtx
-    testImplementation test.archCoreTesting
+    testImplementation test.coroutinesTest
+    testImplementation test.kotest
     testImplementation test.mockito
     testImplementation test.mockitoInline
+    testImplementation test.turbine
 }

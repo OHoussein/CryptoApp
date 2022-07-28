@@ -5,10 +5,14 @@ plugins {
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/dependencies.gradle"
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation core.kotlin.coroutinesCore
 
-    testImplementation test.junit
     testImplementation test.mockito
     testImplementation test.mockitoInline
+    testImplementation test.kotest
 }

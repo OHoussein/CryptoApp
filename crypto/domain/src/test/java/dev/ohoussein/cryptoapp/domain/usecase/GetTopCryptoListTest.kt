@@ -3,46 +3,40 @@ package dev.ohoussein.cryptoapp.domain.usecase
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
+import io.kotest.core.spec.style.BehaviorSpec
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
-import org.junit.Before
-import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-class GetTopCryptoListTest {
+class GetTopCryptoListTest : BehaviorSpec({
 
-    private lateinit var tested: GetTopCryptoList
-    private lateinit var repository: ICryptoRepository
+    val vsCurrency = "USD"
+    val cryptoRepository = mock<ICryptoRepository>()
+    val getTopCryptoList = GetTopCryptoList(cryptoRepository)
 
-    @Before
-    fun setup() {
-        repository = mock()
-        tested = GetTopCryptoList(repository)
-    }
-
-    @Test
-    fun `should call get top crypto list`() {
-        // Given
+    given("a getTopCryptoList answer") {
         val data = mock<List<DomainCrypto>>()
-        val dataFlow = flowOf(data)
-        val vsCurrency = "USD"
-        whenever(repository.getTopCryptoList(vsCurrency)).thenReturn(dataFlow)
-        // When
-        tested.get(vsCurrency)
-        // Then
-        verify(repository).getTopCryptoList(vsCurrency)
+        whenever(cryptoRepository.getTopCryptoList(vsCurrency)).thenReturn(flowOf(data))
+
+        `when`("call the get from the use case") {
+            getTopCryptoList.get(vsCurrency)
+
+            then("it should calls the getTopCryptoList from the repository") {
+                verify(cryptoRepository).getTopCryptoList(vsCurrency)
+            }
+        }
     }
 
-    @Test
-    fun `should call get refresh top crypto list`(): Unit = runBlocking {
-        // Given
-        val vsCurrency = "USD"
-        whenever(repository.refreshTopCryptoList(vsCurrency)).thenReturn(Unit)
-        // When
-        tested.refresh(vsCurrency)
-        // Then
-        verify(repository).refreshTopCryptoList(vsCurrency)
+    given("a success  refreshTopCryptoList") {
+        whenever(cryptoRepository.refreshTopCryptoList(vsCurrency)).thenReturn(Unit)
+
+        `when`("call the use refresh from the use case") {
+            getTopCryptoList.refresh(vsCurrency)
+
+            then("it should calls the getTopCryptoList from the repository") {
+                verify(cryptoRepository).refreshTopCryptoList(vsCurrency)
+            }
+        }
     }
-}
+})

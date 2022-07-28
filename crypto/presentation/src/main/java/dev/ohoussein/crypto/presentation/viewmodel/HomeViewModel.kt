@@ -36,10 +36,6 @@ class HomeViewModel @Inject constructor(
     val syncState: LiveData<Resource<Unit>>
         get() = _syncState
 
-    init {
-        refresh()
-    }
-
     fun refresh(force: Boolean = false) {
         if (!force && _syncState.value?.status == Status.SUCCESS)
             return

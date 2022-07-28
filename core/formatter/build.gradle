@@ -9,10 +9,19 @@ apply from: "$rootDir/androidModule.gradle"
 
 android {
     namespace 'dev.ohoussein.cryptoapp.core.formatter'
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 dependencies {
     implementation core.hilt.android
     kapt core.hilt.compiler
     kapt core.hilt.androidCompiler
+
+    testImplementation test.kotest
+    testImplementation test.mockito
 }

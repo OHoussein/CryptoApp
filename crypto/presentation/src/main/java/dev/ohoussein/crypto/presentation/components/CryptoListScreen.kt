@@ -12,6 +12,7 @@ import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -127,6 +128,10 @@ fun CryptoListScreen(
 ) {
     val cryptoListState: Resource<Unit> by viewModel.syncState.observeAsState(Resource.loading<Unit>())
     val cryptoList: List<Crypto>? by viewModel.topCryptoList.observeAsState()
+
+    LaunchedEffect(Unit) {
+        viewModel.refresh()
+    }
 
     CryptoAppScaffold {
         CryptoListStateScreen(

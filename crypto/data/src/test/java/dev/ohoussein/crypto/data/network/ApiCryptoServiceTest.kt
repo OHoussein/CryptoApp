@@ -3,77 +3,71 @@ package dev.ohoussein.crypto.data.network
 import dev.ohoussein.core.test.network.NetworkUtils.readMockFile
 import dev.ohoussein.core.test.network.NetworkUtils.withResponse
 import dev.ohoussein.crypto.data.api.ApiCryptoService
+import dev.ohoussein.crypto.data.api.CryptoImageResponse
 import dev.ohoussein.cryptoapp.data.network.builder.NetworkBuilder.createRetrofit
-import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNotNull
-import junit.framework.TestCase.assertTrue
-import kotlinx.coroutines.runBlocking
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.maps.shouldContainKey
+import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
-import org.junit.Test
 
-class ApiCryptoServiceTest {
+class ApiCryptoServiceTest : BehaviorSpec({
 
-    private lateinit var mockWebServer: MockWebServer
-    private lateinit var service: ApiCryptoService
+    coroutineTestScope = true
 
-    @Before
-    fun setUp() {
-        mockWebServer = MockWebServer()
-        mockWebServer.start()
+    val mockWebServer = MockWebServer()
+    val service by lazy { ApiCryptoService.create(createRetrofit(baseUrl = mockWebServer.url("/"))) }
 
-        service = ApiCryptoService.create(createRetrofit(baseUrl = mockWebServer.url("/")))
-    }
-
-    @After
-    fun tearDown() {
-        mockWebServer.shutdown()
-    }
-
-    @Test
-    fun apiGetTopCryptoTest() = runBlocking {
+    given("a success getTopCrypto response") {
         mockWebServer.withResponse(
             MockResponse()
                 .setResponseCode(200)
                 .setBody(readMockFile("mock_top_crypto_list.json"))
         )
 
-        val response = service.getTopCrypto("")
-        assertNotNull(response)
-        assertEquals(100, response.size)
+        `when`("getTopCrypto") {
+            val response = service.getTopCrypto("")
+            val firstItem = response.first()
 
-        val firstItem = response.first()
-
-        assertEquals("bitcoin", firstItem.id)
-        assertEquals("Bitcoin", firstItem.name)
-        assertEquals(31827.0, firstItem.currentPrice, 0.0001)
-        assertEquals("btc", firstItem.symbol)
+            then("it should get a success response") {
+                firstItem.id shouldBe "bitcoin"
+                firstItem.name shouldBe "Bitcoin"
+                firstItem.currentPrice shouldBe 31827.0
+                firstItem.symbol shouldBe "btc"
+            }
+        }
     }
 
-    @Test
-    fun apiGetCryptoDetails() = runBlocking {
+    given("a success getCryptoDetails response") {
         mockWebServer.withResponse(
             MockResponse()
                 .setResponseCode(200)
                 .setBody(readMockFile("mock_crypto_details.json"))
         )
-        val details = service.getCryptoDetails("bitcoin")
-        assertNotNull(details)
 
-        assertEquals("bitcoin", details.id)
-        assertEquals("Bitcoin", details.name)
-        assertEquals("btc", details.symbol)
-        assertEquals(
-            "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
-            details.image.large
-        )
-        assertEquals(32.67, details.sentimentDownVotesPercentage, 0.001)
-        assertEquals(67.33, details.sentimentUpVotesPercentage, 0.001)
-        assertEquals("SHA-256", details.hashingAlgorithm)
-        assertTrue(details.links.blockchainSite.isNotEmpty())
-        assertTrue(details.links.homepage.isNotEmpty())
-        assertTrue(details.links.reposUrl.isNotEmpty())
+        `when`("getCryptoDetails") {
+            val details = service.getCryptoDetails("bitcoin")
+
+            then("it should get a success response") {
+                details shouldNotBe null
+                details.id shouldBe "bitcoin"
+                details.name shouldBe "Bitcoin"
+                details.symbol shouldBe "btc"
+                details.image shouldBe CryptoImageResponse(
+                    thumb = "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+                    small = "https://assets.coingecko.com/coins/images/1/small/bitcoin.png?1547033579",
+                    large = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
+                )
+                details.sentimentDownVotesPercentage shouldBe 32.67
+                details.sentimentUpVotesPercentage shouldBe 67.33
+                details.hashingAlgorithm shouldBe "SHA-256"
+                details.links.blockchainSite shouldContain "https://blockchair.com/bitcoin/"
+                details.links.homepage shouldContain "http://www.bitcoin.org"
+                details.links.reposUrl shouldContainKey "github"
+                details.links.reposUrl["github"]!! shouldContain "https://github.com/bitcoin/bitcoin"
+            }
+        }
     }
-}
+})

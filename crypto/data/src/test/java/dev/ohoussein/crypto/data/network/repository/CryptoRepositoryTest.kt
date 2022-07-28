@@ -11,90 +11,78 @@ import dev.ohoussein.crypto.data.repository.CryptoRepository
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import kotlinx.coroutines.ExperimentalCoroutinesApi
+import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertNotNull
-import org.junit.Before
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.junit.MockitoJUnitRunner
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
-@RunWith(MockitoJUnitRunner::class)
-class CryptoRepositoryTest {
+class CryptoRepositoryTest : BehaviorSpec({
 
-    private lateinit var repository: ICryptoRepository
+    coroutineTestScope = true
 
-    @Mock
-    private lateinit var apiService: ApiCryptoService
+    val apiService = mock<ApiCryptoService>()
+    val apiDomainModelMapper = mock<ApiDomainModelMapper>()
+    val dbDomainModelMapper = mock<DbDomainModelMapper>()
+    val cryptoDAO = mock<CryptoDAO>()
 
-    @Mock
-    private lateinit var apiDomainModelMapper: ApiDomainModelMapper
+    val vsCurrency = "USDT"
+    val cryptoId = "bitcoin"
 
-    @Mock
-    private lateinit var dbDomainModelMapper: DbDomainModelMapper
+    val cryptoRepository: ICryptoRepository = CryptoRepository(
+        service = apiService,
+        cryptoDao = cryptoDAO,
+        apiMapper = apiDomainModelMapper,
+        dbMapper = dbDomainModelMapper,
+    )
 
-    @Mock
-    private val cryptoDAO: CryptoDAO = mock()
-
-    private val vsCurrency = "USDT"
-
-    @Before
-    fun setup() {
-        repository =
-            CryptoRepository(apiService, cryptoDAO, apiDomainModelMapper, dbDomainModelMapper)
-    }
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Test
-    fun getTopCryptoTest() = runTest {
-        // Given
-        val dbList = mock<List<DBCrypto>>()
-        val domainData = mock<List<DomainCrypto>>()
+    given("a list of db crypto") {
+        val dbList = listOf<DBCrypto>(mock(), mock())
+        val domainData = listOf<DomainCrypto>(mock(), mock())
         whenever(cryptoDAO.getAll()).thenReturn(flowOf(dbList))
         whenever(dbDomainModelMapper.convertDBCrypto(dbList)).thenReturn(domainData)
-        // When
-        val result = repository.getTopCryptoList(vsCurrency).first()
-        // Then
-        assertNotNull(result)
-        assertEquals(domainData, result)
+
+        `when`("getTopCryptoList") {
+            val result = cryptoRepository.getTopCryptoList(vsCurrency).first()
+
+            then("it should get the data from the datasource") {
+                result shouldBe domainData
+            }
+        }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Test
-    fun refreshTopCryptoTest() = runTest {
-        // Given
-        val apiResponse = mock<List<TopCryptoResponse>>()
-        val domainData = mock<List<DomainCrypto>>()
-        val dbData = mock<List<DBCrypto>>()
+    given("a list of api crypto") {
+        val apiResponse = listOf<TopCryptoResponse>(mock(), mock())
+        val domainData = listOf<DomainCrypto>(mock(), mock())
+        val dbData = listOf<DBCrypto>(mock(), mock())
+
         whenever(apiService.getTopCrypto(vsCurrency)).thenReturn(apiResponse)
         whenever(apiDomainModelMapper.convert(apiResponse)).thenReturn(domainData)
         whenever(dbDomainModelMapper.toDB(domainData)).thenReturn(dbData)
-        // When
-        repository.refreshTopCryptoList(vsCurrency)
-        // Then
-        verify(cryptoDAO).insert(dbData)
+
+        `when`("refreshTopCryptoList") {
+            cryptoRepository.refreshTopCryptoList(vsCurrency)
+
+            then("it should insert the data in the database") {
+                verify(cryptoDAO).insert(dbData)
+            }
+        }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Test
-    fun getCryptoDetails() = runTest {
-        // Given
-        val cryptoId = "bitcoin"
+    given("a crypto details") {
         val apiResponse = mock<CryptoDetailsResponse>()
         val domainData = mock<DomainCryptoDetails>()
         whenever(apiService.getCryptoDetails(cryptoId)).thenReturn(apiResponse)
         whenever(apiDomainModelMapper.convert(apiResponse)).thenReturn(domainData)
-        // When
-        val result = repository.getCryptoDetails(cryptoId).first()
-        // Then
-        assertNotNull(result)
-        assertEquals(domainData, result)
+
+        `when`("getCryptoDetails") {
+            val result = cryptoRepository.getCryptoDetails(cryptoId).first()
+
+            then("it should get the data from the datasource") {
+                result shouldBe domainData
+            }
+        }
     }
-}
+})

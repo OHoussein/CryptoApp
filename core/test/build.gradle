@@ -31,6 +31,8 @@ dependencies {
     implementation test.junit
     implementation test.mockWebserver
     implementation test.mockito
+    implementation test.kotest
+    implementation test.archCoreTesting
 
     implementation androidTest.rules
 }

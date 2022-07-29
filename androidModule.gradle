@@ -1,4 +1,5 @@
 apply from: "$rootDir/dependencies.gradle"
+apply from: "$rootDir/gradle/jacoco.gradle"
 
 project.ext {
     minSdkVersion = 23

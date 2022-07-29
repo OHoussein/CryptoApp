@@ -4,6 +4,7 @@ plugins {
 
 apply from: "$rootDir/gradle/scripts/detekt.gradle"
 apply from: "$rootDir/dependencies.gradle"
+apply from: "$rootDir/gradle/jacoco.gradle"
 
 test {
     useJUnitPlatform()

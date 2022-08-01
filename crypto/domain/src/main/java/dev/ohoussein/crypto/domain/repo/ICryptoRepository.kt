@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface ICryptoRepository {
 
-    fun getTopCryptoList(vsCurrency: String): Flow<List<DomainCrypto>>
+    fun getTopCryptoList(): Flow<List<DomainCrypto>>
 
-    suspend fun refreshTopCryptoList(vsCurrency: String)
+    suspend fun refreshTopCryptoList()
 
     fun getCryptoDetails(cryptoId: String): Flow<DomainCryptoDetails>
 }

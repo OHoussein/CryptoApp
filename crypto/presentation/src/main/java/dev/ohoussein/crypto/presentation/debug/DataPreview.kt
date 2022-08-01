@@ -12,8 +12,7 @@ object DataPreview {
                 imageUrl = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
             ),
             price = dev.ohoussein.crypto.presentation.model.CryptoPrice(
-                dev.ohoussein.crypto.presentation.model.LabelValue(31827.0, "$31 827"),
-                vsCurrencyCode = "USD",
+                dev.ohoussein.crypto.presentation.model.LabelValue(31827.0, "$31 827")
             ),
             priceChangePercentIn24h = dev.ohoussein.crypto.presentation.model.LabelValue(
                 1.13,

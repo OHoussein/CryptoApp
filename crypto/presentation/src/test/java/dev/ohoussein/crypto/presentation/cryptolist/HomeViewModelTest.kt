@@ -13,7 +13,6 @@ import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.BehaviorSpec
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.mockito.Mockito.times
-import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
@@ -43,8 +42,8 @@ class HomeViewModelTest : BehaviorSpec({
     given("a list of crypto") {
         val data: List<DomainCrypto> = mock()
         val uiData: List<Crypto> = mock()
-        whenever(uiMapper.convert(data, "USD")).thenReturn(uiData)
-        whenever(useCase.refresh(any())).thenReturn(Unit)
+        whenever(uiMapper.convert(data)).thenReturn(uiData)
+        whenever(useCase.refresh()).thenReturn(Unit)
 
         `when`("refresh") {
             homeViewModel.refresh()
@@ -68,7 +67,7 @@ class HomeViewModelTest : BehaviorSpec({
 
     given("an error on getting the list of crypto") {
         val error = IOException("")
-        whenever(useCase.refresh(any())).thenAnswer { throw error }
+        whenever(useCase.refresh()).thenAnswer { throw error }
 
         `when`("refresh") {
             homeViewModel.refresh()
@@ -85,9 +84,9 @@ class HomeViewModelTest : BehaviorSpec({
 
         val data: List<DomainCrypto> = mock()
         val uiData: List<Crypto> = mock()
-        whenever(uiMapper.convert(data, "USD")).thenReturn(uiData)
+        whenever(uiMapper.convert(data)).thenReturn(uiData)
 
-        whenever(useCase.refresh(any())).thenAnswer { throw error }.thenReturn(Unit)
+        whenever(useCase.refresh()).thenAnswer { throw error }.thenReturn(Unit)
 
         `when`("refresh two times") {
             homeViewModel.refresh()

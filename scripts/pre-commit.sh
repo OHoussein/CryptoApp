@@ -9,6 +9,7 @@ if [ "$autoCorrected" = 0 ] ; then
     exit 0
 fi
 
+sleep 0.5 #wait for file sync
 ./gradlew detekt --no-daemon
 status=$?
 

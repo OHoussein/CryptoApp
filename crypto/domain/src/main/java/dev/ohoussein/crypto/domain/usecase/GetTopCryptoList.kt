@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.Flow
 
 class GetTopCryptoList(private val cryptoRepository: ICryptoRepository) {
 
-    fun get(vsCurrency: String): Flow<List<DomainCrypto>> {
-        return cryptoRepository.getTopCryptoList(vsCurrency)
+    fun get(): Flow<List<DomainCrypto>> {
+        return cryptoRepository.getTopCryptoList()
     }
 
-    suspend fun refresh(vsCurrency: String) {
-        cryptoRepository.refreshTopCryptoList(vsCurrency)
+    suspend fun refresh() {
+        cryptoRepository.refreshTopCryptoList()
     }
 }

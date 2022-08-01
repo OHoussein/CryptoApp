@@ -23,13 +23,9 @@ class HomeViewModel @Inject constructor(
     private val modelMapper: DomainModelMapper,
 ) : ViewModel() {
 
-    private companion object {
-        const val VS_CURRENCY = "USD"
-    }
-
     val topCryptoList: LiveData<List<Crypto>> =
-        useCase.get(VS_CURRENCY)
-            .map { modelMapper.convert(it, VS_CURRENCY) }
+        useCase.get()
+            .map { modelMapper.convert(it) }
             .asLiveData()
 
     private val _syncState = MutableLiveData<Resource<Unit>>()
@@ -40,7 +36,7 @@ class HomeViewModel @Inject constructor(
         if (!force && _syncState.value?.status == Status.SUCCESS)
             return
         viewModelScope.launch {
-            asResourceFlow { useCase.refresh(VS_CURRENCY) }
+            asResourceFlow { useCase.refresh() }
                 .collect {
                     Timber.d("Sync state ${it.status}")
                     _syncState.value = it

@@ -35,6 +35,7 @@ dependencies {
     implementation android.compose
 
     implementation core.timber
+    implementation project(path: ':core:injection:core')
 
     implementation core.hilt.android
     kapt core.hilt.compiler

@@ -28,7 +28,7 @@ class CryptoRepositoryTest : BehaviorSpec({
     val dbDomainModelMapper = mock<DbDomainModelMapper>()
     val cryptoDAO = mock<CryptoDAO>()
 
-    val vsCurrency = "USDT"
+    val currency = "USDT"
     val cryptoId = "bitcoin"
 
     val cryptoRepository: ICryptoRepository = CryptoRepository(
@@ -36,6 +36,7 @@ class CryptoRepositoryTest : BehaviorSpec({
         cryptoDao = cryptoDAO,
         apiMapper = apiDomainModelMapper,
         dbMapper = dbDomainModelMapper,
+        currency = currency,
     )
 
     given("a list of db crypto") {
@@ -45,7 +46,7 @@ class CryptoRepositoryTest : BehaviorSpec({
         whenever(dbDomainModelMapper.convertDBCrypto(dbList)).thenReturn(domainData)
 
         `when`("getTopCryptoList") {
-            val result = cryptoRepository.getTopCryptoList(vsCurrency).first()
+            val result = cryptoRepository.getTopCryptoList().first()
 
             then("it should get the data from the datasource") {
                 result shouldBe domainData
@@ -58,12 +59,12 @@ class CryptoRepositoryTest : BehaviorSpec({
         val domainData = listOf<DomainCrypto>(mock(), mock())
         val dbData = listOf<DBCrypto>(mock(), mock())
 
-        whenever(apiService.getTopCrypto(vsCurrency)).thenReturn(apiResponse)
+        whenever(apiService.getTopCrypto(currency)).thenReturn(apiResponse)
         whenever(apiDomainModelMapper.convert(apiResponse)).thenReturn(domainData)
         whenever(dbDomainModelMapper.toDB(domainData)).thenReturn(dbData)
 
         `when`("refreshTopCryptoList") {
-            cryptoRepository.refreshTopCryptoList(vsCurrency)
+            cryptoRepository.refreshTopCryptoList()
 
             then("it should insert the data in the database") {
                 verify(cryptoDAO).insert(dbData)

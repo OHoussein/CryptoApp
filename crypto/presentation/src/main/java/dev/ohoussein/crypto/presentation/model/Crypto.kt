@@ -15,7 +15,6 @@ data class Crypto(
 
 data class CryptoPrice(
     val labelValue: LabelValue<Double>,
-    val vsCurrencyCode: String,
 )
 
 data class LabelValue<V>(

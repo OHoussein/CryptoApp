@@ -28,6 +28,7 @@ class DomainModelMapperTest : BehaviorSpec({
     val domainModelMapper = DomainModelMapper(
         priceFormatter = priceFormatter,
         percentFormatter = percentFormatter,
+        currency = currency,
     )
 
     given("a List<DomainCrypto>") {
@@ -45,7 +46,7 @@ class DomainModelMapperTest : BehaviorSpec({
         )
 
         `when`("convert") {
-            val uiModel = domainModelMapper.convert(crypto, currency)
+            val uiModel = domainModelMapper.convert(crypto)
 
             then("it should convert to the right data") {
                 uiModel.first() shouldBe Crypto(
@@ -55,10 +56,7 @@ class DomainModelMapperTest : BehaviorSpec({
                         name = "Bitcoin",
                         imageUrl = "https://bitcoin.com",
                     ),
-                    price = CryptoPrice(
-                        labelValue = LabelValue(30_000.00, "30 000$"),
-                        vsCurrencyCode = "USD",
-                    ),
+                    price = CryptoPrice(labelValue = LabelValue(30_000.00, "30 000$")),
                     priceChangePercentIn24h = LabelValue(10.0, "10%")
                 )
             }

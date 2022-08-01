@@ -11,31 +11,30 @@ import org.mockito.kotlin.whenever
 
 class GetTopCryptoListTest : BehaviorSpec({
 
-    val vsCurrency = "USD"
     val cryptoRepository = mock<ICryptoRepository>()
     val getTopCryptoList = GetTopCryptoList(cryptoRepository)
 
     given("a getTopCryptoList answer") {
         val data = mock<List<DomainCrypto>>()
-        whenever(cryptoRepository.getTopCryptoList(vsCurrency)).thenReturn(flowOf(data))
+        whenever(cryptoRepository.getTopCryptoList()).thenReturn(flowOf(data))
 
         `when`("call the get from the use case") {
-            getTopCryptoList.get(vsCurrency)
+            getTopCryptoList.get()
 
             then("it should calls the getTopCryptoList from the repository") {
-                verify(cryptoRepository).getTopCryptoList(vsCurrency)
+                verify(cryptoRepository).getTopCryptoList()
             }
         }
     }
 
     given("a success  refreshTopCryptoList") {
-        whenever(cryptoRepository.refreshTopCryptoList(vsCurrency)).thenReturn(Unit)
+        whenever(cryptoRepository.refreshTopCryptoList()).thenReturn(Unit)
 
         `when`("call the use refresh from the use case") {
-            getTopCryptoList.refresh(vsCurrency)
+            getTopCryptoList.refresh()
 
             then("it should calls the getTopCryptoList from the repository") {
-                verify(cryptoRepository).refreshTopCryptoList(vsCurrency)
+                verify(cryptoRepository).refreshTopCryptoList()
             }
         }
     }

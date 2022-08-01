@@ -13,9 +13,6 @@ import java.util.Locale
 object FormatModule {
 
     @Provides
-    fun provideLocale(): Locale = Locale.US
-
-    @Provides
     fun providePriceFormatter(locale: Locale): PriceFormatter = PriceFormatter(locale)
 
     @Provides

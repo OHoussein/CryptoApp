@@ -2,9 +2,15 @@ package dev.ohoussein.crypto.presentation.ui.cryptolist
 
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
-import androidx.compose.ui.test.*
+import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
+import androidx.compose.ui.test.onNodeWithTag
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performGesture
+import androidx.compose.ui.test.swipeDown
+import androidx.compose.ui.test.swipeUp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.test.filters.LargeTest
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -15,6 +21,7 @@ import dev.ohoussein.core.test.mock.TestDataFactory
 import dev.ohoussein.crypto.data.di.CryptoDataModule
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
+import dev.ohoussein.crypto.presentation.components.CryptoItemTestTag
 import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.components.CryptoListTestTag
 import dev.ohoussein.crypto.presentation.navigation.NavPath
@@ -30,7 +37,6 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -133,15 +139,15 @@ class CryptoListScreenTest {
 
     private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
         val data = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(flowOf(data))
-        runBlocking { whenever(cryptoRepo.refreshTopCryptoList(any())).thenReturn(Unit) }
+        whenever(cryptoRepo.getTopCryptoList()).thenReturn(flowOf(data))
+        runBlocking { whenever(cryptoRepo.refreshTopCryptoList()).thenReturn(Unit) }
         next(data)
     }
 
     private fun givenErrorGetListOfCrypto(next: (() -> Unit) -> Unit) {
         val flow = MutableSharedFlow<List<DomainCrypto>>()
-        whenever(cryptoRepo.getTopCryptoList(any())).thenReturn(flow)
-        runBlocking { whenever(cryptoRepo.refreshTopCryptoList(any())).thenAnswer { throw IOException() } }
+        whenever(cryptoRepo.getTopCryptoList()).thenReturn(flow)
+        runBlocking { whenever(cryptoRepo.refreshTopCryptoList()).thenAnswer { throw IOException() } }
         val retry: () -> Unit = {
             runBlocking { flow.emit(TestDataFactory.makeCryptoList(20)) }
         }
@@ -151,7 +157,7 @@ class CryptoListScreenTest {
     private fun thenCryptoListShouldBeDisplayed(data: List<DomainCrypto>) {
         data.forEach { item ->
             thenCryptoItemShouldBeDisplayed(item)
-            composeTestRule.onNodeWithTag(dev.ohoussein.crypto.presentation.components.CryptoItemTestTag + item.id)
+            composeTestRule.onNodeWithTag(CryptoItemTestTag + item.id)
                     .performGesture {
                         swipeUp()
                     }

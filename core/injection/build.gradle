@@ -15,6 +15,7 @@ dependencies {
     implementation project(path: ':crypto:domain')
     implementation project(path: ':crypto:data')
     implementation project(path: ':core:formatter')
+    implementation project(path: ':core:injection:core')
 
     implementation core.hilt.android
     kapt core.hilt.compiler

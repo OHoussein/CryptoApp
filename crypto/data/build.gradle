@@ -17,6 +17,7 @@ android {
 
 dependencies {
     implementation project(path: ':crypto:domain')
+    implementation project(path: ':data:database')
 
     implementation core.kotlin.coroutinesCore
 

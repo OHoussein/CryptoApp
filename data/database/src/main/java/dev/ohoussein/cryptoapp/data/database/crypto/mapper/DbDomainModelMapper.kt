@@ -1,14 +1,14 @@
-package dev.ohoussein.crypto.data.database.mapper
+package dev.ohoussein.cryptoapp.data.database.crypto.mapper
 
-import dev.ohoussein.crypto.data.database.DBCrypto
 import dev.ohoussein.crypto.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 import javax.inject.Inject
 
 class DbDomainModelMapper @Inject constructor() {
 
     fun convertDBCrypto(data: List<DBCrypto>): List<DomainCrypto> = data.map { convert(it) }
 
-    fun convert(data: DBCrypto) = DomainCrypto(
+    private fun convert(data: DBCrypto) = DomainCrypto(
         id = data.id,
         symbol = data.symbol,
         name = data.name,
@@ -20,7 +20,7 @@ class DbDomainModelMapper @Inject constructor() {
 
     fun toDB(domain: List<DomainCrypto>) = domain.map { toDB(it) }
 
-    fun toDB(domain: DomainCrypto) = DBCrypto(
+    private fun toDB(domain: DomainCrypto) = DBCrypto(
         id = domain.id,
         symbol = domain.symbol,
         name = domain.name,

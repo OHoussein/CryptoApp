@@ -1,9 +1,10 @@
-package dev.ohoussein.crypto.data.database
+package dev.ohoussein.cryptoapp.data.database.crypto.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 import kotlinx.coroutines.flow.Flow
 
 @Dao

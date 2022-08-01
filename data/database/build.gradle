@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':crypto:data')
+    implementation project(path: ':crypto:domain')
 
     implementation core.hilt.android
     kapt core.hilt.compiler

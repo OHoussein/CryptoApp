@@ -2,11 +2,11 @@ package dev.ohoussein.crypto.data.repository
 
 import dev.ohoussein.crypto.data.api.ApiCryptoService
 import dev.ohoussein.crypto.data.api.mapper.ApiDomainModelMapper
-import dev.ohoussein.crypto.data.database.CryptoDAO
-import dev.ohoussein.crypto.data.database.mapper.DbDomainModelMapper
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
+import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
+import dev.ohoussein.cryptoapp.data.database.crypto.mapper.DbDomainModelMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow

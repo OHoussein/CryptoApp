@@ -1,8 +1,8 @@
 @file:Suppress("MemberVisibilityCanBePrivate", "MaxLineLength", "MagicNumber")
 
-package dev.ohoussein.cryptoapp.data.database.testutils
+package dev.ohoussein.cryptoapp.data.database.mock
 
-import dev.ohoussein.crypto.data.database.DBCrypto
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.random.Random
 

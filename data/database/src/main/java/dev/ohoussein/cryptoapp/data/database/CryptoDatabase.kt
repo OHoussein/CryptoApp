@@ -4,7 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import dev.ohoussein.crypto.data.database.DBCrypto
+import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 
 private const val DB_VERSION = 1
 private const val DB_NAME = "CryptoApp.db"
@@ -12,7 +13,7 @@ private const val DB_NAME = "CryptoApp.db"
 @Database(entities = [DBCrypto::class], version = DB_VERSION)
 abstract class CryptoDatabase : RoomDatabase() {
 
-    abstract fun cryptoDAO(): dev.ohoussein.crypto.data.database.CryptoDAO
+    abstract fun cryptoDAO(): CryptoDAO
 
     companion object {
         fun build(context: Context) =

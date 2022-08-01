@@ -1,5 +1,7 @@
 package dev.ohoussein.crypto.data.api
 
+import dev.ohoussein.crypto.data.api.model.CryptoDetailsResponse
+import dev.ohoussein.crypto.data.api.model.TopCryptoResponse
 import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Path

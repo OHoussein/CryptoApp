@@ -1,6 +1,6 @@
 @file:Suppress("MatchingDeclarationName")
 
-package dev.ohoussein.crypto.data.database
+package dev.ohoussein.cryptoapp.data.database.crypto.model
 
 import androidx.annotation.Keep
 import androidx.room.Entity

@@ -3,7 +3,7 @@ package dev.ohoussein.crypto.data.network
 import dev.ohoussein.core.test.network.NetworkUtils.readMockFile
 import dev.ohoussein.core.test.network.NetworkUtils.withResponse
 import dev.ohoussein.crypto.data.api.ApiCryptoService
-import dev.ohoussein.crypto.data.api.CryptoImageResponse
+import dev.ohoussein.crypto.data.api.model.CryptoImageResponse
 import dev.ohoussein.cryptoapp.data.network.builder.NetworkBuilder.createRetrofit
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldContain

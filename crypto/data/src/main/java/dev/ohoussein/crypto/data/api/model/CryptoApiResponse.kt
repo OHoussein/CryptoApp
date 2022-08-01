@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.data.api
+package dev.ohoussein.crypto.data.api.model
 
 import androidx.annotation.Keep
 import com.squareup.moshi.Json

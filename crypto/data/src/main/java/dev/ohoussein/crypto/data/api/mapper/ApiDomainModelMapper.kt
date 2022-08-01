@@ -1,7 +1,7 @@
 package dev.ohoussein.crypto.data.api.mapper
 
-import dev.ohoussein.crypto.data.api.CryptoDetailsResponse
-import dev.ohoussein.crypto.data.api.TopCryptoResponse
+import dev.ohoussein.crypto.data.api.model.CryptoDetailsResponse
+import dev.ohoussein.crypto.data.api.model.TopCryptoResponse
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import java.util.*

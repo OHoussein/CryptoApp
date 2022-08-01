@@ -6,8 +6,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.ohoussein.crypto.data.database.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.CryptoDatabase
+import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import javax.inject.Singleton
 
 @Module

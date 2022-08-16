@@ -4,16 +4,8 @@ echo "Running git pre-commit hook"
 
 ./gradlew detekt -PdetektAutoFix=true --no-daemon
 autoCorrected=$?
+
 if [ "$autoCorrected" = 0 ] ; then
-    echo "Static analysis found no issues. Proceeding with push."
-    exit 0
-fi
-
-sleep 0.5 #wait for file sync
-./gradlew detekt --no-daemon
-status=$?
-
-if [ "$status" = 0 ] ; then
     echo "Static analysis is corrected. Proceeding with push."
     sleep 0.5 #wait for file sync
     exit 0

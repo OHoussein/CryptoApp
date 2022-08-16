@@ -10,6 +10,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -46,5 +47,18 @@ class CryptoDAOTest {
         // Then
         assertEquals(dbData.size, listFromDB.size)
         assertEquals(dbData, listFromDB)
+    }
+
+    @Test
+    fun should_insert_and_get_crypto_details() = runTest {
+        // Given
+        val id = "crypto_id"
+        val cryptoDetails = TestDataFactory.randomDBCryptoDetails(id, id)
+        dao.insert(cryptoDetails)
+        // Given
+        val cryptoDetailsFromDB = dao.getCryptoDetails(id).first()
+        // Then
+        assertNotNull(cryptoDetailsFromDB)
+        assertEquals(cryptoDetails, cryptoDetailsFromDB)
     }
 }

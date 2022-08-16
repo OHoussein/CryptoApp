@@ -1,8 +1,8 @@
 package dev.ohoussein.cryptoapp.domain.usecase
 
-import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
+import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import io.kotest.core.spec.style.BehaviorSpec
 import kotlinx.coroutines.flow.flowOf
 import org.mockito.kotlin.mock
@@ -16,14 +16,13 @@ class GetCryptoDetailsTest : BehaviorSpec({
     val getCryptoDetails = GetCryptoDetails(cryptoRepository)
 
     given("a getCryptoDetails answer") {
-        val data = mock<DomainCryptoDetails>()
-        whenever(cryptoRepository.getCryptoDetails(cryptoId)).thenReturn(flowOf(data))
+        whenever(cryptoRepository.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)).thenReturn(flowOf())
 
         `when`("call the use case") {
-            getCryptoDetails(cryptoId)
+            getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)
 
             then("it should calls the getCryptoDetails from the repository") {
-                verify(cryptoRepository).getCryptoDetails(cryptoId)
+                verify(cryptoRepository).getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)
             }
         }
     }

@@ -1,7 +1,9 @@
 package dev.ohoussein.cryptoapp.data.database.crypto.mapper
 
 import dev.ohoussein.crypto.domain.model.DomainCrypto
+import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCryptoDetails
 import javax.inject.Inject
 
 class DbDomainModelMapper @Inject constructor() {
@@ -28,5 +30,33 @@ class DbDomainModelMapper @Inject constructor() {
         price = domain.price,
         priceChangePercentIn24h = domain.priceChangePercentIn24h,
         order = domain.order,
+    )
+
+    fun toDomain(cryptoDetails: DBCryptoDetails): DomainCryptoDetails = DomainCryptoDetails(
+        id = cryptoDetails.id,
+        name = cryptoDetails.name,
+        symbol = cryptoDetails.symbol,
+        imageUrl = cryptoDetails.imageUrl,
+        hashingAlgorithm = cryptoDetails.hashingAlgorithm,
+        homePageUrl = cryptoDetails.homePageUrl,
+        blockchainSite = cryptoDetails.blockchainSite,
+        mainRepoUrl = cryptoDetails.mainRepoUrl,
+        sentimentUpVotesPercentage = cryptoDetails.sentimentUpVotesPercentage,
+        sentimentDownVotesPercentage = cryptoDetails.sentimentDownVotesPercentage,
+        description = cryptoDetails.description,
+    )
+
+    fun toDB(cryptoDetails: DomainCryptoDetails): DBCryptoDetails = DBCryptoDetails(
+        id = cryptoDetails.id,
+        name = cryptoDetails.name,
+        symbol = cryptoDetails.symbol,
+        imageUrl = cryptoDetails.imageUrl,
+        hashingAlgorithm = cryptoDetails.hashingAlgorithm,
+        homePageUrl = cryptoDetails.homePageUrl,
+        blockchainSite = cryptoDetails.blockchainSite,
+        mainRepoUrl = cryptoDetails.mainRepoUrl,
+        sentimentUpVotesPercentage = cryptoDetails.sentimentUpVotesPercentage,
+        sentimentDownVotesPercentage = cryptoDetails.sentimentDownVotesPercentage,
+        description = cryptoDetails.description,
     )
 }

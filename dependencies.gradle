@@ -8,7 +8,7 @@ ext {
     def roomVersion = "2.4.2"
     def androidXTestVersion = "1.4.0"
     def mockitoVersion = "4.0.0"
-    def koTestVersion = "5.3.2"
+    def koTestVersion = "5.4.0"
 
     core = [
             kotlin:
@@ -61,7 +61,7 @@ ext {
                     runtime : "androidx.room:room-runtime:$roomVersion",
                     lib     : "androidx.room:room-ktx:$roomVersion",
                     compiler: "androidx.room:room-compiler:$roomVersion",
-            ]
+            ],
     ]
 
     debug = [
@@ -99,6 +99,7 @@ ext {
             kotest         : [
                     "io.kotest:kotest-runner-junit5:$koTestVersion",
                     "io.kotest:kotest-assertions-core:$koTestVersion",
+                    "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
             ],
             turbine        : "app.cash.turbine:turbine:0.8.0",
     ]

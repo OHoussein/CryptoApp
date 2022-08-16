@@ -9,8 +9,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
+import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.common.resource.Resource
-import dev.ohoussein.cryptoapp.common.resource.asResourceFlow
+import dev.ohoussein.cryptoapp.common.resource.asCachedResourceFlow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -23,9 +24,9 @@ class CryptoDetailsViewModel @Inject constructor(
     private val _cryptoId = MutableLiveData<String>()
 
     val cryptoDetails: LiveData<Resource<CryptoDetails>> = _cryptoId.switchMap { id ->
-        useCase(id)
-            .map { modelMapper.convert(it) }
-            .asResourceFlow()
+        useCase(id, CachePolicy.CACHE_THEN_FRESH)
+            .map { it.map(modelMapper.convert(it.data)) }
+            .asCachedResourceFlow()
             .asLiveData()
     }
 

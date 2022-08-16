@@ -24,6 +24,7 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':core:cached-data')
     //Presentation
     implementation android.jetpack.lifecycle
     implementation android.jetpack.livedata

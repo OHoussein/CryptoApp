@@ -17,3 +17,19 @@ data class DBCrypto(
     val priceChangePercentIn24h: Double?,
     val order: Int,
 )
+
+@Keep
+@Entity(tableName = "crypto_details")
+data class DBCryptoDetails(
+    @PrimaryKey val id: String,
+    val name: String,
+    val symbol: String,
+    val imageUrl: String,
+    val hashingAlgorithm: String?,
+    val homePageUrl: String?,
+    val blockchainSite: String?,
+    val mainRepoUrl: String?,
+    val sentimentUpVotesPercentage: Double?,
+    val sentimentDownVotesPercentage: Double?,
+    val description: String,
+)

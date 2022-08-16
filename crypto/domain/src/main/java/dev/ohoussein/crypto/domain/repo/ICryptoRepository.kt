@@ -2,13 +2,13 @@ package dev.ohoussein.crypto.domain.repo
 
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
+import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import kotlinx.coroutines.flow.Flow
 
 interface ICryptoRepository {
 
-    fun getTopCryptoList(): Flow<List<DomainCrypto>>
+    fun getTopCryptoList(cachePolicy: CachePolicy): Flow<CachedData<List<DomainCrypto>>>
 
-    suspend fun refreshTopCryptoList()
-
-    fun getCryptoDetails(cryptoId: String): Flow<DomainCryptoDetails>
+    fun getCryptoDetails(cryptoId: String, cachePolicy: CachePolicy): Flow<CachedData<DomainCryptoDetails>>
 }

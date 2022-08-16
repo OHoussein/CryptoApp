@@ -6,11 +6,12 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCryptoDetails
 
 private const val DB_VERSION = 1
 private const val DB_NAME = "CryptoApp.db"
 
-@Database(entities = [DBCrypto::class], version = DB_VERSION)
+@Database(entities = [DBCrypto::class, DBCryptoDetails::class], version = DB_VERSION)
 abstract class CryptoDatabase : RoomDatabase() {
 
     abstract fun cryptoDAO(): CryptoDAO

@@ -1,5 +1,6 @@
 package dev.ohoussein.crypto.presentation.ui.cryptolist
 
+import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
@@ -21,17 +22,17 @@ import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
+import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
+import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
+import java.io.IOException
+import javax.inject.Inject
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.io.IOException
-import javax.inject.Inject
-import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
-import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
 @HiltAndroidTest
@@ -85,7 +86,7 @@ class CryptoDetailsScreenTest {
                 thenShouldDisplayError()
                 givenCrypto { data ->
                     composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
-                            .performClick()
+                        .performClick()
                     thenCryptoDetailsShouldBeDisplayed(data)
                 }
             }
@@ -97,17 +98,17 @@ class CryptoDetailsScreenTest {
     ///////////////////////////////////////////////////////////////////////////
 
     private fun setupContent(
-            next: ComposeContentTestRule.() -> Unit,
+        next: ComposeContentTestRule.() -> Unit,
     ) {
         composeTestRule.setContent {
             TestNavHost(NavPath.CryptoDetailsPath.PATH) {
                 val viewModel = hiltViewModel<CryptoDetailsViewModel>()
                 CryptoDetailsScreen(
-                        viewModel = viewModel,
-                        cryptoId = cryptoId,
-                        errorMessageFormatter = errorMessageMapper,
-                        externalRouter = externalRouter,
-                        onBackClicked = {}
+                    viewModel = viewModel,
+                    cryptoId = cryptoId,
+                    errorMessageFormatter = errorMessageMapper,
+                    externalRouter = externalRouter,
+                    onBackClicked = {}
                 )
             }
         }
@@ -116,13 +117,14 @@ class CryptoDetailsScreenTest {
 
     private fun givenCrypto(next: (DomainCryptoDetails) -> Unit) {
         val data = TestDataFactory.randomCryptoDetails(cryptoId)
-        whenever(cryptoRepo.getCryptoDetails(cryptoId)).thenReturn(flowOf(data))
+        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH))
+            .thenReturn(flowOf(CachedData.fresh(data)))
         next(data)
     }
 
     private fun givenError(next: () -> Unit) {
-        val dataFlow = flow<DomainCryptoDetails> { throw IOException() }
-        whenever(cryptoRepo.getCryptoDetails(any())).thenReturn(dataFlow)
+        val dataFlow = flow<CachedData<DomainCryptoDetails>> { throw IOException() }
+        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)).thenReturn(dataFlow)
         next()
     }
 

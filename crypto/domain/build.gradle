@@ -12,6 +12,7 @@ test {
 
 dependencies {
     implementation core.kotlin.coroutinesCore
+    implementation project(path: ':core:cached-data')
 
     testImplementation test.mockito
     testImplementation test.mockitoInline

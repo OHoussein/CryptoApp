@@ -1,26 +1,29 @@
+@file:OptIn(ExperimentalCoroutinesApi::class)
+
 package dev.ohoussein.crypto.presentation.cryptolist
 
-import androidx.lifecycle.Observer
 import dev.ohoussein.core.test.extension.InstantTaskExecutorExtension
 import dev.ohoussein.core.test.extension.TestCoroutineExtension
+import dev.ohoussein.core.test.livedata.mockedObserverOf
+import dev.ohoussein.core.test.livedata.verifyStates
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
+import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
+import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.resource.Resource
 import io.kotest.core.spec.IsolationMode
-import io.kotest.core.spec.style.BehaviorSpec
+import io.kotest.core.spec.style.DescribeSpec
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
-import org.mockito.Mockito.times
-import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
-import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import java.io.IOException
 
-class CryptoDetailsModelTest : BehaviorSpec({
+class CryptoDetailsModelTest : DescribeSpec({
 
     isolationMode = IsolationMode.InstancePerTest
 
@@ -31,7 +34,7 @@ class CryptoDetailsModelTest : BehaviorSpec({
 
     val useCase = mock<GetCryptoDetails>()
     val uiMapper = mock<DomainModelMapper>()
-    val stateObserver = mock<Observer<Resource<CryptoDetails>>>()
+    val stateObserver = mockedObserverOf<Resource<CryptoDetails>>()
     val viewModel by lazy {
         CryptoDetailsViewModel(
             useCase = useCase,
@@ -41,53 +44,57 @@ class CryptoDetailsModelTest : BehaviorSpec({
         }
     }
 
-    given("crypto details") {
-        val domainCryptoDetails: DomainCryptoDetails = mock()
-        val cryptoDetails: CryptoDetails = mock()
-        whenever(uiMapper.convert(domainCryptoDetails)).thenReturn(cryptoDetails)
-        whenever(useCase(any())).thenReturn(flowOf(domainCryptoDetails))
+    describe("mocked data") {
+        val domainCryptoDetails: DomainCryptoDetails = mock(name = "fresh")
+        val cryptoDetails: CryptoDetails = mock(name = "fresh")
 
-        `when`("load crypto details") {
-            viewModel.load(cryptoId)
-
-            then("the state should takes loading then success") {
-                verify(stateObserver).onChanged(Resource.loading())
-                verify(stateObserver).onChanged(Resource.success(cryptoDetails))
-            }
-        }
-    }
-
-    given("an error on getting crypto details") {
-        val error = IOException("")
-        whenever(useCase(any())).thenReturn(flow { throw error })
-
-        `when`("load crypto details") {
-            viewModel.load(cryptoId)
-
-            then("the state should takes loading then error") {
-                verify(stateObserver).onChanged(Resource.loading())
-                verify(stateObserver).onChanged(Resource.error(error))
-            }
-        }
-    }
-
-    given("an error then success on getting crypto details") {
-        val domainCryptoDetails: DomainCryptoDetails = mock()
-        val cryptoDetails: CryptoDetails = mock()
         whenever(uiMapper.convert(domainCryptoDetails)).thenReturn(cryptoDetails)
 
-        val error = IOException("")
+        describe("a success crypto details") {
+            whenever(useCase(cryptoId, CachePolicy.CACHE_THEN_FRESH))
+                .thenReturn(flowOf(CachedData.fresh(domainCryptoDetails)))
 
-        whenever(useCase(any())).thenReturn(flow { throw error }).thenReturn(flowOf(domainCryptoDetails))
+            describe("loan") {
+                viewModel.load(cryptoId)
 
-        `when`("load crypto details 2 times") {
-            viewModel.load(cryptoId)
-            viewModel.load(cryptoId)
+                it("the state should takes loading then success") {
+                    stateObserver.verifyStates(
+                        Resource.loading(),
+                        Resource.success(cryptoDetails)
+                    )
+                }
+            }
+        }
 
-            then("the state should takes loading then error") {
-                verify(stateObserver, times(2)).onChanged(Resource.loading())
-                verify(stateObserver).onChanged(Resource.error(error))
-                verify(stateObserver).onChanged(Resource.success(cryptoDetails))
+        describe("an error on getting crypto details") {
+            val exception = IOException("")
+            whenever(useCase(cryptoId, CachePolicy.CACHE_THEN_FRESH)).thenReturn(flow { throw exception })
+
+            describe("load") {
+                viewModel.load(cryptoId)
+
+                it("the state should takes loading then error") {
+                    stateObserver.verifyStates(
+                        Resource.loading(),
+                        Resource.error(exception)
+                    )
+                }
+
+                describe("a sucess on crypto details") {
+                    whenever(useCase(cryptoId, CachePolicy.CACHE_THEN_FRESH))
+                        .thenReturn(flowOf(CachedData.fresh(domainCryptoDetails)))
+
+                    describe("loan") {
+                        viewModel.load(cryptoId)
+
+                        it("the state should takes loading then success") {
+                            stateObserver.verifyStates(
+                                Resource.loading(),
+                                Resource.success(cryptoDetails)
+                            )
+                        }
+                    }
+                }
             }
         }
     }

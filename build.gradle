@@ -3,7 +3,7 @@ apply from: "dependencies.gradle"
 
 buildscript {
     ext {
-        androidGradlePlugin = "7.3.0-beta04"
+        androidGradlePlugin = '7.3.0-beta05'
         kotlinVersion = "1.6.21"
         daggerHiltVersion = "2.42"
         detektVersion = "1.20.0"

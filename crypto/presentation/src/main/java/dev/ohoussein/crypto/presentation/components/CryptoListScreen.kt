@@ -76,7 +76,8 @@ fun CryptoList(
 fun CryptoListStateScreen(
     modifier: Modifier = Modifier,
     cryptoList: List<Crypto>?,
-    cryptoListState: Resource<Unit>,
+    isLoading: Boolean,
+    error: Throwable?,
     errorMessageMapper: ErrorMessageFormatter,
     onClick: (Crypto) -> Unit,
     onRefresh: () -> Unit,
@@ -92,9 +93,9 @@ fun CryptoListStateScreen(
                     cryptoList = cryptoList,
                     onClick = onClick,
                     onRefresh = onRefresh,
-                    isRefreshing = cryptoListState.status == Status.LOADING
+                    isRefreshing = isLoading
                 )
-                if (cryptoListState.status == Status.ERROR) {
+                if (error != null) {
                     Snackbar(
                         modifier = Modifier.padding(8.dp),
                         action = {
@@ -103,14 +104,14 @@ fun CryptoListStateScreen(
                             }
                         }
                     ) {
-                        Text(text = errorMessageMapper.map(cryptoListState.error))
+                        Text(text = errorMessageMapper.map(error))
                     }
                 }
             }
         }
-        cryptoListState.status == Status.ERROR -> {
+        error != null -> {
             StateError(
-                message = errorMessageMapper.map(cryptoListState.error),
+                message = errorMessageMapper.map(error),
                 onRetryClick = onRefresh,
             )
         }
@@ -126,20 +127,20 @@ fun CryptoListScreen(
     errorMessageMapper: ErrorMessageFormatter,
     onClick: (Crypto) -> Unit,
 ) {
-    val cryptoListState: Resource<Unit> by viewModel.syncState.observeAsState(Resource.loading<Unit>())
-    val cryptoList: List<Crypto>? by viewModel.topCryptoList.observeAsState()
+    val cryptoList: Resource<List<Crypto>>? by viewModel.topCryptoList.observeAsState()
 
     LaunchedEffect(Unit) {
-        viewModel.refresh()
+        viewModel.onScreenOpened()
     }
 
     CryptoAppScaffold {
         CryptoListStateScreen(
-            cryptoList = cryptoList,
-            cryptoListState = cryptoListState,
+            cryptoList = cryptoList?.data,
+            isLoading = cryptoList?.status == Status.LOADING,
+            error = cryptoList?.error,
             errorMessageMapper = errorMessageMapper,
             onClick = onClick,
-            onRefresh = { viewModel.refresh(force = true) }
+            onRefresh = { viewModel.onRefresh() }
         )
     }
 }

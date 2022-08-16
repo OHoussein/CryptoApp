@@ -1,4 +1,3 @@
-/*
 package dev.ohoussein.crypto.presentation.ui.cryptolist
 
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
@@ -9,9 +8,9 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performGesture
+import androidx.compose.ui.test.performScrollToIndex
+import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipeDown
-import androidx.compose.ui.test.swipeUp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.test.filters.LargeTest
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -22,20 +21,18 @@ import dev.ohoussein.core.test.mock.TestDataFactory
 import dev.ohoussein.crypto.data.di.CryptoDataModule
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import dev.ohoussein.crypto.presentation.components.CryptoItemTestTag
 import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.components.CryptoListTestTag
 import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
-import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
+import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
+import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -78,17 +75,16 @@ class CryptoListScreenTest {
     @Test
     fun should_show_error_screen_and_retry() {
         //Given error
-        givenErrorGetListOfCrypto { retry ->
+        givenErrorThanSuccessGetListOfCrypto { data ->
             //When
             setupContent {
                 //Then
                 thenShouldDisplayError()
-                retry()
-                givenListOfCrypto { data ->
-                    composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
-                            .performClick()
-                    thenCryptoItemShouldBeDisplayed(data.first())
-                }
+
+                composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
+                    .performClick()
+
+                thenCryptoItemShouldBeDisplayed(data.first())
             }
         }
     }
@@ -100,7 +96,7 @@ class CryptoListScreenTest {
             setupContent {
                 //check just the first item
                 thenCryptoItemShouldBeDisplayed(data.first())
-                givenErrorGetListOfCrypto {
+                givenErrorThanSuccessGetListOfCrypto {
                     swipeToRefreshList()
                     // Then should display error and still see the list
                     thenShouldDisplayError()
@@ -115,14 +111,14 @@ class CryptoListScreenTest {
     ///////////////////////////////////////////////////////////////////////////
 
     private fun setupContent(
-            next: ComposeContentTestRule.() -> Unit,
+        next: ComposeContentTestRule.() -> Unit,
     ) {
         composeTestRule.setContent {
             TestNavHost(path = NavPath.HOME) {
-                val viewModel = hiltViewModel<HomeViewModel>()
+                val viewModel = hiltViewModel<CryptoListViewModel>()
                 CryptoListScreen(
-                        viewModel = viewModel,
-                        onClick = {},
+                    viewModel = viewModel,
+                    onClick = {},
                 )
             }
         }
@@ -130,42 +126,39 @@ class CryptoListScreenTest {
     }
 
     private fun swipeToRefreshList() {
-        composeTestRule.onNodeWithTag(CryptoListTestTag).performGesture {
+        composeTestRule.onNodeWithTag(CryptoListTestTag).performTouchInput {
             swipeDown()
         }
     }
 
     private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
         val data = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH)).thenReturn(flowOf(data))
-        runBlocking { whenever(cryptoRepo.refreshTopCryptoList()).thenReturn(Unit) }
+        whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))
+            .thenReturn(flowOf(CachedData.fresh(data)))
         next(data)
     }
 
-    private fun givenErrorGetListOfCrypto(next: (() -> Unit) -> Unit) {
-        val flow = MutableSharedFlow<List<DomainCrypto>>()
-        whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))).thenReturn(flow)
-        runBlocking { whenever(cryptoRepo.refreshTopCryptoList()).thenAnswer { throw IOException() } }
-        val retry: () -> Unit = {
-            runBlocking { flow.emit(TestDataFactory.makeCryptoList(20)) }
-        }
-        next(retry)
+    private fun givenErrorThanSuccessGetListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+        val successData = TestDataFactory.makeCryptoList(20)
+        whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))
+            .thenReturn(flow { throw IOException() })
+        whenever(cryptoRepo.getTopCryptoList(CachePolicy.FRESH))
+            .thenReturn(flowOf(CachedData.fresh(successData)))
+        next(successData)
     }
 
     private fun thenCryptoListShouldBeDisplayed(data: List<DomainCrypto>) {
-        data.forEach { item ->
+        data.forEachIndexed { index, item ->
             thenCryptoItemShouldBeDisplayed(item)
-            composeTestRule.onNodeWithTag(CryptoItemTestTag + item.id)
-                    .performGesture {
-                        swipeUp()
-                    }
+            composeTestRule.onNodeWithTag(CryptoListTestTag)
+                .performScrollToIndex(index)
         }
     }
 
     private fun thenCryptoItemShouldBeDisplayed(item: DomainCrypto) {
         composeTestRule.onNodeWithText(
-                item.name,
-                useUnmergedTree = true
+            item.name,
+            useUnmergedTree = true
         ).assertExists()
     }
 
@@ -173,4 +166,4 @@ class CryptoListScreenTest {
         composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry)).assertIsDisplayed()
     }
 }
-*/
+

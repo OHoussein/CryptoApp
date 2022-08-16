@@ -8,7 +8,7 @@ import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.Crypto
-import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
+import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.resource.Resource
@@ -22,7 +22,7 @@ import org.mockito.kotlin.whenever
 import java.io.IOException
 
 @ExperimentalCoroutinesApi
-class HomeViewModelTest : DescribeSpec({
+class CryptoListViewModelTest : DescribeSpec({
 
     isolationMode = IsolationMode.InstancePerTest
 
@@ -33,8 +33,8 @@ class HomeViewModelTest : DescribeSpec({
     val uiMapper = mock<DomainModelMapper>()
     val stateObserver = mockedObserverOf<Resource<List<Crypto>>>()
 
-    val homeViewModel by lazy {
-        HomeViewModel(
+    val cryptoListViewModel by lazy {
+        CryptoListViewModel(
             useCase = useCase,
             modelMapper = uiMapper,
         ).apply {
@@ -61,7 +61,7 @@ class HomeViewModelTest : DescribeSpec({
 
             describe("onScreenOpened") {
                 beforeEach {
-                    homeViewModel.onScreenOpened()
+                    cryptoListViewModel.onScreenOpened()
                 }
 
                 it("should get 1 loading state and 1 success state") {
@@ -76,7 +76,7 @@ class HomeViewModelTest : DescribeSpec({
                     beforeEach {
                         whenever(useCase.get(CachePolicy.FRESH))
                             .thenReturn(flowOf(CachedData.fresh(freshRefreshData)))
-                        homeViewModel.onRefresh()
+                        cryptoListViewModel.onRefresh()
                     }
 
                     it("should get 1 loading state and 1 success state with the new refreshed data") {
@@ -96,7 +96,7 @@ class HomeViewModelTest : DescribeSpec({
                                     throw exception
                                 }
                             )
-                        homeViewModel.onRefresh()
+                        cryptoListViewModel.onRefresh()
                     }
 
                     it("should get 1 loading state and 1 error state with the existing fresh data") {
@@ -121,7 +121,7 @@ class HomeViewModelTest : DescribeSpec({
                 )
 
             describe("onScreenOpened") {
-                homeViewModel.onScreenOpened()
+                cryptoListViewModel.onScreenOpened()
 
                 it("should get loading and error states with the cached data") {
                     stateObserver.verifyStates(
@@ -135,7 +135,7 @@ class HomeViewModelTest : DescribeSpec({
                     beforeEach {
                         whenever(useCase.get(CachePolicy.FRESH))
                             .thenReturn(flowOf(CachedData.fresh(freshRefreshData)))
-                        homeViewModel.onRefresh()
+                        cryptoListViewModel.onRefresh()
                     }
 
                     it("should get 1 loading state and 1 success state with the new refreshed data") {
@@ -155,7 +155,7 @@ class HomeViewModelTest : DescribeSpec({
                                     throw exception
                                 }
                             )
-                        homeViewModel.onRefresh()
+                        cryptoListViewModel.onRefresh()
                     }
 
                     it("should get 1 loading state and 1 error state with the existing fresh data") {
@@ -173,7 +173,7 @@ class HomeViewModelTest : DescribeSpec({
                 .thenReturn(flowOf(CachedData.fresh(freshData)))
 
             describe("onScreenOpened") {
-                homeViewModel.onScreenOpened()
+                cryptoListViewModel.onScreenOpened()
 
                 it("should get 1 loading state and 1 success state") {
                     stateObserver.verifyStates(
@@ -191,7 +191,7 @@ class HomeViewModelTest : DescribeSpec({
                 .thenReturn(flow { throw error })
 
             describe("onScreenOpened") {
-                homeViewModel.onScreenOpened()
+                cryptoListViewModel.onScreenOpened()
 
                 it("should get 1 loading state and 1 success state") {
                     stateObserver.verifyStates(
@@ -201,7 +201,7 @@ class HomeViewModelTest : DescribeSpec({
                 }
 
                 describe("onRefresh") {
-                    homeViewModel.onRefresh()
+                    cryptoListViewModel.onRefresh()
 
                     it("should get 1 loading state and 1 success state") {
                         stateObserver.verifyStates(

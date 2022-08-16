@@ -23,7 +23,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import java.io.IOException
 
-class CryptoDetailsModelTest : DescribeSpec({
+class CryptoDetailsViewModelTest : DescribeSpec({
 
     isolationMode = IsolationMode.InstancePerTest
 

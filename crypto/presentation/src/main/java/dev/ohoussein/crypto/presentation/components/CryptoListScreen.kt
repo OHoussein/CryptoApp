@@ -25,7 +25,7 @@ import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
-import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
+import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.resource.Resource
 import dev.ohoussein.cryptoapp.common.resource.Status
 import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
@@ -123,7 +123,7 @@ fun CryptoListStateScreen(
 
 @Composable
 fun CryptoListScreen(
-    viewModel: HomeViewModel,
+    viewModel: CryptoListViewModel,
     errorMessageMapper: ErrorMessageFormatter,
     onClick: (Crypto) -> Unit,
 ) {

@@ -10,7 +10,7 @@ import androidx.navigation.compose.rememberNavController
 import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.crypto.presentation.viewmodel.HomeViewModel
+import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import timber.log.Timber
@@ -24,7 +24,7 @@ fun CryptoAppNavigation(
 
     NavHost(navController, startDestination = NavPath.HOME) {
         composable(NavPath.HOME) {
-            val viewModel = hiltViewModel<HomeViewModel>()
+            val viewModel = hiltViewModel<CryptoListViewModel>()
             CryptoListScreen(
                 viewModel = viewModel,
                 errorMessageMapper = errorMessageMapper,

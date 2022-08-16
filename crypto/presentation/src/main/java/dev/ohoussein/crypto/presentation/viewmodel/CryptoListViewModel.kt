@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(
+class CryptoListViewModel @Inject constructor(
     private val useCase: GetTopCryptoList,
     private val modelMapper: DomainModelMapper,
 ) : ViewModel() {

@@ -12,12 +12,10 @@ import dev.ohoussein.crypto.presentation.components.CryptoListScreen
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import timber.log.Timber
 
 @Composable
 fun CryptoAppNavigation(
-    errorMessageMapper: ErrorMessageFormatter,
     externalRouter: ExternalRouter,
 ) {
     val navController = rememberNavController()
@@ -27,7 +25,6 @@ fun CryptoAppNavigation(
             val viewModel = hiltViewModel<CryptoListViewModel>()
             CryptoListScreen(
                 viewModel = viewModel,
-                errorMessageMapper = errorMessageMapper,
                 onClick = {
                     Timber.d("On item clicked ${it.base.name}")
                     navController.navigate(NavPath.CryptoDetailsPath.path(it.base.id))
@@ -49,7 +46,6 @@ fun CryptoAppNavigation(
                     CryptoDetailsScreen(
                         viewModel = viewModel,
                         cryptoId = cryptoId,
-                        errorMessageFormatter = errorMessageMapper,
                         externalRouter = externalRouter,
                         onBackClicked = { navController.popBackStack() }
                     )

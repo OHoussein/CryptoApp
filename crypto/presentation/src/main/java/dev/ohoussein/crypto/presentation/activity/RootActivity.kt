@@ -6,14 +6,10 @@ import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
 import dev.ohoussein.crypto.presentation.navigation.CryptoAppNavigation
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class RootActivity : ComponentActivity() {
-
-    @Inject
-    lateinit var errorMessageMapper: ErrorMessageFormatter
 
     @Inject
     lateinit var externalRouter: ExternalRouter
@@ -23,7 +19,6 @@ class RootActivity : ComponentActivity() {
 
         setContent {
             CryptoAppNavigation(
-                errorMessageMapper = errorMessageMapper,
                 externalRouter = externalRouter,
             )
         }

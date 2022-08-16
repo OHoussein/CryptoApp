@@ -44,9 +44,6 @@ class CryptoDetailsScreenTest {
     internal lateinit var cryptoRepo: ICryptoRepository
 
     @Inject
-    lateinit var errorMessageMapper: ErrorMessageFormatter
-
-    @Inject
     lateinit var externalRouter: ExternalRouter
 
     @get:Rule(order = 1)
@@ -106,7 +103,6 @@ class CryptoDetailsScreenTest {
                 CryptoDetailsScreen(
                     viewModel = viewModel,
                     cryptoId = cryptoId,
-                    errorMessageFormatter = errorMessageMapper,
                     externalRouter = externalRouter,
                     onBackClicked = {}
                 )

@@ -50,9 +50,6 @@ class CryptoListScreenTest {
     @Inject
     internal lateinit var cryptoRepo: ICryptoRepository
 
-    @Inject
-    lateinit var errorMessageMapper: ErrorMessageFormatter
-
     @get:Rule(order = 1)
     val hiltRule = HiltAndroidRule(this)
 
@@ -125,7 +122,6 @@ class CryptoListScreenTest {
                 val viewModel = hiltViewModel<HomeViewModel>()
                 CryptoListScreen(
                         viewModel = viewModel,
-                        errorMessageMapper = errorMessageMapper,
                         onClick = {},
                 )
             }

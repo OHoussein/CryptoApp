@@ -11,6 +11,7 @@ import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.common.resource.Resource
 import dev.ohoussein.cryptoapp.common.resource.asCachedResourceFlow
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class CryptoListViewModel @Inject constructor(
     private val useCase: GetTopCryptoList,
     private val modelMapper: DomainModelMapper,
+    private val errorMessageFormatter: ErrorMessageFormatter,
 ) : ViewModel() {
 
     private val _topCryptoList = MutableLiveData<Resource<List<Crypto>>>()
@@ -31,7 +33,7 @@ class CryptoListViewModel @Inject constructor(
             return
         useCase.get(CachePolicy.CACHE_THEN_FRESH)
             .map { it.map(modelMapper.convert(it.data)) }
-            .asCachedResourceFlow(_topCryptoList.value?.data)
+            .asCachedResourceFlow(errorMessageFormatter::map, _topCryptoList.value?.data)
             .onEach {
                 _topCryptoList.value = it
             }
@@ -41,7 +43,7 @@ class CryptoListViewModel @Inject constructor(
     fun onRefresh() {
         useCase.get(CachePolicy.FRESH)
             .map { it.map(modelMapper.convert(it.data)) }
-            .asCachedResourceFlow(_topCryptoList.value?.data)
+            .asCachedResourceFlow(errorMessageFormatter::map, _topCryptoList.value?.data)
             .onEach {
                 _topCryptoList.value = it
             }

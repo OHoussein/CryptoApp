@@ -12,6 +12,7 @@ import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.common.resource.Resource
 import dev.ohoussein.cryptoapp.common.resource.asCachedResourceFlow
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class CryptoDetailsViewModel @Inject constructor(
     private val useCase: GetCryptoDetails,
     private val modelMapper: DomainModelMapper,
+    private val errorMessageFormatter: ErrorMessageFormatter,
 ) : ViewModel() {
 
     private val _cryptoId = MutableLiveData<String>()
@@ -26,7 +28,7 @@ class CryptoDetailsViewModel @Inject constructor(
     val cryptoDetails: LiveData<Resource<CryptoDetails>> = _cryptoId.switchMap { id ->
         useCase(id, CachePolicy.CACHE_THEN_FRESH)
             .map { it.map(modelMapper.convert(it.data)) }
-            .asCachedResourceFlow()
+            .asCachedResourceFlow(errorMessageFormatter::map)
             .asLiveData()
     }
 

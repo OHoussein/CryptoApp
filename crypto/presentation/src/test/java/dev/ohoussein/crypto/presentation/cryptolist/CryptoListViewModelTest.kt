@@ -12,11 +12,14 @@ import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.resource.Resource
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import java.io.IOException
@@ -32,11 +35,16 @@ class CryptoListViewModelTest : DescribeSpec({
     val useCase = mock<GetTopCryptoList>()
     val uiMapper = mock<DomainModelMapper>()
     val stateObserver = mockedObserverOf<Resource<List<Crypto>>>()
+    val errorMessage = "an error message"
+    val errorMessageFormatter = mock<ErrorMessageFormatter> {
+        on { map(any()) } doReturn errorMessage
+    }
 
     val cryptoListViewModel by lazy {
         CryptoListViewModel(
             useCase = useCase,
             modelMapper = uiMapper,
+            errorMessageFormatter = errorMessageFormatter,
         ).apply {
             topCryptoList.observeForever(stateObserver)
         }
@@ -88,12 +96,11 @@ class CryptoListViewModelTest : DescribeSpec({
                 }
 
                 describe("an error onRefresh") {
-                    val exception = IOException()
                     beforeEach {
                         whenever(useCase.get(CachePolicy.FRESH))
                             .thenReturn(
                                 flow {
-                                    throw exception
+                                    throw IOException()
                                 }
                             )
                         cryptoListViewModel.onRefresh()
@@ -102,7 +109,7 @@ class CryptoListViewModelTest : DescribeSpec({
                     it("should get 1 loading state and 1 error state with the existing fresh data") {
                         stateObserver.verifyStates(
                             Resource.loading(freshUiData),
-                            Resource.error(exception, freshUiData),
+                            Resource.error(errorMessage, freshUiData),
                         )
                     }
                 }
@@ -110,13 +117,11 @@ class CryptoListViewModelTest : DescribeSpec({
         }
 
         describe("cached crypto data & error fresh crypto data") {
-            val error = IOException("")
-
             whenever(useCase.get(CachePolicy.CACHE_THEN_FRESH))
                 .thenReturn(
                     flow {
                         emit(CachedData.cached(cachedData, true))
-                        throw error
+                        throw IOException("")
                     }
                 )
 
@@ -127,7 +132,7 @@ class CryptoListViewModelTest : DescribeSpec({
                     stateObserver.verifyStates(
                         Resource.loading(),
                         Resource.loading(cachedUiData),
-                        Resource.error(error, cachedUiData),
+                        Resource.error(errorMessage, cachedUiData),
                     )
                 }
 
@@ -147,12 +152,11 @@ class CryptoListViewModelTest : DescribeSpec({
                 }
 
                 describe("an error onRefresh") {
-                    val exception = IOException()
                     beforeEach {
                         whenever(useCase.get(CachePolicy.FRESH))
                             .thenReturn(
                                 flow {
-                                    throw exception
+                                    throw IOException()
                                 }
                             )
                         cryptoListViewModel.onRefresh()
@@ -161,7 +165,7 @@ class CryptoListViewModelTest : DescribeSpec({
                     it("should get 1 loading state and 1 error state with the existing fresh data") {
                         stateObserver.verifyStates(
                             Resource.loading(cachedUiData),
-                            Resource.error(exception, cachedUiData),
+                            Resource.error(errorMessage, cachedUiData),
                         )
                     }
                 }
@@ -185,10 +189,8 @@ class CryptoListViewModelTest : DescribeSpec({
         }
 
         describe("no cached crypto data & error on fresh crypto data") {
-            val error = IOException("")
-
             whenever(useCase.get(CachePolicy.CACHE_THEN_FRESH))
-                .thenReturn(flow { throw error })
+                .thenReturn(flow { throw IOException("") })
 
             describe("onScreenOpened") {
                 cryptoListViewModel.onScreenOpened()
@@ -196,7 +198,7 @@ class CryptoListViewModelTest : DescribeSpec({
                 it("should get 1 loading state and 1 success state") {
                     stateObserver.verifyStates(
                         Resource.loading(),
-                        Resource.error(error),
+                        Resource.error(errorMessage),
                     )
                 }
 
@@ -206,7 +208,7 @@ class CryptoListViewModelTest : DescribeSpec({
                     it("should get 1 loading state and 1 success state") {
                         stateObserver.verifyStates(
                             Resource.loading(),
-                            Resource.error(error),
+                            Resource.error(errorMessage),
                             Resource.loading(),
                         )
                     }

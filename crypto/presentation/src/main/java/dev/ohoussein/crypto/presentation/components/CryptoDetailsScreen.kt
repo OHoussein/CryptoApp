@@ -27,7 +27,6 @@ import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
 import dev.ohoussein.cryptoapp.core.designsystem.theme.CryptoAppTheme
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 
 @Composable
 fun CryptoDetails(
@@ -66,7 +65,6 @@ fun CryptoDetails(
 fun CryptoDetailsStateScreen(
     modifier: Modifier = Modifier,
     cryptoDetailsState: Resource<CryptoDetails>,
-    errorMessageMapper: ErrorMessageFormatter,
     onRefresh: () -> Unit,
     onHomePageClicked: (CryptoDetails) -> Unit,
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
@@ -87,7 +85,7 @@ fun CryptoDetailsStateScreen(
         Status.ERROR -> {
             StateError(
                 modifier = modifier,
-                message = errorMessageMapper.map(cryptoDetailsState.error),
+                message = cryptoDetailsState.error ?: "",
                 onRetryClick = onRefresh,
             )
         }
@@ -101,7 +99,6 @@ fun CryptoDetailsStateScreen(
 fun CryptoDetailsScreen(
     viewModel: CryptoDetailsViewModel,
     cryptoId: String,
-    errorMessageFormatter: ErrorMessageFormatter,
     externalRouter: ExternalRouter,
     onBackClicked: () -> Unit,
 ) {
@@ -115,7 +112,6 @@ fun CryptoDetailsScreen(
     CryptoAppScaffold(onBackButton = onBackClicked) {
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
-            errorMessageMapper = errorMessageFormatter,
             cryptoDetailsState = state,
             onRefresh = { viewModel.load(cryptoId) },
             onHomePageClicked = { crypto ->

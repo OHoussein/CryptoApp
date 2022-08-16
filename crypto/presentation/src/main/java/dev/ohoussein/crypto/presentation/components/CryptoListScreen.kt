@@ -32,7 +32,6 @@ import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
 import dev.ohoussein.cryptoapp.core.designsystem.theme.CryptoAppTheme
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.R
 
 @Suppress("TopLevelPropertyNaming")
@@ -77,8 +76,7 @@ fun CryptoListStateScreen(
     modifier: Modifier = Modifier,
     cryptoList: List<Crypto>?,
     isLoading: Boolean,
-    error: Throwable?,
-    errorMessageMapper: ErrorMessageFormatter,
+    error: String?,
     onClick: (Crypto) -> Unit,
     onRefresh: () -> Unit,
 ) {
@@ -104,14 +102,14 @@ fun CryptoListStateScreen(
                             }
                         }
                     ) {
-                        Text(text = errorMessageMapper.map(error))
+                        Text(text = error)
                     }
                 }
             }
         }
         error != null -> {
             StateError(
-                message = errorMessageMapper.map(error),
+                message = error,
                 onRetryClick = onRefresh,
             )
         }
@@ -124,7 +122,6 @@ fun CryptoListStateScreen(
 @Composable
 fun CryptoListScreen(
     viewModel: CryptoListViewModel,
-    errorMessageMapper: ErrorMessageFormatter,
     onClick: (Crypto) -> Unit,
 ) {
     val cryptoList: Resource<List<Crypto>>? by viewModel.topCryptoList.observeAsState()
@@ -138,7 +135,6 @@ fun CryptoListScreen(
             cryptoList = cryptoList?.data,
             isLoading = cryptoList?.status == Status.LOADING,
             error = cryptoList?.error,
-            errorMessageMapper = errorMessageMapper,
             onClick = onClick,
             onRefresh = { viewModel.onRefresh() }
         )

@@ -14,11 +14,14 @@ import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.resource.Resource
+import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 import java.io.IOException
@@ -35,10 +38,16 @@ class CryptoDetailsViewModelTest : DescribeSpec({
     val useCase = mock<GetCryptoDetails>()
     val uiMapper = mock<DomainModelMapper>()
     val stateObserver = mockedObserverOf<Resource<CryptoDetails>>()
+    val errorMessage = "an error message"
+    val errorMessageFormatter = mock<ErrorMessageFormatter> {
+        on { map(any()) } doReturn errorMessage
+    }
+
     val viewModel by lazy {
         CryptoDetailsViewModel(
             useCase = useCase,
             modelMapper = uiMapper,
+            errorMessageFormatter = errorMessageFormatter,
         ).apply {
             cryptoDetails.observeForever(stateObserver)
         }
@@ -76,7 +85,7 @@ class CryptoDetailsViewModelTest : DescribeSpec({
                 it("the state should takes loading then error") {
                     stateObserver.verifyStates(
                         Resource.loading(),
-                        Resource.error(exception)
+                        Resource.error(errorMessage)
                     )
                 }
 

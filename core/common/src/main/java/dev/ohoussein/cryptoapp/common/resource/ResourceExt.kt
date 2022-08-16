@@ -7,7 +7,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import timber.log.Timber
 
-fun <T> Flow<T>.asResourceFlow(previousData: T? = null): Flow<Resource<T>> {
+fun <T> Flow<T>.asResourceFlow(
+    errorMessageMapper: (Throwable) -> String,
+    previousData: T? = null,
+): Flow<Resource<T>> {
     var latestData: T? = previousData
     return this
         .map<T, Resource<T>> {
@@ -19,11 +22,14 @@ fun <T> Flow<T>.asResourceFlow(previousData: T? = null): Flow<Resource<T>> {
         }
         .catch {
             Timber.e(it)
-            emit(Resource.error(it, latestData))
+            emit(Resource.error(errorMessageMapper(it), latestData))
         }
 }
 
-fun <T> Flow<CachedData<T>>.asCachedResourceFlow(previousData: T? = null): Flow<Resource<T>> {
+fun <T> Flow<CachedData<T>>.asCachedResourceFlow(
+    errorMessageMapper: (Throwable) -> String,
+    previousData: T? = null,
+): Flow<Resource<T>> {
     var latestData: T? = previousData
     return this
         .map {
@@ -36,8 +42,8 @@ fun <T> Flow<CachedData<T>>.asCachedResourceFlow(previousData: T? = null): Flow<
         .onStart {
             emit(Resource.loading(latestData))
         }
-        .catch { error ->
-            Timber.e(error)
-            emit(Resource.error(error, latestData))
+        .catch {
+            Timber.e(it)
+            emit(Resource.error(errorMessageMapper(it), latestData))
         }
 }

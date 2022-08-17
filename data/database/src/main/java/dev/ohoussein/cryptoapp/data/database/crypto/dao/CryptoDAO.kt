@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCryptoDetails
 import kotlinx.coroutines.flow.Flow
@@ -20,7 +21,8 @@ abstract class CryptoDAO {
     @Query("DELETE FROM crypto")
     abstract suspend fun deleteAll()
 
-    suspend fun replace(items: List<DBCrypto>): List<Long> {
+    @Transaction
+    open suspend fun replace(items: List<DBCrypto>): List<Long> {
         deleteAll()
         return insert(items)
     }

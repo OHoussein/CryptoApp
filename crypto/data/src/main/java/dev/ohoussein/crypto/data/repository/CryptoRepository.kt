@@ -13,8 +13,8 @@ import dev.ohoussein.cryptoapp.data.cache.CachedDataRepository
 import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.crypto.mapper.DbDomainModelMapper
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 import javax.inject.Named
 
@@ -34,10 +34,8 @@ class CryptoRepository @Inject constructor(
         cache = Cache.of(
             reader = {
                 cryptoDao.getAll()
-                    .onEach {
-                        println("Wiss: onEach getAll ${it.size}")
-                    }
                     .map(dbMapper::convertDBCrypto)
+                    .filterNot { it.isEmpty() }
             },
             writer = { _: Unit, data: List<DomainCrypto> ->
                 val newDbData = dbMapper.toDB(data)

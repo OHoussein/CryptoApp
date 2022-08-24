@@ -70,10 +70,6 @@ def setupKotlinReporting() {
                 fileTree(dir: it, exclude: fileFilter)
             })
         }
-
-        doFirst {
-            println("Wiss: run kotlin reporting")
-        }
     }
 }
 

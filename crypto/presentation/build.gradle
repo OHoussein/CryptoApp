@@ -32,7 +32,6 @@ dependencies {
 
     //Presentation
     implementation android.jetpack.lifecycle
-    implementation android.jetpack.livedata
     implementation android.compose
 
     implementation core.timber
@@ -47,6 +46,7 @@ dependencies {
     testImplementation test.mockitoInline
     testImplementation test.coroutinesTest
     testImplementation test.kotest
+    testImplementation test.turbine
 
     androidTestImplementation project(path: ':crypto:data')
     androidTestImplementation project(path: ':core:test')

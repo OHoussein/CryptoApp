@@ -16,12 +16,15 @@ class ResourceExtTest : DescribeSpec({
 
     val data = "Hello"
 
+    val errorMessageMapper: (Throwable) -> String = { "error" }
+
     describe("a Flow") {
+
         context("a success flow") {
             val flow = flowOf(data)
 
             describe("asResourceFlow without previous data") {
-                val resourceFlow = flow.asResourceFlow()
+                val resourceFlow = flow.asResourceFlow(errorMessageMapper)
 
                 it("should receive loading state") {
                     resourceFlow.test {
@@ -40,7 +43,7 @@ class ResourceExtTest : DescribeSpec({
 
             describe("asResourceFlow with previous data") {
                 val previousData = "Hi"
-                val resourceFlow = flow.asResourceFlow(previousData)
+                val resourceFlow = flow.asResourceFlow(errorMessageMapper, previousData)
 
                 it("should receive loading state with previousData") {
                     resourceFlow.test {
@@ -62,7 +65,7 @@ class ResourceExtTest : DescribeSpec({
             val flow = flow<String> { throw IOException() }
 
             describe("asResourceFlow without previous data") {
-                val resourceFlow = flow.asResourceFlow()
+                val resourceFlow = flow.asResourceFlow(errorMessageMapper)
 
                 resourceFlow.collect()
 
@@ -75,6 +78,7 @@ class ResourceExtTest : DescribeSpec({
                         val secondItem = awaitItem()
                         secondItem.status shouldBe Status.ERROR
                         secondItem.data shouldBe null
+                        secondItem.error shouldBe "error"
 
                         awaitComplete()
                     }
@@ -83,7 +87,7 @@ class ResourceExtTest : DescribeSpec({
 
             describe("asResourceFlow with previous data") {
                 val previousData = "Hi"
-                val resourceFlow = flow.asResourceFlow(previousData)
+                val resourceFlow = flow.asResourceFlow(errorMessageMapper, previousData)
 
                 resourceFlow.collect()
 
@@ -96,6 +100,7 @@ class ResourceExtTest : DescribeSpec({
                         val secondItem = awaitItem()
                         secondItem.status shouldBe Status.ERROR
                         secondItem.data shouldBe previousData
+                        secondItem.error shouldBe "error"
 
                         awaitComplete()
                     }

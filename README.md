@@ -68,8 +68,3 @@ models or database model are converted to domain models.
 ## Credit
 
 Data are provided by the awesome [CoinGecko API](https://www.coingecko.com/en/api)
-
-# TODO
-
-- [ ] Add more UI tests (based on the mocked web services)
-- [ ] Use StateFlow instead of livedata

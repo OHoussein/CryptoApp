@@ -14,6 +14,7 @@ class ResourceTest : DescribeSpec({
             resource.status shouldBe Status.SUCCESS
             resource.error shouldBe null
             resource.data shouldBe data
+            resource.isSuccess shouldBe true
         }
     }
 
@@ -26,6 +27,7 @@ class ResourceTest : DescribeSpec({
                 resource.status shouldBe Status.LOADING
                 resource.error shouldBe null
                 resource.data shouldBe null
+                resource.isSuccess shouldBe false
             }
         }
 
@@ -36,30 +38,32 @@ class ResourceTest : DescribeSpec({
                 resource.status shouldBe Status.LOADING
                 resource.error shouldBe null
                 resource.data shouldBe data
+                resource.isSuccess shouldBe false
             }
         }
     }
 
     describe("an error Resource") {
-        val error = Exception()
 
         describe("without data") {
-            val resource = Resource.error<String>(error)
+            val resource = Resource.error<String>("error")
 
             it("should be an error resource") {
                 resource.status shouldBe Status.ERROR
-                resource.error shouldBe error
+                resource.error shouldBe "error"
                 resource.data shouldBe null
+                resource.isSuccess shouldBe false
             }
         }
 
         describe("with data") {
-            val resource = Resource.error(error, data)
+            val resource = Resource.error("error", data)
 
             it("should be an error resource with data") {
                 resource.status shouldBe Status.ERROR
-                resource.error shouldBe error
+                resource.error shouldBe "error"
                 resource.data shouldBe data
+                resource.isSuccess shouldBe false
             }
         }
     }

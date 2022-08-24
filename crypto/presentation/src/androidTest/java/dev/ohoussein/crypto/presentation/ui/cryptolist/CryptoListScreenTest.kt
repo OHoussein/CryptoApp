@@ -36,6 +36,7 @@ import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -96,7 +97,7 @@ class CryptoListScreenTest {
             setupContent {
                 //check just the first item
                 thenCryptoItemShouldBeDisplayed(data.first())
-                givenErrorThanSuccessGetListOfCrypto {
+                givenErrorOnGetListOfCrypto {
                     swipeToRefreshList()
                     // Then should display error and still see the list
                     thenShouldDisplayError()
@@ -136,6 +137,13 @@ class CryptoListScreenTest {
         whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))
             .thenReturn(flowOf(CachedData.fresh(data)))
         next(data)
+    }
+
+    private fun givenErrorOnGetListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+        val successData = TestDataFactory.makeCryptoList(20)
+        whenever(cryptoRepo.getTopCryptoList(any()))
+            .thenReturn(flow { throw IOException() })
+        next(successData)
     }
 
     private fun givenErrorThanSuccessGetListOfCrypto(next: (List<DomainCrypto>) -> Unit) {

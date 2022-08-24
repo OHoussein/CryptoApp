@@ -38,7 +38,6 @@ dependencies {
 
     testImplementation test.robolectric
     testImplementation androidTest.roomTestHelper
-    testImplementation android.jetpack.livedata
     testImplementation androidTest.testCoreKtx
     testImplementation test.archCoreTesting
 

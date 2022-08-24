@@ -6,6 +6,8 @@ package dev.ohoussein.cryptoapp.common.resource
 </T> */
 
 data class Resource<out T>(val status: Status, val data: T?, val error: String?) {
+    val isSuccess = status == Status.SUCCESS
+
     companion object {
         fun <T> success(data: T?): Resource<T> {
             return Resource(Status.SUCCESS, data, null)

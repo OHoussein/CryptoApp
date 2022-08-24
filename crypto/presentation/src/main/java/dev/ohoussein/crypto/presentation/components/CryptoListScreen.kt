@@ -14,19 +14,20 @@ import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
+import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
-import dev.ohoussein.cryptoapp.common.resource.Resource
 import dev.ohoussein.cryptoapp.common.resource.Status
 import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
@@ -119,24 +120,25 @@ fun CryptoListStateScreen(
     }
 }
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CryptoListScreen(
     viewModel: CryptoListViewModel,
     onClick: (Crypto) -> Unit,
 ) {
-    val cryptoList: Resource<List<Crypto>>? by viewModel.topCryptoList.observeAsState()
+    val cryptoList by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-        viewModel.onScreenOpened()
+        viewModel.dispatch(CryptoListIntent.ScreenOpened)
     }
 
     CryptoAppScaffold {
         CryptoListStateScreen(
-            cryptoList = cryptoList?.data,
-            isLoading = cryptoList?.status == Status.LOADING,
-            error = cryptoList?.error,
+            cryptoList = cryptoList.cryptoList.data,
+            isLoading = cryptoList.cryptoList.status == Status.LOADING,
+            error = cryptoList.cryptoList.error,
             onClick = onClick,
-            onRefresh = { viewModel.onRefresh() }
+            onRefresh = { viewModel.dispatch(CryptoListIntent.Refresh) }
         )
     }
 }

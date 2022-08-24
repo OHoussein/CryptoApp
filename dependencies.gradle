@@ -2,7 +2,7 @@ ext {
     def coroutinesVersion = "1.6.4"
     def daggerHiltVersion = "2.43.2"
     def daggerHiltJetpackVersion = "1.0.0"
-    def lifecycleVersion = "2.5.1"
+    def lifecycleVersion = "2.6.0-alpha01"
     composeVersion = "1.2.1"
     def retrofitVersion = "2.9.0"
     def roomVersion = "2.4.3"
@@ -29,11 +29,12 @@ ext {
                     jetpack: [
                             appcompat: "androidx.appcompat:appcompat:1.5.0",
                             material : "com.google.android.material:material:1.6.1",
-                            livedata : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion",
                             lifecycle: [
                                     "androidx.lifecycle:lifecycle-extensions:2.2.0",
                                     "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
                                     "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
+                                    "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion",
+                                    "androidx.lifecycle:lifecycle-process:2.+",
                             ],
                     ],
 
@@ -43,7 +44,6 @@ ext {
                             "androidx.compose.material:material-icons-extended:$composeVersion",
                             "androidx.compose.ui:ui-tooling:$composeVersion",
                             "androidx.activity:activity-compose:1.5.1",
-                            "androidx.compose.runtime:runtime-livedata:$composeVersion",
                             "androidx.hilt:hilt-navigation-compose:1.0.0",
                             "androidx.navigation:navigation-compose:2.5.1",
                             "io.coil-kt:coil-compose:2.1.0",

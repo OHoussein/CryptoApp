@@ -38,18 +38,13 @@ fun CryptoAppNavigation(
                     type = NavType.StringType
                 }
             )
-        ) { backStackEntry ->
-
+        ) {
             val viewModel = hiltViewModel<CryptoDetailsViewModel>()
-            backStackEntry.arguments?.getString(NavPath.CryptoDetailsPath.ARG_CRYPTO_ID)
-                ?.let { cryptoId ->
-                    CryptoDetailsScreen(
-                        viewModel = viewModel,
-                        cryptoId = cryptoId,
-                        externalRouter = externalRouter,
-                        onBackClicked = { navController.popBackStack() }
-                    )
-                }
+            CryptoDetailsScreen(
+                viewModel = viewModel,
+                externalRouter = externalRouter,
+                onBackClicked = { navController.popBackStack() }
+            )
         }
     }
 }

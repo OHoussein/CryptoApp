@@ -9,6 +9,8 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.test.filters.LargeTest
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -25,7 +27,6 @@ import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.flow.flow
@@ -76,7 +77,7 @@ class CryptoDetailsScreenTest {
     @Test
     fun should_show_error_screen_and_retry() {
         //Given error
-        givenError {
+        givenErrorAndSuccessRefresh {
             //When
             setupContent {
                 //Then
@@ -98,11 +99,18 @@ class CryptoDetailsScreenTest {
         next: ComposeContentTestRule.() -> Unit,
     ) {
         composeTestRule.setContent {
-            TestNavHost(NavPath.CryptoDetailsPath.PATH) {
+            TestNavHost(
+                NavPath.CryptoDetailsPath.PATH,
+                arguments = listOf(
+                    navArgument(NavPath.CryptoDetailsPath.ARG_CRYPTO_ID) {
+                        type = NavType.StringType
+                        defaultValue = cryptoId
+                    }
+                )
+            ) {
                 val viewModel = hiltViewModel<CryptoDetailsViewModel>()
                 CryptoDetailsScreen(
                     viewModel = viewModel,
-                    cryptoId = cryptoId,
                     externalRouter = externalRouter,
                     onBackClicked = {}
                 )
@@ -118,9 +126,11 @@ class CryptoDetailsScreenTest {
         next(data)
     }
 
-    private fun givenError(next: () -> Unit) {
-        val dataFlow = flow<CachedData<DomainCryptoDetails>> { throw IOException() }
-        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)).thenReturn(dataFlow)
+    private fun givenErrorAndSuccessRefresh(next: () -> Unit) {
+        val firstData = flow<CachedData<DomainCryptoDetails>> { throw IOException() }
+        val refreshedData = TestDataFactory.randomCryptoDetails(cryptoId)
+        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)).thenReturn(firstData)
+        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.FRESH)).thenReturn(flowOf(CachedData.fresh(refreshedData)))
         next()
     }
 

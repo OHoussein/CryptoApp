@@ -25,7 +25,7 @@ class ErrorMessageFormatterTest : DescribeSpec({
             whenever(context.getString(R.string.error_unknown_error)).thenReturn(ERROR_UNKNOWN_ERROR)
 
             describe("a network error") {
-                val errorMessage = errorMessageFormatter.map(IOException())
+                val errorMessage = errorMessageFormatter(IOException())
 
                 it("should format the network error message") {
                     errorMessage shouldBe ERROR_NETWORK_MESSAGE
@@ -33,7 +33,7 @@ class ErrorMessageFormatterTest : DescribeSpec({
             }
 
             describe("an unknown error") {
-                val errorMessage = errorMessageFormatter.map(Exception())
+                val errorMessage = errorMessageFormatter(Exception())
 
                 it("should format the unknown error message") {
                     errorMessage shouldBe ERROR_UNKNOWN_ERROR
@@ -41,7 +41,7 @@ class ErrorMessageFormatterTest : DescribeSpec({
             }
 
             describe("an unknown error with message") {
-                val errorMessage = errorMessageFormatter.map(Exception(UNKNOWN_ERROR_MESSAGE))
+                val errorMessage = errorMessageFormatter(Exception(UNKNOWN_ERROR_MESSAGE))
 
                 it("should format the unknown error message") {
                     errorMessage shouldBe ERROR_UNKNOWN_ERROR_WITH_MESSAGE

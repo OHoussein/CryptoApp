@@ -1,13 +1,14 @@
 package dev.ohoussein.crypto.presentation.cryptolist
 
-import dev.ohoussein.core.test.extension.InstantTaskExecutorExtension
+import app.cash.turbine.test
+import dev.ohoussein.core.test.coroutine.flowOfError
+import dev.ohoussein.core.test.coroutine.flowOfWithDelays
 import dev.ohoussein.core.test.extension.TestCoroutineExtension
-import dev.ohoussein.core.test.livedata.mockedObserverOf
-import dev.ohoussein.core.test.livedata.verifyStates
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.Crypto
+import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
@@ -15,9 +16,11 @@ import dev.ohoussein.cryptoapp.common.resource.Resource
 import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
@@ -29,15 +32,14 @@ class CryptoListViewModelTest : DescribeSpec({
 
     isolationMode = IsolationMode.InstancePerTest
 
-    extension(TestCoroutineExtension())
-    extension(InstantTaskExecutorExtension())
+    val testDispatcher = UnconfinedTestDispatcher()
+    extension(TestCoroutineExtension(testDispatcher))
 
     val useCase = mock<GetTopCryptoList>()
     val uiMapper = mock<DomainModelMapper>()
-    val stateObserver = mockedObserverOf<Resource<List<Crypto>>>()
     val errorMessage = "an error message"
     val errorMessageFormatter = mock<ErrorMessageFormatter> {
-        on { map(any()) } doReturn errorMessage
+        on { invoke(any()) } doReturn errorMessage
     }
 
     val cryptoListViewModel by lazy {
@@ -45,9 +47,7 @@ class CryptoListViewModelTest : DescribeSpec({
             useCase = useCase,
             modelMapper = uiMapper,
             errorMessageFormatter = errorMessageFormatter,
-        ).apply {
-            topCryptoList.observeForever(stateObserver)
-        }
+        )
     }
 
     describe("mocked data") {
@@ -65,52 +65,55 @@ class CryptoListViewModelTest : DescribeSpec({
 
         describe("cached crypto data & fresh crypto data") {
             whenever(useCase.get(CachePolicy.CACHE_THEN_FRESH))
-                .thenReturn(flowOf(CachedData.cached(cachedData, true), CachedData.fresh(freshData)))
+                .thenReturn(flowOfWithDelays(CachedData.cached(cachedData, true), CachedData.fresh(freshData)))
 
             describe("onScreenOpened") {
                 beforeEach {
-                    cryptoListViewModel.onScreenOpened()
+                    cryptoListViewModel.dispatch(CryptoListIntent.ScreenOpened)
                 }
 
                 it("should get 1 loading state and 1 success state") {
-                    stateObserver.verifyStates(
-                        Resource.loading(),
-                        Resource.loading(cachedUiData),
-                        Resource.success(freshUiData),
-                    )
+                    cryptoListViewModel.state.test {
+                        awaitItem().cryptoList shouldBe Resource.loading()
+                        testDispatcher.scheduler.advanceTimeBy(301)
+                        awaitItem().cryptoList shouldBe Resource.loading(cachedUiData)
+                        testDispatcher.scheduler.advanceTimeBy(301)
+                        awaitItem().cryptoList shouldBe Resource.success(freshUiData)
+                    }
                 }
 
                 describe("a success onRefresh") {
                     beforeEach {
+                        testDispatcher.scheduler.advanceUntilIdle()
                         whenever(useCase.get(CachePolicy.FRESH))
-                            .thenReturn(flowOf(CachedData.fresh(freshRefreshData)))
-                        cryptoListViewModel.onRefresh()
+                            .thenReturn(flowOfWithDelays(CachedData.fresh(freshRefreshData)))
+
+                        cryptoListViewModel.dispatch(CryptoListIntent.Refresh)
                     }
 
                     it("should get 1 loading state and 1 success state with the new refreshed data") {
-                        stateObserver.verifyStates(
-                            Resource.loading(freshUiData),
-                            Resource.success(freshRefreshUiData),
-                        )
+                        cryptoListViewModel.state.test {
+                            awaitItem().cryptoList shouldBe Resource.loading(freshUiData)
+                            testDispatcher.scheduler.advanceTimeBy(301)
+                            awaitItem().cryptoList shouldBe Resource.success(freshRefreshUiData)
+                        }
                     }
                 }
 
                 describe("an error onRefresh") {
                     beforeEach {
+                        testDispatcher.scheduler.advanceUntilIdle()
                         whenever(useCase.get(CachePolicy.FRESH))
-                            .thenReturn(
-                                flow {
-                                    throw IOException()
-                                }
-                            )
-                        cryptoListViewModel.onRefresh()
+                            .thenReturn(flowOfError(delayMs = 300))
+                        cryptoListViewModel.dispatch(CryptoListIntent.Refresh)
                     }
 
                     it("should get 1 loading state and 1 error state with the existing fresh data") {
-                        stateObserver.verifyStates(
-                            Resource.loading(freshUiData),
-                            Resource.error(errorMessage, freshUiData),
-                        )
+                        cryptoListViewModel.state.test {
+                            awaitItem().cryptoList shouldBe Resource.loading(freshUiData)
+                            testDispatcher.scheduler.advanceTimeBy(301)
+                            awaitItem().cryptoList shouldBe Resource.error(errorMessage, freshUiData)
+                        }
                     }
                 }
             }
@@ -120,53 +123,58 @@ class CryptoListViewModelTest : DescribeSpec({
             whenever(useCase.get(CachePolicy.CACHE_THEN_FRESH))
                 .thenReturn(
                     flow {
+                        delay(300)
                         emit(CachedData.cached(cachedData, true))
+                        delay(300)
                         throw IOException("")
                     }
                 )
 
             describe("onScreenOpened") {
-                cryptoListViewModel.onScreenOpened()
+                cryptoListViewModel.dispatch(CryptoListIntent.ScreenOpened)
 
                 it("should get loading and error states with the cached data") {
-                    stateObserver.verifyStates(
-                        Resource.loading(),
-                        Resource.loading(cachedUiData),
-                        Resource.error(errorMessage, cachedUiData),
-                    )
+                    cryptoListViewModel.state.test {
+                        awaitItem().cryptoList shouldBe Resource.loading()
+                        testDispatcher.scheduler.advanceTimeBy(301)
+                        awaitItem().cryptoList shouldBe Resource.loading(cachedUiData)
+                        testDispatcher.scheduler.advanceTimeBy(300)
+                        awaitItem().cryptoList shouldBe Resource.error(errorMessage, cachedUiData)
+                    }
                 }
 
                 describe("a success onRefresh") {
                     beforeEach {
+                        testDispatcher.scheduler.advanceUntilIdle()
                         whenever(useCase.get(CachePolicy.FRESH))
-                            .thenReturn(flowOf(CachedData.fresh(freshRefreshData)))
-                        cryptoListViewModel.onRefresh()
+                            .thenReturn(flowOfWithDelays(CachedData.fresh(freshRefreshData)))
+                        cryptoListViewModel.dispatch(CryptoListIntent.Refresh)
                     }
 
                     it("should get 1 loading state and 1 success state with the new refreshed data") {
-                        stateObserver.verifyStates(
-                            Resource.loading(cachedUiData),
-                            Resource.success(freshRefreshUiData),
-                        )
+                        cryptoListViewModel.state.test {
+                            testDispatcher.scheduler.advanceTimeBy(301)
+                            awaitItem().cryptoList shouldBe Resource.loading(cachedUiData)
+                            testDispatcher.scheduler.advanceTimeBy(300)
+                            awaitItem().cryptoList shouldBe Resource.success(freshRefreshUiData)
+                        }
                     }
                 }
 
                 describe("an error onRefresh") {
                     beforeEach {
+                        testDispatcher.scheduler.advanceUntilIdle()
                         whenever(useCase.get(CachePolicy.FRESH))
-                            .thenReturn(
-                                flow {
-                                    throw IOException()
-                                }
-                            )
-                        cryptoListViewModel.onRefresh()
+                            .thenReturn(flowOfError(delayMs = 300))
+                        cryptoListViewModel.dispatch(CryptoListIntent.Refresh)
                     }
 
                     it("should get 1 loading state and 1 error state with the existing fresh data") {
-                        stateObserver.verifyStates(
-                            Resource.loading(cachedUiData),
-                            Resource.error(errorMessage, cachedUiData),
-                        )
+                        cryptoListViewModel.state.test {
+                            awaitItem().cryptoList shouldBe Resource.loading(cachedUiData)
+                            testDispatcher.scheduler.advanceTimeBy(301)
+                            awaitItem().cryptoList shouldBe Resource.error(errorMessage, cachedUiData)
+                        }
                     }
                 }
             }
@@ -174,43 +182,53 @@ class CryptoListViewModelTest : DescribeSpec({
 
         describe("no cached crypto data & fresh crypto data") {
             whenever(useCase.get(CachePolicy.CACHE_THEN_FRESH))
-                .thenReturn(flowOf(CachedData.fresh(freshData)))
+                .thenReturn(flowOfWithDelays(CachedData.fresh(freshData)))
 
             describe("onScreenOpened") {
-                cryptoListViewModel.onScreenOpened()
+                cryptoListViewModel.dispatch(CryptoListIntent.ScreenOpened)
 
                 it("should get 1 loading state and 1 success state") {
-                    stateObserver.verifyStates(
-                        Resource.loading(),
-                        Resource.success(freshUiData),
-                    )
+                    cryptoListViewModel.state.test {
+                        awaitItem().cryptoList shouldBe Resource.loading()
+                        testDispatcher.scheduler.advanceTimeBy(301)
+                        awaitItem().cryptoList shouldBe Resource.success(freshUiData)
+                    }
                 }
             }
         }
 
         describe("no cached crypto data & error on fresh crypto data") {
             whenever(useCase.get(CachePolicy.CACHE_THEN_FRESH))
-                .thenReturn(flow { throw IOException("") })
+                .thenReturn(flowOfError(delayMs = 300))
 
             describe("onScreenOpened") {
-                cryptoListViewModel.onScreenOpened()
+                beforeEach {
+                    cryptoListViewModel.dispatch(CryptoListIntent.ScreenOpened)
+                }
 
-                it("should get 1 loading state and 1 success state") {
-                    stateObserver.verifyStates(
-                        Resource.loading(),
-                        Resource.error(errorMessage),
-                    )
+                it("should get 1 loading state and 1 error state") {
+                    cryptoListViewModel.state.test {
+                        awaitItem().cryptoList shouldBe Resource.loading()
+                        testDispatcher.scheduler.advanceTimeBy(301)
+                        awaitItem().cryptoList shouldBe Resource.error(errorMessage)
+                    }
                 }
 
                 describe("onRefresh") {
-                    cryptoListViewModel.onRefresh()
+                    beforeEach {
+                        testDispatcher.scheduler.advanceUntilIdle()
+                        whenever(useCase.get(CachePolicy.FRESH))
+                            .thenReturn(flowOfError(delayMs = 300))
 
-                    it("should get 1 loading state and 1 success state") {
-                        stateObserver.verifyStates(
-                            Resource.loading(),
-                            Resource.error(errorMessage),
-                            Resource.loading(),
-                        )
+                        cryptoListViewModel.dispatch(CryptoListIntent.Refresh)
+                    }
+
+                    it("should get 1 loading state and 1 error state") {
+                        cryptoListViewModel.state.test {
+                            awaitItem().cryptoList shouldBe Resource.loading()
+                            testDispatcher.scheduler.advanceTimeBy(301)
+                            awaitItem().cryptoList shouldBe Resource.error(errorMessage)
+                        }
                     }
                 }
             }

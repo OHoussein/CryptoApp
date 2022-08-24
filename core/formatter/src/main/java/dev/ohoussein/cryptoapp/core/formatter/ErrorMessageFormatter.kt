@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class ErrorMessageFormatter @Inject constructor(@ApplicationContext private val context: Context) {
 
-    fun map(exception: Throwable): String {
+    operator fun invoke(exception: Throwable): String {
         return when (exception) {
             is IOException -> context.getString(R.string.error_no_internet_connection)
             else -> {

@@ -27,7 +27,6 @@ dependencies {
     implementation project(path: ':core:cached-data')
     //Presentation
     implementation android.jetpack.lifecycle
-    implementation android.jetpack.livedata
     //compose
     implementation android.compose
 
@@ -36,6 +35,9 @@ dependencies {
     kapt core.hilt.compiler
     kapt core.hilt.androidCompiler
 
+    testImplementation project(path: ':core:test')
     testImplementation test.kotest
     testImplementation test.turbine
+    testImplementation test.mockito
+    testImplementation test.mockitoInline
 }

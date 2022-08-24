@@ -13,12 +13,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
+import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsIntent
+import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsState
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import dev.ohoussein.cryptoapp.common.resource.Resource
@@ -95,25 +98,25 @@ fun CryptoDetailsStateScreen(
     }
 }
 
+@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CryptoDetailsScreen(
     viewModel: CryptoDetailsViewModel,
-    cryptoId: String,
     externalRouter: ExternalRouter,
     onBackClicked: () -> Unit,
 ) {
 
-    val state: Resource<CryptoDetails> by viewModel.cryptoDetails.observeAsState(Resource.loading())
+    val state: CryptoDetailsState by viewModel.state.collectAsStateWithLifecycle()
 
-    LaunchedEffect(cryptoId) {
-        viewModel.load(cryptoId)
+    LaunchedEffect(Unit) {
+        viewModel.dispatch(CryptoDetailsIntent.ScreenOpened)
     }
 
     CryptoAppScaffold(onBackButton = onBackClicked) {
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
-            cryptoDetailsState = state,
-            onRefresh = { viewModel.load(cryptoId) },
+            cryptoDetailsState = state.crypto,
+            onRefresh = { viewModel.dispatch(CryptoDetailsIntent.Refresh) },
             onHomePageClicked = { crypto ->
                 crypto.homePageUrl?.let { externalRouter.openWebUrl(it) }
             },

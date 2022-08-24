@@ -3,16 +3,16 @@ package dev.ohoussein.core.test.extension
 import io.kotest.core.listeners.AfterSpecListener
 import io.kotest.core.listeners.BeforeSpecListener
 import io.kotest.core.spec.Spec
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.TestDispatcher
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 class TestCoroutineExtension(
-    private val dispatcher: CoroutineDispatcher = UnconfinedTestDispatcher(),
+    private val dispatcher: TestDispatcher = UnconfinedTestDispatcher(),
 ) : BeforeSpecListener, AfterSpecListener {
 
     override suspend fun beforeSpec(spec: Spec) {

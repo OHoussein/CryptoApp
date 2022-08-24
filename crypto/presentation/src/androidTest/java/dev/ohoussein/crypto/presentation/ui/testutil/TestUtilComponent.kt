@@ -1,6 +1,7 @@
 package dev.ohoussein.crypto.presentation.ui.testutil
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -11,13 +12,14 @@ import androidx.navigation.compose.rememberNavController
  */
 @Composable
 fun TestNavHost(
-        path: String,
-        content: @Composable () -> Unit,
+    path: String,
+    arguments: List<NamedNavArgument> = emptyList(),
+    content: @Composable () -> Unit,
 ) {
     val navController = rememberNavController()
 
     NavHost(navController, startDestination = path) {
-        composable(path) {
+        composable(path, arguments = arguments) {
             content()
         }
     }

@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.components
+package dev.ohoussein.crypto.presentation.ui.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -35,9 +35,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.ohoussein.crypto.presentation.UIConfig.CRYPTO_DESCRIPTION_MAX_LINES
-import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.model.LabelValue
+import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.cryptoapp.common.ext.asAnnotatedString
 import dev.ohoussein.cryptoapp.core.designsystem.theme.NegativeColor
 import dev.ohoussein.cryptoapp.core.designsystem.theme.PositiveColor

@@ -3,15 +3,16 @@ package dev.ohoussein.cryptoapp
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import dev.ohoussein.crypto.presentation.activity.RootActivity
+import dev.ohoussein.crypto.presentation.activity.CryptoActivity
 
-class SplashActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startActivity(
             Intent(
-                this, RootActivity::class.java
+                this, CryptoActivity::class.java
             )
         )
+        finish()
     }
 }

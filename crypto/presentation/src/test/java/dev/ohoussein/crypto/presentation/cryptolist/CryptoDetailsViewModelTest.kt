@@ -9,9 +9,9 @@ import dev.ohoussein.core.test.coroutine.flowOfWithDelays
 import dev.ohoussein.core.test.extension.TestCoroutineExtension
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
+import dev.ohoussein.crypto.presentation.NavPath.CryptoDetailsPath
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
-import dev.ohoussein.crypto.presentation.navigation.NavPath.CryptoDetailsPath
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsIntent
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsState
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel

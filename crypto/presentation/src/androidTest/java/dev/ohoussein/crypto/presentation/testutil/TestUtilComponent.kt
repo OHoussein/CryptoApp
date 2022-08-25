@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.ui.testutil
+package dev.ohoussein.crypto.presentation.testutil
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NamedNavArgument

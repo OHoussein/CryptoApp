@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dagger.hilt.android.AndroidEntryPoint
-import dev.ohoussein.crypto.presentation.navigation.CryptoAppNavigation
+import dev.ohoussein.crypto.presentation.ui.navigation.CryptoAppNavigation
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RootActivity : ComponentActivity() {
+class CryptoActivity : ComponentActivity() {
 
     @Inject
     lateinit var externalRouter: ExternalRouter

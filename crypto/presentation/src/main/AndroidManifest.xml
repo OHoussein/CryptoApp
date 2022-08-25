@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="dev.ohoussein.crypto.presentation.activity.RootActivity"
+            android:name="dev.ohoussein.crypto.presentation.activity.CryptoActivity"
             android:exported="true" />
     </application>
 </manifest>

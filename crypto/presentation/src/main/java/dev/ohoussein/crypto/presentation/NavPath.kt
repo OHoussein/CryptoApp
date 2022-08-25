@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.navigation
+package dev.ohoussein.crypto.presentation
 
 object NavPath {
     const val HOME = "home"

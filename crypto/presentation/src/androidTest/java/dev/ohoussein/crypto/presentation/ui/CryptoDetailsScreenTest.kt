@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.ui.cryptolist
+package dev.ohoussein.crypto.presentation.ui
 
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
@@ -20,17 +20,16 @@ import dev.ohoussein.core.test.mock.TestDataFactory
 import dev.ohoussein.crypto.data.di.CryptoDataModule
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
-import dev.ohoussein.crypto.presentation.navigation.NavPath
-import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
+import dev.ohoussein.crypto.presentation.NavPath
+import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
+import kotlinx.coroutines.flow.flowOf
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

@@ -7,7 +7,7 @@ autoCorrected=$?
 
 if [ "$autoCorrected" = 0 ] ; then
     echo "Static analysis is corrected. Proceeding with push."
-    sleep 1 #wait for file sync
+    sync
     exit 0
 else
     echo 1>&2 "Static analysis found issues you need to fix before pushing."

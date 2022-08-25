@@ -1,6 +1,6 @@
 @file:Suppress("LongParameterList")
 
-package dev.ohoussein.crypto.presentation.components
+package dev.ohoussein.crypto.presentation.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,9 +24,10 @@ import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import dev.ohoussein.crypto.presentation.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
+import dev.ohoussein.crypto.presentation.ui.components.CryptoItem
+import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.resource.Status
 import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold

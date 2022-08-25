@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.ui.di
+package dev.ohoussein.crypto.presentation.testutil.di
 
 import dagger.Module
 import dagger.Provides

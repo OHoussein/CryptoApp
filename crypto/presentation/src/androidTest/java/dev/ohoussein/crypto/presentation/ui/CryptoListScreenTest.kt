@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.ui.cryptolist
+package dev.ohoussein.crypto.presentation.ui
 
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
@@ -21,10 +21,8 @@ import dev.ohoussein.core.test.mock.TestDataFactory
 import dev.ohoussein.crypto.data.di.CryptoDataModule
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import dev.ohoussein.crypto.presentation.components.CryptoListScreen
-import dev.ohoussein.crypto.presentation.components.CryptoListTestTag
-import dev.ohoussein.crypto.presentation.navigation.NavPath
-import dev.ohoussein.crypto.presentation.ui.testutil.TestNavHost
+import dev.ohoussein.crypto.presentation.NavPath
+import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData

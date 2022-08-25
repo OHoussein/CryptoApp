@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.presentation.navigation
+package dev.ohoussein.crypto.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -7,10 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import dev.ohoussein.crypto.presentation.components.CryptoDetailsScreen
-import dev.ohoussein.crypto.presentation.components.CryptoListScreen
-import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
+import dev.ohoussein.crypto.presentation.NavPath
+import dev.ohoussein.crypto.presentation.NavPath.CryptoDetailsPath
+import dev.ohoussein.crypto.presentation.ui.CryptoDetailsScreen
+import dev.ohoussein.crypto.presentation.ui.CryptoListScreen
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import timber.log.Timber
 
@@ -22,26 +22,24 @@ fun CryptoAppNavigation(
 
     NavHost(navController, startDestination = NavPath.HOME) {
         composable(NavPath.HOME) {
-            val viewModel = hiltViewModel<CryptoListViewModel>()
             CryptoListScreen(
-                viewModel = viewModel,
+                viewModel = hiltViewModel(),
                 onClick = {
                     Timber.d("On item clicked ${it.base.name}")
-                    navController.navigate(NavPath.CryptoDetailsPath.path(it.base.id))
+                    navController.navigate(CryptoDetailsPath.path(it.base.id))
                 }
             )
         }
         composable(
-            NavPath.CryptoDetailsPath.PATH,
+            CryptoDetailsPath.PATH,
             arguments = listOf(
-                navArgument(NavPath.CryptoDetailsPath.ARG_CRYPTO_ID) {
+                navArgument(CryptoDetailsPath.ARG_CRYPTO_ID) {
                     type = NavType.StringType
                 }
             )
         ) {
-            val viewModel = hiltViewModel<CryptoDetailsViewModel>()
             CryptoDetailsScreen(
-                viewModel = viewModel,
+                viewModel = hiltViewModel(),
                 externalRouter = externalRouter,
                 onBackClicked = { navController.popBackStack() }
             )

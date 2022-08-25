@@ -1,6 +1,6 @@
 @file:Suppress("MagicNumber", "MaxLineLength")
 
-package dev.ohoussein.crypto.presentation.debug
+package dev.ohoussein.crypto.presentation.ui.debug
 
 object DataPreview {
     val previewCrypto by lazy {

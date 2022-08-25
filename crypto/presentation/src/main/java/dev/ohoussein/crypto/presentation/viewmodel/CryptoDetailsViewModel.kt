@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
+import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
-import dev.ohoussein.crypto.presentation.navigation.NavPath
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsEvents
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsIntent
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsReducer

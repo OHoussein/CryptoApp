@@ -1,6 +1,6 @@
 @file:Suppress("LongParameterList")
 
-package dev.ohoussein.crypto.presentation.components
+package dev.ohoussein.crypto.presentation.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -18,10 +18,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import dev.ohoussein.crypto.presentation.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsIntent
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsState
+import dev.ohoussein.crypto.presentation.ui.components.CryptoDetailsHeader
+import dev.ohoussein.crypto.presentation.ui.components.CryptoLinks
+import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import dev.ohoussein.cryptoapp.common.resource.Resource

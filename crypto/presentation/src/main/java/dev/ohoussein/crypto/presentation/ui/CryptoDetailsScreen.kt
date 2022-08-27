@@ -134,8 +134,8 @@ fun CryptoDetailsScreen(
 
 @Preview(showSystemUi = true, showBackground = true)
 @Composable
-private fun PreviewCryptoList() {
-    CryptoAppTheme {
+fun PreviewCryptoDetails(darkTheme: Boolean = false) {
+    CryptoAppTheme(darkTheme = darkTheme) {
         CryptoDetails(
             crypto = previewCryptoDetails,
             onHomePageClicked = {},

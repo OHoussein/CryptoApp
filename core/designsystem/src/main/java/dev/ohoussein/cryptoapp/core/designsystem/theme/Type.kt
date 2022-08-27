@@ -23,6 +23,12 @@ val Typography = Typography(
         fontSize = 14.sp,
         lineHeight = 24.sp,
     ),
+    body2 = TextStyle(
+        fontFamily = MontserratFontFamily,
+        fontWeight = FontWeight.Light,
+        fontSize = 14.sp,
+        lineHeight = 24.sp,
+    ),
     caption = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Light,

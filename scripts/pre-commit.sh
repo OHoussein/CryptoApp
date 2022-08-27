@@ -6,7 +6,7 @@ echo "Running git pre-commit hook"
 autoCorrected=$?
 
 if [ "$autoCorrected" = 0 ] ; then
-    echo "Static analysis is corrected. Proceeding with push."
+    echo "Static analysis found no issues. Proceeding with push."
     sync
     exit 0
 else

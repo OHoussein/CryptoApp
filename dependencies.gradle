@@ -87,20 +87,21 @@ ext {
     ]
 
     test = [
-            junit          : "junit:junit:4.13.2",
-            mockito        : "org.mockito.kotlin:mockito-kotlin:$mockitoVersion",
-            mockitoInline  : "org.mockito:mockito-inline:$mockitoVersion",
-            archCoreTesting: "androidx.arch.core:core-testing:2.1.0",
-            coroutinesTest : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
-            mockWebserver  : "com.squareup.okhttp3:mockwebserver:4.10.0",
-            byteBuddy      : "net.bytebuddy:byte-buddy:1.12.12",
-            robolectric    : "org.robolectric:robolectric:4.8.1",
-            junitVintage   : "org.junit.vintage:junit-vintage-engine:5.9.0",
-            kotest         : [
+            junit                : "junit:junit:4.13.2",
+            mockito              : "org.mockito.kotlin:mockito-kotlin:$mockitoVersion",
+            mockitoInline        : "org.mockito:mockito-inline:$mockitoVersion",
+            archCoreTesting      : "androidx.arch.core:core-testing:2.1.0",
+            coroutinesTest       : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion",
+            mockWebserver        : "com.squareup.okhttp3:mockwebserver:4.10.0",
+            byteBuddy            : "net.bytebuddy:byte-buddy:1.12.12",
+            robolectric          : "org.robolectric:robolectric:4.8.1",
+            junitVintage         : "org.junit.vintage:junit-vintage-engine:5.9.0",
+            testParameterInjector: "com.google.testparameterinjector:test-parameter-injector:1.8",
+            kotest               : [
                     "io.kotest:kotest-runner-junit5:$koTestVersion",
                     "io.kotest:kotest-assertions-core:$koTestVersion",
                     "org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion",
             ],
-            turbine        : "app.cash.turbine:turbine:0.9.0",
+            turbine              : "app.cash.turbine:turbine:0.9.0",
     ]
 }

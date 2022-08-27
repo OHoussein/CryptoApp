@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.library'
+    id "app.cash.paparazzi"
     id 'org.jetbrains.kotlin.android'
     id "kotlin-kapt"
     id "dagger.hilt.android.plugin"
@@ -16,7 +17,7 @@ android {
         compose true
     }
 
-    tasks.withType(Test) {
+    tasks.withType(Test).configureEach {
         useJUnitPlatform()
     }
 }
@@ -47,6 +48,8 @@ dependencies {
     testImplementation test.coroutinesTest
     testImplementation test.kotest
     testImplementation test.turbine
+    testRuntimeOnly test.junitVintage
+    testImplementation test.testParameterInjector
 
     androidTestImplementation project(path: ':crypto:data')
     androidTestImplementation project(path: ':core:test')

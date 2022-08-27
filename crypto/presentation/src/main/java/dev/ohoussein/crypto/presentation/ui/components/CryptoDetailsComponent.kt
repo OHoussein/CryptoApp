@@ -154,6 +154,7 @@ fun CryptoLinks(
         Text(
             text = stringResource(id = R.string.crypto_details_links_section),
             style = MaterialTheme.typography.h6,
+            color = MaterialTheme.colors.onSurface,
         )
         if (crypto.homePageUrl != null) {
             ItemLink(
@@ -208,6 +209,7 @@ fun ItemLink(
             Text(
                 text = label,
                 style = MaterialTheme.typography.body2,
+                color = MaterialTheme.colors.onSurface,
             )
         }
         Icon(

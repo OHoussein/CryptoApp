@@ -2,6 +2,7 @@
 
 package dev.ohoussein.crypto.presentation.ui
 
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -144,10 +145,10 @@ fun CryptoListScreen(
     }
 }
 
-@Preview(showSystemUi = true, showBackground = true)
+@Preview(showSystemUi = true, showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
-private fun PreviewCryptoList() {
-    CryptoAppTheme {
+fun PreviewCryptoList(darkTheme: Boolean = true) {
+    CryptoAppTheme(darkTheme = darkTheme) {
         CryptoList(
             cryptoList = previewListCrypto,
             onClick = {},

@@ -15,10 +15,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewCrypto
@@ -95,14 +98,17 @@ fun CryptoImage(
     modifier: Modifier = Modifier,
     imageUrl: String,
 ) {
+    val painter = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(LocalContext.current)
+            .placeholder(R.drawable.ic_coin)
+            .data(imageUrl)
+            .transformations(CircleCropTransformation())
+            .build(),
+        contentScale = ContentScale.Crop
+    )
+
     Image(
-        painter = rememberImagePainter(
-            data = imageUrl,
-            builder = {
-                transformations(CircleCropTransformation())
-                placeholder(R.drawable.ic_coin)
-            }
-        ),
+        painter = painter,
         contentDescription = null,
         modifier = modifier
     )

@@ -12,13 +12,34 @@ apply from: "$rootDir/androidModule.gradle"
 apply from: "$rootDir/dependencies.gradle"
 
 android {
+    compileSdkVersion project.compileSdkVersion
     defaultConfig {
         applicationId project.applicationId
+        minSdkVersion project.minSdkVersion
+        targetSdkVersion project.targetSdkVersion
+        versionCode project.versionCode
+        versionName project.versionName
     }
+
     buildTypes {
         release {
+            minifyEnabled true
             shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //TO-DO signing keys
+            signingConfig debug.signingConfig
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        resources.excludes.add("**/attach_hotspot_windows.dll")
+        resources.excludes.add("META-INF/*")
+        exclude "META-INF/licenses/**"
     }
 }
 
@@ -73,6 +94,8 @@ dependencies {
     androidTestImplementation test.coroutinesTest
     androidTestImplementation androidTest.composeTesting
     debugImplementation androidTest.composeTestingManifest
+    androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation project(path: ':core:test')
 
     //Unit tests
     testImplementation project(path: ':core:test')

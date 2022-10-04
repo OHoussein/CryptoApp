@@ -34,7 +34,7 @@ ext {
                                     "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion",
                                     "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion",
                                     "androidx.lifecycle:lifecycle-runtime-compose:$lifecycleVersion",
-                                    "androidx.lifecycle:lifecycle-process:2.+",
+                                    "androidx.lifecycle:lifecycle-process:$lifecycleVersion",
                             ],
                     ],
 

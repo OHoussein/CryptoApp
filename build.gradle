@@ -3,7 +3,7 @@ apply from: "dependencies.gradle"
 
 buildscript {
     ext {
-        androidGradlePlugin = '7.3.0-rc01'
+        androidGradlePlugin = '7.2.2'
         kotlinVersion = "1.7.10"
         daggerHiltVersion = "2.43.2"
         detektVersion = "1.21.0"
@@ -60,7 +60,6 @@ tasks.register("installGitHook", Copy) {
 
 tasks.getByPath(":app:preBuild").dependsOn(":installGitHook")
 
-
 tasks.named("dependencyUpdates").configure {
     resolutionStrategy {
         componentSelection { rules ->
@@ -74,4 +73,16 @@ tasks.named("dependencyUpdates").configure {
             }
         }
     }
+}
+
+task e2eTests(type: Exec) {
+    dependsOn(":app:installRelease")
+    workingDir "$projectDir/e2e_tests"
+    commandLine "pipenv", "run", "python3", "crypto.py"
+}
+
+task generateScreenshots(type: Exec) {
+    dependsOn(":app:installRelease")
+    workingDir "$projectDir/e2e_tests"
+    commandLine "pipenv", "run", "python3", "crypto_screenshot_generate.py"
 }

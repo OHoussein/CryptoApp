@@ -28,5 +28,10 @@ gradlePlugin {
             id = "${namespace}.android.robolectric"
             implementationClass = "RobolectricConventionPlugin"
         }
+
+        register("compose") {
+            id = "${namespace}.android.compose"
+            implementationClass = "AndroidLibraryComposeConventionPlugin"
+        }
     }
 }

@@ -5,16 +5,13 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.android.compose")
 }
 
 apply(from = "$rootDir/androidModule.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.crypto.presentation"
-
-    buildFeatures {
-        compose = true
-    }
 
     tasks.withType<Test>().configureEach {
         useJUnitPlatform()

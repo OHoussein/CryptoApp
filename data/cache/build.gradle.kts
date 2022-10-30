@@ -1,8 +1,8 @@
 plugins {
     id("kotlin")
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 apply(from = "$rootDir/gradle/jacoco.gradle")
 
 tasks.withType<Test> {

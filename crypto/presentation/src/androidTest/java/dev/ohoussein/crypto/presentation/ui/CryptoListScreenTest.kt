@@ -1,6 +1,5 @@
 package dev.ohoussein.crypto.presentation.ui
 
-import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
@@ -26,6 +25,7 @@ import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
+import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -63,9 +63,9 @@ class CryptoListScreenTest {
     @Test
     fun should_show_list_crypto() {
         givenListOfCrypto { data ->
-            //When
+            // When
             setupContent {
-                //Then
+                // Then
                 thenCryptoListShouldBeDisplayed(data)
             }
         }
@@ -73,11 +73,11 @@ class CryptoListScreenTest {
 
     @Test
     fun should_show_error_screen_and_retry() {
-        //Given error
+        // Given error
         givenErrorThanSuccessGetListOfCrypto { data ->
-            //When
+            // When
             setupContent {
-                //Then
+                // Then
                 thenShouldDisplayError()
 
                 composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
@@ -91,9 +91,9 @@ class CryptoListScreenTest {
     @Test
     fun should_show_error_message_and_retry_when_refreshing() {
         givenListOfCrypto { data ->
-            //When
+            // When
             setupContent {
-                //check just the first item
+                // check just the first item
                 thenCryptoItemShouldBeDisplayed(data.first())
                 givenErrorOnGetListOfCrypto {
                     swipeToRefreshList()
@@ -105,9 +105,9 @@ class CryptoListScreenTest {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // private methods
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun setupContent(
         next: ComposeContentTestRule.() -> Unit,
@@ -172,4 +172,3 @@ class CryptoListScreenTest {
         composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry)).assertIsDisplayed()
     }
 }
-

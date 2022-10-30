@@ -3,9 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 apply(from = "$rootDir/androidModule.gradle")
 
 android {
@@ -14,7 +14,7 @@ android {
 
 dependencies {
     implementation(project(path = ":crypto:domain"))
-    //TODO check those deps
+    // TODO check those deps
     implementation(libs.android.appcompat)
     implementation(libs.core.kotlin.coroutines.core)
 

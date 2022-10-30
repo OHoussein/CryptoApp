@@ -3,9 +3,9 @@ package dev.ohoussein.cryptoapp.core.formatter
 import android.content.Context
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import java.io.IOException
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
-import java.io.IOException
 
 private const val ERROR_NETWORK_MESSAGE = "No internet connection"
 private const val UNKNOWN_ERROR_MESSAGE = "Server error"

@@ -4,10 +4,10 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
 apply(from = "$rootDir/androidModule.gradle")
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.crypto.presentation"
@@ -29,10 +29,10 @@ dependencies {
     implementation(project(path = ":core:cached-data"))
     androidTestImplementation(project(path = ":core:injection"))
 
-    //Presentation
+    // Presentation
     implementation(libs.android.lifecycle.extensions)
     implementation(libs.core.kotlin.coroutines.core)
-    
+
     implementation(libs.android.compose.material.icons)
     implementation(libs.android.compose.hilt.navigation)
     implementation(libs.android.compose.activity)
@@ -53,7 +53,7 @@ dependencies {
     kapt(libs.core.hilt.compiler)
     kapt(libs.core.dagger.hilt.android.compiler)
 
-    testImplementation(project(path= ":core:test"))
+    testImplementation(project(path = ":core:test"))
     testImplementation(libs.test.mockito.inline)
     testRuntimeOnly(libs.test.junitVintage.engine)
     testImplementation(libs.test.parameterInjector)

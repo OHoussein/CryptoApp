@@ -16,11 +16,11 @@ import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.mvi.BaseViewModel
 import dev.ohoussein.cryptoapp.common.resource.asCachedResourceFlow
 import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 @HiltViewModel
 class CryptoDetailsViewModel @Inject constructor(
@@ -31,6 +31,7 @@ class CryptoDetailsViewModel @Inject constructor(
 ) : BaseViewModel<CryptoDetailsState, CryptoDetailsEvents, CryptoDetailsIntent>() {
 
     override val reducer = CryptoDetailsReducer()
+    val reducessr = CryptoDetailsReducer()
 
     private var cryptoId: String = checkNotNull(savedStateHandle[NavPath.CryptoDetailsPath.ARG_CRYPTO_ID])
 

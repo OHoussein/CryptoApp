@@ -8,6 +8,7 @@ import dev.ohoussein.cryptoapp.cacheddata.DataOrigin
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import java.io.IOException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.TestScope
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
-import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class CachedDataRepositoryImplTest : DescribeSpec({

@@ -47,7 +47,7 @@ build-android-gradlePlugin = { module = "com.android.tools.build:gradle", versio
 build-hilt = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "daggerHiltVersion" }
 build-gradleVersionsPlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradleVersionsPluginVersion" }
 build-detekt-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
-build-detekt-formating = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
+build-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
 build-jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacocoVersion" }
 build-paparazzi = { module = "app.cash.paparazzi:paparazzi-gradle-plugin", version.ref = "paparazziVersion" }
 

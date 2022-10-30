@@ -4,7 +4,7 @@ plugins {
     id("kotlin-kapt")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
+
 apply(from = "$rootDir/androidModule.gradle")
 
 android {

@@ -17,6 +17,7 @@ import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import java.io.IOException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
@@ -25,7 +26,6 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.doReturn
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
-import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class CryptoListViewModelTest : DescribeSpec({

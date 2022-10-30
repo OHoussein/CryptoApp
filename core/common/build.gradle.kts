@@ -2,9 +2,9 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 apply(from = "$rootDir/androidModule.gradle")
 
 android {
@@ -39,7 +39,7 @@ dependencies {
     testImplementation(project(path = ":core:test"))
     testImplementation(libs.test.mockito.inline)
 
-    //Robolectric
+    // Robolectric
     testImplementation(libs.test.robolectric)
     testImplementation(libs.test.junitVintage.engine)
     testImplementation(libs.test.junit)

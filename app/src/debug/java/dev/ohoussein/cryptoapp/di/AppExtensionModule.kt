@@ -8,10 +8,10 @@ import dagger.hilt.components.SingletonComponent
 import dev.ohoussein.cryptoapp.config.DebuggableAppSetup
 import dev.ohoussein.cryptoapp.config.IAppFlavorSetup
 import dev.ohoussein.cryptoapp.data.network.di.DIConstants
-import okhttp3.Interceptor
-import okhttp3.logging.HttpLoggingInterceptor
 import javax.inject.Named
 import javax.inject.Singleton
+import okhttp3.Interceptor
+import okhttp3.logging.HttpLoggingInterceptor
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,7 +30,7 @@ object AppExtensionModule {
     @Named(DIConstants.Qualifier.HTTP_INTERCEPTOR)
     @Singleton
     fun provideHttpInterceptors(): Array<Interceptor> = arrayOf(
-            //Logger
-            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+        // Logger
+        HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
     )
 }

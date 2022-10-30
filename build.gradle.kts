@@ -13,7 +13,7 @@ buildscript {
         classpath(libs.build.hilt)
         classpath(libs.build.gradleVersionsPlugin)
         classpath(libs.build.detekt.plugin)
-        classpath(libs.build.detekt.formating)
+        classpath(libs.build.detekt.formatting)
         classpath(libs.build.jacoco)
         classpath(libs.build.paparazzi)
     }

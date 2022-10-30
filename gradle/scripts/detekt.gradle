@@ -1,11 +1,16 @@
 apply plugin: "io.gitlab.arturbosch.detekt"
 
+ext {
+    detektVersion = "1.21.0"
+}
+
 detekt {
     config = files("$rootProject.projectDir/config/detekt.yml")
     baseline = file("$projectDir/config/baseline.xml")
     buildUponDefaultConfig = true
     autoCorrect = project.hasProperty('detektAutoFix')
 }
+
 tasks.named("detekt").configure {
     reports {
         txt.required.set(true)

@@ -53,44 +53,21 @@ dependencies {
     implementation(project(path = ":core:injection"))
 
     //Common
-    implementation(CoreLibs.coroutinesCore)
-    implementation(CoreLibs.coroutinesAndroid)
-    implementation(CoreLibs.timber)
+    implementation(libs.core.kotlin.coroutines.core)
+    implementation(libs.core.kotlin.coroutines.android)
+    implementation(libs.core.timber)
 
-    implementation(CoreLibs.hiltAndroid)
-    kapt(CoreLibs.hiltCompiler)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    kapt(libs.core.hilt.compiler)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
     //Presentation
-    implementation(AndroidLibs.appcompat)
-    implementation(AndroidLibs.material)
-    AndroidLibs.lifecycle.forEach { implementation(it) }
-    AndroidLibs.compose.forEach { implementation(it) }
-
-    //Data
-    DataLibs.retrofit.forEach { implementation(it) }
-    implementation(DataLibs.roomRuntime)
+    implementation(libs.android.appcompat)
+    implementation(libs.android.material)
 
     //Debug tools
-    AndroidLibs.debug.forEach { debugImplementation(it) }
+    implementation(libs.debug.stetho)
+    implementation(libs.debug.stethoOkhttp)
+    implementation(libs.debug.okhttp.logging)
 
-    //Android tests;
-    androidTestImplementation(AndroidTestLibs.hiltTesting)
-    kaptAndroidTest(CoreLibs.hiltAndroidCompiler)
-    AndroidTestLibs.androidJunit.forEach { androidTestImplementation(it) }
-    androidTestImplementation(AndroidTestLibs.rules)
-    androidTestImplementation(AndroidTestLibs.espresso)
-    androidTestImplementation(AndroidTestLibs.mockitoAndroid)
-    androidTestImplementation(TestLibs.junit)
-    androidTestImplementation(TestLibs.coroutinesTest)
-    androidTestImplementation(AndroidTestLibs.composeTesting)
-    debugImplementation(AndroidTestLibs.composeTestingManifest)
-    androidTestImplementation(project(path = ":core:test"))
-
-    //Unit tests
-    testImplementation(project(path = ":core:test"))
-    testImplementation(TestLibs.mockito)
-    testImplementation(TestLibs.junit)
-    testImplementation(TestLibs.archCoreTesting)
-    testImplementation(TestLibs.coroutinesTest)
 }

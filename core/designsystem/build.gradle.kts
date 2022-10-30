@@ -15,5 +15,7 @@ android {
 }
 
 dependencies {
-    AndroidLibs.compose.forEach { implementation(it) }
+    api(libs.android.compose.ui.core)
+    api(libs.android.compose.ui.tooling)
+    api(libs.android.compose.material)
 }

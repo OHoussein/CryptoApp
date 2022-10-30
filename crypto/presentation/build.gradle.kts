@@ -30,44 +30,44 @@ dependencies {
     androidTestImplementation(project(path = ":core:injection"))
 
     //Presentation
-    implementation(CoreLibs.coroutinesCore)
-    AndroidLibs.compose.forEach { implementation(it) }
-    AndroidLibs.lifecycle.forEach {
-        implementation(it)
-    }
-    implementation(CoreLibs.timber)
+    implementation(libs.android.lifecycle.extensions)
+    implementation(libs.core.kotlin.coroutines.core)
+    
+    implementation(libs.android.compose.material.icons)
+    implementation(libs.android.compose.hilt.navigation)
+    implementation(libs.android.compose.activity)
+    implementation(libs.android.compose.coil)
+    implementation(libs.android.compose.accompanist.swiperefresh)
+    implementation(libs.android.compose.navigation)
+
+    implementation(libs.android.lifecycle.viewmodel)
+    implementation(libs.android.lifecycle.compose)
+    implementation(libs.android.lifecycle.runtime)
+    implementation(libs.android.lifecycle.process)
+    implementation(libs.android.lifecycle.extensions)
+
+    implementation(libs.core.timber)
     implementation(project(path = ":core:injection:core"))
 
-    implementation(CoreLibs.hiltAndroid)
-    kapt(CoreLibs.hiltCompiler)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    kapt(libs.core.hilt.compiler)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
     testImplementation(project(path= ":core:test"))
-    testImplementation(TestLibs.mockito)
-    testImplementation(TestLibs.mockitoInline)
-    testImplementation(TestLibs.coroutinesTest)
-    TestLibs.kotest.forEach {
-        testImplementation(it)
-    }
-    testImplementation(TestLibs.turbine)
-    testRuntimeOnly(TestLibs.junitVintage)
-    testImplementation(TestLibs.testParameterInjector)
+    testImplementation(libs.test.mockito.inline)
+    testRuntimeOnly(libs.test.junitVintage.engine)
+    testImplementation(libs.test.parameterInjector)
 
     androidTestImplementation(project(path = ":crypto:data"))
     androidTestImplementation(project(path = ":core:test"))
-    androidTestImplementation(AndroidTestLibs.hiltTesting)
-    kaptAndroidTest(CoreLibs.hiltCompiler)
+    androidTestImplementation(libs.test.hilt)
+    kaptAndroidTest(libs.core.hilt.compiler)
 
-    AndroidTestLibs.androidJunit.forEach {
-        androidTestImplementation(it)
-    }
-    androidTestImplementation(AndroidTestLibs.rules)
-    androidTestImplementation(AndroidTestLibs.espresso)
-    androidTestImplementation(TestLibs.mockito)
-    androidTestImplementation(AndroidTestLibs.mockitoAndroid)
-    androidTestImplementation(TestLibs.byteBuddy)
-    androidTestImplementation(TestLibs.junit)
-    androidTestImplementation(TestLibs.coroutinesTest)
-    androidTestImplementation(AndroidTestLibs.composeTesting)
-    debugImplementation(AndroidTestLibs.composeTestingManifest)
+    androidTestImplementation(libs.test.android.junit)
+    androidTestImplementation(libs.test.android.rules)
+    androidTestImplementation(libs.test.mockito.android)
+    androidTestImplementation(libs.test.bytebuddy)
+    androidTestImplementation(libs.test.junit)
+    androidTestImplementation(libs.test.android.compose)
+    androidTestImplementation(libs.test.android.composeManifest)
 }

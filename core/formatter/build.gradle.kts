@@ -18,10 +18,11 @@ android {
 }
 
 dependencies {
-    implementation(CoreLibs.hiltAndroid)
-    kapt(CoreLibs.hiltCompiler)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    kapt(libs.core.hilt.compiler)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
-    TestLibs.kotest.forEach { testImplementation(it) }
-    testImplementation(TestLibs.mockito)
+    testImplementation(libs.test.kotest.runner)
+    testImplementation(libs.test.kotest.assertions)
+    testImplementation(libs.test.mockito.kotlin)
 }

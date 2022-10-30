@@ -27,23 +27,21 @@ android {
 
 dependencies {
     implementation(project(path = ":core:cached-data"))
-    AndroidLibs.lifecycle.forEach { implementation(it) }
-    AndroidLibs.compose.forEach { implementation(it) }
-    implementation(CoreLibs.timber)
 
-    implementation(CoreLibs.hiltAndroid)
-    kapt(CoreLibs.hiltCompiler)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.android.compose.material)
+    implementation(libs.android.lifecycle.viewmodel)
+    implementation(libs.core.timber)
+
+    implementation(libs.core.dagger.hilt)
+    kapt(libs.core.hilt.compiler)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
     testImplementation(project(path = ":core:test"))
-    testImplementation(TestLibs.turbine)
-    TestLibs.kotest.forEach { testImplementation(it) }
-    testImplementation(TestLibs.mockito)
-    testImplementation(TestLibs.mockitoInline)
+    testImplementation(libs.test.mockito.inline)
 
     //Robolectric
-    testImplementation(TestLibs.robolectric)
-    testImplementation(TestLibs.junitVintage)
-    testImplementation(TestLibs.junit)
-    testImplementation(AndroidTestLibs.testCore)
+    testImplementation(libs.test.robolectric)
+    testImplementation(libs.test.junitVintage.engine)
+    testImplementation(libs.test.junit)
+    testImplementation(libs.test.android.coreKtx)
 }

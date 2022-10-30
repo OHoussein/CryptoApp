@@ -4,16 +4,13 @@ plugins {
     id("kotlin-kapt")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.robolectric")
+    id("dev.ohoussein.cryptoapp.android.compose")
 }
 
 apply(from = "$rootDir/androidModule.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.core.common"
-
-    buildFeatures {
-        compose = true
-    }
 
     testOptions {
         tasks.withType<Test> {

@@ -2,16 +2,13 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.android.compose")
 }
 
 apply(from = "$rootDir/androidModule.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.core.designsystem"
-
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {

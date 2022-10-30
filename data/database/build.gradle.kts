@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.android.robolectric")
 }
 
 apply(from = "$rootDir/androidModule.gradle")
@@ -31,9 +32,5 @@ dependencies {
     testImplementation(project(path = ":core:test"))
     testImplementation(libs.test.junit)
     testImplementation(libs.test.mockito.inline)
-
-    testImplementation(libs.test.robolectric)
-    testImplementation(libs.test.android.room)
-    testImplementation(libs.test.android.coreKtx)
     testImplementation(libs.test.android.arch.core)
 }

@@ -23,5 +23,10 @@ gradlePlugin {
             id = "${namespace}.kotlin.detekt"
             implementationClass = "KotlinDetektConventionPlugin"
         }
+
+        register("robolectric") {
+            id = "${namespace}.android.robolectric"
+            implementationClass = "RobolectricConventionPlugin"
+        }
     }
 }

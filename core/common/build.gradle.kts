@@ -3,6 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.android.robolectric")
 }
 
 apply(from = "$rootDir/androidModule.gradle")
@@ -17,10 +18,6 @@ android {
     testOptions {
         tasks.withType<Test> {
             useJUnitPlatform()
-        }
-
-        unitTests {
-            isIncludeAndroidResources = true
         }
     }
 }
@@ -38,10 +35,4 @@ dependencies {
 
     testImplementation(project(path = ":core:test"))
     testImplementation(libs.test.mockito.inline)
-
-    // Robolectric
-    testImplementation(libs.test.robolectric)
-    testImplementation(libs.test.junitVintage.engine)
-    testImplementation(libs.test.junit)
-    testImplementation(libs.test.android.coreKtx)
 }

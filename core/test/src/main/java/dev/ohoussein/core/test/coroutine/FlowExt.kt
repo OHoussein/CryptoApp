@@ -1,9 +1,9 @@
 package dev.ohoussein.core.test.coroutine
 
+import java.io.IOException
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import java.io.IOException
 
 fun <T> flowOfWithDelays(vararg elements: T, delayMs: Long = 300): Flow<T> = flow {
     elements.forEach {

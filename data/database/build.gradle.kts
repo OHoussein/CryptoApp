@@ -2,11 +2,10 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 apply(from = "$rootDir/androidModule.gradle")
-
 
 android {
     namespace = "dev.ohoussein.cryptoapp.data.database"

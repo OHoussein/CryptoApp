@@ -5,9 +5,9 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.android")
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 apply(from = "$rootDir/androidModule.gradle")
 
 android {
@@ -16,7 +16,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
-            //TO-DO signing keys
+            // TO-DO signing keys
             signingConfig = signingConfigs.getByName("debug")
         }
     }
@@ -52,7 +52,7 @@ dependencies {
     implementation(project(path = ":crypto:presentation"))
     implementation(project(path = ":core:injection"))
 
-    //Common
+    // Common
     implementation(libs.core.kotlin.coroutines.core)
     implementation(libs.core.kotlin.coroutines.android)
     implementation(libs.core.timber)
@@ -61,13 +61,12 @@ dependencies {
     kapt(libs.core.hilt.compiler)
     kapt(libs.core.dagger.hilt.android.compiler)
 
-    //Presentation
+    // Presentation
     implementation(libs.android.appcompat)
     implementation(libs.android.material)
 
-    //Debug tools
+    // Debug tools
     implementation(libs.debug.stetho)
     implementation(libs.debug.stethoOkhttp)
     implementation(libs.debug.okhttp.logging)
-
 }

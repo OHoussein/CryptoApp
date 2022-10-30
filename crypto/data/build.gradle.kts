@@ -5,7 +5,6 @@ plugins {
     id("dagger.hilt.android.plugin")
 }
 
-apply(from = "$rootDir/gradle/scripts/detekt.gradle")
 apply(from = "$rootDir/androidModule.gradle")
 
 android {

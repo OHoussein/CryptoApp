@@ -4,6 +4,6 @@ import android.app.Application
 
 class ReleaseAppSetup : IAppFlavorSetup {
     override fun setup(app: Application) {
-        //TODO Firebase console, analytics ...
+        // TODO Firebase console, analytics ...
     }
 }

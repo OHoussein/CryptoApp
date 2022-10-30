@@ -1,6 +1,5 @@
 package dev.ohoussein.crypto.presentation.ui
 
-import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import android.content.res.Resources
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasText
@@ -24,12 +23,13 @@ import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import kotlinx.coroutines.flow.flowOf
 import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
+import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
 import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -65,9 +65,9 @@ class CryptoDetailsScreenTest {
     @Test
     fun should_show_details() {
         givenCrypto { data ->
-            //When
+            // When
             setupContent {
-                //Then
+                // Then
                 thenCryptoDetailsShouldBeDisplayed(data)
             }
         }
@@ -75,11 +75,11 @@ class CryptoDetailsScreenTest {
 
     @Test
     fun should_show_error_screen_and_retry() {
-        //Given error
+        // Given error
         givenErrorAndSuccessRefresh {
-            //When
+            // When
             setupContent {
-                //Then
+                // Then
                 thenShouldDisplayError()
                 givenCrypto { data ->
                     composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
@@ -90,9 +90,9 @@ class CryptoDetailsScreenTest {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
     // private methods
-    ///////////////////////////////////////////////////////////////////////////
+    // /////////////////////////////////////////////////////////////////////////
 
     private fun setupContent(
         next: ComposeContentTestRule.() -> Unit,
@@ -128,8 +128,10 @@ class CryptoDetailsScreenTest {
     private fun givenErrorAndSuccessRefresh(next: () -> Unit) {
         val firstData = flow<CachedData<DomainCryptoDetails>> { throw IOException() }
         val refreshedData = TestDataFactory.randomCryptoDetails(cryptoId)
-        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH)).thenReturn(firstData)
-        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.FRESH)).thenReturn(flowOf(CachedData.fresh(refreshedData)))
+        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH))
+            .thenReturn(firstData)
+        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.FRESH))
+            .thenReturn(flowOf(CachedData.fresh(refreshedData)))
         next()
     }
 

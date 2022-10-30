@@ -4,10 +4,10 @@ import app.cash.turbine.test
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
+import java.io.IOException
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
-import java.io.IOException
 
 class ResourceExtTest : DescribeSpec({
 

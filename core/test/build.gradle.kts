@@ -15,22 +15,24 @@ android {
 dependencies {
     implementation(project(path = ":crypto:domain"))
     //TODO check those deps
-    implementation(AndroidLibs.appcompat)
-    implementation(CoreLibs.coroutinesCore)
+    implementation(libs.android.appcompat)
+    implementation(libs.core.kotlin.coroutines.core)
 
-    DataLibs.retrofit.forEach { implementation(it) }
+    implementation(libs.data.retrofit.lib)
+    implementation(libs.test.okhttp.mockServer)
 
-    implementation(CoreLibs.hiltAndroid)
-    implementation(AndroidTestLibs.hiltTesting)
-    kapt(CoreLibs.hiltCompiler)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    implementation(libs.test.hilt)
+    kapt(libs.core.hilt.compiler)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
-    implementation(TestLibs.coroutinesTest)
-    implementation(TestLibs.junit)
-    implementation(TestLibs.mockWebserver)
-    implementation(TestLibs.mockito)
-    TestLibs.kotest.forEach { implementation(it) }
-    implementation(TestLibs.archCoreTesting)
+    implementation(libs.test.junit)
+    api(libs.test.coroutines)
+    api(libs.test.mockito.kotlin)
+    api(libs.test.kotest.runner)
+    api(libs.test.kotest.assertions)
+    api(libs.test.turbine)
+    implementation(libs.test.android.arch.core)
 
-    implementation(AndroidTestLibs.rules)
+    implementation(libs.test.android.rules)
 }

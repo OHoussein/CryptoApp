@@ -12,16 +12,17 @@ android {
 }
 
 dependencies {
-    implementation(CoreLibs.coroutinesCore)
-    DataLibs.retrofit.forEach { implementation(it) }
+    implementation(libs.core.kotlin.coroutines.core)
+    implementation(libs.data.retrofit.lib)
+    implementation(libs.data.retrofit.moshi)
 
-    implementation(CoreLibs.hiltAndroid)
-    implementation(AndroidTestLibs.hiltTesting)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    implementation(libs.test.hilt)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
-    implementation(DataLibs.roomLib)
-    kapt(DataLibs.roomCompiler)
-    annotationProcessor(DataLibs.roomCompiler)
+    implementation(libs.data.room.ktx)
+    kapt(libs.data.room.compiler)
+    annotationProcessor(libs.data.room.compiler)
 
-    testImplementation(TestLibs.robolectric)
+    testImplementation(libs.test.robolectric)
 }

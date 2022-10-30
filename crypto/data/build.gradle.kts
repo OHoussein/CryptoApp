@@ -22,26 +22,22 @@ dependencies {
     implementation(project(path = ":core:cached-data"))
     implementation(project(path = ":data:cache"))
 
-    implementation(CoreLibs.coroutinesCore)
+    implementation(libs.core.kotlin.coroutines.core)
 
-    DataLibs.retrofit.forEach { implementation(it) }
-    implementation(DataLibs.roomLib)
-    implementation(DataLibs.roomRuntime)
-    annotationProcessor(DataLibs.roomCompiler)
-    kapt(DataLibs.roomCompiler)
+    implementation(libs.data.retrofit.lib)
+    implementation(libs.data.retrofit.moshi)
+    implementation(libs.data.room.ktx)
+    implementation(libs.data.room.runtime)
+    annotationProcessor(libs.data.room.compiler)
+    kapt(libs.data.room.compiler)
 
-    implementation(CoreLibs.hiltAndroid)
-    implementation(AndroidTestLibs.hiltTesting)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    implementation(libs.test.hilt)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
     testImplementation(project(path = ":core:test"))
     testImplementation(project(path = ":data:network"))
     testImplementation(project(path = ":data:database"))
-    testImplementation(TestLibs.mockWebserver)
-
-    testImplementation(TestLibs.coroutinesTest)
-    TestLibs.kotest.forEach { testImplementation(it) }
-    testImplementation(TestLibs.mockito)
-    testImplementation(TestLibs.mockitoInline)
-    testImplementation(TestLibs.turbine)
+    testImplementation(libs.test.okhttp.mockServer)
+    testImplementation(libs.test.mockito.inline)
 }

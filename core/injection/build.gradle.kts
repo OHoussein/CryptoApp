@@ -17,7 +17,7 @@ dependencies {
     implementation(project(path = ":core:formatter"))
     implementation(project(path = ":core:injection:core"))
 
-    implementation(CoreLibs.hiltAndroid)
-    kapt(CoreLibs.hiltCompiler)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    api(libs.core.dagger.hilt)
+    kapt(libs.core.hilt.compiler)
+    kapt(libs.core.dagger.hilt.android.compiler)
 }

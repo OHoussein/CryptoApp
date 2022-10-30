@@ -8,14 +8,14 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:${BuildLibs.androidGradlePlugin}")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${CoreLibs.kotlinVersion}")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:${BuildLibs.daggerHiltVersion}")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
-        classpath("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${BuildLibs.detektVersion}")
-        classpath("io.gitlab.arturbosch.detekt:detekt-formatting:${BuildLibs.detektVersion}")
-        classpath("org.jacoco:org.jacoco.core:${BuildLibs.jacocoVersion}")
-        classpath("app.cash.paparazzi:paparazzi-gradle-plugin:1.0.0")
+        classpath(libs.build.android.gradlePlugin)
+        classpath(libs.build.kotlinPlugin)
+        classpath(libs.build.hilt)
+        classpath(libs.build.gradleVersionsPlugin)
+        classpath(libs.build.detekt.plugin)
+        classpath(libs.build.detekt.formating)
+        classpath(libs.build.jacoco)
+        classpath(libs.build.paparazzi)
     }
 }
 
@@ -24,7 +24,7 @@ subprojects {
         resolutionStrategy {
             eachDependency {
                 if (requested.group == "org.jacoco") {
-                    useVersion(BuildLibs.jacocoVersion)
+                    useVersion(libs.versions.jacocoVersion.get())
                 }
             }
         }

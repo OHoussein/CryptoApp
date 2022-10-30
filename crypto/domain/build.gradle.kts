@@ -10,10 +10,11 @@ tasks.withType<Test> {
 }
 
 dependencies {
-    implementation(CoreLibs.coroutinesCore)
+    implementation(libs.core.kotlin.coroutines.core)
     implementation(project(path = ":core:cached-data"))
 
-    testImplementation(TestLibs.mockito)
-    testImplementation(TestLibs.mockitoInline)
-    TestLibs.kotest.forEach { testImplementation(it) }
+    testImplementation(libs.test.mockito.kotlin)
+    testImplementation(libs.test.mockito.inline)
+    testImplementation(libs.test.kotest.runner)
+    testImplementation(libs.test.kotest.assertions)
 }

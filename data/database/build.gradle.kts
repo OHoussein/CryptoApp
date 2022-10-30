@@ -21,22 +21,20 @@ android {
 dependencies {
     implementation(project(path = ":crypto:domain"))
 
-    implementation(CoreLibs.hiltAndroid)
-    implementation(AndroidTestLibs.hiltTesting)
-    kapt(CoreLibs.hiltAndroidCompiler)
+    implementation(libs.core.dagger.hilt)
+    implementation(libs.test.hilt)
+    kapt(libs.core.dagger.hilt.android.compiler)
 
-    implementation(DataLibs.roomLib)
-    kapt(DataLibs.roomCompiler)
-    annotationProcessor(DataLibs.roomCompiler)
+    implementation(libs.data.room.ktx)
+    kapt(libs.data.room.compiler)
+    annotationProcessor(libs.data.room.compiler)
 
     testImplementation(project(path = ":core:test"))
-    testImplementation(TestLibs.junit)
-    testImplementation(TestLibs.coroutinesTest)
-    testImplementation(TestLibs.mockito)
-    testImplementation(TestLibs.mockitoInline)
+    testImplementation(libs.test.junit)
+    testImplementation(libs.test.mockito.inline)
 
-    testImplementation(TestLibs.robolectric)
-    testImplementation(AndroidTestLibs.roomTestHelper)
-    testImplementation(AndroidTestLibs.testCoreKtx)
-    testImplementation(TestLibs.archCoreTesting)
+    testImplementation(libs.test.robolectric)
+    testImplementation(libs.test.android.room)
+    testImplementation(libs.test.android.coreKtx)
+    testImplementation(libs.test.android.arch.core)
 }

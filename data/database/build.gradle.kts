@@ -4,9 +4,8 @@ plugins {
     id("kotlin-kapt")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.robolectric")
+    id("dev.ohoussein.cryptoapp.android.library")
 }
-
-apply(from = "$rootDir/androidModule.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.data.database"

@@ -6,38 +6,23 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.android")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.android.app")
 }
-
-apply(from = "$rootDir/androidModule.gradle")
 
 android {
     buildTypes {
-        release {
+        @Suppress("UNUSED_VARIABLE")
+        val debug by getting {
+            applicationIdSuffix = ".debug"
+        }
+
+        @Suppress("UNUSED_VARIABLE")
+        val release by getting {
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             // TO-DO signing keys
             signingConfig = signingConfigs.getByName("debug")
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions {
-        resources.excludes += arrayOf(
-            "**/attach_hotspot_windows.dll",
-            "META-INF/*", "META-INF/licenses/**",
-        )
-    }
-}
-
-allprojects {
-    configurations.all {
-        resolutionStrategy {
-            force("org.objenesis:objenesis:2.6")
         }
     }
 }

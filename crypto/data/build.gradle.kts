@@ -3,9 +3,8 @@ plugins {
     id("kotlin-android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("dev.ohoussein.cryptoapp.android.library")
 }
-
-apply(from = "$rootDir/androidModule.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.crypto.data"

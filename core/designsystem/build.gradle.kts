@@ -3,9 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.compose")
+    id("dev.ohoussein.cryptoapp.android.library")
 }
-
-apply(from = "$rootDir/androidModule.gradle")
 
 android {
     namespace = "dev.ohoussein.cryptoapp.core.designsystem"

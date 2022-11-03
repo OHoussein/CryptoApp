@@ -1,8 +1,7 @@
 plugins {
     id("kotlin")
+    id("dev.ohoussein.cryptoapp.jacoco")
 }
-
-apply(from= "$rootDir/gradle/jacoco.gradle")
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()

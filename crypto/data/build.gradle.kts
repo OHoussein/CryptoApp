@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("dev.ohoussein.cryptoapp.android.library")
+    id("dev.ohoussein.cryptoapp.jacoco")
 }
 
 android {

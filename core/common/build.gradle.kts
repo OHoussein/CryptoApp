@@ -6,6 +6,7 @@ plugins {
     id("dev.ohoussein.cryptoapp.android.robolectric")
     id("dev.ohoussein.cryptoapp.android.compose")
     id("dev.ohoussein.cryptoapp.android.library")
+    id("dev.ohoussein.cryptoapp.jacoco")
 }
 
 android {

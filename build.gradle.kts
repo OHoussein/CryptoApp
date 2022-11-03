@@ -24,7 +24,7 @@ subprojects {
         resolutionStrategy {
             eachDependency {
                 if (requested.group == "org.jacoco") {
-                    useVersion(libs.versions.jacocoVersion.get())
+                    useVersion(libs.versions.jacoco.get())
                 }
             }
         }

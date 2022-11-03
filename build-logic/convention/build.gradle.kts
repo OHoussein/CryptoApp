@@ -43,5 +43,10 @@ gradlePlugin {
             id = "${namespace}.android.app"
             implementationClass = "AndroidAppConventionPlugin"
         }
+
+        register("jacoco") {
+            id = "${namespace}.jacoco"
+            implementationClass = "JacocoConventionPlugin"
+        }
     }
 }

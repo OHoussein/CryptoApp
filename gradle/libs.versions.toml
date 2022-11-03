@@ -5,7 +5,7 @@ coroutineVersion = "1.6.4"
 daggerHiltVersion = "2.43.2"
 detektVersion = "1.21.0"
 gradleVersionsPluginVersion = "0.42.0"
-jacocoVersion = "0.8.8"
+jacoco = "0.8.8"
 paparazziVersion = "1.0.0"
 
 hiltCompilerVersion = "1.0.0"
@@ -49,7 +49,7 @@ build-hilt = { module = "com.google.dagger:hilt-android-gradle-plugin", version.
 build-gradleVersionsPlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradleVersionsPluginVersion" }
 build-detekt-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
 build-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
-build-jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacocoVersion" }
+build-jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacoco" }
 build-paparazzi = { module = "app.cash.paparazzi:paparazzi-gradle-plugin", version.ref = "paparazziVersion" }
 
 core-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlinVersion" }

@@ -52,32 +52,26 @@ tasks.register<Copy>("installGitHook") {
 
 tasks.getByPath(":app:preBuild").dependsOn(":installGitHook")
 
-/*tasks.named("dependencyUpdates").configure {
-    resolutionStrategy {
-        componentSelection { rules ->
-            rules.all {
-                ComponentSelection selection ->
-                boolean rejected =['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
-                    selection.candidate.version == "/ (?i).*[.-]${ qualifier }[.\ d -]"
-                }
-                if (rejected) {
-                    selection.reject('Release candidate')
-                }
-            }
-        }
+tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
+    rejectVersionIf {
+        val version = candidate.version
+        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.toUpperCase().contains(it) }
+        val regex = "^[0-9,.v-]+(-r)?$".toRegex()
+        val isStable = stableKeyword || regex.matches(version)
+        isStable.not()
     }
 }
 
-task e2eTests (type: Exec) {
+task("e2eTests", Exec::class) {
+    group = "Verification"
     dependsOn(":app:installRelease")
-    workingDir "$projectDir/e2e_tests"
-    commandLine "pipenv", "run", "python3", "crypto.py"
+    workingDir = file("$projectDir/e2e_tests")
+    commandLine = listOf("pipenv", "run", "python3", "crypto.py")
 }
 
-task generateScreenshots (type: Exec) {
+task("generateScreenshots", Exec::class) {
+    group = "Tool"
     dependsOn(":app:installRelease")
-    workingDir "$projectDir/e2e_tests"
-    commandLine "pipenv", "run", "python3", "crypto_screenshot_generate.py"
+    workingDir = file("$projectDir/e2e_tests")
+    commandLine = listOf("pipenv", "run", "python3", "crypto_screenshot_generate.py")
 }
-
- */

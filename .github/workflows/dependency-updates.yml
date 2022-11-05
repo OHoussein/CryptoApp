@@ -1,0 +1,28 @@
+name: 'Dependency updates'
+
+on:
+  schedule:
+    - cron: "0 10 * */1 1"
+  workflow_dispatch:
+
+jobs:
+  dependency-updates:
+    name: 'Dependency updates'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: 11
+      - name: 'run dependencyUpdates'
+        run: ./gradlew dependencyUpdates
+      - name: Report file summary
+        run: cat ./build/dependencyUpdates/report.txt >> $GITHUB_STEP_SUMMARY
+      - name: Upload report file
+        uses: actions/upload-artifact@v3
+        with:
+          name: dependency_updates_report.zip
+          path: ./build/dependencyUpdates/report.txt

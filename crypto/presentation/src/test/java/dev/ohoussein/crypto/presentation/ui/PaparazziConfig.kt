@@ -1,6 +1,9 @@
 package dev.ohoussein.crypto.presentation.ui
 
 import app.cash.paparazzi.DeviceConfig
+import app.cash.paparazzi.Paparazzi
+import app.cash.paparazzi.androidHome
+import app.cash.paparazzi.detectEnvironment
 import com.android.resources.NightMode
 
 internal const val DARK_THEME = "android:Theme.Material.Dark.NoActionBar"
@@ -25,3 +28,13 @@ enum class PaparazziConfig(val deviceConfig: DeviceConfig, val theme: String) {
         theme = LIGHT_THEME,
     ),
 }
+
+fun getPaparazzi(config: PaparazziConfig) = Paparazzi(
+    deviceConfig = config.deviceConfig,
+    theme = config.theme,
+    // Workaround for sdk 33
+    environment = detectEnvironment().copy(
+        platformDir = "${androidHome()}/platforms/android-31",
+        compileSdkVersion = 31
+    )
+)

@@ -7,6 +7,7 @@ plugins {
     id("dev.ohoussein.cryptoapp.android.compose")
     id("dev.ohoussein.cryptoapp.android.library")
     id("dev.ohoussein.cryptoapp.jacoco")
+    id("dev.ohoussein.cryptoapp.koin")
 }
 
 android {
@@ -23,10 +24,6 @@ dependencies {
     implementation(libs.android.compose.material)
     implementation(libs.android.lifecycle.viewmodel)
     implementation(libs.core.timber)
-
-    implementation(libs.core.dagger.hilt)
-    kapt(libs.core.hilt.compiler)
-    kapt(libs.core.dagger.hilt.android.compiler)
 
     testImplementation(project(path = ":core:test"))
     testImplementation(libs.test.mockito.inline)

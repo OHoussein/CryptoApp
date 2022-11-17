@@ -2,13 +2,12 @@ package dev.ohoussein.cryptoapp.core.formatter
 
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
-import java.util.Locale
 
 class PercentFormatterTest : DescribeSpec({
 
     describe("a PercentFormatter") {
 
-        val percentFormatter = PercentFormatter(Locale.US)
+        val percentFormatter = PercentFormatter()
 
         it("should format a percent without fraction") {
             percentFormatter(0.41) shouldBe "41.00%"

@@ -6,6 +6,7 @@ plugins {
     id("dev.ohoussein.cryptoapp.android.robolectric")
     id("dev.ohoussein.cryptoapp.android.library")
     id("dev.ohoussein.cryptoapp.jacoco")
+    id("dev.ohoussein.cryptoapp.koin")
 }
 
 android {
@@ -20,10 +21,6 @@ android {
 
 dependencies {
     implementation(project(path = ":crypto:domain"))
-
-    implementation(libs.core.dagger.hilt)
-    implementation(libs.test.hilt)
-    kapt(libs.core.dagger.hilt.android.compiler)
 
     implementation(libs.data.room.ktx)
     kapt(libs.data.room.compiler)

@@ -8,7 +8,7 @@ import androidx.navigation.compose.rememberNavController
 
 /**
  * A NavHost than contains a single composable
- * We need this to be able to get the ViewModel view hiltViewModel<XXX>
+ * We need this to be able to get inject the ViewModel<XXX>
  */
 @Composable
 fun TestNavHost(

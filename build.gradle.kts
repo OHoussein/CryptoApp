@@ -10,7 +10,6 @@ buildscript {
     dependencies {
         classpath(libs.build.android.gradlePlugin)
         classpath(libs.build.kotlinPlugin)
-        classpath(libs.build.hilt)
         classpath(libs.build.gradleVersionsPlugin)
         classpath(libs.build.detekt.plugin)
         classpath(libs.build.detekt.formatting)

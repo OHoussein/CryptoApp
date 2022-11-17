@@ -2,6 +2,7 @@ package dev.ohoussein.crypto.presentation.mapper
 
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.crypto.domain.model.defaultLocale
 import dev.ohoussein.crypto.presentation.model.BaseCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
@@ -28,7 +29,7 @@ class DomainModelMapperTest : BehaviorSpec({
     val domainModelMapper = DomainModelMapper(
         priceFormatter = priceFormatter,
         percentFormatter = percentFormatter,
-        currency = currency,
+        locale = defaultLocale,
     )
 
     given("a List<DomainCrypto>") {

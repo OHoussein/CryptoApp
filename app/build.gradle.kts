@@ -3,10 +3,10 @@ plugins {
     id("kotlin-android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
     id("org.jetbrains.kotlin.android")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.app")
+    id("dev.ohoussein.cryptoapp.koin")
 }
 
 android {
@@ -32,26 +32,23 @@ kapt {
 }
 
 dependencies {
-    implementation(project(path = ":data:network"))
-    implementation(project(path = ":data:database"))
     implementation(project(path = ":crypto:presentation"))
     implementation(project(path = ":core:injection"))
+    implementation(project(path = ":core:injection:core"))
 
     // Common
     implementation(libs.core.kotlin.coroutines.core)
     implementation(libs.core.kotlin.coroutines.android)
     implementation(libs.core.timber)
 
-    implementation(libs.core.dagger.hilt)
-    kapt(libs.core.hilt.compiler)
-    kapt(libs.core.dagger.hilt.android.compiler)
-
     // Presentation
     implementation(libs.android.appcompat)
     implementation(libs.android.material)
 
-    // Debug tools
-    implementation(libs.debug.stetho)
-    implementation(libs.debug.stethoOkhttp)
-    implementation(libs.debug.okhttp.logging)
+    testImplementation(libs.koin.test)
+    testImplementation(libs.koin.junit4)
+    testImplementation(libs.test.mockito.kotlin)
+    testImplementation(libs.test.mockito.inline)
+    testImplementation(libs.test.android.arch.core)
+    testImplementation(libs.test.coroutines)
 }

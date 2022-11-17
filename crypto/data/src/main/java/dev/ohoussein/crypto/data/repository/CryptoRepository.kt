@@ -4,29 +4,27 @@ import dev.ohoussein.crypto.data.api.ApiCryptoService
 import dev.ohoussein.crypto.data.api.mapper.ApiDomainModelMapper
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.crypto.domain.model.Locale
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import dev.ohoussein.cryptoapp.core.Qualifier
 import dev.ohoussein.cryptoapp.data.cache.CachedDataRepository
 import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.crypto.mapper.DbDomainModelMapper
-import javax.inject.Inject
-import javax.inject.Named
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 
-class CryptoRepository @Inject constructor(
+class CryptoRepository constructor(
     private val service: ApiCryptoService,
     private val cryptoDao: CryptoDAO,
     private val apiMapper: ApiDomainModelMapper,
     private val dbMapper: DbDomainModelMapper,
-    @Named(Qualifier.CURRENCY) private val currency: String,
+    private val locale: Locale,
 ) : ICryptoRepository {
 
     private val topCryptoListCache: CachedDataRepository<Unit, List<DomainCrypto>> = CachedDataRepository(
         updater = {
-            val apiResponse = service.getTopCrypto(currency)
+            val apiResponse = service.getTopCrypto(locale.currencyCode)
             apiMapper.convert(apiResponse)
         },
         cacheStreamer = {

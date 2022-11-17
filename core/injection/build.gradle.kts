@@ -9,15 +9,23 @@ plugins {
 
 android {
     namespace = "dev.ohoussein.cryptoapp.core.injection"
+
+    tasks.withType<Test>().configureEach {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
+    implementation(project(path = ":crypto:presentation"))
     implementation(project(path = ":crypto:domain"))
     implementation(project(path = ":crypto:data"))
     implementation(project(path = ":core:formatter"))
-    implementation(project(path = ":core:injection:core"))
+    implementation(project(path = ":core:common"))
+    implementation(project(path = ":data:database"))
+    implementation(project(path = ":data:network"))
+    implementation(libs.koin.core)
 
-    api(libs.core.dagger.hilt)
-    kapt(libs.core.hilt.compiler)
-    kapt(libs.core.dagger.hilt.android.compiler)
+    testImplementation(libs.test.kotest.runner)
+    testImplementation(libs.test.kotest.assertions)
+    testImplementation(libs.test.mockito.kotlin)
 }

@@ -3,16 +3,13 @@ package dev.ohoussein.crypto.presentation.activity
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import dagger.hilt.android.AndroidEntryPoint
 import dev.ohoussein.crypto.presentation.ui.navigation.CryptoAppNavigation
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class CryptoActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var externalRouter: ExternalRouter
+    private val externalRouter: ExternalRouter by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

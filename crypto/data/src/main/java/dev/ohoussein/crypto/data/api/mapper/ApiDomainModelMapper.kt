@@ -4,10 +4,9 @@ import dev.ohoussein.crypto.data.api.model.CryptoDetailsResponse
 import dev.ohoussein.crypto.data.api.model.TopCryptoResponse
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
-import java.util.*
-import javax.inject.Inject
+import dev.ohoussein.crypto.domain.model.Locale
 
-class ApiDomainModelMapper @Inject constructor(private val locale: Locale) {
+class ApiDomainModelMapper constructor(private val locale: Locale) {
 
     fun convert(data: List<TopCryptoResponse>): List<DomainCrypto> =
         data.mapIndexed { index, item -> convert(item, index) }
@@ -35,7 +34,7 @@ class ApiDomainModelMapper @Inject constructor(private val locale: Locale) {
         },
         sentimentUpVotesPercentage = data.sentimentUpVotesPercentage,
         sentimentDownVotesPercentage = data.sentimentDownVotesPercentage,
-        description = data.description[locale.language]
-            ?: data.description[Locale.ENGLISH.language] ?: "",
+        description = data.description[locale.languageCode]
+            ?: data.description[java.util.Locale.ENGLISH.language] ?: "",
     )
 }

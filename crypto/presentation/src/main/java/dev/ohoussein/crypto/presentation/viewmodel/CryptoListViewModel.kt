@@ -1,7 +1,6 @@
 package dev.ohoussein.crypto.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.reducer.CryptoListEvents
@@ -11,13 +10,11 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoListState
 import dev.ohoussein.cryptoapp.common.mvi.BaseViewModel
 import dev.ohoussein.cryptoapp.common.resource.asDataStatusFlow
 import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
-import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
-@HiltViewModel
-class CryptoListViewModel @Inject constructor(
+class CryptoListViewModel constructor(
     private val useCase: GetTopCryptoList,
     private val modelMapper: DomainModelMapper,
     private val errorMessageFormatter: ErrorMessageFormatter,

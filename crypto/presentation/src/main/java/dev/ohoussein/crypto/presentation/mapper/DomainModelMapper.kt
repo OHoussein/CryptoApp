@@ -2,23 +2,19 @@ package dev.ohoussein.crypto.presentation.mapper
 
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.crypto.domain.model.Locale
 import dev.ohoussein.crypto.presentation.model.BaseCrypto
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.model.CryptoPrice
 import dev.ohoussein.crypto.presentation.model.LabelValue
-import dev.ohoussein.cryptoapp.core.Qualifier
 import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
 import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
-import javax.inject.Inject
-import javax.inject.Named
-import javax.inject.Singleton
 
-@Singleton
-class DomainModelMapper @Inject constructor(
+class DomainModelMapper constructor(
     private val priceFormatter: PriceFormatter,
     private val percentFormatter: PercentFormatter,
-    @Named(Qualifier.CURRENCY) private val currency: String,
+    private val locale: Locale,
 ) {
     fun convert(domain: List<DomainCrypto>): List<Crypto> {
         return domain.map { convert(it) }
@@ -34,7 +30,7 @@ class DomainModelMapper @Inject constructor(
                 symbol = domain.symbol.uppercase(),
             ),
             price = CryptoPrice(
-                labelValue = LabelValue(domain.price, priceFormatter(domain.price, currency))
+                labelValue = LabelValue(domain.price, priceFormatter(domain.price, locale.currencyCode))
             ),
             priceChangePercentIn24h = domain.priceChangePercentIn24h?.let {
                 LabelValue(it, percentFormatter(it / 100.0))

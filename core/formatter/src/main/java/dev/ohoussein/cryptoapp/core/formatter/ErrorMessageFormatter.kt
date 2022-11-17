@@ -1,11 +1,9 @@
 package dev.ohoussein.cryptoapp.core.formatter
 
 import android.content.Context
-import dagger.hilt.android.qualifiers.ApplicationContext
 import java.io.IOException
-import javax.inject.Inject
 
-class ErrorMessageFormatter @Inject constructor(@ApplicationContext private val context: Context) {
+class ErrorMessageFormatter constructor(private val context: Context) {
 
     operator fun invoke(exception: Throwable): String {
         return when (exception) {

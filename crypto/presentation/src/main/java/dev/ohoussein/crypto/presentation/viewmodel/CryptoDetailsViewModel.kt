@@ -2,7 +2,6 @@ package dev.ohoussein.crypto.presentation.viewmodel
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
 import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
@@ -13,14 +12,12 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsState
 import dev.ohoussein.cryptoapp.common.mvi.BaseViewModel
 import dev.ohoussein.cryptoapp.common.resource.asDataStatusFlow
 import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
-import javax.inject.Inject
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
-@HiltViewModel
-class CryptoDetailsViewModel @Inject constructor(
-    private val savedStateHandle: SavedStateHandle,
+class CryptoDetailsViewModel constructor(
+    savedStateHandle: SavedStateHandle,
     private val useCase: GetCryptoDetails,
     private val modelMapper: DomainModelMapper,
     private val errorMessageFormatter: ErrorMessageFormatter,

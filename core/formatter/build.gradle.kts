@@ -5,6 +5,7 @@ plugins {
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.library")
     id("dev.ohoussein.cryptoapp.jacoco")
+    id("dev.ohoussein.cryptoapp.koin")
 }
 
 android {
@@ -18,10 +19,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.core.dagger.hilt)
-    kapt(libs.core.hilt.compiler)
-    kapt(libs.core.dagger.hilt.android.compiler)
-
     testImplementation(libs.test.kotest.runner)
     testImplementation(libs.test.kotest.assertions)
     testImplementation(libs.test.mockito.kotlin)

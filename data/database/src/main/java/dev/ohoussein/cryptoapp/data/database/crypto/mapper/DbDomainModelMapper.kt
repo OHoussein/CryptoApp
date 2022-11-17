@@ -4,9 +4,8 @@ import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCryptoDetails
-import javax.inject.Inject
 
-class DbDomainModelMapper @Inject constructor() {
+class DbDomainModelMapper {
 
     fun convertDBCrypto(data: List<DBCrypto>): List<DomainCrypto> = data.map { convert(it) }
 

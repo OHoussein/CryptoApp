@@ -7,16 +7,11 @@ import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
 import androidx.test.filters.LargeTest
-import dagger.hilt.android.testing.HiltAndroidRule
-import dagger.hilt.android.testing.HiltAndroidTest
-import dagger.hilt.android.testing.UninstallModules
 import dev.ohoussein.core.test.activity.TestActivity
 import dev.ohoussein.core.test.mock.TestDataFactory
-import dev.ohoussein.crypto.data.di.CryptoDataModule
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.presentation.NavPath
@@ -24,42 +19,30 @@ import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
-import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
-import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.koin.androidx.compose.getViewModel
+import org.koin.test.KoinTest
+import org.koin.test.inject
 import org.mockito.kotlin.doSuspendableAnswer
 import org.mockito.kotlin.whenever
 
-@HiltAndroidTest
-@UninstallModules(value = [CryptoDataModule::class])
 @LargeTest
-class CryptoDetailsScreenTest {
+class CryptoDetailsScreenTest : KoinTest {
 
-    @Inject
-    internal lateinit var cryptoRepo: ICryptoRepository
+    private val cryptoRepo: ICryptoRepository by inject()
+    private val externalRouter: ExternalRouter by inject()
 
-    @Inject
-    lateinit var externalRouter: ExternalRouter
-
-    @get:Rule(order = 1)
-    internal val hiltRule = HiltAndroidRule(this)
-
-    @get:Rule(order = 2)
+    @get:Rule
     internal val composeTestRule = createAndroidComposeRule<TestActivity>()
 
     private val res: Resources
         get() = composeTestRule.activity.resources
 
     private val cryptoId = "bitcoin"
-
-    @Before
-    fun setUp() {
-        hiltRule.inject()
-    }
 
     @Test
     fun should_show_details() {
@@ -106,7 +89,7 @@ class CryptoDetailsScreenTest {
                     }
                 )
             ) {
-                val viewModel = hiltViewModel<CryptoDetailsViewModel>()
+                val viewModel = getViewModel<CryptoDetailsViewModel>()
                 CryptoDetailsScreen(
                     viewModel = viewModel,
                     externalRouter = externalRouter,

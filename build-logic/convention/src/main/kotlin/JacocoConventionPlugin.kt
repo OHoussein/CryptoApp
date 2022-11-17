@@ -56,7 +56,6 @@ private val coverageExclusions = listOf(
     "**/*_GeneratedInjector*.*",
     "**/*Module*.*",
     "**/*Dagger*.*",
-    "**/*Hilt*.*",
     // kotlin
     "**/BuildConfig.*",
     "**/*Component*.*",
@@ -66,7 +65,7 @@ private val coverageExclusions = listOf(
     "**/*Companion*.*",
     "**/*Module*.*",
     "**/*Dagger*.*",
-    "**/*Hilt*.*",
+    "**/*Module*.*",
     "**/*MembersInjector*.*",
     "**/*_MembersInjector.class",
     "**/*_Factory*.*",

@@ -48,5 +48,15 @@ gradlePlugin {
             id = "${namespace}.jacoco"
             implementationClass = "JacocoConventionPlugin"
         }
+
+        register("koin") {
+            id = "${namespace}.koin"
+            implementationClass = "KoinConventionPlugin"
+        }
+
+        register("feature-module") {
+            id = "${namespace}.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
     }
 }

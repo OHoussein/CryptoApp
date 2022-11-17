@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.library")
 }
@@ -13,17 +12,12 @@ android {
 
 dependencies {
     implementation(project(path = ":crypto:domain"))
-    // TODO check those deps
+    implementation(project(path = ":core:injection"))
     implementation(libs.android.appcompat)
     implementation(libs.core.kotlin.coroutines.core)
 
     implementation(libs.data.retrofit.lib)
     implementation(libs.test.okhttp.mockServer)
-
-    implementation(libs.core.dagger.hilt)
-    implementation(libs.test.hilt)
-    kapt(libs.core.hilt.compiler)
-    kapt(libs.core.dagger.hilt.android.compiler)
 
     implementation(libs.test.junit)
     api(libs.test.coroutines)
@@ -34,4 +28,7 @@ dependencies {
     implementation(libs.test.android.arch.core)
 
     implementation(libs.test.android.rules)
+
+    implementation(libs.koin.core)
+    implementation(libs.koin.android.core)
 }

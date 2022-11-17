@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dev.ohoussein.cryptoapp.android.library")
     id("dev.ohoussein.cryptoapp.jacoco")
+    id("dev.ohoussein.cryptoapp.koin")
 }
 
 android {
@@ -11,17 +12,17 @@ android {
 }
 
 dependencies {
+    implementation(project(path = ":core:injection:core"))
+
     implementation(libs.core.kotlin.coroutines.core)
     implementation(libs.data.retrofit.lib)
     implementation(libs.data.retrofit.moshi)
-
-    implementation(libs.core.dagger.hilt)
-    implementation(libs.test.hilt)
-    kapt(libs.core.dagger.hilt.android.compiler)
 
     implementation(libs.data.room.ktx)
     kapt(libs.data.room.compiler)
     annotationProcessor(libs.data.room.compiler)
 
     testImplementation(libs.test.robolectric)
+
+    implementation(libs.debug.okhttp.logging)
 }

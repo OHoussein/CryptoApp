@@ -2,6 +2,7 @@ plugins {
     id("kotlin")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.jacoco")
+    id("dev.ohoussein.cryptoapp.koin")
 }
 
 tasks.withType<Test> {

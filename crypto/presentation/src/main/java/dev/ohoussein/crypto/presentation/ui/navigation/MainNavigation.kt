@@ -1,7 +1,6 @@
 package dev.ohoussein.crypto.presentation.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -12,6 +11,7 @@ import dev.ohoussein.crypto.presentation.NavPath.CryptoDetailsPath
 import dev.ohoussein.crypto.presentation.ui.CryptoDetailsScreen
 import dev.ohoussein.crypto.presentation.ui.CryptoListScreen
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
+import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
 @Composable
@@ -23,7 +23,7 @@ fun CryptoAppNavigation(
     NavHost(navController, startDestination = NavPath.HOME) {
         composable(NavPath.HOME) {
             CryptoListScreen(
-                viewModel = hiltViewModel(),
+                viewModel = getViewModel(),
                 onClick = {
                     Timber.d("On item clicked ${it.base.name}")
                     navController.navigate(CryptoDetailsPath.path(it.base.id))
@@ -39,7 +39,7 @@ fun CryptoAppNavigation(
             )
         ) {
             CryptoDetailsScreen(
-                viewModel = hiltViewModel(),
+                viewModel = getViewModel(),
                 externalRouter = externalRouter,
                 onBackClicked = { navController.popBackStack() }
             )

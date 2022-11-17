@@ -7,7 +7,7 @@
 Implementation of the clean architecture using:
 
 * **Jetpack compose**
-* **Dagger Hilt** for dependency injection
+* **Koin** for dependency injection
 * **Coroutine/Flow**
 * **Unit test** with kotest
 * **Github Action**

@@ -8,14 +8,17 @@ import dev.ohoussein.crypto.data.api.model.TopCryptoResponse
 import dev.ohoussein.crypto.data.repository.CryptoRepository
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.crypto.domain.model.defaultLocale
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.crypto.mapper.DbDomainModelMapper
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
 import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCryptoDetails
+import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.flowOf
+import org.mockito.kotlin.any
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
@@ -24,13 +27,13 @@ import org.mockito.kotlin.whenever
 class CryptoRepositoryTest : BehaviorSpec({
 
     coroutineTestScope = true
+    isolationMode = IsolationMode.InstancePerTest
 
     val apiService = mock<ApiCryptoService>()
     val apiDomainModelMapper = mock<ApiDomainModelMapper>()
     val dbDomainModelMapper = mock<DbDomainModelMapper>()
     val cryptoDAO = mock<CryptoDAO>()
 
-    val currency = "USD"
     val cryptoId = "bitcoin"
 
     val cryptoRepository: ICryptoRepository = CryptoRepository(
@@ -38,7 +41,7 @@ class CryptoRepositoryTest : BehaviorSpec({
         cryptoDao = cryptoDAO,
         apiMapper = apiDomainModelMapper,
         dbMapper = dbDomainModelMapper,
-        currency = currency,
+        locale = defaultLocale,
     )
 
     given("a list crypto from database") {
@@ -65,7 +68,7 @@ class CryptoRepositoryTest : BehaviorSpec({
         val domainData = listOf<DomainCrypto>(mock(), mock())
         val dbCryptoList = mock<List<DBCrypto>>()
 
-        whenever(apiService.getTopCrypto(currency)).thenReturn(cryptoList)
+        whenever(apiService.getTopCrypto(any())).thenReturn(cryptoList)
         whenever(apiDomainModelMapper.convert(cryptoList)).thenReturn(domainData)
         whenever(dbDomainModelMapper.toDB(domainData)).thenReturn(dbCryptoList)
         whenever(cryptoDAO.replace(any())).thenReturn(listOf())
@@ -75,7 +78,7 @@ class CryptoRepositoryTest : BehaviorSpec({
             cryptoRepository.refreshTopCryptoList()
 
             then("it should get data from the API") {
-                verify(apiService).getTopCrypto(currency)
+                verify(apiService).getTopCrypto(any())
             }
 
             then("it should insert the data in the database") {

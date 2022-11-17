@@ -1,19 +1,28 @@
 package dev.ohoussein.cryptoapp
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import dev.ohoussein.core.injection.cryptoAppModules
 import dev.ohoussein.cryptoapp.config.IAppFlavorSetup
-import javax.inject.Inject
+import dev.ohoussein.cryptoapp.di.appExtensionModule
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
-@HiltAndroidApp
 class App : Application() {
 
-    @Inject
-    lateinit var appSetup: IAppFlavorSetup
+    private val appSetup: IAppFlavorSetup by inject()
 
     override fun onCreate() {
         super.onCreate()
-
+        startDI()
         appSetup.setup(this)
+    }
+
+    private fun startDI() {
+        startKoin {
+            androidContext(this@App)
+            modules(appExtensionModule)
+            modules(cryptoAppModules)
+        }
     }
 }

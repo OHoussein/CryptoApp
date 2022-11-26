@@ -27,6 +27,7 @@ retrofitVersion = "2.9.0"
 roomVersion = "2.4.3"
 
 mockitoVersion = "4.0.0"
+mockk = "1.13.2"
 koTestVersion = "5.4.2"
 junitVersion = "4.13.2"
 archCoreTestingVersion = "2.1.0"
@@ -88,6 +89,7 @@ data-room-compiler = { module = "androidx.room:room-compiler", version.ref = "ro
 
 test-junit = { module = "junit:junit", version.ref = "junitVersion" }
 test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoVersion" }
+test-mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
 test-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoVersion" }
 test-mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoVersion" }
 test-android-arch-core = { module = "androidx.arch.core:core-testing", version.ref = "archCoreTestingVersion" }

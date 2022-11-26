@@ -5,21 +5,25 @@ import dev.ohoussein.cryptoapp.common.mvi.Reducer
 import dev.ohoussein.cryptoapp.common.mvi.UiEvent
 import dev.ohoussein.cryptoapp.common.mvi.UiIntent
 import dev.ohoussein.cryptoapp.common.mvi.UiState
-import dev.ohoussein.cryptoapp.common.resource.Resource
+import dev.ohoussein.cryptoapp.common.resource.DataStatus
 
 class CryptoDetailsReducer : Reducer<CryptoDetailsState, CryptoDetailsEvents>(CryptoDetailsState()) {
 
     override fun reduce(oldState: CryptoDetailsState, event: CryptoDetailsEvents): CryptoDetailsState {
         return when (event) {
-            is CryptoDetailsEvents.UpdateCryptoDetailsResource -> {
-                oldState.copy(crypto = event.crypto)
+            is CryptoDetailsEvents.UpdateCryptoDetails -> {
+                oldState.copy(cryptoDetails = event.crypto, status = DataStatus.Success)
+            }
+            is CryptoDetailsEvents.UpdateStatus -> {
+                oldState.copy(status = event.status)
             }
         }
     }
 }
 
 sealed class CryptoDetailsEvents : UiEvent {
-    data class UpdateCryptoDetailsResource(val crypto: Resource<CryptoDetails>) : CryptoDetailsEvents()
+    data class UpdateCryptoDetails(val crypto: CryptoDetails) : CryptoDetailsEvents()
+    data class UpdateStatus(val status: DataStatus) : CryptoDetailsEvents()
 }
 
 sealed class CryptoDetailsIntent : UiIntent {
@@ -28,5 +32,6 @@ sealed class CryptoDetailsIntent : UiIntent {
 }
 
 data class CryptoDetailsState(
-    val crypto: Resource<CryptoDetails> = Resource.loading(),
+    val cryptoDetails: CryptoDetails? = null,
+    val status: DataStatus = DataStatus.Initial,
 ) : UiState

@@ -30,7 +30,7 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
 import dev.ohoussein.crypto.presentation.ui.components.CryptoItem
 import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
-import dev.ohoussein.cryptoapp.common.resource.Status
+import dev.ohoussein.cryptoapp.common.resource.DataStatus
 import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
@@ -128,7 +128,7 @@ fun CryptoListScreen(
     viewModel: CryptoListViewModel,
     onClick: (Crypto) -> Unit,
 ) {
-    val cryptoList by viewModel.state.collectAsStateWithLifecycle()
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
         viewModel.dispatch(CryptoListIntent.ScreenOpened)
@@ -136,9 +136,9 @@ fun CryptoListScreen(
 
     CryptoAppScaffold {
         CryptoListStateScreen(
-            cryptoList = cryptoList.cryptoList.data,
-            isLoading = cryptoList.cryptoList.status == Status.LOADING,
-            error = cryptoList.cryptoList.error,
+            cryptoList = state.cryptoList,
+            isLoading = state.status == DataStatus.Loading,
+            error = (state.status as? DataStatus.Error)?.message,
             onClick = onClick,
             onRefresh = { viewModel.dispatch(CryptoListIntent.Refresh) }
         )

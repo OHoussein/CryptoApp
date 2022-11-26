@@ -23,18 +23,16 @@ import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
-import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
-import java.io.IOException
 import javax.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.kotlin.any
+import org.mockito.kotlin.doSuspendableAnswer
 import org.mockito.kotlin.whenever
 
 @ExperimentalCoroutinesApi
@@ -95,7 +93,7 @@ class CryptoListScreenTest {
             setupContent {
                 // check just the first item
                 thenCryptoItemShouldBeDisplayed(data.first())
-                givenErrorOnGetListOfCrypto {
+                givenErrorOnRefreshListOfCrypto {
                     swipeToRefreshList()
                     // Then should display error and still see the list
                     thenShouldDisplayError()
@@ -132,24 +130,29 @@ class CryptoListScreenTest {
 
     private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
         val data = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))
-            .thenReturn(flowOf(CachedData.fresh(data)))
+        whenever(cryptoRepo.getTopCryptoList())
+            .thenReturn(flowOf(data))
         next(data)
     }
 
-    private fun givenErrorOnGetListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+    private fun givenErrorOnRefreshListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
         val successData = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(any()))
-            .thenReturn(flow { throw IOException() })
+        runBlocking {
+            whenever(cryptoRepo.refreshTopCryptoList())
+                .then { error("Network error") }
+        }
         next(successData)
     }
 
     private fun givenErrorThanSuccessGetListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+        val flow = MutableSharedFlow<List<DomainCrypto>>()
         val successData = TestDataFactory.makeCryptoList(20)
-        whenever(cryptoRepo.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))
-            .thenReturn(flow { throw IOException() })
-        whenever(cryptoRepo.getTopCryptoList(CachePolicy.FRESH))
-            .thenReturn(flowOf(CachedData.fresh(successData)))
+        whenever(cryptoRepo.getTopCryptoList()).thenReturn(flow)
+        runBlocking {
+            whenever(cryptoRepo.refreshTopCryptoList())
+                .then { error("Network error") }
+                .doSuspendableAnswer { flow.emit(successData) }
+        }
         next(successData)
     }
 

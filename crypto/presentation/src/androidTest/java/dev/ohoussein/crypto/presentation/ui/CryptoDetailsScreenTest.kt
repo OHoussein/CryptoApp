@@ -22,17 +22,16 @@ import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
-import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
-import java.io.IOException
 import javax.inject.Inject
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.kotlin.doSuspendableAnswer
 import org.mockito.kotlin.whenever
 
 @HiltAndroidTest
@@ -120,18 +119,20 @@ class CryptoDetailsScreenTest {
 
     private fun givenCrypto(next: (DomainCryptoDetails) -> Unit) {
         val data = TestDataFactory.randomCryptoDetails(cryptoId)
-        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH))
-            .thenReturn(flowOf(CachedData.fresh(data)))
+        whenever(cryptoRepo.getCryptoDetails(cryptoId))
+            .thenReturn(flowOf(data))
         next(data)
     }
 
     private fun givenErrorAndSuccessRefresh(next: () -> Unit) {
-        val firstData = flow<CachedData<DomainCryptoDetails>> { throw IOException() }
-        val refreshedData = TestDataFactory.randomCryptoDetails(cryptoId)
-        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.CACHE_THEN_FRESH))
-            .thenReturn(firstData)
-        whenever(cryptoRepo.getCryptoDetails(cryptoId, CachePolicy.FRESH))
-            .thenReturn(flowOf(CachedData.fresh(refreshedData)))
+        val flow = MutableSharedFlow<DomainCryptoDetails>()
+        val successData = TestDataFactory.randomCryptoDetails(cryptoId)
+        whenever(cryptoRepo.getCryptoDetails(cryptoId)).thenReturn(flow)
+        runBlocking {
+            whenever(cryptoRepo.refreshCryptoDetails(cryptoId))
+                .then { error("Network error") }
+                .doSuspendableAnswer { flow.emit(successData) }
+        }
         next()
     }
 

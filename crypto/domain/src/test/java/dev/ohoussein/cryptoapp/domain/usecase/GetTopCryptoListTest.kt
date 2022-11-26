@@ -3,8 +3,6 @@ package dev.ohoussein.cryptoapp.domain.usecase
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
-import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import io.kotest.core.spec.style.BehaviorSpec
 import kotlinx.coroutines.flow.flowOf
 import org.mockito.kotlin.mock
@@ -18,14 +16,22 @@ class GetTopCryptoListTest : BehaviorSpec({
 
     given("a getTopCryptoList answer") {
         val data = mock<List<DomainCrypto>>()
-        whenever(cryptoRepository.getTopCryptoList(CachePolicy.CACHE_THEN_FRESH))
-            .thenReturn(flowOf(CachedData.cached(data, isLoading = false)))
+        whenever(cryptoRepository.getTopCryptoList())
+            .thenReturn(flowOf(data))
 
         `when`("call the get from the use case") {
-            getTopCryptoList.get(CachePolicy.CACHE_THEN_FRESH)
+            getTopCryptoList()
 
             then("it should calls the getTopCryptoList from the repository") {
-                verify(cryptoRepository).getTopCryptoList(CachePolicy.CACHE_THEN_FRESH)
+                verify(cryptoRepository).getTopCryptoList()
+            }
+        }
+
+        `when`("refresh") {
+            getTopCryptoList.refresh()
+
+            then("it should calls refreshTopCryptoList from cryptoRepository") {
+                verify(cryptoRepository).refreshTopCryptoList()
             }
         }
     }

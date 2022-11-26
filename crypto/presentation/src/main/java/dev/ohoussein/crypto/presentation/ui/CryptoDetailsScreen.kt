@@ -26,8 +26,7 @@ import dev.ohoussein.crypto.presentation.ui.components.CryptoLinks
 import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewCryptoDetails
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
-import dev.ohoussein.cryptoapp.common.resource.Resource
-import dev.ohoussein.cryptoapp.common.resource.Status
+import dev.ohoussein.cryptoapp.common.resource.DataStatus
 import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
@@ -69,13 +68,15 @@ fun CryptoDetails(
 @Composable
 fun CryptoDetailsStateScreen(
     modifier: Modifier = Modifier,
-    cryptoDetailsState: Resource<CryptoDetails>,
+    cryptoDetails: CryptoDetails?,
+    isLoading: Boolean,
+    error: String?,
     onRefresh: () -> Unit,
     onHomePageClicked: (CryptoDetails) -> Unit,
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
     onSourceCodeClicked: (CryptoDetails) -> Unit,
 ) {
-    cryptoDetailsState.data?.let { data ->
+    cryptoDetails?.let { data ->
         CryptoDetails(
             modifier = modifier,
             crypto = data,
@@ -86,17 +87,13 @@ fun CryptoDetailsStateScreen(
         return
     }
 
-    when (cryptoDetailsState.status) {
-        Status.ERROR -> {
-            StateError(
-                modifier = modifier,
-                message = cryptoDetailsState.error ?: "",
-                onRetryClick = onRefresh,
-            )
-        }
-        else -> {
-            StateLoading(modifier = modifier)
-        }
+    when {
+        error != null -> StateError(
+            modifier = modifier,
+            message = error,
+            onRetryClick = onRefresh,
+        )
+        isLoading -> StateLoading(modifier = modifier)
     }
 }
 
@@ -117,7 +114,9 @@ fun CryptoDetailsScreen(
     CryptoAppScaffold(onBackButton = onBackClicked) {
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
-            cryptoDetailsState = state.crypto,
+            cryptoDetails = state.cryptoDetails,
+            isLoading = state.status == DataStatus.Loading,
+            error = (state.status as? DataStatus.Error)?.message,
             onRefresh = { viewModel.dispatch(CryptoDetailsIntent.Refresh) },
             onHomePageClicked = { crypto ->
                 crypto.homePageUrl?.let { externalRouter.openWebUrl(it) }

@@ -10,7 +10,6 @@ tasks.withType<Test> {
 
 dependencies {
     implementation(libs.core.kotlin.coroutines.core)
-    implementation(project(path = ":core:cached-data"))
 
     testImplementation(libs.test.mockito.kotlin)
     testImplementation(libs.test.mockito.inline)

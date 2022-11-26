@@ -20,8 +20,6 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":core:cached-data"))
-
     implementation(libs.android.compose.material)
     implementation(libs.android.lifecycle.viewmodel)
     implementation(libs.core.timber)

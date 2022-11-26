@@ -23,7 +23,6 @@ dependencies {
     implementation(project(path = ":core:common"))
     implementation(project(path = ":core:designsystem"))
     implementation(project(path = ":core:formatter"))
-    implementation(project(path = ":core:cached-data"))
     androidTestImplementation(project(path = ":core:injection"))
 
     // Presentation

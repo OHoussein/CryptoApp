@@ -18,7 +18,6 @@ dependencies {
     implementation(project(path = ":crypto:domain"))
     implementation(project(path = ":data:database"))
     implementation(project(path = ":core:injection:core"))
-    implementation(project(path = ":core:cached-data"))
     implementation(project(path = ":data:cache"))
 
     implementation(libs.core.kotlin.coroutines.core)

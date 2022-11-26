@@ -5,18 +5,16 @@ import dev.ohoussein.crypto.data.api.mapper.ApiDomainModelMapper
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.core.Qualifier
-import dev.ohoussein.cryptoapp.data.cache.Cache
 import dev.ohoussein.cryptoapp.data.cache.CachedDataRepository
 import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.crypto.mapper.DbDomainModelMapper
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.filterNot
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Named
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filterNot
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.map
 
 class CryptoRepository @Inject constructor(
     private val service: ApiCryptoService,
@@ -26,51 +24,41 @@ class CryptoRepository @Inject constructor(
     @Named(Qualifier.CURRENCY) private val currency: String,
 ) : ICryptoRepository {
 
-    private val topCryptoList: CachedDataRepository<Unit, List<DomainCrypto>> = CachedDataRepository.create(
-        dataFetcher = {
+    private val topCryptoListCache: CachedDataRepository<Unit, List<DomainCrypto>> = CachedDataRepository(
+        updater = {
             val apiResponse = service.getTopCrypto(currency)
             apiMapper.convert(apiResponse)
         },
-        cache = Cache.of(
-            reader = {
-                cryptoDao.getAll()
-                    .map(dbMapper::convertDBCrypto)
-                    .filterNot { it.isEmpty() }
-            },
-            writer = { _: Unit, data: List<DomainCrypto> ->
-                val newDbData = dbMapper.toDB(data)
-                cryptoDao.replace(newDbData)
-            }
-        )
+        cacheStreamer = {
+            cryptoDao.getAll()
+                .map(dbMapper::convertDBCrypto)
+                .filterNot { it.isEmpty() }
+        },
+        cacheWriter = { _, data ->
+            cryptoDao.replace(dbMapper.toDB(data))
+        },
     )
 
-    private val cryptoDetails: CachedDataRepository<String, DomainCryptoDetails> = CachedDataRepository.create(
-        dataFetcher = { id ->
+    private val cryptoDetailsCache: CachedDataRepository<String, DomainCryptoDetails> = CachedDataRepository(
+        updater = { id ->
             val response = service.getCryptoDetails(id)
             apiMapper.convert(response)
         },
-        cache = Cache.of(
-            reader = { id ->
-                cryptoDao.getCryptoDetails(id)
-                    .map {
-                        if (it != null)
-                            dbMapper.toDomain(it)
-                        else
-                            null
-                    }
-            },
-            writer = { _: String, data: DomainCryptoDetails ->
-                val newDbData = dbMapper.toDB(data)
-                cryptoDao.insert(newDbData)
-            }
-        )
+        cacheStreamer = { id ->
+            cryptoDao.getCryptoDetails(id)
+                .filterNotNull()
+                .map(dbMapper::toDomain)
+        },
+        cacheWriter = { _, data ->
+            cryptoDao.insert(dbMapper.toDB(data))
+        },
     )
 
-    override fun getTopCryptoList(cachePolicy: CachePolicy): Flow<CachedData<List<DomainCrypto>>> {
-        return topCryptoList.stream(Unit, cachePolicy)
-    }
+    override fun getTopCryptoList(): Flow<List<DomainCrypto>> = topCryptoListCache.stream(Unit)
 
-    override fun getCryptoDetails(cryptoId: String, cachePolicy: CachePolicy): Flow<CachedData<DomainCryptoDetails>> {
-        return cryptoDetails.stream(cryptoId, cachePolicy)
-    }
+    override suspend fun refreshTopCryptoList() = topCryptoListCache.refresh(Unit)
+
+    override suspend fun refreshCryptoDetails(cryptoId: String) = cryptoDetailsCache.refresh(cryptoId)
+
+    override fun getCryptoDetails(cryptoId: String): Flow<DomainCryptoDetails> = cryptoDetailsCache.stream(cryptoId)
 }

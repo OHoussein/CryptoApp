@@ -1,21 +1,17 @@
 package dev.ohoussein.cryptoapp.data.cache
 
-import dev.ohoussein.crypto.data.cache.DataFetcher
-import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import kotlinx.coroutines.flow.Flow
 
-abstract class CachedDataRepository<Key : Any, Output : Any>(
-    protected val dataFetcher: DataFetcher<Key, Output>,
-    protected val cache: Cache<Key, Output>,
+class CachedDataRepository<Key : Any, Data : Any>(
+    private val updater: suspend (Key) -> Data,
+    private val cacheStreamer: (Key) -> Flow<Data>,
+    private val cacheWriter: suspend (Key, Data) -> Unit,
 ) {
 
-    abstract fun stream(key: Key, cachePolicy: CachePolicy): Flow<CachedData<Output>>
+    fun stream(key: Key): Flow<Data> = cacheStreamer(key)
 
-    companion object {
-        fun <Key : Any, Value : Any> create(
-            dataFetcher: DataFetcher<Key, Value>,
-            cache: Cache<Key, Value>,
-        ): CachedDataRepository<Key, Value> = CachedDataRepositoryImpl(dataFetcher, cache)
+    suspend fun refresh(key: Key) {
+        val newData = updater(key)
+        cacheWriter(key, newData)
     }
 }

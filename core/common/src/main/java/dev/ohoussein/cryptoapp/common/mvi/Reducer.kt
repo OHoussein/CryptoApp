@@ -17,6 +17,7 @@ abstract class Reducer<S : UiState, E : UiEvent>(
 
     private fun setState(newState: S) {
         Timber.d("setState: $newState")
+        println("setState: $newState")
         _state.tryEmit(newState)
     }
 

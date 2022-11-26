@@ -9,13 +9,16 @@ import dev.ohoussein.crypto.data.repository.CryptoRepository
 import dev.ohoussein.crypto.domain.model.DomainCrypto
 import dev.ohoussein.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.crypto.domain.repo.ICryptoRepository
-import dev.ohoussein.cryptoapp.cacheddata.CachePolicy
-import dev.ohoussein.cryptoapp.cacheddata.CachedData
 import dev.ohoussein.cryptoapp.data.database.crypto.dao.CryptoDAO
 import dev.ohoussein.cryptoapp.data.database.crypto.mapper.DbDomainModelMapper
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCrypto
+import dev.ohoussein.cryptoapp.data.database.crypto.model.DBCryptoDetails
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
+import kotlinx.coroutines.flow.flowOf
+import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
+import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class CryptoRepositoryTest : BehaviorSpec({
@@ -27,7 +30,7 @@ class CryptoRepositoryTest : BehaviorSpec({
     val dbDomainModelMapper = mock<DbDomainModelMapper>()
     val cryptoDAO = mock<CryptoDAO>()
 
-    val currency = "USDT"
+    val currency = "USD"
     val cryptoId = "bitcoin"
 
     val cryptoRepository: ICryptoRepository = CryptoRepository(
@@ -38,54 +41,85 @@ class CryptoRepositoryTest : BehaviorSpec({
         currency = currency,
     )
 
-/*    given("a list of db crypto") {
-        val dbList = listOf<DBCrypto>(mock(), mock())
+    given("a list crypto from database") {
+        val dbCryptoList = listOf<DBCrypto>(mock(), mock())
         val domainData = listOf<DomainCrypto>(mock(), mock())
-        whenever(cryptoDAO.getAll()).thenReturn(flowOf(dbList))
-        whenever(dbDomainModelMapper.convertDBCrypto(dbList)).thenReturn(domainData)
+
+        whenever(cryptoDAO.getAll()).thenReturn(flowOf(dbCryptoList))
+        whenever(dbDomainModelMapper.convertDBCrypto(dbCryptoList)).thenReturn(domainData)
 
         `when`("getTopCryptoList") {
-            val result = cryptoRepository.getTopCryptoList(any()).first()
+            val result = cryptoRepository.getTopCryptoList()
 
-            then("it should get the data from the datasource") {
-                result shouldBe domainData
-            }
-        }
-    }*/
-
-    given("a list of api crypto") {
-        val apiResponse = listOf<TopCryptoResponse>(mock(), mock())
-        val domainData = listOf<DomainCrypto>(mock(), mock())
-
-        whenever(apiService.getTopCrypto(currency)).thenReturn(apiResponse)
-        whenever(apiDomainModelMapper.convert(apiResponse)).thenReturn(domainData)
-
-        `when`("refreshTopCryptoList") {
-            val result = cryptoRepository.getTopCryptoList(CachePolicy.FRESH)
-
-            then("it should get the data from the datasource") {
+            then("it should get the data from the database") {
                 result.test {
-                    awaitItem() shouldBe CachedData.fresh(domainData)
+                    awaitItem() shouldBe domainData
                     awaitComplete()
                 }
             }
         }
     }
 
-    given("a crypto details") {
-        val apiResponse = mock<CryptoDetailsResponse>()
+    given("list of crypto from api") {
+        val cryptoList = listOf<TopCryptoResponse>(mock(), mock())
+        val domainData = listOf<DomainCrypto>(mock(), mock())
+        val dbCryptoList = mock<List<DBCrypto>>()
+
+        whenever(apiService.getTopCrypto(currency)).thenReturn(cryptoList)
+        whenever(apiDomainModelMapper.convert(cryptoList)).thenReturn(domainData)
+        whenever(dbDomainModelMapper.toDB(domainData)).thenReturn(dbCryptoList)
+        whenever(cryptoDAO.replace(any())).thenReturn(listOf())
+        whenever(cryptoDAO.getAll()).thenReturn(flowOf(dbCryptoList))
+
+        `when`("refreshTopCryptoList") {
+            cryptoRepository.refreshTopCryptoList()
+
+            then("it should get data from the API") {
+                verify(apiService).getTopCrypto(currency)
+            }
+
+            then("it should insert the data in the database") {
+                verify(cryptoDAO).replace(dbCryptoList)
+            }
+        }
+    }
+
+    given("a crypto details from database") {
+        val dbCrypto = mock<DBCryptoDetails>()
         val domainData = mock<DomainCryptoDetails>()
-        whenever(apiService.getCryptoDetails(cryptoId)).thenReturn(apiResponse)
-        whenever(apiDomainModelMapper.convert(apiResponse)).thenReturn(domainData)
+        whenever(cryptoDAO.getCryptoDetails(cryptoId)).thenReturn(flowOf(dbCrypto))
+        whenever(dbDomainModelMapper.toDomain(dbCrypto)).thenReturn(domainData)
 
         `when`("getCryptoDetails") {
-            val result = cryptoRepository.getCryptoDetails(cryptoId, CachePolicy.FRESH)
+            val result = cryptoRepository.getCryptoDetails(cryptoId)
 
             then("it should get the data from the datasource") {
                 result.test {
-                    awaitItem() shouldBe CachedData.fresh(domainData)
+                    awaitItem() shouldBe domainData
                     awaitComplete()
                 }
+            }
+        }
+    }
+
+    given("a crypto details from api") {
+        val apiResponse = mock<CryptoDetailsResponse>()
+        val domainData = mock<DomainCryptoDetails>()
+        val dbCrypto = mock<DBCryptoDetails>()
+        whenever(apiService.getCryptoDetails(cryptoId)).thenReturn(apiResponse)
+        whenever(apiDomainModelMapper.convert(apiResponse)).thenReturn(domainData)
+        whenever(dbDomainModelMapper.toDB(domainData)).thenReturn(dbCrypto)
+        whenever(cryptoDAO.getCryptoDetails(cryptoId)).thenReturn(flowOf(dbCrypto))
+
+        `when`("getCryptoDetails") {
+            cryptoRepository.refreshCryptoDetails(cryptoId)
+
+            then("it should get data from the API") {
+                verify(apiService).getCryptoDetails(cryptoId)
+            }
+
+            then("it should insert the data in the database") {
+                verify(cryptoDAO).insert(dbCrypto)
             }
         }
     }

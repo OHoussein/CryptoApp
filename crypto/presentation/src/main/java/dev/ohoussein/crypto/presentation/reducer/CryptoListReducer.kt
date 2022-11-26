@@ -5,33 +5,33 @@ import dev.ohoussein.cryptoapp.common.mvi.Reducer
 import dev.ohoussein.cryptoapp.common.mvi.UiEvent
 import dev.ohoussein.cryptoapp.common.mvi.UiIntent
 import dev.ohoussein.cryptoapp.common.mvi.UiState
-import dev.ohoussein.cryptoapp.common.resource.Resource
+import dev.ohoussein.cryptoapp.common.resource.DataStatus
 
 class CryptoListReducer : Reducer<CryptoListState, CryptoListEvents>(CryptoListState()) {
 
     override fun reduce(oldState: CryptoListState, event: CryptoListEvents): CryptoListState {
         return when (event) {
-            is CryptoListEvents.UpdateCryptoListResource -> {
-                oldState.copy(cryptoList = event.cryptoList)
+            is CryptoListEvents.UpdateCryptoList -> {
+                oldState.copy(cryptoList = event.cryptoList, status = DataStatus.Success)
+            }
+            is CryptoListEvents.UpdateStatus -> {
+                oldState.copy(status = event.status)
             }
         }
     }
 }
 
 sealed class CryptoListEvents : UiEvent {
-    data class UpdateCryptoListResource(val cryptoList: Resource<List<Crypto>>) : CryptoListEvents()
+    data class UpdateCryptoList(val cryptoList: List<Crypto>) : CryptoListEvents()
+    data class UpdateStatus(val status: DataStatus) : CryptoListEvents()
 }
 
 sealed class CryptoListIntent : UiIntent {
     object ScreenOpened : CryptoListIntent()
     object Refresh : CryptoListIntent()
-    // data class ShowCryptoDetails(val cryptoId: String): CryptoListIntent()
-}
-
-sealed class CryptoListViewEffect {
-    data class NavigateToCryptoDetails(val cryptoId: String)
 }
 
 data class CryptoListState(
-    val cryptoList: Resource<List<Crypto>> = Resource.loading(),
+    val cryptoList: List<Crypto>? = null,
+    val status: DataStatus = DataStatus.Initial,
 ) : UiState

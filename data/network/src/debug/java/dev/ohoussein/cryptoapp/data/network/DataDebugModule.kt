@@ -1,6 +1,5 @@
 package dev.ohoussein.cryptoapp.data.network
 
-import dev.ohoussein.cryptoapp.core.DIConstants
 import okhttp3.Interceptor
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.core.qualifier.named

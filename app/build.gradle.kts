@@ -34,8 +34,6 @@ kapt {
 dependencies {
     implementation(project(path = ":crypto:presentation"))
     implementation(project(path = ":core:injection"))
-    implementation(project(path = ":core:injection:core"))
-
     // Common
     implementation(libs.core.kotlin.coroutines.core)
     implementation(libs.core.kotlin.coroutines.android)

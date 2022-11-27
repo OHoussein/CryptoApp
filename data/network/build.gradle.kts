@@ -12,8 +12,6 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":core:injection:core"))
-
     implementation(libs.core.kotlin.coroutines.core)
     implementation(libs.data.retrofit.lib)
     implementation(libs.data.retrofit.moshi)

@@ -44,7 +44,6 @@ dependencies {
     implementation(libs.android.lifecycle.extensions)
 
     implementation(libs.core.timber)
-    implementation(project(path = ":core:injection:core"))
 
     testImplementation(project(path = ":core:test"))
     testImplementation(libs.test.mockito.inline)

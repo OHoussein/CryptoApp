@@ -15,10 +15,10 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":crypto:domain"))
+    implementation(project(":crypto:shared-domain"))
     implementation(project(path = ":data:database"))
     implementation(project(path = ":core:formatter"))
-    implementation(project(path = ":data:cache"))
+    implementation(project(path = ":data:shared-cache"))
 
     implementation(libs.core.kotlin.coroutines.core)
 

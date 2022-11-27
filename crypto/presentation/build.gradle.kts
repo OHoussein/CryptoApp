@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":crypto:domain"))
+    implementation(project(":crypto:shared-domain"))
     implementation(project(path = ":crypto:data"))
     implementation(project(path = ":core:common"))
     implementation(project(path = ":core:designsystem"))

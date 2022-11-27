@@ -657,6 +657,7 @@ style:
     active: true
     allowedNames: '(_|ignored|expected|serialVersionUID)'
     ignoreAnnotated: [ 'Preview' ]
+    excludes: [ '**.kts' ]
   UseAnyOrNoneInsteadOfFind:
     active: false
   UseArrayLiteralsInAnnotations:

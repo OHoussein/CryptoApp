@@ -11,7 +11,7 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":crypto:domain"))
+    implementation(project(":crypto:shared-domain"))
     implementation(project(path = ":core:injection"))
     implementation(libs.android.appcompat)
     implementation(libs.core.kotlin.coroutines.core)

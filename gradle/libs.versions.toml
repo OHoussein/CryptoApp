@@ -27,7 +27,7 @@ roomVersion = "2.4.3"
 
 mockitoVersion = "4.0.0"
 mockk = "1.13.2"
-koTestVersion = "5.4.2"
+mockkCommon= "1.12.5"
 junitVersion = "4.13.2"
 archCoreTestingVersion = "2.1.0"
 mockwebserverVersion = "4.10.0"
@@ -36,7 +36,8 @@ robolectricVersion = "4.8.1"
 junitVintageEngineVersion = "5.9.0"
 testParameterInjectorVersion = "1.8"
 kotestVersion = "5.4.2"
-turbineVersion = "0.9.0"
+kotestMultiplatform = "5.5.4"
+turbineVersion = "0.12.1"
 testAndroidRulesVersion = "1.4.0"
 testAndroidCoreVersion = "1.4.0"
 testAndroidJunitVersion = "1.1.3"
@@ -88,6 +89,7 @@ data-room-compiler = { module = "androidx.room:room-compiler", version.ref = "ro
 test-junit = { module = "junit:junit", version.ref = "junitVersion" }
 test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoVersion" }
 test-mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
+test-mockk-common = { module = "io.mockk:mockk-common", version.ref = "mockkCommon" }
 test-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoVersion" }
 test-mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoVersion" }
 test-android-arch-core = { module = "androidx.arch.core:core-testing", version.ref = "archCoreTestingVersion" }
@@ -97,6 +99,7 @@ test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robo
 test-junitVintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junitVintageEngineVersion" }
 test-parameterInjector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjectorVersion" }
 test-kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotestVersion" }
+test-kotest-multiplatform = { module = "io.kotest:kotest-framework-engine", version.ref = "kotestVersion" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotestVersion" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineVersion" }

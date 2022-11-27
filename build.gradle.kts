@@ -15,6 +15,7 @@ buildscript {
         classpath(libs.build.detekt.formatting)
         classpath(libs.build.jacoco)
         classpath(libs.build.paparazzi)
+        classpath("com.squareup.sqldelight:gradle-plugin:1.5.3")
     }
 }
 

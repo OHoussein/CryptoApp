@@ -58,5 +58,15 @@ gradlePlugin {
             id = "${namespace}.feature"
             implementationClass = "AndroidFeatureConventionPlugin"
         }
+
+        register("kotlinMultiplatformLibrary") {
+            id = "${namespace}.kotlin.multiplatform.library"
+            implementationClass = "KotlinMultiplatformLibraryConventionPlugin"
+        }
+
+        register("kotlinMultiplatformTest") {
+            id = "${namespace}.kotlin.multiplatform.test"
+            implementationClass = "KotlinMultiplatformTestConventionPlugin"
+        }
     }
 }

@@ -20,8 +20,8 @@ android {
 }
 
 dependencies {
-    implementation(project(path = ":crypto:domain"))
 
+    implementation(project(":crypto:shared-domain"))
     implementation(libs.data.room.ktx)
     kapt(libs.data.room.compiler)
     annotationProcessor(libs.data.room.compiler)

@@ -7,9 +7,9 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoListEvents
 import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
 import dev.ohoussein.crypto.presentation.reducer.CryptoListReducer
 import dev.ohoussein.crypto.presentation.reducer.CryptoListState
+import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.mvi.BaseViewModel
 import dev.ohoussein.cryptoapp.common.resource.asDataStatusFlow
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach

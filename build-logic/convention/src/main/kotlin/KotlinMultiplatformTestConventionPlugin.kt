@@ -1,11 +1,13 @@
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.tasks.testing.Test
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest
+
+private const val iosDeviceId = "IPhone 12"
 
 class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
 
@@ -19,20 +21,23 @@ class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
 
             extensions.configure<KotlinMultiplatformExtension> {
                 sourceSets.getByName("commonTest").dependencies {
-                    implementation(libs.findLibrary("test-kotest-multiplatform").get())
-                    implementation(libs.findLibrary("test-kotest-assertions").get())
+                    implementation(kotlin("test"))
+                    implementation(kotlin("test-annotations-common"))
+                    implementation(kotlin("test-common"))
                     implementation(libs.findLibrary("test-turbine").get())
-                    implementation(libs.findLibrary("test-mockk-common").get())
                 }
 
                 sourceSets.getByName("androidTest").dependencies {
                     implementation(libs.findLibrary("test-mockk-core").get())
-                    implementation(libs.findLibrary("test-kotest-runner").get())
+                    implementation(libs.findLibrary("test-junit").get())
+                    implementation(libs.findLibrary("test-mockk-common").get())
                 }
             }
 
-            tasks.withType<Test>().configureEach {
-                useJUnitPlatform()
+            afterEvaluate {
+                tasks.withType<KotlinNativeSimulatorTest>() {
+                    deviceId = iosDeviceId
+                }
             }
         }
     }

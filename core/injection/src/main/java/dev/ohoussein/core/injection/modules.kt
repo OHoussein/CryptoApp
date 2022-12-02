@@ -9,7 +9,6 @@ import dev.ohoussein.cryptoapp.data.network.networkModule
 import org.koin.core.module.Module
 
 val cryptoAppModules: List<Module> = listOf(
-    formatModule,
     cryptoModule,
     commonModule,
     formatModule,

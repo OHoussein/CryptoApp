@@ -2,7 +2,6 @@ plugins {
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.test")
-    id("dev.ohoussein.cryptoapp.koin")
 }
 
 kotlin {
@@ -18,11 +17,9 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.core.kotlin.coroutines.core)
+                implementation(libs.koin.core)
             }
         }
-        val commonTest by getting
-        val androidMain by getting
-        val androidTest by getting
     }
 }
 

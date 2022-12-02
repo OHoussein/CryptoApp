@@ -24,7 +24,7 @@ dependencies {
     implementation(project(path = ":crypto:data"))
     implementation(project(path = ":core:common"))
     implementation(project(path = ":core:designsystem"))
-    implementation(project(path = ":core:formatter"))
+    implementation(project(path = ":core:shared-formatter"))
     androidTestImplementation(project(path = ":core:injection"))
 
     // Presentation

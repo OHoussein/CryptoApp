@@ -6,14 +6,14 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Data cache module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/shared_cache.framework'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/shared-cache.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':data:shared-cache',
-        'PRODUCT_MODULE_NAME' => 'shared_cache',
+        'PRODUCT_MODULE_NAME' => 'shared-cache',
     }
                 
     spec.script_phases = [

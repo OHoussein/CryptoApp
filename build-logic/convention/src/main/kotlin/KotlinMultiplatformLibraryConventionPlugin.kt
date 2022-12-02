@@ -13,28 +13,46 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.cocoapods.CocoapodsExtension
 
 class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
+    private val iosTargets = setOf(
+        "iosArm64",
+        "iosX64",
+        "iosSimulatorArm64"
+    )
 
     override fun apply(target: Project) {
         with(target) {
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
             with(pluginManager) {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.multiplatform")
                 apply("org.jetbrains.kotlin.native.cocoapods")
-                apply {
-                    withPlugin("io.kotest.multiplatform") {
-                        version = libs.findVersion("kotestMultiplatform").get()
-                    }
-                }
             }
 
             extensions.configure<KotlinMultiplatformExtension> {
                 android()
+                iosArm64()
+                iosX64()
+                iosSimulatorArm64()
+
                 this.cocoapods {
                     homepage = "https://github.com/OHoussein/android-crypto-app"
                     ios.deploymentTarget = IOSTargetVersions.DEPLOYMENT_TARGET
+                    framework {
+                        isStatic = true
+                    }
                 }
+
+                val commonMain = sourceSets.getByName("commonMain")
+                val commonTest = sourceSets.getByName("commonTest")
+
+                val iosMain = sourceSets.create("iosMain") {
+                    dependsOn(commonMain)
+                }
+                val iosTest = sourceSets.create("iosTest") {
+                    dependsOn(commonTest)
+                }
+
+                iosTargets.map { "${it}Main" }.forEach { sourceSets.getByName(it).dependsOn(iosMain) }
+                iosTargets.map { "${it}Test" }.forEach { sourceSets.getByName(it).dependsOn(iosTest) }
             }
 
             extensions.configure<LibraryExtension> {

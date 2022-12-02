@@ -1,9 +1,11 @@
 package dev.ohoussein.cryptoapp.crypto.domain
 
+import dev.ohoussein.crypto.domain.model.Locale
 import dev.ohoussein.crypto.domain.model.defaultLocale
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
 import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import org.koin.core.module.dsl.factoryOf
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val cryptoDomainModule = module {
@@ -12,4 +14,5 @@ val cryptoDomainModule = module {
     single {
         defaultLocale
     }
+    factory(named("languageCode")) { get<Locale>().languageCode }
 }

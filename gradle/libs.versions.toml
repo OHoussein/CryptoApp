@@ -36,7 +36,6 @@ robolectricVersion = "4.8.1"
 junitVintageEngineVersion = "5.9.0"
 testParameterInjectorVersion = "1.8"
 kotestVersion = "5.4.2"
-kotestMultiplatform = "5.5.4"
 turbineVersion = "0.12.1"
 testAndroidRulesVersion = "1.4.0"
 testAndroidCoreVersion = "1.4.0"
@@ -99,7 +98,6 @@ test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robo
 test-junitVintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junitVintageEngineVersion" }
 test-parameterInjector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjectorVersion" }
 test-kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotestVersion" }
-test-kotest-multiplatform = { module = "io.kotest:kotest-framework-engine", version.ref = "kotestVersion" }
 test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotestVersion" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineVersion" }

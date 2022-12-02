@@ -24,8 +24,6 @@ kotlin {
                 implementation(libs.test.coroutines)
             }
         }
-        val androidMain by getting
-        val androidTest by getting
     }
 }
 

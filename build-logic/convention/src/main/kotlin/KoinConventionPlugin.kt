@@ -7,8 +7,6 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.findByType
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinMultiplatformPlugin
 
 class KoinConventionPlugin : Plugin<Project> {
 
@@ -16,17 +14,12 @@ class KoinConventionPlugin : Plugin<Project> {
         with(target) {
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
-            when {
-                extensions.findByType<KotlinMultiplatformExtension>() != null -> {
-                    configureKoinForKotlinModule(libs)
-                }
-                extensions.findByType<ApplicationAndroidComponentsExtension>() != null ||
-                    extensions.findByType<LibraryAndroidComponentsExtension>() != null -> {
-                    configureKoinForAndroidModule(libs)
-                }
-                else -> {
-                    configureKoinForAndroidModule(libs)
-                }
+            if (extensions.findByType<ApplicationAndroidComponentsExtension>() != null ||
+                extensions.findByType<LibraryAndroidComponentsExtension>() != null
+            ) {
+                configureKoinForAndroidModule(libs)
+            } else {
+                configureKoinForKotlinModule(libs)
             }
         }
     }

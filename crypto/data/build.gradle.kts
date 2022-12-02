@@ -17,7 +17,7 @@ android {
 dependencies {
     implementation(project(":crypto:shared-domain"))
     implementation(project(path = ":data:database"))
-    implementation(project(path = ":core:formatter"))
+    implementation(project(path = ":core:shared-formatter"))
     implementation(project(path = ":data:shared-cache"))
 
     implementation(libs.core.kotlin.coroutines.core)

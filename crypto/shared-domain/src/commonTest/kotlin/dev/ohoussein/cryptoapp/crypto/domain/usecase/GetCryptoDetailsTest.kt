@@ -1,39 +1,32 @@
-package dev.ohoussein.cryptoapp.domain.usecase
+package dev.ohoussein.cryptoapp.crypto.domain.usecase
 
-import dev.ohoussein.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.crypto.domain.usecase.GetCryptoDetails
-import io.kotest.core.spec.style.BehaviorSpec
-import io.mockk.coJustRun
-import io.mockk.coVerify
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
-import kotlinx.coroutines.flow.flowOf
+import dev.ohoussein.cryptoapp.crypto.domain.usecase.stub.MockedCryptoRepository
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlinx.coroutines.runBlocking
 
-class GetCryptoDetailsTest : BehaviorSpec({
+class GetCryptoDetailsTest {
 
-    val cryptoId = "bitcoin"
-    val cryptoRepository = mockk<ICryptoRepository>()
-    val getCryptoDetails = GetCryptoDetails(cryptoRepository)
+    private val cryptoId = "bitcoin"
 
-    given("a getCryptoDetails answer") {
-        every { cryptoRepository.getCryptoDetails(cryptoId) } returns flowOf()
-        coJustRun { cryptoRepository.refreshCryptoDetails(cryptoId) }
+    @Test
+    fun getCryptoDetails_calls_repository() {
+        val cryptoRepository = MockedCryptoRepository()
+        val getCryptoDetails = GetCryptoDetails(cryptoRepository)
 
-        `when`("call the use case") {
-            getCryptoDetails(cryptoId)
+        getCryptoDetails(cryptoId)
 
-            then("it should calls the getCryptoDetails from the repository") {
-                verify { cryptoRepository.getCryptoDetails(cryptoId) }
-            }
-        }
-
-        `when`("refresh") {
-            getCryptoDetails.refresh(cryptoId)
-
-            then("it should calls refreshTopCryptoList from cryptoRepository") {
-                coVerify { cryptoRepository.refreshCryptoDetails(cryptoId) }
-            }
-        }
+        assertEquals(listOf(cryptoId), cryptoRepository.getCryptoDetailsParams)
     }
-})
+
+    @Test
+    fun refreshCryptoDetails_calls_repository() {
+        val cryptoRepository = MockedCryptoRepository()
+        val getCryptoDetails = GetCryptoDetails(cryptoRepository)
+
+        runBlocking { getCryptoDetails.refresh(cryptoId) }
+
+        assertEquals(listOf(cryptoId), cryptoRepository.refreshCryptoDetailsParams)
+    }
+}

@@ -1,64 +1,52 @@
 package dev.ohoussein.cryptoapp.data.cache
 
-import io.kotest.core.spec.IsolationMode
-import io.kotest.core.spec.style.DescribeSpec
-import io.kotest.matchers.shouldBe
-import io.mockk.coEvery
-import io.mockk.coJustRun
-import io.mockk.coVerify
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
-import kotlinx.coroutines.flow.Flow
+import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.runBlocking
 
-class CachedDataRepositoryImplTest : DescribeSpec({
+class CachedDataRepositoryImplTest {
 
-    isolationMode = IsolationMode.InstancePerTest
+    @Test
+    fun stream(): Unit = runBlocking {
+        val data = listOf("data1", "data2")
+        val cacheStreamerParamCalls = mutableListOf<String>()
+        val cachedDataRepository = CachedDataRepository<String, List<String>>(
+            updater = { listOf() },
+            cacheStreamer = { key ->
+                cacheStreamerParamCalls.add(key)
+                flowOf(data)
+            },
+            cacheWriter = { _, _ -> },
+        )
 
-    val updater: suspend (String) -> List<String> = mockk()
-    val cacheStreamer: (String) -> Flow<List<String>> = mockk()
-    val cacheWriter: suspend (String, List<String>) -> Unit = mockk()
-
-    val cachedDataRepository = CachedDataRepository(
-        updater = updater,
-        cacheStreamer = cacheStreamer,
-        cacheWriter = cacheWriter,
-    )
-
-    describe("stream") {
-        every { cacheStreamer("key") } returns flowOf(listOf("data1", "data2"))
         val steamedData = cachedDataRepository.stream("key")
 
-        it("data should be the same with cache streamer") {
-            steamedData.first() shouldBe listOf("data1", "data2")
-        }
-
-        it("it should call the cacheStreamer") {
-            verify {
-                cacheStreamer("key")
-            }
-        }
+        assertEquals(data, steamedData.first())
+        assertEquals(listOf("key"), cacheStreamerParamCalls)
     }
 
-    describe("refresh") {
-        beforeTest {
-            coEvery { updater("key") } returns listOf("data1", "data2")
-            coJustRun { cacheWriter(any(), any()) }
-            cachedDataRepository.refresh("key")
-        }
+    @Test
+    fun refresh(): Unit = runBlocking {
+        val data = listOf("data1", "data2")
+        val updaterParamCalls = mutableListOf<String>()
+        val cacheWriterParamCalls = mutableListOf<Pair<String, List<String>>>()
 
-        it("should call the updater") {
-            coVerify {
-                updater("key")
-            }
-        }
+        val cachedDataRepository = CachedDataRepository<String, List<String>>(
+            updater = {
+                updaterParamCalls.add(it)
+                data
+            },
+            cacheStreamer = { flowOf(data) },
+            cacheWriter = { key, value ->
+                cacheWriterParamCalls.add(key to value)
+            },
+        )
 
-        it("should write the data to the cacheWriter") {
-            coVerify {
-                cacheWriter("key", listOf("data1", "data2"))
-            }
-        }
+        cachedDataRepository.refresh("key")
+
+        assertEquals(listOf("key"), updaterParamCalls)
+        assertEquals(listOf("key" to data), cacheWriterParamCalls)
     }
-})
+}

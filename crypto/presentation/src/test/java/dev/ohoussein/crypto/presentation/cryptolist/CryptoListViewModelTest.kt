@@ -9,8 +9,8 @@ import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
 import dev.ohoussein.crypto.presentation.reducer.CryptoListState
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
+import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
-import dev.ohoussein.cryptoapp.core.formatter.ErrorMessageFormatter
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe

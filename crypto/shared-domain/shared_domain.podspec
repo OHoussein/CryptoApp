@@ -6,14 +6,14 @@ Pod::Spec.new do |spec|
     spec.authors                  = ''
     spec.license                  = ''
     spec.summary                  = 'Crypto shared domain module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/shared_domain.framework'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/shared-domain.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':crypto:shared-domain',
-        'PRODUCT_MODULE_NAME' => 'shared_domain',
+        'PRODUCT_MODULE_NAME' => 'shared-domain',
     }
                 
     spec.script_phases = [

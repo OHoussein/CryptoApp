@@ -50,8 +50,6 @@ tasks.register<Copy>("installGitHook") {
     fileMode = 0b111_111_111
 }
 
-tasks.getByPath(":app:preBuild").dependsOn(":installGitHook")
-
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     rejectVersionIf {
         val version = candidate.version
@@ -64,14 +62,14 @@ tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 
 task("e2eTests", Exec::class) {
     group = "Verification"
-    dependsOn(":app:installRelease")
+    dependsOn(":android:app:installRelease")
     workingDir = file("$projectDir/e2e_tests")
     commandLine = listOf("pipenv", "run", "python3", "crypto.py")
 }
 
 task("generateScreenshots", Exec::class) {
     group = "Tool"
-    dependsOn(":app:installRelease")
+    dependsOn(":android:app:installRelease")
     workingDir = file("$projectDir/e2e_tests")
     commandLine = listOf("pipenv", "run", "python3", "crypto_screenshot_generate.py")
 }

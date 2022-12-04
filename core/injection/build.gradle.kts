@@ -18,11 +18,11 @@ android {
 dependencies {
     implementation(project(path = ":crypto:presentation"))
     implementation(project(":crypto:shared-domain"))
-    implementation(project(path = ":crypto:data"))
+    implementation(project(path = ":crypto:shared-data"))
     implementation(project(path = ":core:shared-formatter"))
     implementation(project(path = ":core:common"))
-    implementation(project(path = ":data:database"))
-    implementation(project(path = ":data:network"))
+    implementation(project(path = ":data:shared-database"))
+    implementation(project(path = ":data:shared-network"))
     implementation(libs.koin.core)
 
     testImplementation(libs.test.kotest.runner)

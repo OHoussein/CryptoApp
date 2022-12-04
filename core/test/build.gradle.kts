@@ -16,7 +16,6 @@ dependencies {
     implementation(libs.android.appcompat)
     implementation(libs.core.kotlin.coroutines.core)
 
-    implementation(libs.data.retrofit.lib)
     implementation(libs.test.okhttp.mockServer)
 
     implementation(libs.test.junit)

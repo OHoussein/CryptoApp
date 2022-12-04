@@ -125,6 +125,7 @@ complexity:
     ignoreAnnotatedParameter: [ ]
     ignoreAnnotated: [ 'Composable' ]
     excludes: [
+      '**Mapper.kt',
       '**/test/**',
       '**/androidTest/**',
       '**/commonTest/**',

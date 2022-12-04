@@ -21,7 +21,7 @@ android {
 
 dependencies {
     implementation(project(":crypto:shared-domain"))
-    implementation(project(path = ":crypto:data"))
+    implementation(project(path = ":crypto:shared-data"))
     implementation(project(path = ":core:common"))
     implementation(project(path = ":core:designsystem"))
     implementation(project(path = ":core:shared-formatter"))
@@ -50,7 +50,7 @@ dependencies {
     testRuntimeOnly(libs.test.junitVintage.engine)
     testImplementation(libs.test.parameterInjector)
 
-    androidTestImplementation(project(path = ":crypto:data"))
+    androidTestImplementation(project(path = ":crypto:shared-data"))
     androidTestImplementation(project(path = ":core:test"))
 
     androidTestImplementation(libs.test.android.junit)

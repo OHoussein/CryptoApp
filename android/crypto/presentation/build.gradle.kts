@@ -6,7 +6,6 @@ plugins {
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.compose")
     id("dev.ohoussein.cryptoapp.android.library")
-    id("dev.ohoussein.cryptoapp.jacoco")
     id("dev.ohoussein.cryptoapp.feature")
     id("dev.ohoussein.cryptoapp.koin")
 }

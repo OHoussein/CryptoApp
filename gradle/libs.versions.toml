@@ -7,7 +7,7 @@ koinCompose = "3.3.0"
 koinCore = "3.2.2"
 detektVersion = "1.21.0"
 gradleVersionsPluginVersion = "0.42.0"
-jacoco = "0.8.8"
+kover = "0.6.1"
 paparazziVersion = "1.1.0"
 sqldelight = "1.5.3"
 
@@ -48,7 +48,6 @@ build-android-gradlePlugin = { module = "com.android.tools.build:gradle", versio
 build-gradleVersionsPlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradleVersionsPluginVersion" }
 build-detekt-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
 build-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
-build-jacoco = { module = "org.jacoco:org.jacoco.core", version.ref = "jacoco" }
 build-paparazzi = { module = "app.cash.paparazzi:paparazzi-gradle-plugin", version.ref = "paparazziVersion" }
 build-sqldelight = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 

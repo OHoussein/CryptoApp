@@ -1,0 +1,12 @@
+## User settings
+xcuserdata/
+## App packaging
+*.ipa
+*.dSYM.zip
+*.dSYM
+## Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+
+.build/

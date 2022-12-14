@@ -1,0 +1,6 @@
+framework module Pods_CyptoAppiOS_CyptoAppiOSUITests {
+  umbrella header "Pods-CyptoAppiOS-CyptoAppiOSUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

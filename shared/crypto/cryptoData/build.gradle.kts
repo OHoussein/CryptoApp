@@ -9,7 +9,7 @@ kotlin {
         summary = "Shared crypto data network"
         version = "1.0"
         framework {
-            baseName = "shared-data"
+            baseName = "CryptoData"
         }
     }
 
@@ -21,7 +21,7 @@ kotlin {
                 implementation(project(":shared:data:network"))
                 implementation(project(":shared:data:database"))
                 implementation(project(":shared:data:cache"))
-                implementation(project(":shared:crypto:domain"))
+                implementation(project(":shared:crypto:cryptoDomain"))
             }
         }
     }

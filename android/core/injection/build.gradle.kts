@@ -16,8 +16,8 @@ android {
 
 dependencies {
     implementation(project(":android:crypto:presentation"))
-    implementation(project(":shared:crypto:domain"))
-    implementation(project(":shared:crypto:data"))
+    implementation(project(":shared:crypto:cryptoDomain"))
+    implementation(project(":shared:crypto:cryptoData"))
     implementation(project(":shared:core:formatter"))
     implementation(project(":android:core:common"))
     implementation(project(":shared:data:database"))

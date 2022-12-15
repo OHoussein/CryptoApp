@@ -19,8 +19,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":shared:crypto:domain"))
-    implementation(project(":shared:crypto:data"))
+    implementation(project(":shared:crypto:cryptoDomain"))
+    implementation(project(":shared:crypto:cryptoData"))
     implementation(project(":android:core:common"))
     implementation(project(":android:core:designsystem"))
     implementation(project(":shared:core:formatter"))
@@ -48,7 +48,7 @@ dependencies {
     testImplementation(libs.test.mockito.inline)
     testRuntimeOnly(libs.test.junitVintage.engine)
     testImplementation(libs.test.parameterInjector)
-    androidTestImplementation(project(":shared:crypto:data"))
+    androidTestImplementation(project(":shared:crypto:cryptoData"))
 
     androidTestImplementation(project(":android:core:test"))
 

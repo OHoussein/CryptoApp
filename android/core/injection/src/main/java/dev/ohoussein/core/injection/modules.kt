@@ -1,17 +1,11 @@
 package dev.ohoussein.core.injection
 
-import dev.ohoussein.crypto.presentation.cryptoModule
+import dev.ohoussein.crypto.presentation.cryptoPresentationModule
 import dev.ohoussein.cryptoapp.common.commonModule
-import dev.ohoussein.cryptoapp.core.formatter.formatModule
-import dev.ohoussein.cryptoapp.data.database.databaseModule
-import dev.ohoussein.cryptoapp.data.network.networkModule
+import dev.ohoussein.cryptoapp.core.sharedmodules.sharedModules
 import org.koin.core.module.Module
 
-val cryptoAppModules: List<Module> = listOf(
-    cryptoModule,
+val androidAppModules: List<Module> = listOf(
     commonModule,
-    formatModule,
-    databaseModule,
-    networkModule,
-//    dataDebugModule,
-)
+    cryptoPresentationModule,
+) + sharedModules

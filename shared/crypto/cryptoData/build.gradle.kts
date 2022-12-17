@@ -9,7 +9,7 @@ kotlin {
         summary = "Shared crypto data network"
         version = "1.0"
         framework {
-            baseName = "CryptoData"
+            baseName = "cryptoData"
         }
     }
 

@@ -1,24 +1,24 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'cryptoData'
+    spec.name                     = 'sharedModules'
     spec.version                  = '1.0'
     spec.homepage                 = 'https://github.com/OHoussein/android-crypto-app'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'Shared crypto data network'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/cryptoData.framework'
+    spec.summary                  = 'dependency injection module'
+    spec.vendored_frameworks      = 'build/cocoapods/framework/sharedModules.framework'
     spec.libraries                = 'c++'
     spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':shared:crypto:cryptoData',
-        'PRODUCT_MODULE_NAME' => 'cryptoData',
+        'KOTLIN_PROJECT_PATH' => ':shared:core:sharedModules',
+        'PRODUCT_MODULE_NAME' => 'sharedModules',
     }
                 
     spec.script_phases = [
         {
-            :name => 'Build cryptoData',
+            :name => 'Build sharedModules',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT

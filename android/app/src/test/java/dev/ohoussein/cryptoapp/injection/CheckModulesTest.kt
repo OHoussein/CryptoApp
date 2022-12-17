@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.SavedStateHandle
-import dev.ohoussein.core.injection.cryptoAppModules
+import dev.ohoussein.core.injection.androidAppModules
 import dev.ohoussein.cryptoapp.di.appExtensionModule
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -38,7 +38,7 @@ class CheckModulesTest : KoinTest {
     fun test_di_modules() {
         koinApplication {
             modules(appExtensionModule)
-            modules(cryptoAppModules)
+            modules(androidAppModules)
             checkModules() {
                 withInstance<Context>()
                 withInstance<Application>()

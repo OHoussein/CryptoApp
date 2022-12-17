@@ -10,7 +10,7 @@ kotlin {
         summary = "Network module"
         version = "1.0"
         framework {
-            baseName = "shared-network"
+            baseName = "network"
         }
     }
 

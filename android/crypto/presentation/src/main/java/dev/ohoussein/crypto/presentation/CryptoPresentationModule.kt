@@ -9,7 +9,7 @@ import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
-private val cryptoPresentationModule = module {
+val cryptoPresentationModule = module {
     factoryOf(::DomainModelMapper)
     viewModelOf(::CryptoListViewModel)
     viewModelOf(::CryptoDetailsViewModel)

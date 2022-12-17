@@ -9,7 +9,7 @@ kotlin {
         summary = "Crypto shared domain module"
         version = "1.0"
         framework {
-            baseName = "shared-domain"
+            baseName = "cryptoDomain"
         }
     }
 

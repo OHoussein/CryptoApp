@@ -16,12 +16,8 @@ android {
 
 dependencies {
     implementation(project(":android:crypto:presentation"))
-    implementation(project(":shared:crypto:cryptoDomain"))
-    implementation(project(":shared:crypto:cryptoData"))
-    implementation(project(":shared:core:formatter"))
     implementation(project(":android:core:common"))
-    implementation(project(":shared:data:database"))
-    implementation(project(":shared:data:network"))
+    implementation(project(":shared:core:sharedModules"))
     implementation(libs.koin.core)
 
     testImplementation(libs.test.kotest.runner)

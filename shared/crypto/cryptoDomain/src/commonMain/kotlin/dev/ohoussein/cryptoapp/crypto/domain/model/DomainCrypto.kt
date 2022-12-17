@@ -23,3 +23,5 @@ data class DomainCryptoDetails(
     val sentimentDownVotesPercentage: Double?,
     val description: String,
 )
+
+data class CryptoList(val list: List<DomainCrypto>)

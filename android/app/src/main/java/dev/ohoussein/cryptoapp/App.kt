@@ -1,7 +1,7 @@
 package dev.ohoussein.cryptoapp
 
 import android.app.Application
-import dev.ohoussein.core.injection.cryptoAppModules
+import dev.ohoussein.core.injection.androidAppModules
 import dev.ohoussein.cryptoapp.config.IAppFlavorSetup
 import dev.ohoussein.cryptoapp.di.appExtensionModule
 import org.koin.android.ext.android.inject
@@ -22,7 +22,7 @@ class App : Application() {
         startKoin {
             androidContext(this@App)
             modules(appExtensionModule)
-            modules(cryptoAppModules)
+            modules(androidAppModules)
         }
     }
 }

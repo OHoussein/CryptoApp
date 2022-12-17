@@ -75,7 +75,6 @@ allprojects {
     if (ignoredCoverageModules.contains(project.name))
         return@allprojects
     if (extensions.findByType<kotlinx.kover.api.KoverProjectConfig>() != null) {
-        println("Wiss: configure project = $this")
         extensions.configure<kotlinx.kover.api.KoverProjectConfig> {
             isDisabled.set(false)
         }

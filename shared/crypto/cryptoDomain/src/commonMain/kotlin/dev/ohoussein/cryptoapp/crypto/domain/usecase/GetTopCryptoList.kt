@@ -16,6 +16,8 @@ class GetTopCryptoList : KoinComponent {
         return cryptoRepository.getTopCryptoList()
     }
 
+    fun get(): FlowWrapper<CryptoList> = invoke().wrap()
+
     suspend fun refresh() {
         cryptoRepository.refreshTopCryptoList()
     }

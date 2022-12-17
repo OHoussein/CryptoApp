@@ -6,24 +6,27 @@ plugins {
 
 kotlin {
     cocoapods {
-        summary = "Crypto shared domain module"
+        summary = "Coroutines tools for iOS integration"
         version = "1.0"
         framework {
-            baseName = "cryptoDomain"
+            baseName = "coroutineTools"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(project(":shared:core:coroutinesTools"))
                 implementation(libs.core.kotlin.coroutines.core)
-                implementation(libs.koin.core)
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.test.coroutines)
             }
         }
     }
 }
 
 android {
-    namespace = "dev.ohoussein.cryptoapp.crypto.shareddomain"
+    namespace = "dev.ohoussein.cryptoapp.core.coroutinetools"
 }

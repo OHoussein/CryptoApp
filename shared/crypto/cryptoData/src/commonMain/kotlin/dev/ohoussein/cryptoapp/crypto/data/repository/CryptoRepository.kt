@@ -1,7 +1,7 @@
 package dev.ohoussein.cryptoapp.crypto.data.repository
 
 import dev.ohoussein.cryptoapp.crypto.data.mapper.ApiDomainModelMapper
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
@@ -19,17 +19,17 @@ class CryptoRepository constructor(
     private val locale: Locale,
 ) : ICryptoRepository {
 
-    private val topCryptoListCache: CachedDataRepository<Unit, List<DomainCrypto>> = CachedDataRepository(
+    private val topCryptoListCache: CachedDataRepository<Unit, CryptoList> = CachedDataRepository(
         updater = {
             val apiResponse = service.getTopCrypto(locale.currencyCode)
             apiMapper.convert(apiResponse)
         },
         cacheStreamer = {
             cryptoDao.selectAll()
-                .filterNot { it.isEmpty() }
+                .filterNot { it.isEmpty }
         },
         cacheWriter = { _, data ->
-            cryptoDao.insert(data)
+            cryptoDao.insert(data.list)
         },
     )
 
@@ -48,7 +48,7 @@ class CryptoRepository constructor(
         },
     )
 
-    override fun getTopCryptoList(): Flow<List<DomainCrypto>> = topCryptoListCache.stream(Unit)
+    override fun getTopCryptoList(): Flow<CryptoList> = topCryptoListCache.stream(Unit)
 
     override suspend fun refreshTopCryptoList() = topCryptoListCache.refresh(Unit)
 

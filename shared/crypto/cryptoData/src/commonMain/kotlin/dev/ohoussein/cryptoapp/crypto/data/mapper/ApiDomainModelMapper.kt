@@ -1,5 +1,6 @@
 package dev.ohoussein.cryptoapp.crypto.data.mapper
 
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
@@ -8,8 +9,8 @@ import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 
 class ApiDomainModelMapper constructor(private val locale: Locale) {
 
-    fun convert(data: List<TopCryptoResponse>): List<DomainCrypto> =
-        data.mapIndexed { index, item -> convert(item, index) }
+    fun convert(data: List<TopCryptoResponse>): CryptoList =
+        CryptoList(data.mapIndexed { index, item -> convert(item, index) })
 
     fun convert(data: TopCryptoResponse, index: Int) = DomainCrypto(
         id = data.id,

@@ -1,12 +1,12 @@
 package dev.ohoussein.cryptoapp.crypto.domain.repo
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
 import kotlinx.coroutines.flow.Flow
 
 interface ICryptoRepository {
 
-    fun getTopCryptoList(): Flow<List<DomainCrypto>>
+    fun getTopCryptoList(): Flow<CryptoList>
 
     suspend fun refreshTopCryptoList()
 

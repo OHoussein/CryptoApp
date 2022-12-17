@@ -3,12 +3,14 @@ package dev.ohoussein.cryptoapp.data.database.crypto
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.squareup.sqldelight.runtime.coroutines.mapToOneOrNull
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.database.CryptoDB
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class CryptoDAOImpl(
@@ -29,11 +31,12 @@ class CryptoDAOImpl(
         }
     }
 
-    override fun selectAll(): Flow<List<DomainCrypto>> {
+    override fun selectAll(): Flow<CryptoList> {
         return database.cryptoQueries.getAllCrypto(dbModelMapper::toDomainCrypto)
             .asFlow()
             .flowOn(ioDispatcher)
             .mapToList()
+            .map(::CryptoList)
     }
 
     override suspend fun insert(cryptoDetails: DomainCryptoDetails): Unit = withContext(ioDispatcher) {

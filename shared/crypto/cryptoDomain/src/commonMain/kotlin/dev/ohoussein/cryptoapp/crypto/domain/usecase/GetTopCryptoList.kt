@@ -1,6 +1,8 @@
 package dev.ohoussein.crypto.domain.usecase
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.core.coroutinestools.FlowWrapper
+import dev.ohoussein.cryptoapp.core.coroutinestools.wrap
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
@@ -10,7 +12,7 @@ class GetTopCryptoList : KoinComponent {
 
     private val cryptoRepository: ICryptoRepository by inject()
 
-    operator fun invoke(): Flow<List<DomainCrypto>> {
+    operator fun invoke(): Flow<CryptoList> {
         return cryptoRepository.getTopCryptoList()
     }
 

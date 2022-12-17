@@ -24,4 +24,7 @@ data class DomainCryptoDetails(
     val description: String,
 )
 
-data class CryptoList(val list: List<DomainCrypto>)
+data class CryptoList(val list: List<DomainCrypto>) {
+    val isEmpty: Boolean
+        get() = list.isEmpty()
+}

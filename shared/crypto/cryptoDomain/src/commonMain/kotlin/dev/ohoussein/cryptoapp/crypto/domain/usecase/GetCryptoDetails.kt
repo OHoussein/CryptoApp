@@ -16,6 +16,7 @@ class GetCryptoDetails : KoinComponent {
     }
     fun get(cryptoId: String): FlowWrapper<DomainCryptoDetails> = invoke(cryptoId).wrap()
 
+    @Throws(Throwable::class)
     suspend fun refresh(cryptoId: String) {
         repository.refreshCryptoDetails(cryptoId)
     }

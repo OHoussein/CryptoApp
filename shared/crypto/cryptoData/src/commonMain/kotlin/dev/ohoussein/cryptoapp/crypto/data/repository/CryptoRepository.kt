@@ -44,7 +44,6 @@ class CryptoRepository constructor(
         },
         cacheWriter = { _, data ->
             cryptoDao.insert(data)
-            println("Wiss: write Details $data")
         },
     )
 

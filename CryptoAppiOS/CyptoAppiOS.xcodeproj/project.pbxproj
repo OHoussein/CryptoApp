@@ -44,6 +44,21 @@
 		DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
+		DCD3F272294E07E8003484CA /* CryptoModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */; };
+		DCD3F273294E07E8003484CA /* CryptoModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */; };
+		DCD3F274294E07E8003484CA /* CryptoModelMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */; };
+		DCD3F280294F4D4E003484CA /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */; };
+		DCD3F281294F4D4E003484CA /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */; };
+		DCD3F282294F4D4E003484CA /* LoadingStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */; };
+		DCD3F289294FBB19003484CA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F288294FBB19003484CA /* ToastView.swift */; };
+		DCD3F28A294FBB19003484CA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F288294FBB19003484CA /* ToastView.swift */; };
+		DCD3F28B294FBB19003484CA /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F288294FBB19003484CA /* ToastView.swift */; };
+		DCD3F28D2950CA11003484CA /* ErrorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F28C2950CA11003484CA /* ErrorScreen.swift */; };
+		DCD3F28E2950CA11003484CA /* ErrorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F28C2950CA11003484CA /* ErrorScreen.swift */; };
+		DCD3F28F2950CA11003484CA /* ErrorScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F28C2950CA11003484CA /* ErrorScreen.swift */; };
+		DCD3F2922951D1BB003484CA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F2912951D1BA003484CA /* StringExtensions.swift */; };
+		DCD3F2932951D1BB003484CA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F2912951D1BA003484CA /* StringExtensions.swift */; };
+		DCD3F2942951D1BB003484CA /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3F2912951D1BA003484CA /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +107,11 @@
 		DC32599C2948A5BE001738C8 /* CryptoListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListScreen.swift; sourceTree = "<group>"; };
 		DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsScreen.swift; sourceTree = "<group>"; };
 		DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsViewModel.swift; sourceTree = "<group>"; };
+		DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModelMapper.swift; sourceTree = "<group>"; };
+		DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
+		DCD3F288294FBB19003484CA /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		DCD3F28C2950CA11003484CA /* ErrorScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorScreen.swift; sourceTree = "<group>"; };
+		DCD3F2912951D1BA003484CA /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +190,8 @@
 		DC058C1328F314F1001AA13F /* CyptoAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				DCD3F2902951D1A6003484CA /* Utils */,
+				DCD3F275294E1972003484CA /* MVI */,
 				DC32598E2941DEEE001738C8 /* DesignSystem */,
 				DC3259782940F0F2001738C8 /* Crypto */,
 				DC058C1428F314F1001AA13F /* CyptoAppiOSApp.swift */,
@@ -208,10 +230,11 @@
 		DC3259782940F0F2001738C8 /* Crypto */ = {
 			isa = PBXGroup;
 			children = (
-				DC325988294135CB001738C8 /* UI */,
-				DC325983294133A6001738C8 /* Mock */,
-				DC32597E29413142001738C8 /* Model */,
 				DC3259792940F276001738C8 /* ViewModel */,
+				DC325988294135CB001738C8 /* UI */,
+				DCD3F270294E07BA003484CA /* Mapper */,
+				DC32597E29413142001738C8 /* Model */,
+				DC325983294133A6001738C8 /* Mock */,
 			);
 			path = Crypto;
 			sourceTree = "<group>";
@@ -264,6 +287,8 @@
 			isa = PBXGroup;
 			children = (
 				DC32598F2941DEFB001738C8 /* Theme */,
+				DCD3F288294FBB19003484CA /* ToastView.swift */,
+				DCD3F28C2950CA11003484CA /* ErrorScreen.swift */,
 			);
 			path = DesignSystem;
 			sourceTree = "<group>";
@@ -274,6 +299,30 @@
 				DC3259902941DF12001738C8 /* Color.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		DCD3F270294E07BA003484CA /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		DCD3F275294E1972003484CA /* MVI */ = {
+			isa = PBXGroup;
+			children = (
+				DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */,
+			);
+			path = MVI;
+			sourceTree = "<group>";
+		};
+		DCD3F2902951D1A6003484CA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DCD3F2912951D1BA003484CA /* StringExtensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +336,7 @@
 				DC058C0D28F314F1001AA13F /* Sources */,
 				DC058C0E28F314F1001AA13F /* Frameworks */,
 				DC058C0F28F314F1001AA13F /* Resources */,
+				4510C8710EE429E87E5FDC9D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -324,6 +374,7 @@
 				DC058C2728F314F3001AA13F /* Sources */,
 				DC058C2828F314F3001AA13F /* Frameworks */,
 				DC058C2928F314F3001AA13F /* Resources */,
+				4F94659E7FF0C8E68515C521 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -427,6 +478,40 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		4510C8710EE429E87E5FDC9D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F94659E7FF0C8E68515C521 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		B033364F042F6B3C49CED109 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -482,13 +567,18 @@
 				DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC3259A12948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC3259952947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
+				DCD3F289294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325985294133C4001738C8 /* CryptoDataMock.swift in Sources */,
+				DCD3F28D2950CA11003484CA /* ErrorScreen.swift in Sources */,
+				DCD3F272294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259912941DF12001738C8 /* Color.swift in Sources */,
 				DC32598B2941366E001738C8 /* CryptoComponent.swift in Sources */,
 				DC058C1728F314F1001AA13F /* CryptoFeatureView.swift in Sources */,
 				DC32597B2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
+				DCD3F280294F4D4E003484CA /* LoadingStatus.swift in Sources */,
 				DC058C1528F314F1001AA13F /* CyptoAppiOSApp.swift in Sources */,
 				DC32599D2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
+				DCD3F2922951D1BB003484CA /* StringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,12 +588,17 @@
 			files = (
 				DC325986294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DC32598129413159001738C8 /* Crypto.swift in Sources */,
+				DCD3F281294F4D4E003484CA /* LoadingStatus.swift in Sources */,
 				DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC058C2628F314F3001AA13F /* CyptoAppiOSTests.swift in Sources */,
+				DCD3F273294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC32598C2941366E001738C8 /* CryptoComponent.swift in Sources */,
+				DCD3F28E2950CA11003484CA /* ErrorScreen.swift in Sources */,
+				DCD3F28A294FBB19003484CA /* ToastView.swift in Sources */,
 				DC32597C2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
 				DC3259A22948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC3259922941DF12001738C8 /* Color.swift in Sources */,
+				DCD3F2932951D1BB003484CA /* StringExtensions.swift in Sources */,
 				DC32599E2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
 				DC3259962947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
 			);
@@ -517,13 +612,18 @@
 				DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC3259A32948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC3259972947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
+				DCD3F28B294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325987294133C4001738C8 /* CryptoDataMock.swift in Sources */,
+				DCD3F28F2950CA11003484CA /* ErrorScreen.swift in Sources */,
+				DCD3F274294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259932941DF12001738C8 /* Color.swift in Sources */,
 				DC32598D2941366E001738C8 /* CryptoComponent.swift in Sources */,
 				DC058C3228F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift in Sources */,
 				DC32597D2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
+				DCD3F282294F4D4E003484CA /* LoadingStatus.swift in Sources */,
 				DC058C3028F314F3001AA13F /* CyptoAppiOSUITests.swift in Sources */,
 				DC32599F2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
+				DCD3F2942951D1BB003484CA /* StringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

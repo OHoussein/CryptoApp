@@ -12,6 +12,7 @@ struct CryptoItem: View {
                 HStack(alignment: .center, spacing: 50) {
                     Text(crypto.base.name)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .multilineTextAlignment(.leading)
                         .font(Font.title3.bold())
                     Text(crypto.price.labelValue.label)
                         .frame(alignment: .trailing)

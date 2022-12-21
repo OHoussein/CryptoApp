@@ -1,3 +1,4 @@
+import sharedModules
 import SwiftUI
 
 @main

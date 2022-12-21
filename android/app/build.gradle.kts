@@ -50,7 +50,3 @@ dependencies {
     testImplementation(libs.test.android.arch.core)
     testImplementation(libs.test.coroutines)
 }
-
-afterEvaluate {
-    tasks.getByPath(":android:app:preBuild").dependsOn(":installGitHook")
-}

@@ -33,14 +33,6 @@ tasks.register("clean").configure {
     delete("build")
 }
 
-tasks.register<Copy>("installGitHook") {
-    from(File(rootProject.rootDir, "scripts/pre-commit.sh")) {
-        rename { it.removeSuffix(".sh") }
-    }
-    into(File(rootProject.rootDir, ".git/hooks"))
-    fileMode = 0b111_111_111
-}
-
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     rejectVersionIf {
         val version = candidate.version

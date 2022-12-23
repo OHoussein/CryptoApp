@@ -29,7 +29,7 @@ class CryptoDetailsViewModel: ObservableObject {
     }
 
     private func watchCryptoDetails() {
-        cryptoDetailsUseCase.get(cryptoId: cryptoId)
+        cryptoDetailsUseCase.getAsWrapper(cryptoId: cryptoId)
             .subscribe { domainCryptoDetailsParam in
                 if let domainCryptoDetails = domainCryptoDetailsParam {
                     let details = self.mapper.convert(domain: domainCryptoDetails)

@@ -2,7 +2,6 @@ package dev.ohoussein.crypto.presentation.cryptolist
 
 import app.cash.turbine.test
 import dev.ohoussein.core.test.extension.TestCoroutineExtension
-import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
@@ -10,7 +9,8 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoListState
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
+import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetTopCryptoListUseCase
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -33,7 +33,7 @@ class CryptoListViewModelTest : DescribeSpec({
     val testDispatcher = UnconfinedTestDispatcher()
     extension(TestCoroutineExtension(testDispatcher))
 
-    val useCase = mock<GetTopCryptoList>()
+    val useCase = mock<GetTopCryptoListUseCase>()
     val uiMapper = mock<DomainModelMapper>()
     val errorMessage = "an error message"
     val errorMessageFormatter = mock<ErrorMessageFormatter> {
@@ -49,13 +49,13 @@ class CryptoListViewModelTest : DescribeSpec({
     }
 
     describe("mocked data") {
-        val data: List<DomainCrypto> = mock()
+        val data: CryptoList = mock()
         val uiData: List<Crypto> = mock()
 
         whenever(uiMapper.convert(data)).thenReturn(uiData)
 
         describe("Success on fresh data") {
-            whenever(useCase())
+            whenever(useCase.get())
                 .thenReturn(flowOf(data))
             whenever(useCase.refresh())
                 .doSuspendableAnswer { delay(1000) }
@@ -111,7 +111,7 @@ class CryptoListViewModelTest : DescribeSpec({
         }
 
         describe("Error on fresh data") {
-            whenever(useCase())
+            whenever(useCase.get())
                 .thenReturn(flowOf(data))
             whenever(useCase.refresh())
                 .doSuspendableAnswer {

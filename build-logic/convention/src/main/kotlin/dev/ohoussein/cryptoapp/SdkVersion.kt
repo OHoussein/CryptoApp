@@ -7,5 +7,5 @@ object SdkVersion {
 }
 
 object IOSTargetVersions {
-    const val DEPLOYMENT_TARGET = "14.1"
+    const val DEPLOYMENT_TARGET = "15.0"
 }

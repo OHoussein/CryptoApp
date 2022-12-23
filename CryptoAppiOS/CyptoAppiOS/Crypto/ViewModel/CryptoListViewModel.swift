@@ -26,7 +26,7 @@ class CryptoListViewModel: ObservableObject {
     }
 
     private func watchCryptoList() {
-        getTopCryptoListUseCase.get().subscribe { domainCryptoListParam in
+        getTopCryptoListUseCase.getAsWrapper().subscribe { domainCryptoListParam in
             if let domainCryptoList = domainCryptoListParam {
                 let list = self.mapper.convert(domain: domainCryptoList)
                 self.reduce(event: .updateCryptoList(list))

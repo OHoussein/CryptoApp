@@ -1,4 +1,4 @@
-package dev.ohoussein.crypto.domain.usecase
+package dev.ohoussein.cryptoapp.crypto.domain.usecase
 
 import dev.ohoussein.cryptoapp.core.coroutinestools.FlowWrapper
 import dev.ohoussein.cryptoapp.core.coroutinestools.wrap
@@ -8,15 +8,15 @@ import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class GetTopCryptoList : KoinComponent {
+class GetTopCryptoListUseCase : KoinComponent {
 
     private val cryptoRepository: ICryptoRepository by inject()
 
-    operator fun invoke(): Flow<CryptoList> {
+    fun get(): Flow<CryptoList> {
         return cryptoRepository.getTopCryptoList()
     }
 
-    fun get(): FlowWrapper<CryptoList> = invoke().wrap()
+    fun getAsWrapper(): FlowWrapper<CryptoList> = get().wrap()
 
     @Throws(Throwable::class)
     suspend fun refresh() {

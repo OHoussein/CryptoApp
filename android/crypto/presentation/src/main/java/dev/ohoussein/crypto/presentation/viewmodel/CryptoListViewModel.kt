@@ -1,7 +1,6 @@
 package dev.ohoussein.crypto.presentation.viewmodel
 
 import androidx.lifecycle.viewModelScope
-import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.crypto.presentation.reducer.CryptoListEvents
 import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
@@ -10,12 +9,13 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoListState
 import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.mvi.BaseViewModel
 import dev.ohoussein.cryptoapp.common.resource.asDataStatusFlow
+import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetTopCryptoListUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
 class CryptoListViewModel constructor(
-    private val useCase: GetTopCryptoList,
+    private val useCase: GetTopCryptoListUseCase,
     private val modelMapper: DomainModelMapper,
     private val errorMessageFormatter: ErrorMessageFormatter,
 ) : BaseViewModel<CryptoListState, CryptoListEvents, CryptoListIntent>() {
@@ -29,7 +29,7 @@ class CryptoListViewModel constructor(
 
     private fun onScreenOpened() {
         val dataExist = stateValue.cryptoList != null
-        useCase()
+        useCase.get()
             .map(modelMapper::convert)
             .onEach {
                 reducer.sendEvent(CryptoListEvents.UpdateCryptoList(it))

@@ -8,13 +8,13 @@ import kotlinx.coroutines.flow.Flow
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-class GetCryptoDetails : KoinComponent {
+class GetCryptoDetailsUseCase : KoinComponent {
 
     private val repository: ICryptoRepository by inject()
-    operator fun invoke(cryptoId: String): Flow<DomainCryptoDetails> {
+    fun get(cryptoId: String): Flow<DomainCryptoDetails> {
         return repository.getCryptoDetails(cryptoId)
     }
-    fun get(cryptoId: String): FlowWrapper<DomainCryptoDetails> = invoke(cryptoId).wrap()
+    fun getAsWrapper(cryptoId: String): FlowWrapper<DomainCryptoDetails> = get(cryptoId).wrap()
 
     @Throws(Throwable::class)
     suspend fun refresh(cryptoId: String) {

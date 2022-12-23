@@ -11,14 +11,14 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsState
 import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.mvi.BaseViewModel
 import dev.ohoussein.cryptoapp.common.resource.asDataStatusFlow
-import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetCryptoDetailsUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 
 class CryptoDetailsViewModel constructor(
     savedStateHandle: SavedStateHandle,
-    private val useCase: GetCryptoDetails,
+    private val useCase: GetCryptoDetailsUseCase,
     private val modelMapper: DomainModelMapper,
     private val errorMessageFormatter: ErrorMessageFormatter,
 ) : BaseViewModel<CryptoDetailsState, CryptoDetailsEvents, CryptoDetailsIntent>() {
@@ -35,7 +35,7 @@ class CryptoDetailsViewModel constructor(
     }
 
     private fun onScreenOpened() {
-        useCase(cryptoId)
+        useCase.get(cryptoId)
             .map(modelMapper::convert)
             .onEach {
                 reducer.sendEvent(CryptoDetailsEvents.UpdateCryptoDetails(it))

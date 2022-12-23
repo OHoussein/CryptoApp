@@ -1,6 +1,5 @@
 package dev.ohoussein.cryptoapp.crypto.domain.usecase
 
-import dev.ohoussein.crypto.domain.usecase.GetTopCryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.cryptoapp.crypto.domain.usecase.stub.MockedCryptoRepository
 import kotlin.test.AfterTest
@@ -16,7 +15,7 @@ import org.koin.dsl.module
 
 class GetTopCryptoListTest : KoinComponent {
 
-    private val getTopCryptoList: GetTopCryptoList by inject()
+    private val topCryptoListUseCase: GetTopCryptoListUseCase by inject()
     private lateinit var cryptoRepository: MockedCryptoRepository
 
     @BeforeTest
@@ -26,7 +25,7 @@ class GetTopCryptoListTest : KoinComponent {
             modules(
                 module {
                     single<ICryptoRepository> { cryptoRepository }
-                    single { GetTopCryptoList() }
+                    single { GetTopCryptoListUseCase() }
                 }
             )
         }
@@ -40,14 +39,14 @@ class GetTopCryptoListTest : KoinComponent {
     @Test
     fun getTopCryptoList_calls_repository() {
 
-        getTopCryptoList()
+        topCryptoListUseCase.get()
 
         assertEquals(1, cryptoRepository.countGetTopCryptoList)
     }
 
     @Test
     fun refreshTopCryptoList_calls_repository() {
-        runBlocking { getTopCryptoList.refresh() }
+        runBlocking { topCryptoListUseCase.refresh() }
 
         assertEquals(1, cryptoRepository.countRefreshTopCryptoList)
     }

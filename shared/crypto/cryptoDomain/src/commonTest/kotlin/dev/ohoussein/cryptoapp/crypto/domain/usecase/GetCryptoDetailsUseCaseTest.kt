@@ -13,11 +13,11 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 
-class GetCryptoDetailsTest : KoinComponent {
+class GetCryptoDetailsUseCaseTest : KoinComponent {
 
     private val cryptoId = "bitcoin"
 
-    private val getCryptoDetails: GetCryptoDetails by inject()
+    private val cryptoDetailsUseCase: GetCryptoDetailsUseCase by inject()
     private lateinit var cryptoRepository: MockedCryptoRepository
 
     @BeforeTest
@@ -27,7 +27,7 @@ class GetCryptoDetailsTest : KoinComponent {
             modules(
                 module {
                     single<ICryptoRepository> { cryptoRepository }
-                    single { GetCryptoDetails() }
+                    single { GetCryptoDetailsUseCase() }
                 }
             )
         }
@@ -40,14 +40,21 @@ class GetCryptoDetailsTest : KoinComponent {
 
     @Test
     fun getCryptoDetails_calls_repository() {
-        getCryptoDetails(cryptoId)
+        cryptoDetailsUseCase.get(cryptoId)
+
+        assertEquals(listOf(cryptoId), cryptoRepository.getCryptoDetailsParams)
+    }
+
+    @Test
+    fun getAsWrapper_calls_repository() {
+        cryptoDetailsUseCase.getAsWrapper(cryptoId)
 
         assertEquals(listOf(cryptoId), cryptoRepository.getCryptoDetailsParams)
     }
 
     @Test
     fun refreshCryptoDetails_calls_repository() {
-        runBlocking { getCryptoDetails.refresh(cryptoId) }
+        runBlocking { cryptoDetailsUseCase.refresh(cryptoId) }
 
         assertEquals(listOf(cryptoId), cryptoRepository.refreshCryptoDetailsParams)
     }

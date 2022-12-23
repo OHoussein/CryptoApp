@@ -7,6 +7,7 @@ import dev.ohoussein.crypto.presentation.model.CryptoPrice
 import dev.ohoussein.crypto.presentation.model.LabelValue
 import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
 import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
 import dev.ohoussein.cryptoapp.crypto.domain.model.defaultLocale
@@ -34,15 +35,17 @@ class DomainModelMapperTest : BehaviorSpec({
 
     given("a List<DomainCrypto>") {
 
-        val crypto = listOf(
-            DomainCrypto(
-                id = "1",
-                name = "Bitcoin",
-                imageUrl = "https://bitcoin.com",
-                symbol = "BTC",
-                price = 30_000.00,
-                priceChangePercentIn24h = 10.0,
-                order = 1,
+        val crypto = CryptoList(
+            listOf(
+                DomainCrypto(
+                    id = "1",
+                    name = "Bitcoin",
+                    imageUrl = "https://bitcoin.com",
+                    symbol = "BTC",
+                    price = 30_000.00,
+                    priceChangePercentIn24h = 10.0,
+                    order = 1,
+                )
             )
         )
 

@@ -14,7 +14,7 @@ import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
-import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetCryptoDetailsUseCase
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
@@ -38,7 +38,7 @@ class CryptoDetailsViewModelTest : DescribeSpec({
 
     val cryptoId = "bitcoin"
 
-    val useCase = mock<GetCryptoDetails>()
+    val useCase = mock<GetCryptoDetailsUseCase>()
     val uiMapper = mock<DomainModelMapper>()
     val errorMessage = "an error message"
     val errorMessageFormatter = mock<ErrorMessageFormatter> {
@@ -63,7 +63,7 @@ class CryptoDetailsViewModelTest : DescribeSpec({
         val uiData: CryptoDetails = mock()
 
         whenever(uiMapper.convert(data)).thenReturn(uiData)
-        whenever(useCase(cryptoId))
+        whenever(useCase.get(cryptoId))
             .thenReturn(flowOf(data))
 
         describe("a success crypto details") {

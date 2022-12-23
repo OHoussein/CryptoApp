@@ -1,5 +1,6 @@
 package dev.ohoussein.cryptoapp.data.database.crypto.mock
 
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
 import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
 import java.util.concurrent.atomic.AtomicLong
@@ -18,9 +19,12 @@ object TestDataFactory {
         order = idIndex.toInt(),
     )
 
-    fun makeCryptoList(count: Int): List<DomainCrypto> = (0..count).map {
-        randomCrypto(it.toString())
-    }
+    fun makeCryptoList(count: Int) =
+        CryptoList(
+            list = (0..count).map {
+                randomCrypto(it.toString())
+            }
+        )
 
     fun randomCryptoDetails(
         suffix: String,

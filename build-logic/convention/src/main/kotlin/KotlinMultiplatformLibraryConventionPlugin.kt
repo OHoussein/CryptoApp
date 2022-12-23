@@ -37,7 +37,7 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                     homepage = "https://github.com/OHoussein/android-crypto-app"
                     ios.deploymentTarget = IOSTargetVersions.DEPLOYMENT_TARGET
                     framework {
-                        isStatic = true
+                        isStatic = false
                     }
                 }
 

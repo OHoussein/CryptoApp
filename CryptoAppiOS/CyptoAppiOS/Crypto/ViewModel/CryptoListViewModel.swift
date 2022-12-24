@@ -1,8 +1,9 @@
 import Foundation
 import sharedModules
 
-@MainActor
-class CryptoListViewModel: ObservableObject {
+class CryptoListViewModel: ObservableObject, Reducer {
+    typealias State = CryptoListState
+    typealias Intent = CryptoListIntent
     @Published private(set) var state = CryptoListState()
     private let mapper = CryptoModelMapper()
     private let getTopCryptoListUseCase = SharedModulesKt.getTopCryptoListUseCase
@@ -11,18 +12,22 @@ class CryptoListViewModel: ObservableObject {
         watchCryptoList()
     }
 
-    func refresh() async {
-        reduce(event: .updateStatus(.loading))
-        do {
-            try await getTopCryptoListUseCase.refresh()
-        } catch {
-            print("Refresh error = \(String(describing: error))")
-            reduce(event: .updateStatus(LoadingStatus.error("")))
+    func sendIntent(intent: CryptoListIntent) {
+        switch intent {
+        case .refresh: refresh()
+        case .hideError: reduce(event: .updateStatus(.idle))
         }
     }
 
-    func hideError() {
-        reduce(event: .updateStatus(.idle))
+    private func refresh() {
+        reduce(event: .updateStatus(.loading))
+        getTopCryptoListUseCase.refresh { [weak self] error in
+            if let error = error {
+                print("Refresh error = \(String(describing: error))")
+                self?.reduce(event: .updateStatus(LoadingStatus.error("")))
+                return
+            }
+        }
     }
 
     private func watchCryptoList() {
@@ -35,15 +40,18 @@ class CryptoListViewModel: ObservableObject {
     }
 
     private func reduce(event: CryptoListEvent) {
-        print("Event = $\(event) | OldState = \(state)")
-        switch event {
-        case let .updateCryptoList(list):
-            state.cryptoList = list
-            state.status = LoadingStatus.idle
-        case let .updateStatus(status):
-            state.status = status
+        Task {
+            await MainActor.run {
+                switch event {
+                case let .updateCryptoList(list):
+                    state.cryptoList = list
+                    state.status = LoadingStatus.idle
+                case let .updateStatus(status):
+                    state.status = status
+                }
+                print("New status $\(state.status)")
+            }
         }
-        print("New status $\(state.status)")
     }
 }
 
@@ -52,7 +60,12 @@ struct CryptoListState {
     var status: LoadingStatus = .idle
 }
 
-enum CryptoListEvent {
+enum CryptoListIntent {
+    case refresh
+    case hideError
+}
+
+private enum CryptoListEvent {
     case updateCryptoList([Crypto])
     case updateStatus(LoadingStatus)
 }

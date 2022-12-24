@@ -6,12 +6,10 @@ struct CryptoListScreen: View {
 
     var body: some View {
         CryptoListContent(state: viewModel.state,
-                          onCloseError: { viewModel.hideError() },
-                          onRefresh: { await viewModel.refresh() })
+                          onCloseError: { viewModel.sendIntent(intent: .hideError) },
+                          onRefresh: { viewModel.sendIntent(intent: .refresh) })
             .onAppear {
-                Task {
-                    await viewModel.refresh()
-                }
+                viewModel.sendIntent(intent: .refresh)
             }
     }
 }
@@ -19,7 +17,7 @@ struct CryptoListScreen: View {
 private struct CryptoListContent: View {
     let state: CryptoListState
     var onCloseError: () -> Void
-    var onRefresh: @Sendable () async -> Void
+    var onRefresh: () -> Void
 
     var body: some View {
         NavigationView {
@@ -37,7 +35,9 @@ private struct CryptoListContent: View {
                             }
                         }
                     }
-                    .refreshable(action: onRefresh)
+                    .refreshable {
+                        onRefresh()
+                    }
 
                     if case LoadingStatus.error = state.status {
                         ToastView(type: .error, title: "Error", message: "Network error") {
@@ -46,7 +46,7 @@ private struct CryptoListContent: View {
                     }
                 } else if case LoadingStatus.error = state.status {
                     ErrorView(message: "Network error") {
-                        Task { await onRefresh() }
+                        onRefresh()
                     }
                 }
                 if case LoadingStatus.loading = state.status {

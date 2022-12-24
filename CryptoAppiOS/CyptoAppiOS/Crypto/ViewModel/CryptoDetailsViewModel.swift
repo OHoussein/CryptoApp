@@ -1,31 +1,37 @@
 import Foundation
 import sharedModules
 
-@MainActor
-class CryptoDetailsViewModel: ObservableObject {
+class CryptoDetailsViewModel: ObservableObject, Reducer {
+    typealias State = CryptoDetailsState
+    typealias Intent = CryptoDetailsIntent
+
     private let cryptoId: String
-    @Published private(set) var state = CryptoDetailsState()
     private let mapper = CryptoModelMapper()
     private let cryptoDetailsUseCase = SharedModulesKt.getCryptoDetailsUseCase
+
+    @Published private(set) var state = CryptoDetailsState()
 
     init(cryptoId: String) {
         self.cryptoId = cryptoId
         watchCryptoDetails()
     }
 
-    func load() async {
-        reduce(event: .updateStatus(.loading))
-        do {
-            try await cryptoDetailsUseCase.refresh(cryptoId: cryptoId)
-        } catch {
-            print("Loan details for \(cryptoId) error: \(String(describing: error))")
-            reduce(event: .updateStatus(LoadingStatus.error("Network error")))
+    func sendIntent(intent: CryptoDetailsIntent) {
+        switch intent {
+        case .refresh: refresh()
+        case .hideError: reduce(event: .updateStatus(.idle))
         }
     }
 
-    @MainActor
-    func hideError() {
-        reduce(event: .updateStatus(.idle))
+    private func refresh() {
+        reduce(event: .updateStatus(.loading))
+        cryptoDetailsUseCase.refresh(cryptoId: cryptoId) { [weak self] error in
+            if let error = error {
+                print("Refresh error = \(String(describing: error))")
+                self?.reduce(event: .updateStatus(LoadingStatus.error("")))
+                return
+            }
+        }
     }
 
     private func watchCryptoDetails() {
@@ -39,21 +45,30 @@ class CryptoDetailsViewModel: ObservableObject {
     }
 
     private func reduce(event: CryptoDetailsEvent) {
-        print("Event = $\(event) | OldState = \(String(describing: state))")
-        switch event {
-        case let .updateDetails(details):
-            state.cryptoDetails = details
-            state.status = LoadingStatus.idle
-        case let .updateStatus(status):
-            state.status = status
+        Task {
+            await MainActor.run {
+                print("Event = $\(event) | OldState = \(String(describing: state))")
+                switch event {
+                case let .updateDetails(details):
+                    state.cryptoDetails = details
+                    state.status = LoadingStatus.idle
+                case let .updateStatus(status):
+                    state.status = status
+                }
+                print("New status $\(state.status)")
+            }
         }
-        print("New status $\(state.status)")
     }
 }
 
 struct CryptoDetailsState {
     var cryptoDetails: CryptoDetails?
     var status: LoadingStatus = .idle
+}
+
+enum CryptoDetailsIntent {
+    case refresh
+    case hideError
 }
 
 enum CryptoDetailsEvent {

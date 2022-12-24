@@ -11,13 +11,10 @@ struct CryptoDetailsScreen: View {
 
     var body: some View {
         CryptoDetailsContent(state: viewModel.state,
-                             onCloseError: { viewModel.hideError() },
-                             onRefresh: { await viewModel.load() })
+                             onCloseError: { viewModel.sendIntent(intent: .hideError) },
+                             onRefresh: { viewModel.sendIntent(intent: .refresh) })
             .onAppear {
-                print("Wiss: onAppear CryptoDetailsScreen")
-                Task {
-                    await viewModel.load()
-                }
+                viewModel.sendIntent(intent: .refresh)
             }
     }
 }
@@ -25,7 +22,7 @@ struct CryptoDetailsScreen: View {
 private struct CryptoDetailsContent: View {
     let state: CryptoDetailsState
     var onCloseError: () -> Void
-    var onRefresh: @Sendable () async -> Void
+    var onRefresh: () -> Void
 
     var body: some View {
         if let cryptoDetails = state.cryptoDetails {
@@ -60,11 +57,7 @@ private struct CryptoDetailsContent: View {
                 }
             }
         } else if case let .error(error) = state.status {
-            ErrorView(message: error) {
-                Task {
-                    await onRefresh()
-                }
-            }
+            ErrorView(message: error, onRetryTapped: onRefresh)
         } else {
             ProgressView()
         }

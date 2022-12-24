@@ -2,7 +2,8 @@ import Foundation
 
 protocol Reducer {
     associatedtype State
+    associatedtype Intent
 
-    @MainActor var state: State { get }
-    // func sendIntent(intent: Intent) async
+    var state: State { get }
+    func sendIntent(intent: Intent)
 }

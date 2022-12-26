@@ -1,63 +1,56 @@
 import Foundation
 import sharedModules
 
-class CryptoDetailsViewModel: ObservableObject, Reducer {
+class CryptoDetailsViewModel: BaseViewModel {
+    var reducer: Reducer<CryptoDetailsState, CryptoDetailsEvent> = cryptoDetailsReducer
+
     typealias State = CryptoDetailsState
     typealias Intent = CryptoDetailsIntent
+    typealias Event = CryptoDetailsEvent
 
     private let cryptoId: String
-    private let mapper = CryptoModelMapper()
-    private let cryptoDetailsUseCase = SharedModulesKt.getCryptoDetailsUseCase
+    private let mapper: CryptoModelMapper
+    private let getCryptoDetailsUseCase: CryptoDomainGetCryptoDetailsUseCase
 
-    @Published private(set) var state = CryptoDetailsState()
+    @Published var state = CryptoDetailsState()
 
-    init(cryptoId: String) {
+    init(
+        cryptoId: String,
+        getCryptoDetailsUseCase: CryptoDomainGetCryptoDetailsUseCase = SharedModulesKt.getCryptoDetailsUseCase,
+        cryptoModelMapper: CryptoModelMapper = CryptoModelMapper()
+    ) {
         self.cryptoId = cryptoId
+        self.getCryptoDetailsUseCase = getCryptoDetailsUseCase
+        mapper = cryptoModelMapper
         watchCryptoDetails()
     }
 
     func sendIntent(intent: CryptoDetailsIntent) {
         switch intent {
         case .refresh: refresh()
-        case .hideError: reduce(event: .updateStatus(.idle))
+        case .hideError: send(event: .updateStatus(.idle))
         }
     }
 
     private func refresh() {
-        reduce(event: .updateStatus(.loading))
-        cryptoDetailsUseCase.refresh(cryptoId: cryptoId) { [weak self] error in
+        send(event: .updateStatus(.loading))
+        getCryptoDetailsUseCase.refresh(cryptoId: cryptoId) { [weak self] error in
             if let error = error {
                 print("Refresh error = \(String(describing: error))")
-                self?.reduce(event: .updateStatus(LoadingStatus.error("")))
+                self?.send(event: .updateStatus(LoadingStatus.error("Network error")))
                 return
             }
         }
     }
 
     private func watchCryptoDetails() {
-        cryptoDetailsUseCase.getAsWrapper(cryptoId: cryptoId)
+        getCryptoDetailsUseCase.getAsWrapper(cryptoId: cryptoId)
             .subscribe { domainCryptoDetailsParam in
                 if let domainCryptoDetails = domainCryptoDetailsParam {
                     let details = self.mapper.convert(domain: domainCryptoDetails)
-                    self.reduce(event: .updateDetails(details))
+                    self.send(event: .updateDetails(details))
                 }
             }
-    }
-
-    private func reduce(event: CryptoDetailsEvent) {
-        Task {
-            await MainActor.run {
-                print("Event = $\(event) | OldState = \(String(describing: state))")
-                switch event {
-                case let .updateDetails(details):
-                    state.cryptoDetails = details
-                    state.status = LoadingStatus.idle
-                case let .updateStatus(status):
-                    state.status = status
-                }
-                print("New status $\(state.status)")
-            }
-        }
     }
 }
 

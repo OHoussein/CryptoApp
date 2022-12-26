@@ -1,8 +1,9 @@
 import Foundation
 import SwiftUI
 
-struct CryptoListScreen: View {
-    @StateObject private var viewModel = CryptoListViewModel()
+struct CryptoListScreen<VM: BaseViewModel>: View
+    where VM.Intent == CryptoListIntent, VM.State == CryptoListState {
+    @StateObject var viewModel: VM
 
     var body: some View {
         CryptoListContent(state: viewModel.state,
@@ -27,7 +28,7 @@ private struct CryptoListContent: View {
                         LazyVStack {
                             ForEach(cryptoList, id: \.self.base.id) { item in
                                 NavigationLink {
-                                    CryptoDetailsScreen(cryptoId: item.base.id)
+                                    CryptoDetailsScreen(viewModel: CryptoDetailsViewModel(cryptoId: item.base.id))
                                 } label: {
                                     CryptoItem(crypto: item)
                                         .foregroundColor(.black)

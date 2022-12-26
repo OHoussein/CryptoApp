@@ -1,32 +1,30 @@
 import Foundation
 import sharedModules
 
-class CryptoListViewModel: ObservableObject, Reducer {
+class CryptoListViewModel: BaseViewModel {
     typealias State = CryptoListState
     typealias Intent = CryptoListIntent
-    @Published private(set) var state = CryptoListState()
-    private let mapper = CryptoModelMapper()
-    private let getTopCryptoListUseCase = SharedModulesKt.getTopCryptoListUseCase
+    typealias Event = CryptoListEvent
 
-    init() {
+    var reducer: Reducer<CryptoListState, CryptoListEvent> = cryptoListReducer
+    @Published var state = CryptoListState() // TODO: private(set)
+
+    private let getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase
+    private let mapper: CryptoModelMapper
+
+    init(
+        getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase = SharedModulesKt.getTopCryptoListUseCase,
+        cryptoModelMapper: CryptoModelMapper = CryptoModelMapper()
+    ) {
+        self.getTopCryptoListUseCase = getTopCryptoListUseCase
+        mapper = cryptoModelMapper
         watchCryptoList()
     }
 
     func sendIntent(intent: CryptoListIntent) {
         switch intent {
         case .refresh: refresh()
-        case .hideError: reduce(event: .updateStatus(.idle))
-        }
-    }
-
-    private func refresh() {
-        reduce(event: .updateStatus(.loading))
-        getTopCryptoListUseCase.refresh { [weak self] error in
-            if let error = error {
-                print("Refresh error = \(String(describing: error))")
-                self?.reduce(event: .updateStatus(LoadingStatus.error("")))
-                return
-            }
+        case .hideError: send(event: .updateStatus(.idle))
         }
     }
 
@@ -34,38 +32,19 @@ class CryptoListViewModel: ObservableObject, Reducer {
         getTopCryptoListUseCase.getAsWrapper().subscribe { domainCryptoListParam in
             if let domainCryptoList = domainCryptoListParam {
                 let list = self.mapper.convert(domain: domainCryptoList)
-                self.reduce(event: .updateCryptoList(list))
+                self.send(event: .updateCryptoList(list))
             }
         }
     }
 
-    private func reduce(event: CryptoListEvent) {
-        Task {
-            await MainActor.run {
-                switch event {
-                case let .updateCryptoList(list):
-                    state.cryptoList = list
-                    state.status = LoadingStatus.idle
-                case let .updateStatus(status):
-                    state.status = status
-                }
-                print("New status $\(state.status)")
+    private func refresh() {
+        send(event: .updateStatus(.loading))
+        getTopCryptoListUseCase.refresh { [weak self] error in
+            if let error = error {
+                print("Refresh error = \(String(describing: error))")
+                self?.send(event: .updateStatus(LoadingStatus.error("")))
+                return
             }
         }
     }
-}
-
-struct CryptoListState {
-    var cryptoList: [Crypto]?
-    var status: LoadingStatus = .idle
-}
-
-enum CryptoListIntent {
-    case refresh
-    case hideError
-}
-
-private enum CryptoListEvent {
-    case updateCryptoList([Crypto])
-    case updateStatus(LoadingStatus)
 }

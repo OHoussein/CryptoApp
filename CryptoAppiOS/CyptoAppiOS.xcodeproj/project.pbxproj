@@ -41,9 +41,18 @@
 		DC3259A12948A710001738C8 /* CryptoDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */; };
 		DC3259A22948A710001738C8 /* CryptoDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */; };
 		DC3259A32948A710001738C8 /* CryptoDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */; };
-		DC86C26F295603D600567514 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C26E295603D600567514 /* Reducer.swift */; };
-		DC86C270295603D600567514 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C26E295603D600567514 /* Reducer.swift */; };
-		DC86C271295603D600567514 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C26E295603D600567514 /* Reducer.swift */; };
+		DC86C26F295603D600567514 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C26E295603D600567514 /* BaseViewModel.swift */; };
+		DC86C270295603D600567514 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C26E295603D600567514 /* BaseViewModel.swift */; };
+		DC86C271295603D600567514 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C26E295603D600567514 /* BaseViewModel.swift */; };
+		DC86C2812958688500567514 /* CryptoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2802958688500567514 /* CryptoListReducer.swift */; };
+		DC86C2822958688500567514 /* CryptoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2802958688500567514 /* CryptoListReducer.swift */; };
+		DC86C2832958688500567514 /* CryptoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2802958688500567514 /* CryptoListReducer.swift */; };
+		DC86C28529588A5400567514 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28429588A5400567514 /* Intent.swift */; };
+		DC86C28629588A5400567514 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28429588A5400567514 /* Intent.swift */; };
+		DC86C28729588A5400567514 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28429588A5400567514 /* Intent.swift */; };
+		DC86C2892959AEC500567514 /* CryptoDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */; };
+		DC86C28A2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */; };
+		DC86C28B2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */; };
 		DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
@@ -109,8 +118,11 @@
 		DC3259942947A07C001738C8 /* CryptoDetailsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsComponent.swift; sourceTree = "<group>"; };
 		DC32599C2948A5BE001738C8 /* CryptoListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListScreen.swift; sourceTree = "<group>"; };
 		DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsScreen.swift; sourceTree = "<group>"; };
-		DC86C26E295603D600567514 /* Reducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		DC86C26E295603D600567514 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		DC86C27229565AD800567514 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DC86C2802958688500567514 /* CryptoListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListReducer.swift; sourceTree = "<group>"; };
+		DC86C28429588A5400567514 /* Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
+		DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsReducer.swift; sourceTree = "<group>"; };
 		DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsViewModel.swift; sourceTree = "<group>"; };
 		DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModelMapper.swift; sourceTree = "<group>"; };
 		DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
@@ -237,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				DC3259792940F276001738C8 /* ViewModel */,
+				DC86C27F2958686500567514 /* Reducer */,
 				DC325988294135CB001738C8 /* UI */,
 				DCD3F270294E07BA003484CA /* Mapper */,
 				DC32597E29413142001738C8 /* Model */,
@@ -307,6 +320,15 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		DC86C27F2958686500567514 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				DC86C2802958688500567514 /* CryptoListReducer.swift */,
+				DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
 		DCD3F270294E07BA003484CA /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,7 +341,8 @@
 			isa = PBXGroup;
 			children = (
 				DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */,
-				DC86C26E295603D600567514 /* Reducer.swift */,
+				DC86C26E295603D600567514 /* BaseViewModel.swift */,
+				DC86C28429588A5400567514 /* Intent.swift */,
 			);
 			path = MVI;
 			sourceTree = "<group>";
@@ -571,15 +594,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC32598029413159001738C8 /* Crypto.swift in Sources */,
+				DC86C28529588A5400567514 /* Intent.swift in Sources */,
 				DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC3259A12948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
+				DC86C2812958688500567514 /* CryptoListReducer.swift in Sources */,
 				DC3259952947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
+				DC86C2892959AEC500567514 /* CryptoDetailsReducer.swift in Sources */,
 				DCD3F289294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325985294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DCD3F28D2950CA11003484CA /* ErrorScreen.swift in Sources */,
 				DCD3F272294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259912941DF12001738C8 /* Color.swift in Sources */,
-				DC86C26F295603D600567514 /* Reducer.swift in Sources */,
+				DC86C26F295603D600567514 /* BaseViewModel.swift in Sources */,
 				DC32598B2941366E001738C8 /* CryptoComponent.swift in Sources */,
 				DC058C1728F314F1001AA13F /* CryptoFeatureView.swift in Sources */,
 				DC32597B2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
@@ -596,17 +622,20 @@
 			files = (
 				DC325986294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DC32598129413159001738C8 /* Crypto.swift in Sources */,
-				DC86C270295603D600567514 /* Reducer.swift in Sources */,
+				DC86C270295603D600567514 /* BaseViewModel.swift in Sources */,
 				DCD3F281294F4D4E003484CA /* LoadingStatus.swift in Sources */,
 				DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC058C2628F314F3001AA13F /* CyptoAppiOSTests.swift in Sources */,
 				DCD3F273294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC32598C2941366E001738C8 /* CryptoComponent.swift in Sources */,
+				DC86C2822958688500567514 /* CryptoListReducer.swift in Sources */,
 				DCD3F28E2950CA11003484CA /* ErrorScreen.swift in Sources */,
 				DCD3F28A294FBB19003484CA /* ToastView.swift in Sources */,
 				DC32597C2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
 				DC3259A22948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC3259922941DF12001738C8 /* Color.swift in Sources */,
+				DC86C28629588A5400567514 /* Intent.swift in Sources */,
+				DC86C28A2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */,
 				DCD3F2932951D1BB003484CA /* StringExtensions.swift in Sources */,
 				DC32599E2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
 				DC3259962947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
@@ -618,15 +647,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC32598229413159001738C8 /* Crypto.swift in Sources */,
+				DC86C28729588A5400567514 /* Intent.swift in Sources */,
 				DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC3259A32948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
+				DC86C2832958688500567514 /* CryptoListReducer.swift in Sources */,
 				DC3259972947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
+				DC86C28B2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */,
 				DCD3F28B294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325987294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DCD3F28F2950CA11003484CA /* ErrorScreen.swift in Sources */,
 				DCD3F274294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259932941DF12001738C8 /* Color.swift in Sources */,
-				DC86C271295603D600567514 /* Reducer.swift in Sources */,
+				DC86C271295603D600567514 /* BaseViewModel.swift in Sources */,
 				DC32598D2941366E001738C8 /* CryptoComponent.swift in Sources */,
 				DC058C3228F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift in Sources */,
 				DC32597D2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,

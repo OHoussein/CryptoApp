@@ -1,13 +1,9 @@
 import Foundation
 import SwiftUI
 
-struct CryptoDetailsScreen: View {
-    @StateObject private var viewModel: CryptoDetailsViewModel
-
-    init(cryptoId: String) {
-        print("Wiss: init CryptoDetailsScreen; \(cryptoId)")
-        _viewModel = StateObject(wrappedValue: CryptoDetailsViewModel(cryptoId: cryptoId))
-    }
+struct CryptoDetailsScreen<VM: BaseViewModel>: View
+    where VM.Intent == CryptoDetailsIntent, VM.State == CryptoDetailsState {
+    @StateObject var viewModel: VM
 
     var body: some View {
         CryptoDetailsContent(state: viewModel.state,

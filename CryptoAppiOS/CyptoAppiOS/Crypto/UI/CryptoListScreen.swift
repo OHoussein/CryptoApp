@@ -1,16 +1,15 @@
 import Foundation
 import SwiftUI
 
-struct CryptoListScreen<VM: BaseViewModel>: View
-    where VM.Intent == CryptoListIntent, VM.State == CryptoListState {
+struct CryptoListScreen<VM: MVIViewModel<CryptoListState, CryptoListEvent, CryptoListIntent>>: View {
     @StateObject var viewModel: VM
 
     var body: some View {
         CryptoListContent(state: viewModel.state,
-                          onCloseError: { viewModel.sendIntent(intent: .hideError) },
-                          onRefresh: { viewModel.sendIntent(intent: .refresh) })
+                          onCloseError: { viewModel.send(intent: .hideError) },
+                          onRefresh: { viewModel.send(intent: .refresh) })
             .onAppear {
-                viewModel.sendIntent(intent: .refresh)
+                viewModel.send(intent: .refresh)
             }
     }
 }

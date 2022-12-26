@@ -1,18 +1,11 @@
 import Foundation
 import sharedModules
 
-class CryptoDetailsViewModel: BaseViewModel {
-    var reducer: Reducer<CryptoDetailsState, CryptoDetailsEvent> = cryptoDetailsReducer
-
-    typealias State = CryptoDetailsState
-    typealias Intent = CryptoDetailsIntent
-    typealias Event = CryptoDetailsEvent
+class CryptoDetailsViewModel: MVIViewModel<CryptoDetailsState, CryptoDetailsEvent, CryptoDetailsIntent> {
 
     private let cryptoId: String
     private let mapper: CryptoModelMapper
     private let getCryptoDetailsUseCase: CryptoDomainGetCryptoDetailsUseCase
-
-    @Published var state = CryptoDetailsState()
 
     init(
         cryptoId: String,
@@ -22,10 +15,11 @@ class CryptoDetailsViewModel: BaseViewModel {
         self.cryptoId = cryptoId
         self.getCryptoDetailsUseCase = getCryptoDetailsUseCase
         mapper = cryptoModelMapper
+        super.init(reducer: cryptoDetailsReducer, initialState: CryptoDetailsState())
         watchCryptoDetails()
     }
 
-    func sendIntent(intent: CryptoDetailsIntent) {
+    override func send(intent: CryptoDetailsIntent) {
         switch intent {
         case .refresh: refresh()
         case .hideError: send(event: .updateStatus(.idle))

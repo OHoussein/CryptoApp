@@ -1,14 +1,7 @@
 import Foundation
 import sharedModules
 
-class CryptoListViewModel: BaseViewModel {
-    typealias State = CryptoListState
-    typealias Intent = CryptoListIntent
-    typealias Event = CryptoListEvent
-
-    var reducer: Reducer<CryptoListState, CryptoListEvent> = cryptoListReducer
-    @Published var state = CryptoListState() // TODO: private(set)
-
+class CryptoListViewModel: MVIViewModel<CryptoListState, CryptoListEvent, CryptoListIntent> {
     private let getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase
     private let mapper: CryptoModelMapper
 
@@ -18,10 +11,11 @@ class CryptoListViewModel: BaseViewModel {
     ) {
         self.getTopCryptoListUseCase = getTopCryptoListUseCase
         mapper = cryptoModelMapper
+        super.init(reducer: cryptoListReducer, initialState: CryptoListState())
         watchCryptoList()
     }
 
-    func sendIntent(intent: CryptoListIntent) {
+    override func send(intent: CryptoListIntent) {
         switch intent {
         case .refresh: refresh()
         case .hideError: send(event: .updateStatus(.idle))

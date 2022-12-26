@@ -1,16 +1,15 @@
 import Foundation
 import SwiftUI
 
-struct CryptoDetailsScreen<VM: BaseViewModel>: View
-    where VM.Intent == CryptoDetailsIntent, VM.State == CryptoDetailsState {
+struct CryptoDetailsScreen<VM: MVIViewModel<CryptoDetailsState, CryptoDetailsEvent, CryptoDetailsIntent>>: View {
     @StateObject var viewModel: VM
 
     var body: some View {
         CryptoDetailsContent(state: viewModel.state,
-                             onCloseError: { viewModel.sendIntent(intent: .hideError) },
-                             onRefresh: { viewModel.sendIntent(intent: .refresh) })
+                             onCloseError: { viewModel.send(intent: .hideError) },
+                             onRefresh: { viewModel.send(intent: .refresh) })
             .onAppear {
-                viewModel.sendIntent(intent: .refresh)
+                viewModel.send(intent: .refresh)
             }
     }
 }

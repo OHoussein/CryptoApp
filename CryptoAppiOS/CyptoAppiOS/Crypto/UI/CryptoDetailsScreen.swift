@@ -1,7 +1,7 @@
 import Foundation
 import SwiftUI
 
-struct CryptoDetailsScreen<VM: MVIViewModel<CryptoDetailsState, CryptoDetailsEvent, CryptoDetailsIntent>>: View {
+struct CryptoDetailsScreen<VM: MVIViewModel<CryptoDetailsState, CryptoDetailsIntent, CryptoDetailsEvent>>: View {
     @StateObject var viewModel: VM
 
     var body: some View {

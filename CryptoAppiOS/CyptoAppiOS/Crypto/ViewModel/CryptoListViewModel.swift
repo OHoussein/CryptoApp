@@ -1,9 +1,12 @@
+import Combine
 import Foundation
 import sharedModules
 
-class CryptoListViewModel: MVIViewModel<CryptoListState, CryptoListEvent, CryptoListIntent> {
+class CryptoListViewModel: MVIViewModel<CryptoListState, CryptoListIntent, CryptoListEvent> {
     private let getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase
     private let mapper: CryptoModelMapper
+
+    private var subscriptions: [AnyCancellable] = []
 
     init(
         getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase = SharedModulesKt.getTopCryptoListUseCase,
@@ -23,12 +26,14 @@ class CryptoListViewModel: MVIViewModel<CryptoListState, CryptoListEvent, Crypto
     }
 
     private func watchCryptoList() {
-        getTopCryptoListUseCase.getAsWrapper().subscribe { domainCryptoListParam in
-            if let domainCryptoList = domainCryptoListParam {
-                let list = self.mapper.convert(domain: domainCryptoList)
-                self.send(event: .updateCryptoList(list))
+        createPublisher(getTopCryptoListUseCase.getAsWrapper())
+            .map {
+                self.mapper.convert(domain: $0)
             }
-        }
+            .sink(receiveCompletion: { _ in }, receiveValue: { [weak self] cryptoArray in
+                self?.send(event: .updateCryptoList(cryptoArray))
+            })
+            .store(in: &subscriptions)
     }
 
     private func refresh() {

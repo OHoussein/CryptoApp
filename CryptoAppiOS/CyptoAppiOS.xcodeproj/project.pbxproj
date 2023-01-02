@@ -53,6 +53,9 @@
 		DC86C28D2959E43A00567514 /* MVIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28C2959E43A00567514 /* MVIViewModel.swift */; };
 		DC86C28E2959E43A00567514 /* MVIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28C2959E43A00567514 /* MVIViewModel.swift */; };
 		DC86C28F2959E43A00567514 /* MVIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28C2959E43A00567514 /* MVIViewModel.swift */; };
+		DC86C291295B418100567514 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
+		DC86C292295B418100567514 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
+		DC86C293295B418100567514 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
 		DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
@@ -123,6 +126,7 @@
 		DC86C28429588A5400567514 /* Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
 		DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsReducer.swift; sourceTree = "<group>"; };
 		DC86C28C2959E43A00567514 /* MVIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIViewModel.swift; sourceTree = "<group>"; };
+		DC86C290295B418100567514 /* PublisherFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherFlow.swift; sourceTree = "<group>"; };
 		DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsViewModel.swift; sourceTree = "<group>"; };
 		DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModelMapper.swift; sourceTree = "<group>"; };
 		DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
@@ -351,6 +355,7 @@
 			isa = PBXGroup;
 			children = (
 				DCD3F2912951D1BA003484CA /* StringExtensions.swift */,
+				DC86C290295B418100567514 /* PublisherFlow.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -603,6 +608,7 @@
 				DCD3F289294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325985294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DCD3F28D2950CA11003484CA /* ErrorScreen.swift in Sources */,
+				DC86C291295B418100567514 /* PublisherFlow.swift in Sources */,
 				DCD3F272294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259912941DF12001738C8 /* Color.swift in Sources */,
 				DC32598B2941366E001738C8 /* CryptoComponent.swift in Sources */,
@@ -630,6 +636,7 @@
 				DC86C2822958688500567514 /* CryptoListReducer.swift in Sources */,
 				DCD3F28E2950CA11003484CA /* ErrorScreen.swift in Sources */,
 				DCD3F28A294FBB19003484CA /* ToastView.swift in Sources */,
+				DC86C292295B418100567514 /* PublisherFlow.swift in Sources */,
 				DC32597C2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
 				DC3259A22948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC86C28E2959E43A00567514 /* MVIViewModel.swift in Sources */,
@@ -656,6 +663,7 @@
 				DCD3F28B294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325987294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DCD3F28F2950CA11003484CA /* ErrorScreen.swift in Sources */,
+				DC86C293295B418100567514 /* PublisherFlow.swift in Sources */,
 				DCD3F274294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259932941DF12001738C8 /* Color.swift in Sources */,
 				DC32598D2941366E001738C8 /* CryptoComponent.swift in Sources */,

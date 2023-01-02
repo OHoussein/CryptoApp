@@ -2,7 +2,7 @@ import Foundation
 
 typealias Reducer<State, Event> = (_ state: State, _ event: Event) -> State
 
-class MVIViewModel<State, Event, Intent>: ObservableObject {
+class MVIViewModel<State, Intent, Event>: ObservableObject {
     private var reducer: Reducer<State, Event>
     @Published private(set) var state: State
 

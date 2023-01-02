@@ -5,6 +5,7 @@ import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
@@ -35,16 +36,22 @@ class FlowWrapperTest {
         // Given
         val expectedData = "data content"
         val flow = flowOf(expectedData)
-        var receivedData: String? = null
+        var receivedFromOnEach: String? = null
+        var onCompletionCalled = false
+        var receivedFromOnError: Throwable? = null
 
         // When
         flow.wrap()
-            .subscribe {
-                receivedData = it
-            }
+            .subscribe(
+                onEach = { receivedFromOnEach = it },
+                onCompletion = { onCompletionCalled = true },
+                onError = { receivedFromOnError = it }
+            )
 
         // Then
-        assertEquals(expectedData, receivedData)
+        assertEquals(expectedData, receivedFromOnEach)
+        assertTrue(onCompletionCalled)
+        assertNull(receivedFromOnError)
     }
 
     @Test
@@ -55,19 +62,48 @@ class FlowWrapperTest {
                 delay(1000)
                 emit("any data")
             }
-            var receivedData: String? = null
+            var receivedFromOnEach: String? = null
+            var onCompletionCalled = false
+            var receivedFromOnError: Throwable? = null
 
             // When
             val closeable = flow.wrap()
-                .subscribe {
-                    receivedData = it
-                }
+                .subscribe(
+                    onEach = { receivedFromOnEach = it },
+                    onCompletion = { onCompletionCalled = true },
+                    onError = { receivedFromOnError = it }
+                )
             advanceTimeBy(200)
             closeable.close()
             advanceUntilIdle()
 
             // Then
-            assertNull(receivedData)
+            assertNull(receivedFromOnEach)
+            assertNull(receivedFromOnError)
+            assertTrue(onCompletionCalled)
         }
+    }
+
+    @Test
+    fun should_get_error_in_the_onCompletion() {
+        // Given
+        val exception = Exception("Fake error")
+        val flow = flow<String> { throw exception }
+        var receivedFromOnEach: String? = null
+        var onCompletionCalled = false
+        var receivedFromOnError: Throwable? = null
+
+        // When
+        flow.wrap()
+            .subscribe(
+                onEach = { receivedFromOnEach = it },
+                onCompletion = { onCompletionCalled = true },
+                onError = { receivedFromOnError = it }
+            )
+
+        // Then
+        assertNull(receivedFromOnEach)
+        assertTrue(onCompletionCalled)
+        assertEquals(exception, receivedFromOnError)
     }
 }

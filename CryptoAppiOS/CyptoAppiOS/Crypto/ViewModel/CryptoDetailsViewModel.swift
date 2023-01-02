@@ -1,11 +1,13 @@
+import Combine
 import Foundation
 import sharedModules
 
-class CryptoDetailsViewModel: MVIViewModel<CryptoDetailsState, CryptoDetailsEvent, CryptoDetailsIntent> {
-
+class CryptoDetailsViewModel: MVIViewModel<CryptoDetailsState, CryptoDetailsIntent, CryptoDetailsEvent> {
     private let cryptoId: String
     private let mapper: CryptoModelMapper
     private let getCryptoDetailsUseCase: CryptoDomainGetCryptoDetailsUseCase
+
+    private var subscriptions: [AnyCancellable] = []
 
     init(
         cryptoId: String,
@@ -38,13 +40,15 @@ class CryptoDetailsViewModel: MVIViewModel<CryptoDetailsState, CryptoDetailsEven
     }
 
     private func watchCryptoDetails() {
-        getCryptoDetailsUseCase.getAsWrapper(cryptoId: cryptoId)
-            .subscribe { domainCryptoDetailsParam in
-                if let domainCryptoDetails = domainCryptoDetailsParam {
-                    let details = self.mapper.convert(domain: domainCryptoDetails)
-                    self.send(event: .updateDetails(details))
-                }
+        createPublisher(getCryptoDetailsUseCase.getAsWrapper(cryptoId: cryptoId))
+            .receive(on: DispatchQueue.main)
+            .map {
+                self.mapper.convert(domain: $0)
             }
+            .sink(receiveCompletion: { _ in }, receiveValue: { details in
+                self.send(event: .updateDetails(details))
+            })
+            .store(in: &subscriptions)
     }
 }
 

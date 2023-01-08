@@ -31,10 +31,10 @@ class CryptoDetailsViewModel: MVIViewModel<CryptoDetailsState, CryptoDetailsInte
     private func refresh() {
         send(event: .updateStatus(.loading))
         getCryptoDetailsUseCase.refresh(cryptoId: cryptoId) { [weak self] error in
-            if let error = error {
-                print("Refresh error = \(String(describing: error))")
-                self?.send(event: .updateStatus(LoadingStatus.error("Network error")))
-                return
+            if error != nil {
+                self?.send(event: .updateStatus(.error("Network error")))
+            } else {
+                self?.send(event: .updateStatus(.idle))
             }
         }
     }

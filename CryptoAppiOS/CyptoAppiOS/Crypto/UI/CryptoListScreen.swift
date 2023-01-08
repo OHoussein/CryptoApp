@@ -59,7 +59,7 @@ private struct CryptoListContent: View {
 
 struct CryptoListScreenContent_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoListContent(state: CryptoListState(cryptoList: mockedCryptoList()),
+        CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList()),
                           onCloseError: {},
                           onRefresh: {})
     }
@@ -67,7 +67,7 @@ struct CryptoListScreenContent_Previews: PreviewProvider {
 
 struct CryptoListWithErrorScreenContent_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoListContent(state: CryptoListState(cryptoList: mockedCryptoList(),
+        CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList(),
                                                  status: LoadingStatus.error("Network error")),
                           onCloseError: {},
                           onRefresh: {})

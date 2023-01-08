@@ -117,19 +117,19 @@ struct ItemLink: View {
 
 struct CryptoDetailsHeader_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoDetailsHeader(crypto: mockedCryptoDetails().base)
+        CryptoDetailsHeader(crypto: CryptoDataMock.mockedCryptoDetails().base)
     }
 }
 
 struct CryptoDetailsDescription_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoDetailsDescription(description: mockedCryptoDetails().description)
+        CryptoDetailsDescription(description: CryptoDataMock.mockedCryptoDetails().description)
     }
 }
 
 struct CryptoDetailsLinks_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoDetailsLinks(cryptoDetails: mockedCryptoDetails())
+        CryptoDetailsLinks(cryptoDetails: CryptoDataMock.mockedCryptoDetails())
     }
 }
 

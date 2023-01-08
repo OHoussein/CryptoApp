@@ -5,15 +5,13 @@ func cryptoListReducer(state: CryptoListState, event: CryptoListEvent) -> Crypto
     switch event {
     case let .updateCryptoList(list):
         newState.cryptoList = list
-        newState.status = LoadingStatus.idle
     case let .updateStatus(status):
         newState.status = status
     }
-    print("New status $\(newState.status)")
     return newState
 }
 
-struct CryptoListState {
+struct CryptoListState: Equatable {
     var cryptoList: [Crypto]?
     var status: LoadingStatus = .idle
 }

@@ -39,10 +39,10 @@ class CryptoListViewModel: MVIViewModel<CryptoListState, CryptoListIntent, Crypt
     private func refresh() {
         send(event: .updateStatus(.loading))
         getTopCryptoListUseCase.refresh { [weak self] error in
-            if let error = error {
-                print("Refresh error = \(String(describing: error))")
-                self?.send(event: .updateStatus(LoadingStatus.error("")))
-                return
+            if error != nil {
+                self?.send(event: .updateStatus(LoadingStatus.error("Network error")))
+            } else {
+                self?.send(event: .updateStatus(LoadingStatus.idle))
             }
         }
     }

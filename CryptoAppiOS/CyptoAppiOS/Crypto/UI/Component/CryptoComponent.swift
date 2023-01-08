@@ -56,6 +56,6 @@ struct CryptoImage: View {
 
 struct CryptoItem_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoItem(crypto: mockedCryptoList().first!)
+        CryptoItem(crypto: CryptoDataMock.mockedCryptoList().first!)
     }
 }

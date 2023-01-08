@@ -62,7 +62,7 @@ private struct CryptoDetailsContent: View {
 struct CryptoDetailsContent_Previews: PreviewProvider {
     static var previews: some View {
         CryptoDetailsContent(
-            state: CryptoDetailsState(cryptoDetails: mockedCryptoDetails()),
+            state: CryptoDetailsState(cryptoDetails: CryptoDataMock.mockedCryptoDetails()),
             onCloseError: {},
             onRefresh: {}
         )

@@ -41,12 +41,13 @@
 		DC3259A12948A710001738C8 /* CryptoDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */; };
 		DC3259A22948A710001738C8 /* CryptoDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */; };
 		DC3259A32948A710001738C8 /* CryptoDetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */; };
+		DC3AC58C29647B110086DFB5 /* CryptoListViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3AC58B29647B110086DFB5 /* CryptoListViewModelTest.swift */; };
+		DC5508C8296B1122009248F7 /* XCTestCaseExpectation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5508C7296B1122009248F7 /* XCTestCaseExpectation.swift */; };
+		DC5508CA296B1183009248F7 /* SingleKotlinFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5508C9296B1183009248F7 /* SingleKotlinFlow.swift */; };
+		DC5508CC296B2517009248F7 /* CryptoDetailsViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5508CB296B2517009248F7 /* CryptoDetailsViewModelTest.swift */; };
 		DC86C2812958688500567514 /* CryptoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2802958688500567514 /* CryptoListReducer.swift */; };
 		DC86C2822958688500567514 /* CryptoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2802958688500567514 /* CryptoListReducer.swift */; };
 		DC86C2832958688500567514 /* CryptoListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2802958688500567514 /* CryptoListReducer.swift */; };
-		DC86C28529588A5400567514 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28429588A5400567514 /* Intent.swift */; };
-		DC86C28629588A5400567514 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28429588A5400567514 /* Intent.swift */; };
-		DC86C28729588A5400567514 /* Intent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28429588A5400567514 /* Intent.swift */; };
 		DC86C2892959AEC500567514 /* CryptoDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */; };
 		DC86C28A2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */; };
 		DC86C28B2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */; };
@@ -54,8 +55,15 @@
 		DC86C28E2959E43A00567514 /* MVIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28C2959E43A00567514 /* MVIViewModel.swift */; };
 		DC86C28F2959E43A00567514 /* MVIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C28C2959E43A00567514 /* MVIViewModel.swift */; };
 		DC86C291295B418100567514 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
-		DC86C292295B418100567514 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
-		DC86C293295B418100567514 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
+		DC98BA6629632D1900586645 /* StringExtensionsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA6529632D1900586645 /* StringExtensionsTest.swift */; };
+		DC98BA6829632E4100586645 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA6729632E4100586645 /* DomainError.swift */; };
+		DC98BA6A29632F6D00586645 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
+		DC98BA6B29632F6E00586645 /* PublisherFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC86C290295B418100567514 /* PublisherFlow.swift */; };
+		DC98BA7229633A0600586645 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA6729632E4100586645 /* DomainError.swift */; };
+		DC98BA7529633C6100586645 /* DomainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA6729632E4100586645 /* DomainError.swift */; };
+		DC98BA7A29633F9100586645 /* CryptoListReducerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA7929633F9100586645 /* CryptoListReducerTest.swift */; };
+		DC98BA7C2963795300586645 /* CryptoDetailsReducerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA7B2963795300586645 /* CryptoDetailsReducerTest.swift */; };
+		DC98BA7F29637CA200586645 /* CryptoModelMapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC98BA7E29637CA200586645 /* CryptoModelMapperTest.swift */; };
 		DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
 		DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */; };
@@ -121,12 +129,20 @@
 		DC3259942947A07C001738C8 /* CryptoDetailsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsComponent.swift; sourceTree = "<group>"; };
 		DC32599C2948A5BE001738C8 /* CryptoListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListScreen.swift; sourceTree = "<group>"; };
 		DC3259A02948A710001738C8 /* CryptoDetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsScreen.swift; sourceTree = "<group>"; };
+		DC3AC58B29647B110086DFB5 /* CryptoListViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModelTest.swift; sourceTree = "<group>"; };
+		DC5508C7296B1122009248F7 /* XCTestCaseExpectation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExpectation.swift; sourceTree = "<group>"; };
+		DC5508C9296B1183009248F7 /* SingleKotlinFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleKotlinFlow.swift; sourceTree = "<group>"; };
+		DC5508CB296B2517009248F7 /* CryptoDetailsViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsViewModelTest.swift; sourceTree = "<group>"; };
 		DC86C27229565AD800567514 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		DC86C2802958688500567514 /* CryptoListReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListReducer.swift; sourceTree = "<group>"; };
-		DC86C28429588A5400567514 /* Intent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intent.swift; sourceTree = "<group>"; };
 		DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsReducer.swift; sourceTree = "<group>"; };
 		DC86C28C2959E43A00567514 /* MVIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVIViewModel.swift; sourceTree = "<group>"; };
 		DC86C290295B418100567514 /* PublisherFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublisherFlow.swift; sourceTree = "<group>"; };
+		DC98BA6529632D1900586645 /* StringExtensionsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTest.swift; sourceTree = "<group>"; };
+		DC98BA6729632E4100586645 /* DomainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainError.swift; sourceTree = "<group>"; };
+		DC98BA7929633F9100586645 /* CryptoListReducerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListReducerTest.swift; sourceTree = "<group>"; };
+		DC98BA7B2963795300586645 /* CryptoDetailsReducerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsReducerTest.swift; sourceTree = "<group>"; };
+		DC98BA7E29637CA200586645 /* CryptoModelMapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModelMapperTest.swift; sourceTree = "<group>"; };
 		DCB80B04294A248A00189C53 /* CryptoDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailsViewModel.swift; sourceTree = "<group>"; };
 		DCD3F271294E07E8003484CA /* CryptoModelMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoModelMapper.swift; sourceTree = "<group>"; };
 		DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingStatus.swift; sourceTree = "<group>"; };
@@ -212,8 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				DC86C27229565AD800567514 /* Info.plist */,
-				DCD3F2902951D1A6003484CA /* Utils */,
-				DCD3F275294E1972003484CA /* MVI */,
+				DC98BA7329633BA900586645 /* Core */,
 				DC32598E2941DEEE001738C8 /* DesignSystem */,
 				DC3259782940F0F2001738C8 /* Crypto */,
 				DC058C1428F314F1001AA13F /* CyptoAppiOSApp.swift */,
@@ -235,6 +250,9 @@
 		DC058C2428F314F3001AA13F /* CyptoAppiOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				DC5508C6296B10F5009248F7 /* TestUtils */,
+				DC98BA7629633CF600586645 /* Core */,
+				DC98BA7729633F3500586645 /* Crypto */,
 				DC058C2528F314F3001AA13F /* CyptoAppiOSTests.swift */,
 			);
 			path = CyptoAppiOSTests;
@@ -324,6 +342,24 @@
 			path = Theme;
 			sourceTree = "<group>";
 		};
+		DC3AC58A296478A90086DFB5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DC3AC58B29647B110086DFB5 /* CryptoListViewModelTest.swift */,
+				DC5508CB296B2517009248F7 /* CryptoDetailsViewModelTest.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		DC5508C6296B10F5009248F7 /* TestUtils */ = {
+			isa = PBXGroup;
+			children = (
+				DC5508C7296B1122009248F7 /* XCTestCaseExpectation.swift */,
+				DC5508C9296B1183009248F7 /* SingleKotlinFlow.swift */,
+			);
+			path = TestUtils;
+			sourceTree = "<group>";
+		};
 		DC86C27F2958686500567514 /* Reducer */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,6 +367,67 @@
 				DC86C2882959AEC500567514 /* CryptoDetailsReducer.swift */,
 			);
 			path = Reducer;
+			sourceTree = "<group>";
+		};
+		DC98BA6429632CEE00586645 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA6529632D1900586645 /* StringExtensionsTest.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DC98BA7329633BA900586645 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA7429633BC400586645 /* Error */,
+				DCD3F2902951D1A6003484CA /* Utils */,
+				DCD3F275294E1972003484CA /* MVI */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		DC98BA7429633BC400586645 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA6729632E4100586645 /* DomainError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		DC98BA7629633CF600586645 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA6429632CEE00586645 /* Utils */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		DC98BA7729633F3500586645 /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA7829633F7900586645 /* Reducer */,
+				DC98BA7D29637C4B00586645 /* Mapper */,
+				DC3AC58A296478A90086DFB5 /* ViewModel */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		DC98BA7829633F7900586645 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA7929633F9100586645 /* CryptoListReducerTest.swift */,
+				DC98BA7B2963795300586645 /* CryptoDetailsReducerTest.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		DC98BA7D29637C4B00586645 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				DC98BA7E29637CA200586645 /* CryptoModelMapperTest.swift */,
+			);
+			path = Mapper;
 			sourceTree = "<group>";
 		};
 		DCD3F270294E07BA003484CA /* Mapper */ = {
@@ -345,7 +442,6 @@
 			isa = PBXGroup;
 			children = (
 				DCD3F27F294F4D4E003484CA /* LoadingStatus.swift */,
-				DC86C28429588A5400567514 /* Intent.swift */,
 				DC86C28C2959E43A00567514 /* MVIViewModel.swift */,
 			);
 			path = MVI;
@@ -599,7 +695,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC32598029413159001738C8 /* Crypto.swift in Sources */,
-				DC86C28529588A5400567514 /* Intent.swift in Sources */,
 				DCB80B05294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC3259A12948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC86C2812958688500567514 /* CryptoListReducer.swift in Sources */,
@@ -619,6 +714,7 @@
 				DC058C1528F314F1001AA13F /* CyptoAppiOSApp.swift in Sources */,
 				DC32599D2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
 				DCD3F2922951D1BB003484CA /* StringExtensions.swift in Sources */,
+				DC98BA6829632E4100586645 /* DomainError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,26 +722,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC98BA6A29632F6D00586645 /* PublisherFlow.swift in Sources */,
+				DC98BA6629632D1900586645 /* StringExtensionsTest.swift in Sources */,
 				DC325986294133C4001738C8 /* CryptoDataMock.swift in Sources */,
+				DC5508C8296B1122009248F7 /* XCTestCaseExpectation.swift in Sources */,
 				DC32598129413159001738C8 /* Crypto.swift in Sources */,
 				DCD3F281294F4D4E003484CA /* LoadingStatus.swift in Sources */,
+				DC98BA7F29637CA200586645 /* CryptoModelMapperTest.swift in Sources */,
 				DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC058C2628F314F3001AA13F /* CyptoAppiOSTests.swift in Sources */,
 				DCD3F273294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC32598C2941366E001738C8 /* CryptoComponent.swift in Sources */,
 				DC86C2822958688500567514 /* CryptoListReducer.swift in Sources */,
+				DC98BA7C2963795300586645 /* CryptoDetailsReducerTest.swift in Sources */,
 				DCD3F28E2950CA11003484CA /* ErrorScreen.swift in Sources */,
 				DCD3F28A294FBB19003484CA /* ToastView.swift in Sources */,
-				DC86C292295B418100567514 /* PublisherFlow.swift in Sources */,
 				DC32597C2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
 				DC3259A22948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
+				DC5508CA296B1183009248F7 /* SingleKotlinFlow.swift in Sources */,
 				DC86C28E2959E43A00567514 /* MVIViewModel.swift in Sources */,
 				DC3259922941DF12001738C8 /* Color.swift in Sources */,
-				DC86C28629588A5400567514 /* Intent.swift in Sources */,
 				DC86C28A2959AEC500567514 /* CryptoDetailsReducer.swift in Sources */,
 				DCD3F2932951D1BB003484CA /* StringExtensions.swift in Sources */,
 				DC32599E2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
+				DC98BA7A29633F9100586645 /* CryptoListReducerTest.swift in Sources */,
+				DC5508CC296B2517009248F7 /* CryptoDetailsViewModelTest.swift in Sources */,
+				DC3AC58C29647B110086DFB5 /* CryptoListViewModelTest.swift in Sources */,
 				DC3259962947A07C001738C8 /* CryptoDetailsComponent.swift in Sources */,
+				DC98BA7229633A0600586645 /* DomainError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,8 +757,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC98BA6B29632F6E00586645 /* PublisherFlow.swift in Sources */,
 				DC32598229413159001738C8 /* Crypto.swift in Sources */,
-				DC86C28729588A5400567514 /* Intent.swift in Sources */,
 				DCB80B07294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
 				DC3259A32948A710001738C8 /* CryptoDetailsScreen.swift in Sources */,
 				DC86C2832958688500567514 /* CryptoListReducer.swift in Sources */,
@@ -663,7 +767,6 @@
 				DCD3F28B294FBB19003484CA /* ToastView.swift in Sources */,
 				DC325987294133C4001738C8 /* CryptoDataMock.swift in Sources */,
 				DCD3F28F2950CA11003484CA /* ErrorScreen.swift in Sources */,
-				DC86C293295B418100567514 /* PublisherFlow.swift in Sources */,
 				DCD3F274294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259932941DF12001738C8 /* Color.swift in Sources */,
 				DC32598D2941366E001738C8 /* CryptoComponent.swift in Sources */,
@@ -674,6 +777,7 @@
 				DC058C3028F314F3001AA13F /* CyptoAppiOSUITests.swift in Sources */,
 				DC32599F2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
 				DCD3F2942951D1BB003484CA /* StringExtensions.swift in Sources */,
+				DC98BA7529633C6100586645 /* DomainError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

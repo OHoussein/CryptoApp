@@ -13,9 +13,11 @@ import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 
-class GetTopCryptoListTest : KoinComponent {
+class GetCryptoDetailsUseCaseImplTest : KoinComponent {
 
-    private val topCryptoListUseCase: GetTopCryptoListUseCase by inject()
+    private val cryptoId = "bitcoin"
+
+    private val cryptoDetailsUseCase: GetCryptoDetailsUseCase by inject()
     private lateinit var cryptoRepository: MockedCryptoRepository
 
     @BeforeTest
@@ -25,7 +27,7 @@ class GetTopCryptoListTest : KoinComponent {
             modules(
                 module {
                     single<ICryptoRepository> { cryptoRepository }
-                    single { GetTopCryptoListUseCase() }
+                    single<GetCryptoDetailsUseCase> { GetCryptoDetailsUseCaseImpl() }
                 }
             )
         }
@@ -37,17 +39,23 @@ class GetTopCryptoListTest : KoinComponent {
     }
 
     @Test
-    fun getTopCryptoList_calls_repository() {
+    fun getCryptoDetails_calls_repository() {
+        cryptoDetailsUseCase.get(cryptoId)
 
-        topCryptoListUseCase.get()
-
-        assertEquals(1, cryptoRepository.countGetTopCryptoList)
+        assertEquals(listOf(cryptoId), cryptoRepository.getCryptoDetailsParams)
     }
 
     @Test
-    fun refreshTopCryptoList_calls_repository() {
-        runBlocking { topCryptoListUseCase.refresh() }
+    fun getAsWrapper_calls_repository() {
+        cryptoDetailsUseCase.getAsWrapper(cryptoId)
 
-        assertEquals(1, cryptoRepository.countRefreshTopCryptoList)
+        assertEquals(listOf(cryptoId), cryptoRepository.getCryptoDetailsParams)
+    }
+
+    @Test
+    fun refreshCryptoDetails_calls_repository() {
+        runBlocking { cryptoDetailsUseCase.refresh(cryptoId) }
+
+        assertEquals(listOf(cryptoId), cryptoRepository.refreshCryptoDetailsParams)
     }
 }

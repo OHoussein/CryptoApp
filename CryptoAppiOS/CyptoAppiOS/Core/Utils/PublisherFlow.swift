@@ -12,7 +12,7 @@ func createPublisher<T>(
                 subject.send(safeItem)
             }
         } onError: { error in
-            subject.send(completion: .failure(error))
+            subject.send(completion: .failure(DomainError.from(throwable: error)))
         } onCompletion: {
             subject.send(completion: .finished)
         }
@@ -21,5 +21,3 @@ func createPublisher<T>(
         })
     }.eraseToAnyPublisher()
 }
-
-extension KotlinThrowable: Error {}

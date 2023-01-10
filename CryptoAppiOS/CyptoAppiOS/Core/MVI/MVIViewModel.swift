@@ -16,6 +16,10 @@ class MVIViewModel<State, Intent, Event>: ObservableObject {
     }
 
     func send(event: Event) {
-        state = reducer(state, event)
+        Task {
+            await MainActor.run {
+                state = reducer(state, event)
+            }
+        }
     }
 }

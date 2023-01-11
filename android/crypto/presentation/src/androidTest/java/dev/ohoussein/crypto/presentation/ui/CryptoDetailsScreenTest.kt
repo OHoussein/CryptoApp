@@ -17,7 +17,7 @@ import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.navigation.ExternalRouter
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOf
@@ -100,7 +100,7 @@ class CryptoDetailsScreenTest : KoinTest {
         next(composeTestRule)
     }
 
-    private fun givenCrypto(next: (DomainCryptoDetails) -> Unit) {
+    private fun givenCrypto(next: (CryptoDetailsModel) -> Unit) {
         val data = TestDataFactory.randomCryptoDetails(cryptoId)
         whenever(cryptoRepo.getCryptoDetails(cryptoId))
             .thenReturn(flowOf(data))
@@ -108,7 +108,7 @@ class CryptoDetailsScreenTest : KoinTest {
     }
 
     private fun givenErrorAndSuccessRefresh(next: () -> Unit) {
-        val flow = MutableSharedFlow<DomainCryptoDetails>()
+        val flow = MutableSharedFlow<CryptoDetailsModel>()
         val successData = TestDataFactory.randomCryptoDetails(cryptoId)
         whenever(cryptoRepo.getCryptoDetails(cryptoId)).thenReturn(flow)
         runBlocking {
@@ -119,7 +119,7 @@ class CryptoDetailsScreenTest : KoinTest {
         next()
     }
 
-    private fun thenCryptoDetailsShouldBeDisplayed(item: DomainCryptoDetails) {
+    private fun thenCryptoDetailsShouldBeDisplayed(item: CryptoDetailsModel) {
         with(composeTestRule) {
             onNode(hasText(item.name, ignoreCase = true, substring = true)).assertIsDisplayed()
             onNode(hasText(item.description, ignoreCase = true)).assertIsDisplayed()

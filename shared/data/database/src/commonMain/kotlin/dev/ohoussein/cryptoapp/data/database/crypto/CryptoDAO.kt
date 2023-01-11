@@ -1,14 +1,14 @@
 package dev.ohoussein.cryptoapp.data.database.crypto
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import kotlinx.coroutines.flow.Flow
 
 interface CryptoDAO {
-    suspend fun insert(cryptoList: List<DomainCrypto>)
-    fun selectAll(): Flow<CryptoList>
+    suspend fun insert(cryptoList: List<CryptoModel>)
+    fun selectAll(): Flow<CryptoListModel>
 
-    suspend fun insert(cryptoDetails: DomainCryptoDetails)
-    fun selectDetails(cryptoDetailsId: String): Flow<DomainCryptoDetails?>
+    suspend fun insert(cryptoDetails: CryptoDetailsModel)
+    fun selectDetails(cryptoDetailsId: String): Flow<CryptoDetailsModel?>
 }

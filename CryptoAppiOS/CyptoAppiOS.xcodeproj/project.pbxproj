@@ -467,7 +467,7 @@
 				DC058C0D28F314F1001AA13F /* Sources */,
 				DC058C0E28F314F1001AA13F /* Frameworks */,
 				DC058C0F28F314F1001AA13F /* Resources */,
-				A3DB0DD529495D0C66705EF7 /* [CP] Embed Pods Frameworks */,
+				641B49183224E9DEB00BBA47 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -505,7 +505,7 @@
 				DC058C2728F314F3001AA13F /* Sources */,
 				DC058C2828F314F3001AA13F /* Frameworks */,
 				DC058C2928F314F3001AA13F /* Resources */,
-				04D49C8E474EAD6EE161EB3F /* [CP] Embed Pods Frameworks */,
+				DC146502D9AFBD038993AA90 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -587,23 +587,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		04D49C8E474EAD6EE161EB3F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2A73973B787016B4C1C991DD /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -626,7 +609,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A3DB0DD529495D0C66705EF7 /* [CP] Embed Pods Frameworks */ = {
+		641B49183224E9DEB00BBA47 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -685,6 +668,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC146502D9AFBD038993AA90 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -925,6 +925,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyptoAppiOS/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -956,6 +957,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CyptoAppiOS/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

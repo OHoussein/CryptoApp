@@ -1,8 +1,8 @@
 package dev.ohoussein.cryptoapp.crypto.data.repository
 
 import dev.ohoussein.cryptoapp.crypto.data.mapper.ApiDomainModelMapper
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import dev.ohoussein.cryptoapp.data.cache.CachedDataRepository
@@ -19,7 +19,7 @@ class CryptoRepository constructor(
     private val locale: Locale,
 ) : ICryptoRepository {
 
-    private val topCryptoListCache: CachedDataRepository<Unit, CryptoList> = CachedDataRepository(
+    private val topCryptoListCache: CachedDataRepository<Unit, CryptoListModel> = CachedDataRepository(
         updater = {
             val apiResponse = service.getTopCrypto(locale.currencyCode)
             apiMapper.convert(apiResponse)
@@ -33,7 +33,7 @@ class CryptoRepository constructor(
         },
     )
 
-    private val cryptoDetailsCache: CachedDataRepository<String, DomainCryptoDetails> = CachedDataRepository(
+    private val cryptoDetailsCache: CachedDataRepository<String, CryptoDetailsModel> = CachedDataRepository(
         updater = { id ->
             val response = service.getCryptoDetails(id)
             apiMapper.convert(response)
@@ -47,11 +47,11 @@ class CryptoRepository constructor(
         },
     )
 
-    override fun getTopCryptoList(): Flow<CryptoList> = topCryptoListCache.stream(Unit)
+    override fun getTopCryptoList(): Flow<CryptoListModel> = topCryptoListCache.stream(Unit)
 
     override suspend fun refreshTopCryptoList() = topCryptoListCache.refresh(Unit)
 
     override suspend fun refreshCryptoDetails(cryptoId: String) = cryptoDetailsCache.refresh(cryptoId)
 
-    override fun getCryptoDetails(cryptoId: String): Flow<DomainCryptoDetails> = cryptoDetailsCache.stream(cryptoId)
+    override fun getCryptoDetails(cryptoId: String): Flow<CryptoDetailsModel> = cryptoDetailsCache.stream(cryptoId)
 }

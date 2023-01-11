@@ -17,7 +17,7 @@ import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -113,14 +113,14 @@ class CryptoListScreenTest : KoinTest {
         }
     }
 
-    private fun givenListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+    private fun givenListOfCrypto(next: (List<CryptoModel>) -> Unit) {
         val data = TestDataFactory.makeCryptoList(20)
         whenever(cryptoRepo.getTopCryptoList())
             .thenReturn(flowOf(data))
         next(data)
     }
 
-    private fun givenErrorOnRefreshListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
+    private fun givenErrorOnRefreshListOfCrypto(next: (List<CryptoModel>) -> Unit) {
         val successData = TestDataFactory.makeCryptoList(20)
         runBlocking {
             whenever(cryptoRepo.refreshTopCryptoList())
@@ -129,8 +129,8 @@ class CryptoListScreenTest : KoinTest {
         next(successData)
     }
 
-    private fun givenErrorThanSuccessGetListOfCrypto(next: (List<DomainCrypto>) -> Unit) {
-        val flow = MutableSharedFlow<List<DomainCrypto>>()
+    private fun givenErrorThanSuccessGetListOfCrypto(next: (List<CryptoModel>) -> Unit) {
+        val flow = MutableSharedFlow<List<CryptoModel>>()
         val successData = TestDataFactory.makeCryptoList(20)
         whenever(cryptoRepo.getTopCryptoList()).thenReturn(flow)
         runBlocking {
@@ -141,7 +141,7 @@ class CryptoListScreenTest : KoinTest {
         next(successData)
     }
 
-    private fun thenCryptoListShouldBeDisplayed(data: List<DomainCrypto>) {
+    private fun thenCryptoListShouldBeDisplayed(data: List<CryptoModel>) {
         data.forEachIndexed { index, item ->
             thenCryptoItemShouldBeDisplayed(item)
             composeTestRule.onNodeWithTag(CryptoListTestTag)
@@ -149,7 +149,7 @@ class CryptoListScreenTest : KoinTest {
         }
     }
 
-    private fun thenCryptoItemShouldBeDisplayed(item: DomainCrypto) {
+    private fun thenCryptoItemShouldBeDisplayed(item: CryptoModel) {
         composeTestRule.onNodeWithText(
             item.name,
             useUnmergedTree = true

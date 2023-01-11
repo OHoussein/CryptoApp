@@ -90,8 +90,8 @@ final class CryptoListViewModelTest: XCTestCase {
 
 private class MockedUseCase: CryptoDomainGetTopCryptoListUseCase {
     var errorOnRefresh = false
-    let cryptoList = CryptoDomainCryptoList(list: [
-        CryptoDomainDomainCrypto(
+    let cryptoList = CryptoDomainCryptoListModel(list: [
+        CryptoDomainCryptoModel(
             id: "bitcoin",
             name: "Bitcoin",
             imageUrl: "https://img.com/bitcoin",
@@ -106,7 +106,7 @@ private class MockedUseCase: CryptoDomainGetTopCryptoListUseCase {
         return SharedModulesKt.getTopCryptoListUseCase.get()
     }
 
-    func getAsWrapper() -> CoroutinesToolsFlowWrapper<CryptoDomainCryptoList> {
+    func getAsWrapper() -> CoroutinesToolsFlowWrapper<CryptoDomainCryptoListModel> {
         return asFlowWrapper(cryptoList)
     }
 

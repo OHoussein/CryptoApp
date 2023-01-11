@@ -7,9 +7,9 @@ import dev.ohoussein.crypto.presentation.model.CryptoPrice
 import dev.ohoussein.crypto.presentation.model.LabelValue
 import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
 import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.defaultLocale
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
@@ -33,11 +33,11 @@ class DomainModelMapperTest : BehaviorSpec({
         locale = defaultLocale,
     )
 
-    given("a List<DomainCrypto>") {
+    given("a CryptoListModel") {
 
-        val crypto = CryptoList(
+        val crypto = CryptoListModel(
             listOf(
-                DomainCrypto(
+                CryptoModel(
                     id = "1",
                     name = "Bitcoin",
                     imageUrl = "https://bitcoin.com",
@@ -67,9 +67,9 @@ class DomainModelMapperTest : BehaviorSpec({
         }
     }
 
-    given("a DomainCryptoDetails") {
+    given("a CryptoDetailsModel") {
 
-        val crypto = DomainCryptoDetails(
+        val crypto = CryptoDetailsModel(
             id = "1",
             name = "Bitcoin",
             imageUrl = "https://bitcoin.com",

@@ -13,7 +13,7 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsState
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoDetailsViewModel
 import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetCryptoDetailsUseCase
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
@@ -59,7 +59,7 @@ class CryptoDetailsViewModelTest : DescribeSpec({
     }
 
     describe("mocked data") {
-        val data: DomainCryptoDetails = mock()
+        val data: CryptoDetailsModel = mock()
         val uiData: CryptoDetails = mock()
 
         whenever(uiMapper.convert(data)).thenReturn(uiData)

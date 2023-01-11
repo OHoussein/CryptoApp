@@ -3,9 +3,9 @@ package dev.ohoussein.cryptoapp.data.database.crypto
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import com.squareup.sqldelight.runtime.coroutines.mapToOneOrNull
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.database.CryptoDB
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -19,7 +19,7 @@ class CryptoDAOImpl(
     private val dbModelMapper: DBModelMapper,
 ) : CryptoDAO {
 
-    override suspend fun insert(cryptoList: List<DomainCrypto>) {
+    override suspend fun insert(cryptoList: List<CryptoModel>) {
         withContext(ioDispatcher) {
             database.cryptoQueries.transaction {
                 database.cryptoQueries.deleteAllCrypto()
@@ -31,21 +31,21 @@ class CryptoDAOImpl(
         }
     }
 
-    override fun selectAll(): Flow<CryptoList> {
-        return database.cryptoQueries.getAllCrypto(dbModelMapper::toDomainCrypto)
+    override fun selectAll(): Flow<CryptoListModel> {
+        return database.cryptoQueries.getAllCrypto(dbModelMapper::toCryptoModel)
             .asFlow()
             .flowOn(ioDispatcher)
             .mapToList()
-            .map(::CryptoList)
+            .map(::CryptoListModel)
     }
 
-    override suspend fun insert(cryptoDetails: DomainCryptoDetails): Unit = withContext(ioDispatcher) {
+    override suspend fun insert(cryptoDetails: CryptoDetailsModel): Unit = withContext(ioDispatcher) {
         val dbCryptoDetails = dbModelMapper.toDB(cryptoDetails)
         database.cryptoQueries.insertCryptoDetails(dbCryptoDetails)
     }
 
-    override fun selectDetails(cryptoDetailsId: String): Flow<DomainCryptoDetails?> {
-        return database.cryptoQueries.selectDetails(cryptoDetailsId, dbModelMapper::toDomainCryptoDetails)
+    override fun selectDetails(cryptoDetailsId: String): Flow<CryptoDetailsModel?> {
+        return database.cryptoQueries.selectDetails(cryptoDetailsId, dbModelMapper::toCryptoDetailsModel)
             .asFlow()
             .flowOn(ioDispatcher)
             .mapToOneOrNull()

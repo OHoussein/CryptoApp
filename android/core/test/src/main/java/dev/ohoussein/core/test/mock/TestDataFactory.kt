@@ -2,15 +2,15 @@
 
 package dev.ohoussein.core.test.mock
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.random.Random
 
 object TestDataFactory {
     private val idIndex = AtomicLong()
 
-    fun randomCrypto(suffix: String) = DomainCrypto(
+    fun randomCrypto(suffix: String) = CryptoModel(
         id = idIndex.getAndIncrement().toString(),
         name = "Crypto $suffix",
         imageUrl = "Http://$suffix.com",
@@ -20,9 +20,9 @@ object TestDataFactory {
         order = idIndex.toInt()
     )
 
-    fun randomCryptoDetails(suffix: String): DomainCryptoDetails {
+    fun randomCryptoDetails(suffix: String): CryptoDetailsModel {
         val upVotesPercentage = Random.nextInt(1, 100).toDouble()
-        return DomainCryptoDetails(
+        return CryptoDetailsModel(
             id = idIndex.getAndIncrement().toString(),
             name = "Crypto $suffix",
             imageUrl = "",
@@ -37,7 +37,7 @@ object TestDataFactory {
         )
     }
 
-    fun makeCryptoList(count: Int): List<DomainCrypto> = (0..count).map {
+    fun makeCryptoList(count: Int): List<CryptoModel> = (0..count).map {
         randomCrypto(it.toString())
     }
 }

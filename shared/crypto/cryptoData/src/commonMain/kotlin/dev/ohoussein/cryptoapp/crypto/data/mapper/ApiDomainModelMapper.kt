@@ -1,18 +1,18 @@
 package dev.ohoussein.cryptoapp.crypto.data.mapper
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.data.network.crypto.model.CryptoDetailsResponse
 import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 
 class ApiDomainModelMapper constructor(private val locale: Locale) {
 
-    fun convert(data: List<TopCryptoResponse>): CryptoList =
-        CryptoList(data.mapIndexed { index, item -> convert(item, index) })
+    fun convert(data: List<TopCryptoResponse>): CryptoListModel =
+        CryptoListModel(data.mapIndexed { index, item -> convert(item, index) })
 
-    fun convert(data: TopCryptoResponse, index: Int) = DomainCrypto(
+    fun convert(data: TopCryptoResponse, index: Int) = CryptoModel(
         id = data.id,
         symbol = data.symbol,
         name = data.name,
@@ -22,7 +22,7 @@ class ApiDomainModelMapper constructor(private val locale: Locale) {
         order = index,
     )
 
-    fun convert(data: CryptoDetailsResponse) = DomainCryptoDetails(
+    fun convert(data: CryptoDetailsResponse) = CryptoDetailsModel(
         id = data.id,
         symbol = data.symbol,
         name = data.name,

@@ -1,6 +1,6 @@
 package dev.ohoussein.cryptoapp.crypto.domain.model
 
-data class DomainCrypto(
+data class CryptoModel(
     val id: String,
     val name: String,
     val imageUrl: String,
@@ -10,7 +10,7 @@ data class DomainCrypto(
     val order: Int,
 )
 
-data class DomainCryptoDetails(
+data class CryptoDetailsModel(
     val id: String,
     val name: String,
     val symbol: String,
@@ -24,7 +24,7 @@ data class DomainCryptoDetails(
     val description: String,
 )
 
-data class CryptoList(val list: List<DomainCrypto>) {
+data class CryptoListModel(val list: List<CryptoModel>) {
     val isEmpty: Boolean
         get() = list.isEmpty()
 }

@@ -9,7 +9,7 @@ import dev.ohoussein.crypto.presentation.reducer.CryptoListState
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.formatter.ErrorMessageFormatter
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetTopCryptoListUseCase
 import io.kotest.core.spec.IsolationMode
 import io.kotest.core.spec.style.DescribeSpec
@@ -49,7 +49,7 @@ class CryptoListViewModelTest : DescribeSpec({
     }
 
     describe("mocked data") {
-        val data: CryptoList = mock()
+        val data: CryptoListModel = mock()
         val uiData: List<Crypto> = mock()
 
         whenever(uiMapper.convert(data)).thenReturn(uiData)

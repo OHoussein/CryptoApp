@@ -1,7 +1,7 @@
 package dev.ohoussein.cryptoapp.crypto.domain.usecase.stub
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoList
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -13,7 +13,7 @@ internal class MockedCryptoRepository : ICryptoRepository {
     val getCryptoDetailsParams = mutableListOf<String>()
     val refreshCryptoDetailsParams = mutableListOf<String>()
 
-    override fun getTopCryptoList(): Flow<CryptoList> {
+    override fun getTopCryptoList(): Flow<CryptoListModel> {
         countGetTopCryptoList++
         return flowOf()
     }
@@ -22,7 +22,7 @@ internal class MockedCryptoRepository : ICryptoRepository {
         countRefreshTopCryptoList++
     }
 
-    override fun getCryptoDetails(cryptoId: String): Flow<DomainCryptoDetails> {
+    override fun getCryptoDetails(cryptoId: String): Flow<CryptoDetailsModel> {
         getCryptoDetailsParams += cryptoId
         return flowOf()
     }

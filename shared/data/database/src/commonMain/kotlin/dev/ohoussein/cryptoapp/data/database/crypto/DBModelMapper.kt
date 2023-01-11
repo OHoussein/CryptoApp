@@ -1,13 +1,13 @@
 package dev.ohoussein.cryptoapp.data.database.crypto
 
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCrypto
-import dev.ohoussein.cryptoapp.crypto.domain.model.DomainCryptoDetails
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.db.Crypto as DBCrypto
 import dev.ohoussein.cryptoapp.db.CryptoDetails as DBCryptoDetails
 
 class DBModelMapper {
 
-    fun toDomainCrypto(
+    fun toCryptoModel(
         id: String,
         name: String,
         imageUrl: String,
@@ -15,7 +15,7 @@ class DBModelMapper {
         symbol: String,
         priceChangePercentIn24h: Double?,
         orderInList: Long,
-    ) = DomainCrypto(
+    ) = CryptoModel(
         id = id,
         symbol = symbol,
         name = name,
@@ -25,7 +25,7 @@ class DBModelMapper {
         order = orderInList.toInt(),
     )
 
-    fun toDB(domain: DomainCrypto) = DBCrypto(
+    fun toDB(domain: CryptoModel) = DBCrypto(
         id = domain.id,
         symbol = domain.symbol,
         name = domain.name,
@@ -35,7 +35,7 @@ class DBModelMapper {
         orderInList = domain.order.toLong(),
     )
 
-    fun toDB(cryptoDetails: DomainCryptoDetails): DBCryptoDetails = DBCryptoDetails(
+    fun toDB(cryptoDetails: CryptoDetailsModel): DBCryptoDetails = DBCryptoDetails(
         id = cryptoDetails.id,
         name = cryptoDetails.name,
         symbol = cryptoDetails.symbol,
@@ -49,7 +49,7 @@ class DBModelMapper {
         description = cryptoDetails.description,
     )
 
-    fun toDomainCryptoDetails(
+    fun toCryptoDetailsModel(
         id: String,
         name: String,
         imageUrl: String,
@@ -61,7 +61,7 @@ class DBModelMapper {
         sentimentUpVotesPercentage: Double?,
         sentimentDownVotesPercentage: Double?,
         description: String,
-    ) = DomainCryptoDetails(
+    ) = CryptoDetailsModel(
         id = id,
         name = name,
         symbol = symbol,

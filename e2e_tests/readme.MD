@@ -1,17 +1,22 @@
 ## Installation
 
-brew install python3
-pip3 install --user pipenv
-cd e2e_tests
-pipenv install
+[Documentation](https://maestro.mobile.dev/getting-started/installing-maestro)
+
+```
+curl -Ls "https://get.maestro.mobile.dev" | bash
+```
 
 ## run end to end test
-cd e2e_tests
-pipenv run python3 e2e_tests/crypto.py
-
-## Build run end to end test
+```
+cd e2e_tests/
+./test_android.sh
+```
+## Build Android and run end to end test
+```
 ./gradlew e2eTest
-
-## Generate screenshots on the running device
-
-pipenv run python3 e2e_tests/crypto_screenshot_generate.py
+```
+## Generate screenshots
+```
+cd e2e_tests/
+./generate_screenshots.sh
+```

@@ -1,0 +1,21 @@
+appId: dev.ohoussein.cryptoapp
+---
+- tapOn: "Bitcoin"
+- assertVisible: "Bitcoin (BTC)"
+- takeScreenshot: screenshots/crypto_details_${test_name}
+- assertVisible: "Bitcoin is the first successful internet money.*"
+- assertVisible: "SEE MORE"
+- assertVisible: "Links"
+- tapOn: "Home page"
+- waitForAnimationToEnd
+- assertVisible: "bitcoin.org/.*"
+- back
+- tapOn: "Blockchain"
+- waitForAnimationToEnd
+- assertVisible: "blockchair.com/bitcoin.*"
+- back
+- tapOn: "Source code"
+- waitForAnimationToEnd
+- assertVisible: "github.com/bitcoin/.*"
+- back
+- back

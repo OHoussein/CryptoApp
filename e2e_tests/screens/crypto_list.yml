@@ -1,0 +1,10 @@
+appId: dev.ohoussein.cryptoapp
+---
+- assertVisible: "CryptoApp"
+- takeScreenshot: screenshots/crypto_list_${test_name}
+- assertVisible: "Bitcoin"
+- assertVisible: "BTC"
+- assertVisible: "Ethereum"
+- assertVisible: "ETH"
+- assertVisible: \$[0-9]+,?[0-9].*(\.[0-9]+)? # crypto price
+- assertVisible: ^[0-9]+(\.[0-9])?% # 24h change %

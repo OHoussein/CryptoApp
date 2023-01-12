@@ -30,6 +30,12 @@ Implementation of the clean architecture using:
 <img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_details_light.png" alt="architecture" align=center />
 </div>
 
+## End to end test
+
+https://user-images.githubusercontent.com/10960959/212092726-0e661257-5d7f-4efa-ac1d-908b0c4e19a4.mp4
+
+
+
 ## Layers
 
 ### Domain Layer
@@ -51,18 +57,6 @@ Contains remote, stored or in-memory data sources. With the DomainModelMappers, 
 models or database model are converted to domain models.
 
 # Architecture
-
-<div  align="center">
-<img src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/architecture.svg" alt="architecture" align=center />
-</div>
-
-## Flow
-
-1. UI (Composable, Fragment, Activity, ...) calls loading method from the ViewModel.
-1. ViewModels execute the use case.
-1. Use case calls the repository.
-1. The repository returns data from local or remote data source.
-1. Information flows back to the UI.
 
 ## Credit
 

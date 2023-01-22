@@ -1,0 +1,8 @@
+appId: dev.ohoussein.cryptoapp
+---
+- launchApp
+- assertVisible: "Bitcoin"
+- takeScreenshot: screenshots/android_crypto_list_${test_name}
+- tapOn: "Bitcoin"
+- assertVisible: "Bitcoin (BTC)"
+- takeScreenshot: screenshots/android_crypto_details_${test_name}

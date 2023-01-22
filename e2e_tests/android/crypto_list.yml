@@ -1,0 +1,10 @@
+appId: dev.ohoussein.cryptoapp
+---
+- assertVisible: "CryptoApp"
+- takeScreenshot: screenshots/android_crypto_list
+- assertVisible: "Bitcoin"
+- assertVisible: "BTC"
+- assertVisible: "Ethereum"
+- assertVisible: "ETH"
+- assertVisible: \$[0-9]+,?[0-9].*(\.[0-9]+)? # crypto price
+- assertVisible: ^[0-9]+(\.[0-9])?% # 24h change %

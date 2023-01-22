@@ -1,5 +1,0 @@
-appId: dev.ohoussein.cryptoapp
----
-- launchApp
-- runFlow: screens/crypto_list.yml
-- runFlow: screens/crypto_details.yml

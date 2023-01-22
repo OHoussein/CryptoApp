@@ -46,14 +46,12 @@ tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 task("e2eTests", Exec::class) {
     group = "Verification"
     description = "Run e2e test on a connected device"
-    dependsOn(":android:app:installRelease")
     workingDir = file("$projectDir/e2e_tests")
     commandLine = listOf("bash", "test_android.sh")
 }
 
 task("generateScreenshots", Exec::class) {
     group = "Tool"
-    dependsOn(":android:app:installRelease")
     workingDir = file("$projectDir/e2e_tests")
     commandLine = listOf("bash", "generate_screenshots.sh")
 }

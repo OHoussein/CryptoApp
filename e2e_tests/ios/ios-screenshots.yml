@@ -1,0 +1,8 @@
+appId: OHoussein.CyptoAppiOS
+---
+- launchApp
+- assertVisible: "Bitcoin"
+- takeScreenshot: screenshots/ios_crypto_list_${test_name}
+- tapOn: "Bitcoin"
+- assertVisible: "Bitcoin (BTC)"
+- takeScreenshot: screenshots/ios_crypto_details_${test_name}

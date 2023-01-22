@@ -2,7 +2,7 @@ appId: dev.ohoussein.cryptoapp
 ---
 - tapOn: "Bitcoin"
 - assertVisible: "Bitcoin (BTC)"
-- takeScreenshot: screenshots/crypto_details_${test_name}
+- takeScreenshot: screenshots/android_crypto_details
 - assertVisible: "Bitcoin is the first successful internet money.*"
 - assertVisible: "SEE MORE"
 - assertVisible: "Links"

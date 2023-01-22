@@ -1,0 +1,5 @@
+appId: OHoussein.CyptoAppiOS
+---
+- launchApp
+- runFlow: crypto_list.yml
+- runFlow: crypto_details.yml

@@ -1,0 +1,18 @@
+appId: dev.ohoussein.cryptoapp
+---
+- tapOn: "Bitcoin"
+- assertVisible: "Bitcoin (BTC)"
+- takeScreenshot: screenshots/ios_crypto_details
+- assertVisible: "Bitcoin is the first successful internet money.*"
+- assertVisible: "Expand"
+- assertVisible: "LINKS"
+- tapOn: "Home page"
+- assertVisible: "Buy Bitcoin"
+- tapOn: ".*CyptoAppiOS"
+- tapOn: "Blockchain"
+- assertVisible: "Blockchain size"
+- tapOn: ".*CyptoAppiOS"
+- tapOn: "Source code"
+- assertVisible: "Bitcoin Core integration/staging tree"
+- tapOn: ".*CyptoAppiOS"
+- tapOn: "Back"

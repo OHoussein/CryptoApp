@@ -3,6 +3,7 @@ import SwiftUI
 
 struct CryptoItem: View {
     let crypto: Crypto
+    @EnvironmentObject var appColors: AppColors
 
     var body: some View {
         HStack {
@@ -33,10 +34,11 @@ struct CryptoItem: View {
             }
         }
         .padding(EdgeInsets(top: 4, leading: 12, bottom: 4, trailing: 12))
-        .background(blueGrey50)
+        .background(appColors.backgroundCardColor)
         .cornerRadius(16)
-        .shadow(color: Color.gray, radius: 7, x: 0, y: 5)
+        .shadow(color: appColors.cardShadowColor, radius: 7, x: 0, y: 5)
         .padding(EdgeInsets(top: 8, leading: 12, bottom: 8, trailing: 12))
+        .foregroundColor(appColors.forgroundColor)
     }
 }
 

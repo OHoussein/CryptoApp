@@ -15,6 +15,7 @@ struct CryptoListScreen<VM: MVIViewModel<CryptoListState, CryptoListIntent, Cryp
 }
 
 private struct CryptoListContent: View {
+    @Environment(\.colorScheme) var colorScheme
     let state: CryptoListState
     var onCloseError: () -> Void
     var onRefresh: () -> Void
@@ -30,7 +31,7 @@ private struct CryptoListContent: View {
                                     CryptoDetailsScreen(viewModel: CryptoDetailsViewModel(cryptoId: item.base.id))
                                 } label: {
                                     CryptoItem(crypto: item)
-                                        .foregroundColor(.black)
+                                        .environmentObject(colorScheme.getAppColors())
                                 }
                             }
                         }
@@ -40,9 +41,12 @@ private struct CryptoListContent: View {
                     }
 
                     if case LoadingStatus.error = state.status {
-                        ToastView(type: .error, title: "Error", message: "Network error") {
+                        ToastView(type: .error,
+                                  title: "Error",
+                                  message: "Network error") {
                             onCloseError()
                         }
+                        .environmentObject(colorScheme.getAppColors())
                     }
                 } else if case LoadingStatus.error = state.status {
                     ErrorView(message: "Network error") {
@@ -59,17 +63,34 @@ private struct CryptoListContent: View {
 
 struct CryptoListScreenContent_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList()),
-                          onCloseError: {},
-                          onRefresh: {})
+        Group {
+            CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList()),
+                              onCloseError: {},
+                              onRefresh: {})
+                .environment(\.colorScheme, ColorScheme.light)
+
+            CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList()),
+                              onCloseError: {},
+                              onRefresh: {})
+                .environment(\.colorScheme, ColorScheme.dark)
+        }
     }
 }
 
 struct CryptoListWithErrorScreenContent_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList(),
-                                                 status: LoadingStatus.error("Network error")),
-                          onCloseError: {},
-                          onRefresh: {})
+        Group {
+            CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList(),
+                                                     status: LoadingStatus.error("Network error")),
+                              onCloseError: {},
+                              onRefresh: {})
+                .environment(\.colorScheme, ColorScheme.light)
+
+            CryptoListContent(state: CryptoListState(cryptoList: CryptoDataMock.mockedCryptoList(),
+                                                     status: LoadingStatus.error("Network error")),
+                              onCloseError: {},
+                              onRefresh: {})
+                .environment(\.colorScheme, ColorScheme.dark)
+        }
     }
 }

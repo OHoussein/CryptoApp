@@ -100,6 +100,7 @@ struct CryptoDetailsLinks: View {
 }
 
 struct ItemLink: View {
+    @EnvironmentObject var appColors: AppColors
     let label: String
     let iconName: String
     let url: String
@@ -109,7 +110,7 @@ struct ItemLink: View {
             Image(systemName: iconName)
             Link(label, destination: URL(string: url)!)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundColor(Color.black)
+            // .foregroundColor(appColors.forgroundColor)
             Image(systemName: "chevron.forward")
         }
     }

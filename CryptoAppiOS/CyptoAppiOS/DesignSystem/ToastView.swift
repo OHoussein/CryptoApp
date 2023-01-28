@@ -2,6 +2,7 @@ import Foundation
 import SwiftUI
 
 struct ToastView: View {
+    @EnvironmentObject var appColors: AppColors
     var type: ToastStyle
     var title: String
     var message: String
@@ -19,7 +20,7 @@ struct ToastView: View {
 
                     Text(message)
                         .font(.system(size: 12))
-                        .foregroundColor(Color.black.opacity(0.6))
+                        .foregroundColor(appColors.forgroundColor.opacity(0.6))
                 }
 
                 Spacer(minLength: 10)
@@ -28,12 +29,12 @@ struct ToastView: View {
                     onCancelTapped()
                 } label: {
                     Image(systemName: "xmark")
-                        .foregroundColor(Color.black)
+                        .foregroundColor(appColors.forgroundColor)
                 }
             }
             .padding()
         }
-        .background(Color.white)
+        .background(appColors.backgroundCardColor)
         .overlay(
             Rectangle()
                 .fill(type.themeColor)
@@ -43,7 +44,7 @@ struct ToastView: View {
         )
         .frame(minWidth: 0, maxWidth: .infinity)
         .cornerRadius(8)
-        .shadow(color: Color.black.opacity(0.25), radius: 4, x: 0, y: 1)
+        .shadow(color: appColors.cardShadowColor.opacity(0.25), radius: 4, x: 0, y: 1)
         .padding(.horizontal, 16)
     }
 }

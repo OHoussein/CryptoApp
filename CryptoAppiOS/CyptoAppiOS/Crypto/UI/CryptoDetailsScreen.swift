@@ -3,6 +3,7 @@ import SwiftUI
 
 struct CryptoDetailsScreen<VM: MVIViewModel<CryptoDetailsState, CryptoDetailsIntent, CryptoDetailsEvent>>: View {
     @StateObject var viewModel: VM
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         CryptoDetailsContent(state: viewModel.state,
@@ -11,10 +12,12 @@ struct CryptoDetailsScreen<VM: MVIViewModel<CryptoDetailsState, CryptoDetailsInt
             .onAppear {
                 viewModel.send(intent: .refresh)
             }
+            .environmentObject(colorScheme.getAppColors())
     }
 }
 
 private struct CryptoDetailsContent: View {
+    @EnvironmentObject var appColors: AppColors
     let state: CryptoDetailsState
     var onCloseError: () -> Void
     var onRefresh: () -> Void
@@ -41,6 +44,7 @@ private struct CryptoDetailsContent: View {
                         .listRowInsets(EdgeInsets())
                     Section(header: Text("Links")) {
                         CryptoDetailsLinks(cryptoDetails: cryptoDetails)
+                            .foregroundColor(appColors.forgroundColor)
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
@@ -61,10 +65,20 @@ private struct CryptoDetailsContent: View {
 
 struct CryptoDetailsContent_Previews: PreviewProvider {
     static var previews: some View {
-        CryptoDetailsContent(
-            state: CryptoDetailsState(cryptoDetails: CryptoDataMock.mockedCryptoDetails()),
-            onCloseError: {},
-            onRefresh: {}
-        )
+        Group {
+            CryptoDetailsContent(
+                state: CryptoDetailsState(cryptoDetails: CryptoDataMock.mockedCryptoDetails()),
+                onCloseError: {},
+                onRefresh: {}
+            )
+            .environmentObject(ColorScheme.light.getAppColors())
+
+            CryptoDetailsContent(
+                state: CryptoDetailsState(cryptoDetails: CryptoDataMock.mockedCryptoDetails()),
+                onCloseError: {},
+                onRefresh: {}
+            )
+            .environmentObject(ColorScheme.dark.getAppColors())
+        }
     }
 }

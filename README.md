@@ -5,7 +5,8 @@
 
 Implementation of the clean architecture using:
 
-## Core
+## Stack
+#### Core
 * Kotlin multiplatform
 * Multi-module clean architecture
 * **Koin** for dependency injection
@@ -15,13 +16,12 @@ Implementation of the clean architecture using:
 * end to end test with maestro
 * JUnit tests
 * **Kover** for tests coverage 
-## Android
+#### Android
 * **Jetpack compose**
 * **Unit test** with kotest
 * **Github Action**
-## iOS
+#### iOS
 * **Swift UI**
-* **Publisher**
 * **Publisher**
 
 ## Screenshots 📸

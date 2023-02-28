@@ -46,7 +46,7 @@ jobs:
           distribution: 'adopt'
           java-version: 11
 
-      - name: Run Releasee Unit Tests
+      - name: Run Release Unit Tests
         run: bash ./gradlew testReleaseUnitTest
 
   # Disable UI test because it takes too much time

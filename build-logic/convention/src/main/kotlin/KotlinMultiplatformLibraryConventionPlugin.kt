@@ -34,7 +34,7 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 iosSimulatorArm64()
 
                 this.cocoapods {
-                    homepage = "https://github.com/OHoussein/android-crypto-app"
+                    homepage = "https://github.com/OHoussein/android-ios-kmm-crypto-app"
                     ios.deploymentTarget = IOSTargetVersions.DEPLOYMENT_TARGET
                     framework {
                         isStatic = false

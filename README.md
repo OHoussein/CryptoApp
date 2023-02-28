@@ -1,37 +1,66 @@
-[![Android Main CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Main%20CI/badge.svg)](https://github.com/OHoussein/android-crypto-app/actions/workflows/main_ci.yml)
-[![Android Develop CI](https://github.com/OHoussein/android-crypto-app/workflows/Android%20Develop%20CI/badge.svg)](https://github.com/OHoussein/android-crypto-app/actions/workflows/develop_ci.yml)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OHoussein_android-crypto-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=OHoussein_android-crypto-app)
+[![Android Main CI](https://github.com/OHoussein/android-ios-kmm-crypto-app/workflows/Android%20Main%20CI/badge.svg)](https://github.com/OHoussein/android-ios-kmm-crypto-app/actions/workflows/main_ci.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OHoussein_android-ios-kmm-crypto-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=OHoussein_android-ios-kmm-crypto-app)
 
 ⚠️ This project works only with Android Studio Arctic fox and above
 
 Implementation of the clean architecture using:
 
-* **Jetpack compose**
+## Core
+* Kotlin multiplatform
+* Multi-module clean architecture
 * **Koin** for dependency injection
 * **Coroutine/Flow**
+* Ktor for API calls
+* SQLDelight for local database
+* end to end test with maestro
+* JUnit tests
+* **Kover** for tests coverage 
+## Android
+* **Jetpack compose**
 * **Unit test** with kotest
 * **Github Action**
+## iOS
+* **Swift UI**
+* **Publisher**
+* **Publisher**
 
 ## Screenshots 📸
-
-### Dark mode 🌚
+## Android
+#### Dark mode 🌚
 
 <div  align="center">
-<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_list_dark.png" alt="architecture" align=center />
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_list_dark.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_details_dark.png" alt="architecture" align=center />
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_details_dark.png" align="center" />
 </div>
 
-### Light mode 🌕
+#### Light mode 🌕
 
 <div  align="center">
-<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_list_light.png" alt="architecture" align=center />
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_list_light.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/android-crypto-app/blob/develop/design/screen_details_light.png" alt="architecture" align=center />
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_details_light.png"  align="center" />
+</div>
+
+## iOS
+#### Dark mode 🌚
+
+<div  align="center">
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_list_dark.png" align="center" />
+&nbsp;
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_details_dark.png" align="center" />
+</div>
+
+#### Light mode 🌕
+
+<div  align="center">
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_list_light.png" align="center" />
+&nbsp;
+<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_details_light.png"  align="center" />
 </div>
 
 ## End to end test
-
+### Android
 https://user-images.githubusercontent.com/10960959/212092726-0e661257-5d7f-4efa-ac1d-908b0c4e19a4.mp4
 
 

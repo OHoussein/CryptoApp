@@ -1,7 +1,7 @@
 Pod::Spec.new do |spec|
     spec.name                     = 'cache'
     spec.version                  = '1.0'
-    spec.homepage                 = 'https://github.com/OHoussein/android-crypto-app'
+    spec.homepage                 = 'https://github.com/OHoussein/android-ios-kmm-crypto-app'
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''

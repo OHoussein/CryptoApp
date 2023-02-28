@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew lint
 
       - name: Upload detekt reports
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: quality_check
           path: ./app/build/reports/
@@ -79,7 +79,7 @@ jobs:
   #          script: bash ./gradlew connectedCheck
   #
   #      - name: Upload emulator tests artifact
-  #        uses: actions/upload-artifact@v1
+  #        uses: actions/upload-artifact@v3
   #        with:
   #          name: emulator_tests
   #          path: ./app/build/reports/androidTests/connected
@@ -102,13 +102,13 @@ jobs:
         run: bash ./gradlew assembleRelease --stacktrace
 
       - name: Upload Release APK
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: apk
           path: ./app/build/outputs/apk/release/app-release.apk
 
       - name: Upload mapping file
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: mapping
           path: ./app/build/outputs/mapping/release/mapping.txt

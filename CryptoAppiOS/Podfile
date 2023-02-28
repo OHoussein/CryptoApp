@@ -1,19 +1,19 @@
 # Uncomment the next line to define a global platform for your project
  platform :ios, '15.0'
 
-target 'CyptoAppiOS' do
+target 'CryptoAppiOS' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
   # Pods for CryptoAppiOS
   pod 'sharedModules' , :path => '../shared/core/sharedModules'
 
-  target 'CyptoAppiOSTests' do
+  target 'CryptoAppiOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'CyptoAppiOSUITests' do
+  target 'CryptoAppiOSUITests' do
     # Pods for testing
   end
 

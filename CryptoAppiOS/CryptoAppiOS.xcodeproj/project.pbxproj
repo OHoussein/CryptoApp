@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1154ABAA8E91F4816B6DE54D /* Pods_CyptoAppiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0FCCAA95811765B2FFF0B9 /* Pods_CyptoAppiOSTests.framework */; };
-		120BED4102E22A2A86DF515D /* Pods_CyptoAppiOS_CyptoAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690443FB5EA1CCB7D775E772 /* Pods_CyptoAppiOS_CyptoAppiOSUITests.framework */; };
-		8FC1F788DF80E128B01D54ED /* Pods_CyptoAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC06FF78E9224799502B26 /* Pods_CyptoAppiOS.framework */; };
-		DC058C1528F314F1001AA13F /* CyptoAppiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C1428F314F1001AA13F /* CyptoAppiOSApp.swift */; };
+		1154ABAA8E91F4816B6DE54D /* Pods_CryptoAppiOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B0FCCAA95811765B2FFF0B9 /* Pods_CryptoAppiOSTests.framework */; };
+		120BED4102E22A2A86DF515D /* Pods_CryptoAppiOS_CryptoAppiOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 690443FB5EA1CCB7D775E772 /* Pods_CryptoAppiOS_CryptoAppiOSUITests.framework */; };
+		8FC1F788DF80E128B01D54ED /* Pods_CryptoAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 12BC06FF78E9224799502B26 /* Pods_CryptoAppiOS.framework */; };
+		DC058C1528F314F1001AA13F /* CryptoAppiOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C1428F314F1001AA13F /* CryptoAppiOSApp.swift */; };
 		DC058C1728F314F1001AA13F /* CryptoFeatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C1628F314F1001AA13F /* CryptoFeatureView.swift */; };
 		DC058C1928F314F3001AA13F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC058C1828F314F3001AA13F /* Assets.xcassets */; };
 		DC058C1C28F314F3001AA13F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC058C1B28F314F3001AA13F /* Preview Assets.xcassets */; };
-		DC058C2628F314F3001AA13F /* CyptoAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C2528F314F3001AA13F /* CyptoAppiOSTests.swift */; };
-		DC058C3028F314F3001AA13F /* CyptoAppiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C2F28F314F3001AA13F /* CyptoAppiOSUITests.swift */; };
-		DC058C3228F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C3128F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift */; };
+		DC058C2628F314F3001AA13F /* CryptoAppiOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C2528F314F3001AA13F /* CryptoAppiOSTests.swift */; };
+		DC058C3028F314F3001AA13F /* CryptoAppiOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C2F28F314F3001AA13F /* CryptoAppiOSUITests.swift */; };
+		DC058C3228F314F3001AA13F /* CryptoAppiOSUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC058C3128F314F3001AA13F /* CryptoAppiOSUITestsLaunchTests.swift */; };
 		DC32597B2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32597A2940F2C5001738C8 /* CryptoListViewModel.swift */; };
 		DC32597C2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32597A2940F2C5001738C8 /* CryptoListViewModel.swift */; };
 		DC32597D2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC32597A2940F2C5001738C8 /* CryptoListViewModel.swift */; };
@@ -90,37 +90,37 @@
 			containerPortal = DC058C0928F314F1001AA13F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DC058C1028F314F1001AA13F;
-			remoteInfo = CyptoAppiOS;
+			remoteInfo = CryptoAppiOS;
 		};
 		DC058C2C28F314F3001AA13F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DC058C0928F314F1001AA13F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = DC058C1028F314F1001AA13F;
-			remoteInfo = CyptoAppiOS;
+			remoteInfo = CryptoAppiOS;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		073D586133A14DBC76806F31 /* Pods-CyptoAppiOS-CyptoAppiOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyptoAppiOS-CyptoAppiOSUITests.release.xcconfig"; path = "Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests.release.xcconfig"; sourceTree = "<group>"; };
-		12BC06FF78E9224799502B26 /* Pods_CyptoAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyptoAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		690443FB5EA1CCB7D775E772 /* Pods_CyptoAppiOS_CyptoAppiOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyptoAppiOS_CyptoAppiOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		90B5DB972546C0F79EE756D9 /* Pods-CyptoAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyptoAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-CyptoAppiOSTests/Pods-CyptoAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		9B0FCCAA95811765B2FFF0B9 /* Pods_CyptoAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CyptoAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0709981850D2E17660ED757 /* Pods-CyptoAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyptoAppiOS.release.xcconfig"; path = "Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS.release.xcconfig"; sourceTree = "<group>"; };
-		C129E6DB6EDFAA8E1E0964B5 /* Pods-CyptoAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyptoAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
-		D0DF6133E53C9BAE0CFA8A4C /* Pods-CyptoAppiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyptoAppiOSTests.debug.xcconfig"; path = "Target Support Files/Pods-CyptoAppiOSTests/Pods-CyptoAppiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D1216F0174D79E212C3E1668 /* Pods-CyptoAppiOS-CyptoAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CyptoAppiOS-CyptoAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		DC058C1128F314F1001AA13F /* CyptoAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CyptoAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC058C1428F314F1001AA13F /* CyptoAppiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyptoAppiOSApp.swift; sourceTree = "<group>"; };
+		073D586133A14DBC76806F31 /* Pods-CryptoAppiOS-CryptoAppiOSUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoAppiOS-CryptoAppiOSUITests.release.xcconfig"; path = "Target Support Files/Pods-CryptoAppiOS-CryptoAppiOSUITests/Pods-CryptoAppiOS-CryptoAppiOSUITests.release.xcconfig"; sourceTree = "<group>"; };
+		12BC06FF78E9224799502B26 /* Pods_CryptoAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		690443FB5EA1CCB7D775E772 /* Pods_CryptoAppiOS_CryptoAppiOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoAppiOS_CryptoAppiOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90B5DB972546C0F79EE756D9 /* Pods-CryptoAppiOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoAppiOSTests.release.xcconfig"; path = "Target Support Files/Pods-CryptoAppiOSTests/Pods-CryptoAppiOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9B0FCCAA95811765B2FFF0B9 /* Pods_CryptoAppiOSTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoAppiOSTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0709981850D2E17660ED757 /* Pods-CryptoAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoAppiOS.release.xcconfig"; path = "Target Support Files/Pods-CryptoAppiOS/Pods-CryptoAppiOS.release.xcconfig"; sourceTree = "<group>"; };
+		C129E6DB6EDFAA8E1E0964B5 /* Pods-CryptoAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-CryptoAppiOS/Pods-CryptoAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
+		D0DF6133E53C9BAE0CFA8A4C /* Pods-CryptoAppiOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoAppiOSTests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoAppiOSTests/Pods-CryptoAppiOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D1216F0174D79E212C3E1668 /* Pods-CryptoAppiOS-CryptoAppiOSUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoAppiOS-CryptoAppiOSUITests.debug.xcconfig"; path = "Target Support Files/Pods-CryptoAppiOS-CryptoAppiOSUITests/Pods-CryptoAppiOS-CryptoAppiOSUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DC058C1128F314F1001AA13F /* CryptoAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC058C1428F314F1001AA13F /* CryptoAppiOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppiOSApp.swift; sourceTree = "<group>"; };
 		DC058C1628F314F1001AA13F /* CryptoFeatureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoFeatureView.swift; sourceTree = "<group>"; };
 		DC058C1828F314F3001AA13F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC058C1B28F314F3001AA13F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		DC058C2128F314F3001AA13F /* CyptoAppiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyptoAppiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC058C2528F314F3001AA13F /* CyptoAppiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyptoAppiOSTests.swift; sourceTree = "<group>"; };
-		DC058C2B28F314F3001AA13F /* CyptoAppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CyptoAppiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC058C2F28F314F3001AA13F /* CyptoAppiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyptoAppiOSUITests.swift; sourceTree = "<group>"; };
-		DC058C3128F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyptoAppiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		DC058C2128F314F3001AA13F /* CryptoAppiOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAppiOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC058C2528F314F3001AA13F /* CryptoAppiOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppiOSTests.swift; sourceTree = "<group>"; };
+		DC058C2B28F314F3001AA13F /* CryptoAppiOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoAppiOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC058C2F28F314F3001AA13F /* CryptoAppiOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppiOSUITests.swift; sourceTree = "<group>"; };
+		DC058C3128F314F3001AA13F /* CryptoAppiOSUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAppiOSUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DC32597A2940F2C5001738C8 /* CryptoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModel.swift; sourceTree = "<group>"; };
 		DC32597F29413159001738C8 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		DC325984294133C4001738C8 /* CryptoDataMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDataMock.swift; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8FC1F788DF80E128B01D54ED /* Pods_CyptoAppiOS.framework in Frameworks */,
+				8FC1F788DF80E128B01D54ED /* Pods_CryptoAppiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +164,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1154ABAA8E91F4816B6DE54D /* Pods_CyptoAppiOSTests.framework in Frameworks */,
+				1154ABAA8E91F4816B6DE54D /* Pods_CryptoAppiOSTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				120BED4102E22A2A86DF515D /* Pods_CyptoAppiOS_CyptoAppiOSUITests.framework in Frameworks */,
+				120BED4102E22A2A86DF515D /* Pods_CryptoAppiOS_CryptoAppiOSUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,12 +182,12 @@
 		4FCDD7C0D57231EB693E2B60 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C129E6DB6EDFAA8E1E0964B5 /* Pods-CyptoAppiOS.debug.xcconfig */,
-				B0709981850D2E17660ED757 /* Pods-CyptoAppiOS.release.xcconfig */,
-				D1216F0174D79E212C3E1668 /* Pods-CyptoAppiOS-CyptoAppiOSUITests.debug.xcconfig */,
-				073D586133A14DBC76806F31 /* Pods-CyptoAppiOS-CyptoAppiOSUITests.release.xcconfig */,
-				D0DF6133E53C9BAE0CFA8A4C /* Pods-CyptoAppiOSTests.debug.xcconfig */,
-				90B5DB972546C0F79EE756D9 /* Pods-CyptoAppiOSTests.release.xcconfig */,
+				C129E6DB6EDFAA8E1E0964B5 /* Pods-CryptoAppiOS.debug.xcconfig */,
+				B0709981850D2E17660ED757 /* Pods-CryptoAppiOS.release.xcconfig */,
+				D1216F0174D79E212C3E1668 /* Pods-CryptoAppiOS-CryptoAppiOSUITests.debug.xcconfig */,
+				073D586133A14DBC76806F31 /* Pods-CryptoAppiOS-CryptoAppiOSUITests.release.xcconfig */,
+				D0DF6133E53C9BAE0CFA8A4C /* Pods-CryptoAppiOSTests.debug.xcconfig */,
+				90B5DB972546C0F79EE756D9 /* Pods-CryptoAppiOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -195,9 +195,9 @@
 		7A27951DAFA9B16B6D406950 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				12BC06FF78E9224799502B26 /* Pods_CyptoAppiOS.framework */,
-				690443FB5EA1CCB7D775E772 /* Pods_CyptoAppiOS_CyptoAppiOSUITests.framework */,
-				9B0FCCAA95811765B2FFF0B9 /* Pods_CyptoAppiOSTests.framework */,
+				12BC06FF78E9224799502B26 /* Pods_CryptoAppiOS.framework */,
+				690443FB5EA1CCB7D775E772 /* Pods_CryptoAppiOS_CryptoAppiOSUITests.framework */,
+				9B0FCCAA95811765B2FFF0B9 /* Pods_CryptoAppiOSTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,9 +205,9 @@
 		DC058C0828F314F1001AA13F = {
 			isa = PBXGroup;
 			children = (
-				DC058C1328F314F1001AA13F /* CyptoAppiOS */,
-				DC058C2428F314F3001AA13F /* CyptoAppiOSTests */,
-				DC058C2E28F314F3001AA13F /* CyptoAppiOSUITests */,
+				DC058C1328F314F1001AA13F /* CryptoAppiOS */,
+				DC058C2428F314F3001AA13F /* CryptoAppiOSTests */,
+				DC058C2E28F314F3001AA13F /* CryptoAppiOSUITests */,
 				DC058C1228F314F1001AA13F /* Products */,
 				4FCDD7C0D57231EB693E2B60 /* Pods */,
 				7A27951DAFA9B16B6D406950 /* Frameworks */,
@@ -217,26 +217,26 @@
 		DC058C1228F314F1001AA13F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DC058C1128F314F1001AA13F /* CyptoAppiOS.app */,
-				DC058C2128F314F3001AA13F /* CyptoAppiOSTests.xctest */,
-				DC058C2B28F314F3001AA13F /* CyptoAppiOSUITests.xctest */,
+				DC058C1128F314F1001AA13F /* CryptoAppiOS.app */,
+				DC058C2128F314F3001AA13F /* CryptoAppiOSTests.xctest */,
+				DC058C2B28F314F3001AA13F /* CryptoAppiOSUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		DC058C1328F314F1001AA13F /* CyptoAppiOS */ = {
+		DC058C1328F314F1001AA13F /* CryptoAppiOS */ = {
 			isa = PBXGroup;
 			children = (
 				DC86C27229565AD800567514 /* Info.plist */,
 				DC98BA7329633BA900586645 /* Core */,
 				DC32598E2941DEEE001738C8 /* DesignSystem */,
 				DC3259782940F0F2001738C8 /* Crypto */,
-				DC058C1428F314F1001AA13F /* CyptoAppiOSApp.swift */,
+				DC058C1428F314F1001AA13F /* CryptoAppiOSApp.swift */,
 				DC058C1628F314F1001AA13F /* CryptoFeatureView.swift */,
 				DC058C1828F314F3001AA13F /* Assets.xcassets */,
 				DC058C1A28F314F3001AA13F /* Preview Content */,
 			);
-			path = CyptoAppiOS;
+			path = CryptoAppiOS;
 			sourceTree = "<group>";
 		};
 		DC058C1A28F314F3001AA13F /* Preview Content */ = {
@@ -247,24 +247,24 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		DC058C2428F314F3001AA13F /* CyptoAppiOSTests */ = {
+		DC058C2428F314F3001AA13F /* CryptoAppiOSTests */ = {
 			isa = PBXGroup;
 			children = (
 				DC5508C6296B10F5009248F7 /* TestUtils */,
 				DC98BA7629633CF600586645 /* Core */,
 				DC98BA7729633F3500586645 /* Crypto */,
-				DC058C2528F314F3001AA13F /* CyptoAppiOSTests.swift */,
+				DC058C2528F314F3001AA13F /* CryptoAppiOSTests.swift */,
 			);
-			path = CyptoAppiOSTests;
+			path = CryptoAppiOSTests;
 			sourceTree = "<group>";
 		};
-		DC058C2E28F314F3001AA13F /* CyptoAppiOSUITests */ = {
+		DC058C2E28F314F3001AA13F /* CryptoAppiOSUITests */ = {
 			isa = PBXGroup;
 			children = (
-				DC058C2F28F314F3001AA13F /* CyptoAppiOSUITests.swift */,
-				DC058C3128F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift */,
+				DC058C2F28F314F3001AA13F /* CryptoAppiOSUITests.swift */,
+				DC058C3128F314F3001AA13F /* CryptoAppiOSUITestsLaunchTests.swift */,
 			);
-			path = CyptoAppiOSUITests;
+			path = CryptoAppiOSUITests;
 			sourceTree = "<group>";
 		};
 		DC3259782940F0F2001738C8 /* Crypto */ = {
@@ -459,9 +459,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DC058C1028F314F1001AA13F /* CyptoAppiOS */ = {
+		DC058C1028F314F1001AA13F /* CryptoAppiOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC058C3528F314F3001AA13F /* Build configuration list for PBXNativeTarget "CyptoAppiOS" */;
+			buildConfigurationList = DC058C3528F314F3001AA13F /* Build configuration list for PBXNativeTarget "CryptoAppiOS" */;
 			buildPhases = (
 				B033364F042F6B3C49CED109 /* [CP] Check Pods Manifest.lock */,
 				DC058C0D28F314F1001AA13F /* Sources */,
@@ -473,14 +473,14 @@
 			);
 			dependencies = (
 			);
-			name = CyptoAppiOS;
-			productName = CyptoAppiOS;
-			productReference = DC058C1128F314F1001AA13F /* CyptoAppiOS.app */;
+			name = CryptoAppiOS;
+			productName = CryptoAppiOS;
+			productReference = DC058C1128F314F1001AA13F /* CryptoAppiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DC058C2028F314F3001AA13F /* CyptoAppiOSTests */ = {
+		DC058C2028F314F3001AA13F /* CryptoAppiOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC058C3828F314F3001AA13F /* Build configuration list for PBXNativeTarget "CyptoAppiOSTests" */;
+			buildConfigurationList = DC058C3828F314F3001AA13F /* Build configuration list for PBXNativeTarget "CryptoAppiOSTests" */;
 			buildPhases = (
 				B92C1067C3ADEA9E244BF9D0 /* [CP] Check Pods Manifest.lock */,
 				DC058C1D28F314F3001AA13F /* Sources */,
@@ -492,14 +492,14 @@
 			dependencies = (
 				DC058C2328F314F3001AA13F /* PBXTargetDependency */,
 			);
-			name = CyptoAppiOSTests;
-			productName = CyptoAppiOSTests;
-			productReference = DC058C2128F314F3001AA13F /* CyptoAppiOSTests.xctest */;
+			name = CryptoAppiOSTests;
+			productName = CryptoAppiOSTests;
+			productReference = DC058C2128F314F3001AA13F /* CryptoAppiOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		DC058C2A28F314F3001AA13F /* CyptoAppiOSUITests */ = {
+		DC058C2A28F314F3001AA13F /* CryptoAppiOSUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC058C3B28F314F3001AA13F /* Build configuration list for PBXNativeTarget "CyptoAppiOSUITests" */;
+			buildConfigurationList = DC058C3B28F314F3001AA13F /* Build configuration list for PBXNativeTarget "CryptoAppiOSUITests" */;
 			buildPhases = (
 				2A73973B787016B4C1C991DD /* [CP] Check Pods Manifest.lock */,
 				DC058C2728F314F3001AA13F /* Sources */,
@@ -512,9 +512,9 @@
 			dependencies = (
 				DC058C2D28F314F3001AA13F /* PBXTargetDependency */,
 			);
-			name = CyptoAppiOSUITests;
-			productName = CyptoAppiOSUITests;
-			productReference = DC058C2B28F314F3001AA13F /* CyptoAppiOSUITests.xctest */;
+			name = CryptoAppiOSUITests;
+			productName = CryptoAppiOSUITests;
+			productReference = DC058C2B28F314F3001AA13F /* CryptoAppiOSUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -540,7 +540,7 @@
 					};
 				};
 			};
-			buildConfigurationList = DC058C0C28F314F1001AA13F /* Build configuration list for PBXProject "CyptoAppiOS" */;
+			buildConfigurationList = DC058C0C28F314F1001AA13F /* Build configuration list for PBXProject "CryptoAppiOS" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -553,9 +553,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DC058C1028F314F1001AA13F /* CyptoAppiOS */,
-				DC058C2028F314F3001AA13F /* CyptoAppiOSTests */,
-				DC058C2A28F314F3001AA13F /* CyptoAppiOSUITests */,
+				DC058C1028F314F1001AA13F /* CryptoAppiOS */,
+				DC058C2028F314F3001AA13F /* CryptoAppiOSTests */,
+				DC058C2A28F314F3001AA13F /* CryptoAppiOSUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -602,7 +602,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CyptoAppiOS-CyptoAppiOSUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CryptoAppiOS-CryptoAppiOSUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -615,15 +615,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoAppiOS/Pods-CryptoAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoAppiOS/Pods-CryptoAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS/Pods-CyptoAppiOS-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoAppiOS/Pods-CryptoAppiOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B033364F042F6B3C49CED109 /* [CP] Check Pods Manifest.lock */ = {
@@ -641,7 +641,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CyptoAppiOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CryptoAppiOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -663,7 +663,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-CyptoAppiOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-CryptoAppiOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -676,15 +676,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoAppiOS-CryptoAppiOSUITests/Pods-CryptoAppiOS-CryptoAppiOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-CryptoAppiOS-CryptoAppiOSUITests/Pods-CryptoAppiOS-CryptoAppiOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CyptoAppiOS-CyptoAppiOSUITests/Pods-CyptoAppiOS-CyptoAppiOSUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CryptoAppiOS-CryptoAppiOSUITests/Pods-CryptoAppiOS-CryptoAppiOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -711,7 +711,7 @@
 				DC86C28D2959E43A00567514 /* MVIViewModel.swift in Sources */,
 				DC32597B2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
 				DCD3F280294F4D4E003484CA /* LoadingStatus.swift in Sources */,
-				DC058C1528F314F1001AA13F /* CyptoAppiOSApp.swift in Sources */,
+				DC058C1528F314F1001AA13F /* CryptoAppiOSApp.swift in Sources */,
 				DC32599D2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
 				DCD3F2922951D1BB003484CA /* StringExtensions.swift in Sources */,
 				DC98BA6829632E4100586645 /* DomainError.swift in Sources */,
@@ -730,7 +730,7 @@
 				DCD3F281294F4D4E003484CA /* LoadingStatus.swift in Sources */,
 				DC98BA7F29637CA200586645 /* CryptoModelMapperTest.swift in Sources */,
 				DCB80B06294A248A00189C53 /* CryptoDetailsViewModel.swift in Sources */,
-				DC058C2628F314F3001AA13F /* CyptoAppiOSTests.swift in Sources */,
+				DC058C2628F314F3001AA13F /* CryptoAppiOSTests.swift in Sources */,
 				DCD3F273294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC32598C2941366E001738C8 /* CryptoComponent.swift in Sources */,
 				DC86C2822958688500567514 /* CryptoListReducer.swift in Sources */,
@@ -770,11 +770,11 @@
 				DCD3F274294E07E8003484CA /* CryptoModelMapper.swift in Sources */,
 				DC3259932941DF12001738C8 /* Color.swift in Sources */,
 				DC32598D2941366E001738C8 /* CryptoComponent.swift in Sources */,
-				DC058C3228F314F3001AA13F /* CyptoAppiOSUITestsLaunchTests.swift in Sources */,
+				DC058C3228F314F3001AA13F /* CryptoAppiOSUITestsLaunchTests.swift in Sources */,
 				DC86C28F2959E43A00567514 /* MVIViewModel.swift in Sources */,
 				DC32597D2940F2C5001738C8 /* CryptoListViewModel.swift in Sources */,
 				DCD3F282294F4D4E003484CA /* LoadingStatus.swift in Sources */,
-				DC058C3028F314F3001AA13F /* CyptoAppiOSUITests.swift in Sources */,
+				DC058C3028F314F3001AA13F /* CryptoAppiOSUITests.swift in Sources */,
 				DC32599F2948A5BE001738C8 /* CryptoListScreen.swift in Sources */,
 				DCD3F2942951D1BB003484CA /* StringExtensions.swift in Sources */,
 				DC98BA7529633C6100586645 /* DomainError.swift in Sources */,
@@ -786,12 +786,12 @@
 /* Begin PBXTargetDependency section */
 		DC058C2328F314F3001AA13F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DC058C1028F314F1001AA13F /* CyptoAppiOS */;
+			target = DC058C1028F314F1001AA13F /* CryptoAppiOS */;
 			targetProxy = DC058C2228F314F3001AA13F /* PBXContainerItemProxy */;
 		};
 		DC058C2D28F314F3001AA13F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = DC058C1028F314F1001AA13F /* CyptoAppiOS */;
+			target = DC058C1028F314F1001AA13F /* CryptoAppiOS */;
 			targetProxy = DC058C2C28F314F3001AA13F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -915,16 +915,16 @@
 		};
 		DC058C3628F314F3001AA13F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C129E6DB6EDFAA8E1E0964B5 /* Pods-CyptoAppiOS.debug.xcconfig */;
+			baseConfigurationReference = C129E6DB6EDFAA8E1E0964B5 /* Pods-CryptoAppiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CyptoAppiOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CryptoAppiOS/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CyptoAppiOS/Info.plist;
+				INFOPLIST_FILE = CryptoAppiOS/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -937,7 +937,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CyptoAppiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CryptoAppiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -947,16 +947,16 @@
 		};
 		DC058C3728F314F3001AA13F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0709981850D2E17660ED757 /* Pods-CyptoAppiOS.release.xcconfig */;
+			baseConfigurationReference = B0709981850D2E17660ED757 /* Pods-CryptoAppiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CyptoAppiOS/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"CryptoAppiOS/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CyptoAppiOS/Info.plist;
+				INFOPLIST_FILE = CryptoAppiOS/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -969,7 +969,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CyptoAppiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CryptoAppiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -979,7 +979,7 @@
 		};
 		DC058C3928F314F3001AA13F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D0DF6133E53C9BAE0CFA8A4C /* Pods-CyptoAppiOSTests.debug.xcconfig */;
+			baseConfigurationReference = D0DF6133E53C9BAE0CFA8A4C /* Pods-CryptoAppiOSTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -993,18 +993,18 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CyptoAppiOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CryptoAppiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CyptoAppiOS.app/CyptoAppiOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoAppiOS.app/CryptoAppiOS";
 			};
 			name = Debug;
 		};
 		DC058C3A28F314F3001AA13F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 90B5DB972546C0F79EE756D9 /* Pods-CyptoAppiOSTests.release.xcconfig */;
+			baseConfigurationReference = 90B5DB972546C0F79EE756D9 /* Pods-CryptoAppiOSTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1018,18 +1018,18 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CyptoAppiOSTests;
+				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CryptoAppiOSTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CyptoAppiOS.app/CyptoAppiOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoAppiOS.app/CryptoAppiOS";
 			};
 			name = Release;
 		};
 		DC058C3C28F314F3001AA13F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D1216F0174D79E212C3E1668 /* Pods-CyptoAppiOS-CyptoAppiOSUITests.debug.xcconfig */;
+			baseConfigurationReference = D1216F0174D79E212C3E1668 /* Pods-CryptoAppiOS-CryptoAppiOSUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1041,18 +1041,18 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CyptoAppiOSUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CryptoAppiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CyptoAppiOS;
+				TEST_TARGET_NAME = CryptoAppiOS;
 			};
 			name = Debug;
 		};
 		DC058C3D28F314F3001AA13F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 073D586133A14DBC76806F31 /* Pods-CyptoAppiOS-CyptoAppiOSUITests.release.xcconfig */;
+			baseConfigurationReference = 073D586133A14DBC76806F31 /* Pods-CryptoAppiOS-CryptoAppiOSUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1064,19 +1064,19 @@
 					"@loader_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CyptoAppiOSUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = OHoussein.CryptoAppiOSUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = CyptoAppiOS;
+				TEST_TARGET_NAME = CryptoAppiOS;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DC058C0C28F314F1001AA13F /* Build configuration list for PBXProject "CyptoAppiOS" */ = {
+		DC058C0C28F314F1001AA13F /* Build configuration list for PBXProject "CryptoAppiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC058C3328F314F3001AA13F /* Debug */,
@@ -1085,7 +1085,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC058C3528F314F3001AA13F /* Build configuration list for PBXNativeTarget "CyptoAppiOS" */ = {
+		DC058C3528F314F3001AA13F /* Build configuration list for PBXNativeTarget "CryptoAppiOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC058C3628F314F3001AA13F /* Debug */,
@@ -1094,7 +1094,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC058C3828F314F3001AA13F /* Build configuration list for PBXNativeTarget "CyptoAppiOSTests" */ = {
+		DC058C3828F314F3001AA13F /* Build configuration list for PBXNativeTarget "CryptoAppiOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC058C3928F314F3001AA13F /* Debug */,
@@ -1103,7 +1103,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC058C3B28F314F3001AA13F /* Build configuration list for PBXNativeTarget "CyptoAppiOSUITests" */ = {
+		DC058C3B28F314F3001AA13F /* Build configuration list for PBXNativeTarget "CryptoAppiOSUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DC058C3C28F314F3001AA13F /* Debug */,

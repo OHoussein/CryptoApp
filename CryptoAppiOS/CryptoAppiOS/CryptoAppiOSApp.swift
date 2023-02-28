@@ -2,7 +2,7 @@ import sharedModules
 import SwiftUI
 
 @main
-struct CyptoAppiOSApp: App {
+struct CryptoAppiOSApp: App {
     var body: some Scene {
         WindowGroup {
             CryptoFeatureView()

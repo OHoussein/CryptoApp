@@ -1,4 +1,4 @@
-appId: OHoussein.CyptoAppiOS
+appId: OHoussein.CryptoAppiOS
 ---
 - launchApp
 - assertVisible: "Bitcoin"

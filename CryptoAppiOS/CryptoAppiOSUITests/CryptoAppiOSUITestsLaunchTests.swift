@@ -1,6 +1,6 @@
 import XCTest
 
-class CyptoAppiOSUITestsLaunchTests: XCTestCase {
+class CryptoAppiOSUITestsLaunchTests: XCTestCase {
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
     }

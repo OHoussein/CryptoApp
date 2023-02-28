@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC058C1028F314F1001AA13F"
-               BuildableName = "CyptoAppiOS.app"
-               BlueprintName = "CyptoAppiOS"
-               ReferencedContainer = "container:CyptoAppiOS.xcodeproj">
+               BuildableName = "CryptoAppiOS.app"
+               BlueprintName = "CryptoAppiOS"
+               ReferencedContainer = "container:CryptoAppiOS.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC058C2028F314F3001AA13F"
-               BuildableName = "CyptoAppiOSTests.xctest"
-               BlueprintName = "CyptoAppiOSTests"
-               ReferencedContainer = "container:CyptoAppiOS.xcodeproj">
+               BuildableName = "CryptoAppiOSTests.xctest"
+               BlueprintName = "CryptoAppiOSTests"
+               ReferencedContainer = "container:CryptoAppiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "DC058C2A28F314F3001AA13F"
-               BuildableName = "CyptoAppiOSUITests.xctest"
-               BlueprintName = "CyptoAppiOSUITests"
-               ReferencedContainer = "container:CyptoAppiOS.xcodeproj">
+               BuildableName = "CryptoAppiOSUITests.xctest"
+               BlueprintName = "CryptoAppiOSUITests"
+               ReferencedContainer = "container:CryptoAppiOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC058C1028F314F1001AA13F"
-            BuildableName = "CyptoAppiOS.app"
-            BlueprintName = "CyptoAppiOS"
-            ReferencedContainer = "container:CyptoAppiOS.xcodeproj">
+            BuildableName = "CryptoAppiOS.app"
+            BlueprintName = "CryptoAppiOS"
+            ReferencedContainer = "container:CryptoAppiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -82,9 +82,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DC058C1028F314F1001AA13F"
-            BuildableName = "CyptoAppiOS.app"
-            BlueprintName = "CyptoAppiOS"
-            ReferencedContainer = "container:CyptoAppiOS.xcodeproj">
+            BuildableName = "CryptoAppiOS.app"
+            BlueprintName = "CryptoAppiOS"
+            ReferencedContainer = "container:CryptoAppiOS.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

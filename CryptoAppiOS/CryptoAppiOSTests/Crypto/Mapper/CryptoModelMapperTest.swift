@@ -1,4 +1,4 @@
-@testable import CyptoAppiOS
+@testable import CryptoAppiOS
 import sharedModules
 import XCTest
 

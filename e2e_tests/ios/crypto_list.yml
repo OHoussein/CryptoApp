@@ -1,4 +1,4 @@
-appId: CyptoAppiOS
+appId: CryptoAppiOS
 ---
 - assertVisible: "Bitcoin"
 - assertVisible: "BTC"

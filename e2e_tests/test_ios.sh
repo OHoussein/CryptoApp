@@ -5,6 +5,4 @@ xcodebuild -scheme CyptoAppiOS -workspace ../CryptoAppiOS/CyptoAppiOS.xcworkspac
  build
 
 xcrun simctl install Booted ../CryptoAppiOS/build/Build/Products/Debug-iphonesimulator/CyptoAppiOS.app
-xcrun simctl io booted recordVideo screenshots/record_ios.mp4 &
 maestro test ios/ios.yml
-kill $!

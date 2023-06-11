@@ -1,5 +1,5 @@
 [versions]
-androidGradlePluginVersion = "7.2.2"
+androidGradlePluginVersion = "8.0.2"
 kotlinVersion = "1.8.21"
 coroutineVersion = "1.7.1"
 koin = "3.4.2"

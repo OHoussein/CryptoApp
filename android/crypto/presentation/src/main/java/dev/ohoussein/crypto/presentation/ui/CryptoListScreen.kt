@@ -9,9 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Snackbar
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
+import androidx.compose.material.pullrefresh.PullRefreshIndicator
+import androidx.compose.material.pullrefresh.pullRefresh
+import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -21,21 +25,18 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.google.accompanist.swiperefresh.SwipeRefresh
-import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.reducer.CryptoListIntent
 import dev.ohoussein.crypto.presentation.ui.components.CryptoItem
 import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewListCrypto
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
+import dev.ohoussein.cryptoapp.core.designsystem.R.string.core_retry
 import dev.ohoussein.cryptoapp.core.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
 import dev.ohoussein.cryptoapp.core.designsystem.theme.CryptoAppTheme
-import dev.ohoussein.cryptoapp.crypto.presentation.R
 
 @Suppress("TopLevelPropertyNaming")
 const val CryptoListTestTag = "CryptoListTestTag"
@@ -43,6 +44,7 @@ const val CryptoListTestTag = "CryptoListTestTag"
 @Suppress("TopLevelPropertyNaming")
 const val CryptoItemTestTag = "CryptoItemTestTag"
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun CryptoList(
     modifier: Modifier = Modifier,
@@ -51,9 +53,11 @@ fun CryptoList(
     onRefresh: () -> Unit,
     isRefreshing: Boolean,
 ) {
-    SwipeRefresh(
-        state = rememberSwipeRefreshState(isRefreshing),
-        onRefresh = onRefresh,
+
+    val pullRefreshState = rememberPullRefreshState(isRefreshing, onRefresh)
+
+    Box(
+        modifier = Modifier.pullRefresh(pullRefreshState)
     ) {
         LazyColumn(
             modifier = modifier
@@ -71,6 +75,7 @@ fun CryptoList(
                 )
             }
         }
+        PullRefreshIndicator(isRefreshing, pullRefreshState, Modifier.align(Alignment.TopCenter))
     }
 }
 
@@ -101,7 +106,7 @@ fun CryptoListStateScreen(
                         modifier = Modifier.padding(8.dp),
                         action = {
                             TextButton(onClick = onRefresh) {
-                                Text(text = stringResource(id = R.string.core_retry))
+                                Text(text = stringResource(id = core_retry))
                             }
                         }
                     ) {
@@ -110,19 +115,20 @@ fun CryptoListStateScreen(
                 }
             }
         }
+
         error != null -> {
             StateError(
                 message = error,
                 onRetryClick = onRefresh,
             )
         }
+
         else -> {
             StateLoading()
         }
     }
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CryptoListScreen(
     viewModel: CryptoListViewModel,

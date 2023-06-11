@@ -5,7 +5,7 @@ import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.common.resource.DataStatus
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
-import org.mockito.kotlin.mock
+import io.mockk.mockk
 
 class CryptoDetailsReducerTest : BehaviorSpec({
 
@@ -13,7 +13,7 @@ class CryptoDetailsReducerTest : BehaviorSpec({
         val reducer = CryptoDetailsReducer()
 
         `when`("an UpdateCryptoDetails event") {
-            val cryptoDetails: CryptoDetails = mock()
+            val cryptoDetails: CryptoDetails = mockk()
             val event = CryptoDetailsEvents.UpdateCryptoDetails(
                 crypto = cryptoDetails,
             )
@@ -30,7 +30,7 @@ class CryptoDetailsReducerTest : BehaviorSpec({
         }
 
         `when`("a UpdateStatus event") {
-            val status: DataStatus = mock()
+            val status: DataStatus = DataStatus.Success
             val event = CryptoDetailsEvents.UpdateStatus(
                 status = status,
             )

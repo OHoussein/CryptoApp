@@ -45,6 +45,7 @@ dependencies {
     implementation(libs.core.timber)
 
     testImplementation(project(":android:core:test"))
+    testImplementation(libs.test.mockk.core)
     testImplementation(libs.test.mockito.inline)
     testRuntimeOnly(libs.test.junitVintage.engine)
     testImplementation(libs.test.parameterInjector)

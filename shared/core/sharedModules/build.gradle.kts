@@ -31,7 +31,7 @@ kotlin {
             }
         }
 
-        val androidTest by getting {
+        val androidUnitTest by getting {
             dependencies {
                 implementation(libs.koin.junit4)
                 implementation(libs.test.mockk.common)

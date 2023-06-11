@@ -27,7 +27,7 @@ class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
                     implementation(libs.findLibrary("test-turbine").get())
                 }
 
-                sourceSets.getByName("androidTest").dependencies {
+                sourceSets.getByName("androidUnitTest").dependencies {
                     implementation(libs.findLibrary("test-mockk-core").get())
                     implementation(libs.findLibrary("test-junit").get())
                     implementation(libs.findLibrary("test-mockk-common").get())
@@ -36,7 +36,7 @@ class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
 
             afterEvaluate {
                 tasks.withType<KotlinNativeSimulatorTest>() {
-                    deviceId = iosDeviceId
+                    device.set(iosDeviceId)
                 }
             }
         }

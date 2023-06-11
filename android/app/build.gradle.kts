@@ -10,6 +10,8 @@ plugins {
 }
 
 android {
+    namespace = "dev.ohoussein.cryptoapp"
+
     buildTypes {
         @Suppress("UNUSED_VARIABLE")
         val debug by getting {

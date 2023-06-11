@@ -22,7 +22,7 @@ internal class ApiCryptoServiceImpl(
         fun create(): ApiCryptoService = ApiCryptoServiceImpl()
     }
 
-    override suspend fun getTopCrypto(vsCurrency: String): List<TopCryptoResponse> = httpClient.get() {
+    override suspend fun getTopCrypto(vsCurrency: String): List<TopCryptoResponse> = httpClient.get {
         url {
             protocol = URLProtocol.HTTPS
             host = baseUrl
@@ -33,7 +33,7 @@ internal class ApiCryptoServiceImpl(
         }
     }.body()
 
-    override suspend fun getCryptoDetails(cryptoId: String): CryptoDetailsResponse = httpClient.get() {
+    override suspend fun getCryptoDetails(cryptoId: String): CryptoDetailsResponse = httpClient.get {
         url {
             protocol = URLProtocol.HTTPS
             host = baseUrl

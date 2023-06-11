@@ -17,6 +17,7 @@ import dev.ohoussein.crypto.presentation.NavPath
 import dev.ohoussein.crypto.presentation.testutil.TestNavHost
 import dev.ohoussein.crypto.presentation.viewmodel.CryptoListViewModel
 import dev.ohoussein.cryptoapp.core.designsystem.R as coreR
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -66,7 +67,7 @@ class CryptoListScreenTest : KoinTest {
                 composeTestRule.onNodeWithText(res.getString(coreR.string.core_retry))
                     .performClick()
 
-                thenCryptoItemShouldBeDisplayed(data.first())
+                thenCryptoItemShouldBeDisplayed(data.list.first())
             }
         }
     }
@@ -116,7 +117,7 @@ class CryptoListScreenTest : KoinTest {
     private fun givenListOfCrypto(next: (List<CryptoModel>) -> Unit) {
         val data = TestDataFactory.makeCryptoList(20)
         whenever(cryptoRepo.getTopCryptoList())
-            .thenReturn(flowOf(data))
+            .thenReturn(flowOf(CryptoListModel(data)))
         next(data)
     }
 
@@ -129,9 +130,9 @@ class CryptoListScreenTest : KoinTest {
         next(successData)
     }
 
-    private fun givenErrorThanSuccessGetListOfCrypto(next: (List<CryptoModel>) -> Unit) {
-        val flow = MutableSharedFlow<List<CryptoModel>>()
-        val successData = TestDataFactory.makeCryptoList(20)
+    private fun givenErrorThanSuccessGetListOfCrypto(next: (CryptoListModel) -> Unit) {
+        val flow = MutableSharedFlow<CryptoListModel>()
+        val successData = CryptoListModel(TestDataFactory.makeCryptoList(20))
         whenever(cryptoRepo.getTopCryptoList()).thenReturn(flow)
         runBlocking {
             whenever(cryptoRepo.refreshTopCryptoList())

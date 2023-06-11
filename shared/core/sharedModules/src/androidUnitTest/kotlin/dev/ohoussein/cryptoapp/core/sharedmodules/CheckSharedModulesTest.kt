@@ -20,7 +20,7 @@ class CheckSharedModulesTest {
     fun test_sharedModules() {
         koinApplication {
             modules(sharedModules)
-            checkModules() {
+            checkModules {
                 withInstance<Context>()
                 withInstance<Application>()
             }

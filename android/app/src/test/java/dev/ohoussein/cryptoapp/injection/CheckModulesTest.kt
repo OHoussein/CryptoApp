@@ -39,7 +39,7 @@ class CheckModulesTest : KoinTest {
         koinApplication {
             modules(appExtensionModule)
             modules(androidAppModules)
-            checkModules() {
+            checkModules {
                 withInstance<Context>()
                 withInstance<Application>()
                 withInstance<SavedStateHandle>()

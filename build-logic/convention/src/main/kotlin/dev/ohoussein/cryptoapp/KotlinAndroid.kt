@@ -16,8 +16,8 @@ internal fun Project.configureKotlinAndroid(
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
 
 
@@ -25,7 +25,7 @@ internal fun Project.configureKotlinAndroid(
         val warningsAsErrors: String? by project
         allWarningsAsErrors = warningsAsErrors.toBoolean()
 
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        jvmTarget = JavaVersion.VERSION_17.toString()
 
         freeCompilerArgs = freeCompilerArgs + listOf(
             "-opt-in=kotlin.RequiresOptIn",
@@ -35,7 +35,7 @@ internal fun Project.configureKotlinAndroid(
         )
     }
 
-    packagingOptions {
+    packaging {
         resources.excludes += arrayOf(
             "**/attach_hotspot_windows.dll",
             "META-INF/*",

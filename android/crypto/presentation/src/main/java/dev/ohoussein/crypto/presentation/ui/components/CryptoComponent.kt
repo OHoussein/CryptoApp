@@ -25,9 +25,9 @@ import coil.request.ImageRequest
 import coil.transform.CircleCropTransformation
 import dev.ohoussein.crypto.presentation.model.Crypto
 import dev.ohoussein.crypto.presentation.ui.debug.DataPreview.previewCrypto
+import dev.ohoussein.cryptoapp.core.designsystem.R.drawable.ic_coin
 import dev.ohoussein.cryptoapp.core.designsystem.theme.NegativeColor
 import dev.ohoussein.cryptoapp.core.designsystem.theme.PositiveColor
-import dev.ohoussein.cryptoapp.crypto.presentation.R
 
 @Composable
 fun CryptoItem(
@@ -100,7 +100,7 @@ fun CryptoImage(
 ) {
     val painter = rememberAsyncImagePainter(
         model = ImageRequest.Builder(LocalContext.current)
-            .placeholder(R.drawable.ic_coin)
+            .placeholder(ic_coin)
             .data(imageUrl)
             .transformations(CircleCropTransformation())
             .build(),

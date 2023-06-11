@@ -16,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.ohoussein.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.crypto.presentation.reducer.CryptoDetailsIntent
@@ -97,7 +96,6 @@ fun CryptoDetailsStateScreen(
     }
 }
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun CryptoDetailsScreen(
     viewModel: CryptoDetailsViewModel,

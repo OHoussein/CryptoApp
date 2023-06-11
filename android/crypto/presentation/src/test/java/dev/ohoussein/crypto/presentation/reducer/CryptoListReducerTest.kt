@@ -30,7 +30,7 @@ class CryptoListReducerTest : BehaviorSpec({
         }
 
         `when`("a UpdateStatus event") {
-            val status: DataStatus = mock()
+            val status: DataStatus = DataStatus.Success
             val event = CryptoListEvents.UpdateStatus(
                 status = status,
             )

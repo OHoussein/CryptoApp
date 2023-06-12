@@ -27,7 +27,7 @@ jobs:
         run: ./gradlew lint
 
   unit-tests:
-    name: Run Unit Tests
+    name: Run Unit Tests with coverage
     runs-on: ubuntu-latest
 
     steps:
@@ -41,7 +41,13 @@ jobs:
           java-version: 17
 
       - name: Run Release Unit Tests
-        run: bash ./gradlew testReleaseUnitTest
+        run: bash ./gradlew koverMergedReport
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: build/reports/kover/merged/html/index.html
 
   apk:
     name: Generate APK

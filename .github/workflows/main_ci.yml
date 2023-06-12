@@ -57,8 +57,8 @@ jobs:
           distribution: 'adopt'
           java-version: 17
 
-      - name: Build Release APK
-        run: bash ./gradlew assembleRelease --stacktrace
+      - name: Build app
+        run: bash ./gradlew assemble
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v3

@@ -1,7 +1,6 @@
 [![Android Main CI](https://github.com/OHoussein/android-ios-kmm-crypto-app/workflows/Android%20Main%20CI/badge.svg)](https://github.com/OHoussein/android-ios-kmm-crypto-app/actions/workflows/main_ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OHoussein_android-ios-kmm-crypto-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=OHoussein_android-ios-kmm-crypto-app)
 
-⚠️ This project works only with Android Studio Arctic fox and above
 
 Implementation of the clean architecture using:
 

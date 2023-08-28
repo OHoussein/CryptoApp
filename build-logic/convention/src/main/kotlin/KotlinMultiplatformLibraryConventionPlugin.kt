@@ -28,7 +28,7 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<KotlinMultiplatformExtension> {
-                android()
+                androidTarget()
                 iosArm64()
                 iosX64()
                 iosSimulatorArm64()

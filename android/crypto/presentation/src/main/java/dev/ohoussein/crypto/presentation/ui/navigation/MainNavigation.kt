@@ -1,5 +1,7 @@
 package dev.ohoussein.crypto.presentation.ui.navigation
 
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -20,7 +22,15 @@ fun CryptoAppNavigation(
 ) {
     val navController = rememberNavController()
 
-    NavHost(navController, startDestination = NavPath.HOME) {
+    NavHost(navController,
+        startDestination = NavPath.HOME,
+        enterTransition = {
+            slideInHorizontally(initialOffsetX = { it })
+        },
+        exitTransition = {
+            slideOutHorizontally(targetOffsetX = { it })
+        }
+    ) {
         composable(NavPath.HOME) {
             CryptoListScreen(
                 viewModel = getViewModel(),

@@ -17,10 +17,8 @@ class KotlinDetektConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<DetektExtension> {
-                source = files(
-                    projectDir
-                )
-                config = files("$rootDir/config/detekt.yml")
+                source.from(projectDir)
+                config.from("$rootDir/config/detekt.yml")
                 buildUponDefaultConfig = true
                 autoCorrect = project.hasProperty("detektAutoFix")
             }

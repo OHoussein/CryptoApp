@@ -1,5 +1,11 @@
+@file:OptIn(ExperimentalObjCName::class)
+
 package dev.ohoussein.cryptoapp.crypto.domain.model
 
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.native.ObjCName
+
+@ObjCName(name = "CryptoModel", exact = true)
 data class CryptoModel(
     val id: String,
     val name: String,
@@ -10,6 +16,7 @@ data class CryptoModel(
     val order: Int,
 )
 
+@ObjCName(name = "CryptoDetailsModel", exact = true)
 data class CryptoDetailsModel(
     val id: String,
     val name: String,
@@ -24,6 +31,7 @@ data class CryptoDetailsModel(
     val description: String,
 )
 
+@ObjCName(name = "CryptoListModel", exact = true)
 data class CryptoListModel(val list: List<CryptoModel>) {
     val isEmpty: Boolean
         get() = list.isEmpty()

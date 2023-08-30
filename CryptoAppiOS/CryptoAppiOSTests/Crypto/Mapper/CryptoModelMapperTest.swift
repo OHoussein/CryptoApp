@@ -5,7 +5,7 @@ import XCTest
 final class CryptoModelMapperTest: XCTestCase {
     func testConvertCryptoCryptoListModel() throws {
         let mapper = CryptoModelMapper()
-        let domainCrypto = CryptoDomainCryptoModel(
+        let domainCrypto = CryptoModel(
             id: "bitcoin",
             name: "Bitcoin",
             imageUrl: "https://img.com/bitcoin",
@@ -15,7 +15,7 @@ final class CryptoModelMapperTest: XCTestCase {
             order: 1
         )
 
-        let uiModelArray = mapper.convert(domain: CryptoDomainCryptoListModel(list: [domainCrypto]))
+        let uiModelArray = mapper.convert(domain: CryptoListModel(list: [domainCrypto]))
 
         let firstCrypto = uiModelArray.first!
         XCTAssertEqual("bitcoin", firstCrypto.base.id)
@@ -28,9 +28,9 @@ final class CryptoModelMapperTest: XCTestCase {
         XCTAssertEqual(2.17, firstCrypto.priceChangePercentIn24h?.value)
     }
 
-    func testConvertCryptoDomainCryptoDetailsModel() throws {
+    func testConvertCryptoDetailsModel() throws {
         let mapper = CryptoModelMapper()
-        let domainCryptoDetails = CryptoDomainCryptoDetailsModel(
+        let domainCryptoDetails = CryptoDetailsModel(
             id: "bitcoin",
             name: "Bitcoin",
             symbol: "BTC",

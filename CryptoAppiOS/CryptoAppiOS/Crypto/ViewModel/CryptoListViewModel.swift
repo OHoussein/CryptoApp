@@ -3,13 +3,13 @@ import Foundation
 import sharedModules
 
 class CryptoListViewModel: MVIViewModel<CryptoListState, CryptoListIntent, CryptoListEvent> {
-    private let getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase
+    private let getTopCryptoListUseCase: GetTopCryptoListUseCase
     private let mapper: CryptoModelMapper
 
     private var subscriptions: [AnyCancellable] = []
 
     init(
-        getTopCryptoListUseCase: CryptoDomainGetTopCryptoListUseCase = SharedModulesKt.getTopCryptoListUseCase,
+        getTopCryptoListUseCase: GetTopCryptoListUseCase = SharedModulesKt.getTopCryptoListUseCase,
         cryptoModelMapper: CryptoModelMapper = CryptoModelMapper()
     ) {
         self.getTopCryptoListUseCase = getTopCryptoListUseCase

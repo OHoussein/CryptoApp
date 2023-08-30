@@ -24,13 +24,13 @@ class CryptoModelMapper {
         )
     }
 
-    func convert(domain: CryptoDomainCryptoListModel) -> [Crypto] {
+    func convert(domain: CryptoListModel) -> [Crypto] {
         return domain.list.map {
             convert(domain: $0)
         }
     }
 
-    func convert(domain: CryptoDomainCryptoModel) -> Crypto {
+    func convert(domain: CryptoModel) -> Crypto {
         var priceChangePercentIn24h: LabelValue<Double>?
         if let priceChangePercentIn24hDouble = domain.priceChangePercentIn24h?.doubleValue {
             let label = percentFormatter.invoke(percent: priceChangePercentIn24hDouble / 100)
@@ -49,7 +49,7 @@ class CryptoModelMapper {
                       priceChangePercentIn24h: priceChangePercentIn24h)
     }
 
-    func convert(domain: CryptoDomainCryptoDetailsModel) -> CryptoDetails {
+    func convert(domain: CryptoDetailsModel) -> CryptoDetails {
         var sentimentUpVotesPercentage: LabelValue<Double>?
         if let sentimentUpVotesPercentageDouble = domain.sentimentUpVotesPercentage?.doubleValue {
             let label = percentFormatter.invoke(percent: sentimentUpVotesPercentageDouble / 100)

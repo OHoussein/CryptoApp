@@ -5,13 +5,13 @@ import sharedModules
 class CryptoDetailsViewModel: MVIViewModel<CryptoDetailsState, CryptoDetailsIntent, CryptoDetailsEvent> {
     private let cryptoId: String
     private let mapper: CryptoModelMapper
-    private let getCryptoDetailsUseCase: CryptoDomainGetCryptoDetailsUseCase
+    private let getCryptoDetailsUseCase: GetCryptoDetailsUseCase
 
     private var subscriptions: [AnyCancellable] = []
 
     init(
         cryptoId: String,
-        getCryptoDetailsUseCase: CryptoDomainGetCryptoDetailsUseCase = SharedModulesKt.getCryptoDetailsUseCase,
+        getCryptoDetailsUseCase: GetCryptoDetailsUseCase = SharedModulesKt.getCryptoDetailsUseCase,
         cryptoModelMapper: CryptoModelMapper = CryptoModelMapper()
     ) {
         self.cryptoId = cryptoId

@@ -87,9 +87,9 @@ final class CryptoDetailsViewModelTest: XCTestCase {
     }
 }
 
-private class MockedUseCase: CryptoDomainGetCryptoDetailsUseCase {
+private class MockedUseCase: GetCryptoDetailsUseCase {
     var errorOnRefresh = false
-    let cryptoDetails = CryptoDomainCryptoDetailsModel(
+    let cryptoDetails = CryptoDetailsModel(
         id: "bitcoin",
         name: "Bitcoin",
         symbol: "BTC",
@@ -107,7 +107,7 @@ private class MockedUseCase: CryptoDomainGetCryptoDetailsUseCase {
         return SharedModulesKt.getTopCryptoListUseCase.get()
     }
 
-    func getAsWrapper(cryptoId _: String) -> CoroutinesToolsFlowWrapper<CryptoDomainCryptoDetailsModel> {
+    func getAsWrapper(cryptoId _: String) -> CoroutinesToolsFlowWrapper<CryptoDetailsModel> {
         return asFlowWrapper(cryptoDetails)
     }
 

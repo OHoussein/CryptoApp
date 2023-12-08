@@ -38,10 +38,7 @@ import dev.ohoussein.cryptoapp.core.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.core.designsystem.base.StateLoading
 import dev.ohoussein.cryptoapp.core.designsystem.theme.CryptoAppTheme
 
-@Suppress("TopLevelPropertyNaming")
 const val CryptoListTestTag = "CryptoListTestTag"
-
-@Suppress("TopLevelPropertyNaming")
 const val CryptoItemTestTag = "CryptoItemTestTag"
 
 @OptIn(ExperimentalMaterialApi::class)

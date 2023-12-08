@@ -62,6 +62,18 @@ Implementation of the clean architecture using:
 ### Android
 https://user-images.githubusercontent.com/10960959/212092726-0e661257-5d7f-4efa-ac1d-908b0c4e19a4.mp4
 
+## Porject setup
+### For Android & iOS
+Install JDK
+### iOS
+Install cocoapods
+```
+brew install cocoapods
+```
+Install pod dependencies
+```
+pod install
+```
 
 
 ## Layers

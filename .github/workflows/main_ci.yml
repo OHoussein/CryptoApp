@@ -1,4 +1,4 @@
-name: Android Main CI
+name: Main CI
 
 on:
   pull_request:
@@ -49,8 +49,8 @@ jobs:
           name: coverage-report
           path: build/reports/kover/merged/html/index.html
 
-  apk:
-    name: Generate APK
+  Android:
+    name: Android Build
     runs-on: ubuntu-latest
 
     steps:
@@ -77,3 +77,44 @@ jobs:
         with:
           name: mapping
           path: ./android/app/build/outputs/mapping/release/mapping.txt
+
+  iOS:
+    name: iOS Build
+    runs-on: macOS-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: 17
+
+      - name: Setup shared modules
+        run: ./gradlew :shared:core:sharedModules:generateDummyFramework
+        working-directory: ${{ github.workspace }}
+
+      - name: Install cocoapods
+        run: gem install cocoapods
+
+      - name: Install dependencies
+        run: pod install
+        working-directory: ./CryptoAppiOS
+
+      - name: Build
+        working-directory: ./CryptoAppiOS
+        run: |
+          xcodebuild -scheme CryptoAppiOS -workspace ./CryptoAppiOS.xcworkspace \
+           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO \
+           -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' \
+           -derivedDataPath \
+           build
+
+      - name: Upload iOS APP
+        uses: actions/upload-artifact@v3
+        with:
+          name: ios_app
+          path: CryptoAppiOS/build/Build/Products/Debug-iphonesimulator/CryptoAppiOS.app

@@ -11,6 +11,17 @@ Pod::Spec.new do |spec|
     spec.ios.deployment_target = '15.0'
                 
                 
+    if !Dir.exist?('build/cocoapods/framework/cryptoDomain.framework') || Dir.empty?('build/cocoapods/framework/cryptoDomain.framework')
+        raise "
+
+        Kotlin framework 'cryptoDomain' doesn't exist yet, so a proper Xcode project can't be generated.
+        'pod install' should be executed after running ':generateDummyFramework' Gradle task:
+
+            ./gradlew :shared:crypto:cryptoDomain:generateDummyFramework
+
+        Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
+    end
+                
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':shared:crypto:cryptoDomain',
         'PRODUCT_MODULE_NAME' => 'cryptoDomain',

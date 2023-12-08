@@ -11,6 +11,17 @@ Pod::Spec.new do |spec|
     spec.ios.deployment_target = '15.0'
                 
                 
+    if !Dir.exist?('build/cocoapods/framework/formatter.framework') || Dir.empty?('build/cocoapods/framework/formatter.framework')
+        raise "
+
+        Kotlin framework 'formatter' doesn't exist yet, so a proper Xcode project can't be generated.
+        'pod install' should be executed after running ':generateDummyFramework' Gradle task:
+
+            ./gradlew :shared:core:formatter:generateDummyFramework
+
+        Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
+    end
+                
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':shared:core:formatter',
         'PRODUCT_MODULE_NAME' => 'formatter',

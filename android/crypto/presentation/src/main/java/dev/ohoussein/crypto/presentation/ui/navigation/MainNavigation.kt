@@ -22,14 +22,15 @@ fun CryptoAppNavigation(
 ) {
     val navController = rememberNavController()
 
-    NavHost(navController,
+    NavHost(
+        navController = navController,
         startDestination = NavPath.HOME,
         enterTransition = {
             slideInHorizontally(initialOffsetX = { it })
         },
         exitTransition = {
             slideOutHorizontally(targetOffsetX = { it })
-        }
+        },
     ) {
         composable(NavPath.HOME) {
             CryptoListScreen(

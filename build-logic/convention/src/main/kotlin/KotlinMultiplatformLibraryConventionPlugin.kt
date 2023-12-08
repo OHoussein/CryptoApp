@@ -29,6 +29,8 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 iosX64()
                 iosSimulatorArm64()
 
+                applyDefaultHierarchyTemplate()
+
                 this.cocoapods {
                     homepage = "https://github.com/OHoussein/android-ios-kmm-crypto-app"
                     ios.deploymentTarget = IOSTargetVersions.DEPLOYMENT_TARGET
@@ -36,19 +38,6 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                         isStatic = false
                     }
                 }
-
-                val commonMain = sourceSets.getByName("commonMain")
-                val commonTest = sourceSets.getByName("commonTest")
-
-                val iosMain = sourceSets.create("iosMain") {
-                    dependsOn(commonMain)
-                }
-                val iosTest = sourceSets.create("iosTest") {
-                    dependsOn(commonTest)
-                }
-
-                iosTargets.map { "${it}Main" }.forEach { sourceSets.getByName(it).dependsOn(iosMain) }
-                iosTargets.map { "${it}Test" }.forEach { sourceSets.getByName(it).dependsOn(iosTest) }
             }
 
             extensions.configure<LibraryExtension> {

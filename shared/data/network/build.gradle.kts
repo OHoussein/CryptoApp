@@ -2,7 +2,7 @@ plugins {
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.test")
-    kotlin("plugin.serialization") version libs.versions.kotlinVersion
+    kotlin("plugin.serialization") version libs.versions.kotlin
 }
 
 kotlin {

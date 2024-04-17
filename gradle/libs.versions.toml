@@ -1,6 +1,6 @@
 [versions]
-androidGradlePluginVersion = "8.1.4"
-kotlinVersion = "1.9.21"
+androidGradlePluginVersion = "8.2.0"
+kotlin = "1.9.23"
 coroutineVersion = "1.7.3"
 koin = "3.5.0"
 koinCompose = "3.5.0"
@@ -10,14 +10,15 @@ gradleVersionsPluginVersion = "0.50.0"
 kover = "0.6.1"
 paparazziVersion = "1.3.1"
 sqldelight = "1.5.5"
+compose-plugin = "1.6.2"
 
 timberVersion = "5.0.1"
 lifecycleVersion = "2.6.2"
 lifecycleExtVersion = "2.2.0"
 appcompatVersion = "1.6.1"
 materialVersion = "1.9.0"
-composeVersion = "1.5.4"
-composeCompiler = "1.5.6"
+composeVersion = "1.6.5"
+composeCompiler = "1.5.12" # should be removed
 activityComposeVersion = "1.8.1"
 navigationComposeVersion = "2.7.5"
 coilComposeVersion = "2.5.0"
@@ -42,7 +43,7 @@ testAndroidJunitVersion = "1.1.5"
 
 
 [libraries]
-build-kotlinPlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlinVersion" }
+build-kotlinPlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 build-android-gradlePlugin = { module = "com.android.tools.build:gradle", version.ref = "androidGradlePluginVersion" }
 build-gradleVersionsPlugin = { module = "com.github.ben-manes:gradle-versions-plugin", version.ref = "gradleVersionsPluginVersion" }
 build-detekt-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin", version.ref = "detektVersion" }
@@ -50,7 +51,7 @@ build-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatt
 build-paparazzi = { module = "app.cash.paparazzi:paparazzi-gradle-plugin", version.ref = "paparazziVersion" }
 build-sqldelight = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 
-core-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlinVersion" }
+core-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 core-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutineVersion" }
 core-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutineVersion" }
 core-timber = { module = "com.jakewharton.timber:timber", version.ref = "timberVersion" }
@@ -109,3 +110,12 @@ test-android-coreKtx = { module = "androidx.test:core-ktx", version.ref = "testA
 test-android-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "testAndroidJunitVersion" }
 test-android-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeVersion" }
 test-android-composeManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeVersion" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "androidGradlePluginVersion" }
+androidLibrary = { id = "com.android.library", version.ref = "androidGradlePluginVersion" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

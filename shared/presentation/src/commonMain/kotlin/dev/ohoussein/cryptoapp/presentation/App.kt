@@ -1,12 +1,7 @@
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import dev.ohoussein.cryptoapp.crypto.presentation.CryptoScreen
 
 @Composable
 fun SharedApp() {
-    Text(
-        "Hello CMP",
-        style = MaterialTheme.typography.h3,
-        color = MaterialTheme.colors.onPrimary,
-    )
+    CryptoScreen()
 }

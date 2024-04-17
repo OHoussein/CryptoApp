@@ -1,18 +1,12 @@
 package dev.ohoussein.cryptoapp
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import dev.ohoussein.crypto.presentation.activity.CryptoActivity
+import androidx.activity.ComponentActivity
+import com.ohoussein.tldr.createApp
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startActivity(
-            Intent(
-                this, CryptoActivity::class.java
-            )
-        )
-        finish()
+        createApp()
     }
 }

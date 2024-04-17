@@ -63,5 +63,10 @@ gradlePlugin {
             id = "${namespace}.kotlin.multiplatform.test"
             implementationClass = "KotlinMultiplatformTestConventionPlugin"
         }
+
+        register("ComposeMultiplatformLibraryConventionPlugin") {
+            id = "${namespace}.kmp.compose.library"
+            implementationClass = "ComposeMultiplatformLibraryConventionPlugin"
+        }
     }
 }

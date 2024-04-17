@@ -34,6 +34,7 @@ kapt {
 }
 
 dependencies {
+    implementation(project(":shared:presentation"))
     implementation(project(path = ":android:crypto:presentation"))
     implementation(project(path = ":android:core:injection"))
     // Common
@@ -43,6 +44,7 @@ dependencies {
 
     // Presentation
     implementation(libs.android.appcompat)
+    implementation(libs.android.compose.activity)
     implementation(libs.android.material)
 
     testImplementation(libs.koin.test)

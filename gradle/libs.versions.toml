@@ -17,7 +17,8 @@ lifecycleVersion = "2.6.2"
 lifecycleExtVersion = "2.2.0"
 appcompatVersion = "1.6.1"
 materialVersion = "1.9.0"
-composeVersion = "1.6.5"
+compose = "1.6.5"
+coil = "3.0.0-alpha02"
 composeCompiler = "1.5.12" # should be removed
 activityComposeVersion = "1.8.1"
 navigationComposeVersion = "2.7.5"
@@ -54,6 +55,8 @@ build-sqldelight = { module = "com.squareup.sqldelight:gradle-plugin", version.r
 core-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 core-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutineVersion" }
 core-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutineVersion" }
+core-kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "coroutine" }
+
 core-timber = { module = "com.jakewharton.timber:timber", version.ref = "timberVersion" }
 koin-android-core = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
@@ -62,6 +65,14 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinCore" }
 koin-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinCore" }
 
+compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
+compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
+coil-network = { module = "io.coil-kt.coil3:coil-network", version.ref = "coil" }
+
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 android-material = { module = "com.google.android.material:material", version.ref = "materialVersion" }
 android-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtVersion" }
@@ -69,11 +80,11 @@ android-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx
 android-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
 android-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleVersion" }
 android-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycleVersion" }
-android-compose-ui-core = { module = "androidx.compose.ui:ui", version.ref = "composeVersion" }
-android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "composeVersion" }
+android-compose-ui-core = { module = "androidx.compose.ui:ui", version.ref = "compose" }
+android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 android-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
-android-compose-material = { module = "androidx.compose.material:material", version.ref = "composeVersion" }
-android-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "composeVersion" }
+android-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
+android-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
 android-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
 android-compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
 android-compose-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwipeRefreshVersion" }
@@ -108,8 +119,8 @@ test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 test-android-rules = { module = "androidx.test:rules", version.ref = "testAndroidRulesVersion" }
 test-android-coreKtx = { module = "androidx.test:core-ktx", version.ref = "testAndroidCoreVersion" }
 test-android-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "testAndroidJunitVersion" }
-test-android-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "composeVersion" }
-test-android-composeManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "composeVersion" }
+test-android-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
+test-android-composeManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "androidGradlePluginVersion" }

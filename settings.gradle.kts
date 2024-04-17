@@ -6,6 +6,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+}
 rootProject.name = "cryptoapp"
 
 include(":android")
@@ -24,3 +27,5 @@ include(":shared:core:formatter")
 include(":shared:core:sharedModules")
 include(":shared:core:coroutinesTools")
 include(":shared:presentation")
+include("shared:crypto:presentation")
+findProject(":shared:crypto:presentation")?.name = "presentation"

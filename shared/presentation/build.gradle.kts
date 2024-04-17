@@ -48,7 +48,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.network)
 
-            // implementation(project(":shared:domain"))
+            implementation(project(":shared:crypto:presentation"))
             // implementation(project(":shared:data"))
             // implementation(project(":shared:router"))
         }

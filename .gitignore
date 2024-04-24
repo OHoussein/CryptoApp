@@ -16,3 +16,4 @@
 **/apk
 *.jks
 .gradle
+.kotlin

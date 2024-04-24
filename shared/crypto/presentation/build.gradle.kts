@@ -12,9 +12,16 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
+            implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
             implementation(libs.koin.core)
             implementation(libs.coil.compose)
+            implementation(libs.coil.network)
+
+            implementation(project(":shared:designsystem"))
+            implementation(project(":shared:crypto:cryptoDomain"))
+            implementation(project(":shared:crypto:cryptoData"))
+            implementation(project(":shared:core:formatter"))
         }
     }
 }

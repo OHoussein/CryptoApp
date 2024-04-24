@@ -12,7 +12,7 @@ import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 
-class DomainModelMapper constructor(
+class DomainModelMapper(
     private val priceFormatter: PriceFormatter,
     private val percentFormatter: PercentFormatter,
     private val locale: Locale,

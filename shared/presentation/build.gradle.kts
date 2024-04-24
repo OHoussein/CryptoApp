@@ -6,6 +6,9 @@ plugins {
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.jetbrainsCompose)
 }
+dependencies {
+    implementation(project(":shared:core:sharedModules"))
+}
 
 kotlin {
     listOf(
@@ -34,6 +37,7 @@ kotlin {
 
             implementation(libs.compose.ui.tooling)
             implementation(libs.compose.ui.tooling.preview)
+            implementation(libs.koin.android.core)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -42,13 +46,16 @@ kotlin {
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
-            //api(libs.decompose.core)
-            //implementation(libs.decompose.compose)
+            // api(libs.decompose.core)
+            // implementation(libs.decompose.compose)
+            implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.coil.compose)
             implementation(libs.coil.network)
 
             implementation(project(":shared:crypto:presentation"))
+            implementation(project(":shared:designsystem"))
+            implementation(project(":shared:core:sharedModules"))
             // implementation(project(":shared:data"))
             // implementation(project(":shared:router"))
         }

@@ -28,6 +28,7 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 iosArm64()
                 iosX64()
                 iosSimulatorArm64()
+                jvm("desktop")
 
                 applyDefaultHierarchyTemplate()
 
@@ -43,6 +44,16 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 defaultConfig.targetSdk = SdkVersion.TARGET_SDK_VERSION
                 configureKotlinAndroid(this)
+            }
+
+            task("unitTestAll") {
+                setDependsOn(
+                    listOf(
+                        "cleanTestReleaseUnitTest", "testReleaseUnitTest",
+                        "cleanDesktopTest", "desktopTest",
+                        "cleanIosSimulatorArm64Test", "iosSimulatorArm64Test"
+                    )
+                )
             }
         }
     }

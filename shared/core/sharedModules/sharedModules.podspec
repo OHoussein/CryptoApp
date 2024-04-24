@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.summary                  = 'dependency injection module'
     spec.vendored_frameworks      = 'build/cocoapods/framework/sharedModules.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target = '15.0'
+    spec.ios.deployment_target    = '15.0'
                 
                 
     if !Dir.exist?('build/cocoapods/framework/sharedModules.framework') || Dir.empty?('build/cocoapods/framework/sharedModules.framework')
@@ -21,6 +21,10 @@ Pod::Spec.new do |spec|
 
         Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
     end
+                
+    spec.xcconfig = {
+        'ENABLE_USER_SCRIPT_SANDBOXING' => 'NO',
+    }
                 
     spec.pod_target_xcconfig = {
         'KOTLIN_PROJECT_PATH' => ':shared:core:sharedModules',

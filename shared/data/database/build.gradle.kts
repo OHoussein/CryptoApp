@@ -2,12 +2,14 @@ plugins {
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.test")
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight")
 }
 
 sqldelight {
-    database("CryptoDB") {
-        packageName = "dev.ohoussein.cryptoapp.database"
+    databases {
+        create("CryptoDB") {
+            packageName.set("dev.ohoussein.cryptoapp.database")
+        }
     }
 }
 
@@ -38,7 +40,7 @@ kotlin {
 
         val androidUnitTest by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:sqlite-driver:1.5.3")
+                implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
             }
         }
 
@@ -52,6 +54,10 @@ kotlin {
             dependencies {
                 implementation(libs.data.sqldelight.native)
             }
+        }
+
+        desktopMain.dependencies {
+            implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
         }
     }
 }

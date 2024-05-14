@@ -13,7 +13,8 @@ plugins {
 rootProject.name = "cryptoapp"
 
 include(":android")
- include(":android:app")
+include(":android:app")
+include(":app-desktop")
 // include(":android:crypto:presentation")
 // include(":android:core:test")
 // include(":android:core:common")

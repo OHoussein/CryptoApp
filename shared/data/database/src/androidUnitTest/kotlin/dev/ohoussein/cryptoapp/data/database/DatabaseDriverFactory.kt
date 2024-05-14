@@ -1,6 +1,6 @@
 package dev.ohoussein.cryptoapp.data.database
 
-import com.squareup.sqldelight.sqlite.driver.JdbcSqliteDriver
+import app.cash.sqldelight.sqlite.driver.JdbcSqliteDriver
 import dev.ohoussein.cryptoapp.database.CryptoDB
 
 fun createDatabase(): CryptoDB {

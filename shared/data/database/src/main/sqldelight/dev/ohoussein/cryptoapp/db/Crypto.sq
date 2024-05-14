@@ -1,0 +1,41 @@
+CREATE TABLE Crypto (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    price REAL NOT NULL,
+    symbol TEXT NOT NULL,
+    priceChangePercentIn24h REAL,
+    orderInList INTEGER NOT NULL
+);
+
+CREATE TABLE CryptoDetails (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    imageUrl TEXT NOT NULL,
+    symbol TEXT NOT NULL,
+    hashingAlgorithm TEXT,
+    homePageUrl TEXT,
+    blockchainSite TEXT,
+    mainRepoUrl TEXT,
+    sentimentUpVotesPercentage REAL,
+    sentimentDownVotesPercentage REAL,
+    description TEXT NOT NULL
+);
+
+insertCrypto:
+INSERT INTO Crypto(id, name, imageUrl, price, symbol, priceChangePercentIn24h, orderInList)
+VALUES ?;
+
+getAllCrypto:
+SELECT * FROM Crypto ORDER BY orderInList;
+
+deleteAllCrypto:
+DELETE FROM Crypto;
+
+insertCryptoDetails:
+INSERT OR REPLACE INTO CryptoDetails(id, name, imageUrl, symbol, hashingAlgorithm, homePageUrl,
+ blockchainSite, mainRepoUrl, sentimentUpVotesPercentage, sentimentDownVotesPercentage,description)
+VALUES ?;
+
+selectDetails:
+SELECT * FROM CryptoDetails WHERE id = ?;

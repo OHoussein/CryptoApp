@@ -9,7 +9,7 @@ import org.koin.dsl.module
 
 actual val platformDatabaseModule = module {
     factory<SqlDriver> {
-        DatabaseDriverFactory(get()).createDriver()
+        DatabaseDriverFactory().createDriver()
     }
     single<CryptoDAO> {
         CryptoDAOImpl(get(), Dispatchers.IO, get())

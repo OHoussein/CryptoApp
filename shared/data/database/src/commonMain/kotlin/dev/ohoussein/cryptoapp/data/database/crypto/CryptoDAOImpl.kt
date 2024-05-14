@@ -1,15 +1,14 @@
 package dev.ohoussein.cryptoapp.data.database.crypto
 
-import com.squareup.sqldelight.runtime.coroutines.asFlow
-import com.squareup.sqldelight.runtime.coroutines.mapToList
-import com.squareup.sqldelight.runtime.coroutines.mapToOneOrNull
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToList
+import app.cash.sqldelight.coroutines.mapToOneOrNull
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.database.CryptoDB
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
@@ -34,8 +33,7 @@ class CryptoDAOImpl(
     override fun selectAll(): Flow<CryptoListModel> {
         return database.cryptoQueries.getAllCrypto(dbModelMapper::toCryptoModel)
             .asFlow()
-            .flowOn(ioDispatcher)
-            .mapToList()
+            .mapToList(ioDispatcher)
             .map(::CryptoListModel)
     }
 
@@ -47,7 +45,6 @@ class CryptoDAOImpl(
     override fun selectDetails(cryptoDetailsId: String): Flow<CryptoDetailsModel?> {
         return database.cryptoQueries.selectDetails(cryptoDetailsId, dbModelMapper::toCryptoDetailsModel)
             .asFlow()
-            .flowOn(ioDispatcher)
-            .mapToOneOrNull()
+            .mapToOneOrNull(ioDispatcher)
     }
 }

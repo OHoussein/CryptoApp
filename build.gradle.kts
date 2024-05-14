@@ -1,5 +1,6 @@
 plugins {
     id("org.jetbrains.kotlinx.kover") version libs.versions.kover
+    alias(libs.plugins.jetbrainsCompose) apply false
 }
 
 apply(plugin = "com.github.ben-manes.versions")

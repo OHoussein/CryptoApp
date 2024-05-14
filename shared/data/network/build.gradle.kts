@@ -42,6 +42,12 @@ kotlin {
                 implementation(libs.data.ktor.ios)
             }
         }
+
+        val desktopMain by getting {
+            dependencies {
+                implementation(libs.data.ktor.apache)
+            }
+        }
     }
 }
 

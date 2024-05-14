@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNot
 import kotlinx.coroutines.flow.filterNotNull
 
-class CryptoRepository constructor(
+class CryptoRepository(
     private val service: ApiCryptoService,
     private val cryptoDao: CryptoDAO,
     private val apiMapper: ApiDomainModelMapper,

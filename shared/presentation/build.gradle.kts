@@ -5,6 +5,7 @@ plugins {
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.compose.compiler)
 }
 dependencies {
     implementation(project(":shared:core:sharedModules"))

@@ -7,7 +7,7 @@ import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest
 
-private const val iosDeviceId = "IPhone 12"
+private const val iosDeviceId = "iPhone 15 Pro"
 
 class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
 

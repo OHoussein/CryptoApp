@@ -9,11 +9,6 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.plugin.cocoapods.CocoapodsExtension
 
 class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
-    private val iosTargets = setOf(
-        "iosArm64",
-        "iosX64",
-        "iosSimulatorArm64"
-    )
 
     override fun apply(target: Project) {
         with(target) {

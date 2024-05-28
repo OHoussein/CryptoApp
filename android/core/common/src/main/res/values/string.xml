@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Errors-->
-    <string name="error_no_internet_connection">No internet connection</string>
-    <string name="error_unknown_error_with_message">Internal error: %1$s</string>
-    <string name="error_unknown_error">Internal error</string>
-</resources>

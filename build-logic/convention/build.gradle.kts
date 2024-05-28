@@ -29,16 +29,6 @@ gradlePlugin {
             implementationClass = "RobolectricConventionPlugin"
         }
 
-        register("compose") {
-            id = "${namespace}.android.compose"
-            implementationClass = "AndroidLibraryComposeConventionPlugin"
-        }
-
-        register("android-module") {
-            id = "${namespace}.android.library"
-            implementationClass = "AndroidLibraryConventionPlugin"
-        }
-
         register("android-app-module") {
             id = "${namespace}.android.app"
             implementationClass = "AndroidAppConventionPlugin"
@@ -47,11 +37,6 @@ gradlePlugin {
         register("koin") {
             id = "${namespace}.koin"
             implementationClass = "KoinConventionPlugin"
-        }
-
-        register("feature-module") {
-            id = "${namespace}.feature"
-            implementationClass = "AndroidFeatureConventionPlugin"
         }
 
         register("kotlinMultiplatformLibrary") {

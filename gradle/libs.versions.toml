@@ -13,17 +13,11 @@ sqldelight = "2.0.2"
 compose-plugin = "1.6.10"
 
 timberVersion = "5.0.1"
-lifecycleVersion = "2.6.2"
-lifecycleExtVersion = "2.2.0"
 appcompatVersion = "1.6.1"
 materialVersion = "1.9.0"
 compose = "1.6.5"
 coil = "3.0.0-alpha06"
-composeCompiler = "1.5.12" # should be removed
 activityComposeVersion = "1.8.1"
-navigationComposeVersion = "2.7.5"
-coilComposeVersion = "2.5.0"
-accompanistSwipeRefreshVersion = "0.32.0"
 ktor = "2.3.7"
 
 mockitoVersion = "5.1.0"
@@ -31,16 +25,7 @@ mockk = "1.13.8"
 mockkCommon = "1.12.5"
 junitVersion = "4.13.2"
 archCoreTestingVersion = "2.2.0"
-mockwebserverVersion = "4.12.0"
-byteBuddyVersion = "1.14.10"
-robolectricVersion = "4.11.1"
-junitVintageEngineVersion = "5.10.1"
-testParameterInjectorVersion = "1.14"
-kotestVersion = "5.8.0"
 turbineVersion = "1.0.0"
-testAndroidRulesVersion = "1.5.0"
-testAndroidCoreVersion = "1.5.0"
-testAndroidJunitVersion = "1.1.5"
 
 
 [libraries]
@@ -52,43 +37,26 @@ build-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatt
 build-paparazzi = { module = "app.cash.paparazzi:paparazzi-gradle-plugin", version.ref = "paparazziVersion" }
 build-sqldelight = { module = "app.cash.sqldelight:gradle-plugin", version.ref = "sqldelight" }
 
-core-kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 core-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutineVersion" }
 core-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutineVersion" }
 core-kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "coroutine" }
 
 core-timber = { module = "com.jakewharton.timber:timber", version.ref = "timberVersion" }
 koin-android-core = { module = "io.insert-koin:koin-android", version.ref = "koin" }
-koin-android-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinCompose" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
-koin-android-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinCore" }
 koin-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinCore" }
 
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "compose" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor", version.ref = "coil" }
 
 android-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 android-material = { module = "com.google.android.material:material", version.ref = "materialVersion" }
-android-lifecycle-extensions = { module = "androidx.lifecycle:lifecycle-extensions", version.ref = "lifecycleExtVersion" }
-android-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleVersion" }
-android-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleVersion" }
-android-lifecycle-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycleVersion" }
-android-lifecycle-process = { module = "androidx.lifecycle:lifecycle-process", version.ref = "lifecycleVersion" }
-android-compose-ui-core = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-android-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+
 android-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
-android-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
-android-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose" }
-android-compose-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
-android-compose-coil = { module = "io.coil-kt:coil-compose", version.ref = "coilComposeVersion" }
-android-compose-accompanist-swiperefresh = { module = "com.google.accompanist:accompanist-swiperefresh", version.ref = "accompanistSwipeRefreshVersion" }
 
 data-ktor-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 data-ktor-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
@@ -100,7 +68,6 @@ data-ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "kto
 data-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 data-sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 data-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
-data-sqldelight-desktop = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 data-sqldelight-ext-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 
 test-junit = { module = "junit:junit", version.ref = "junitVersion" }
@@ -108,29 +75,13 @@ test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.re
 test-mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
 test-mockk-common = { module = "io.mockk:mockk-common", version.ref = "mockkCommon" }
 test-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoVersion" }
-test-mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockitoVersion" }
 test-android-arch-core = { module = "androidx.arch.core:core-testing", version.ref = "archCoreTestingVersion" }
-test-okhttp-mockServer = { module = "com.squareup.okhttp3:mockwebserver", version.ref = "mockwebserverVersion" }
-test-bytebuddy = { module = "net.bytebuddy:byte-buddy", version.ref = "byteBuddyVersion" }
-test-robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectricVersion" }
-test-junitVintage-engine = { module = "org.junit.vintage:junit-vintage-engine", version.ref = "junitVintageEngineVersion" }
-test-parameterInjector = { module = "com.google.testparameterinjector:test-parameter-injector", version.ref = "testParameterInjectorVersion" }
-test-kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotestVersion" }
-test-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotestVersion" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineVersion" }
-test-android-rules = { module = "androidx.test:rules", version.ref = "testAndroidRulesVersion" }
-test-android-coreKtx = { module = "androidx.test:core-ktx", version.ref = "testAndroidCoreVersion" }
-test-android-junit = { module = "androidx.test.ext:junit-ktx", version.ref = "testAndroidJunitVersion" }
-test-android-compose = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
-test-android-composeManifest = { module = "androidx.compose.ui:ui-test-manifest", version.ref = "compose" }
 
 [plugins]
-androidApplication = { id = "com.android.application", version.ref = "androidGradlePluginVersion" }
-androidLibrary = { id = "com.android.library", version.ref = "androidGradlePluginVersion" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

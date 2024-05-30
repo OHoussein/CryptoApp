@@ -14,12 +14,13 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(project(":shared:core:coroutinesTools"))
-                implementation(libs.core.kotlin.coroutines.core)
-                implementation(libs.koin.core)
-            }
+        commonMain.dependencies {
+            implementation(project(":shared:core:coroutinesTools"))
+            implementation(libs.core.kotlin.coroutines.core)
+            implementation(libs.koin.core)
+        }
+        commonTest.dependencies {
+            implementation(libs.test.coroutines)
         }
     }
 }

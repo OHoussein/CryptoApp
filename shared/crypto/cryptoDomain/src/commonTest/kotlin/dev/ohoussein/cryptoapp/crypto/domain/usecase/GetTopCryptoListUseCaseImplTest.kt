@@ -1,60 +1,37 @@
 package dev.ohoussein.cryptoapp.crypto.domain.usecase
 
-import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
+import app.cash.turbine.test
 import dev.ohoussein.cryptoapp.crypto.domain.usecase.stub.MockedCryptoRepository
-import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlinx.coroutines.runBlocking
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.dsl.module
+import kotlinx.coroutines.test.runTest
 
-class GetTopCryptoListUseCaseImplTest : KoinComponent {
+class GetTopCryptoListUseCaseImplTest {
 
-    private val topCryptoListUseCase: GetTopCryptoListUseCase by inject()
+    private lateinit var topCryptoListUseCase: GetTopCryptoListUseCase
     private lateinit var cryptoRepository: MockedCryptoRepository
 
     @BeforeTest
     fun setup() {
         cryptoRepository = MockedCryptoRepository()
-        startKoin {
-            modules(
-                module {
-                    single<ICryptoRepository> { cryptoRepository }
-                    single<GetTopCryptoListUseCase> { GetTopCryptoListUseCaseImpl() }
-                }
-            )
+        topCryptoListUseCase = GetTopCryptoListUseCaseImpl(
+            repository = cryptoRepository
+        )
+    }
+
+    @Test
+    fun `Given no data WHEN observe IT should return null`() = runTest {
+        topCryptoListUseCase.observe().test {
+            expectNoEvents()
         }
     }
 
-    @AfterTest
-    fun cleanup() {
-        stopKoin()
-    }
-
     @Test
-    fun getTopCryptoList_calls_repository() {
-
-        topCryptoListUseCase.get()
-
-        assertEquals(1, cryptoRepository.countGetTopCryptoList)
-    }
-
-    @Test
-    fun getAsWrapper_calls_repository() {
-        topCryptoListUseCase.getAsWrapper()
-
-        assertEquals(1, cryptoRepository.countGetTopCryptoList)
-    }
-
-    @Test
-    fun refreshTopCryptoList_calls_repository() {
-        runBlocking { topCryptoListUseCase.refresh() }
-
-        assertEquals(1, cryptoRepository.countRefreshTopCryptoList)
+    fun `Given data WHEN refresh IT should return the data`() = runTest {
+        topCryptoListUseCase.refresh()
+        topCryptoListUseCase.observe().test {
+            assertEquals(5, awaitItem().size)
+        }
     }
 }

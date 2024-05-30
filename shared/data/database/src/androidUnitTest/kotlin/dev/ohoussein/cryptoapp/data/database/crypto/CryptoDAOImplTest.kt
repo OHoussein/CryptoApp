@@ -27,7 +27,7 @@ class CryptoDAOImplTest {
     fun should_insert_and_get_crypto_list() = runTest {
         // Given
         val dbData = TestDataFactory.makeCryptoList(100)
-        cryptoDAO.insert(dbData.list)
+        cryptoDAO.insert(dbData)
         // Given
         val listFromDB = cryptoDAO.selectAll().first()
         // Then

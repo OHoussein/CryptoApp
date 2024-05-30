@@ -17,7 +17,7 @@ class CryptoDetailsViewModel(
 ) : ViewModel<CryptoDetailsState, CryptoDetailsEvents>(CryptoDetailsState()) {
 
     init {
-        useCase.get(cryptoId)
+        useCase.observe(cryptoId)
             .map(modelMapper::convert)
             .onEach { cryptoDetails ->
                 mutableState.update { it.copy(cryptoDetails = cryptoDetails) }

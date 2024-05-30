@@ -4,7 +4,10 @@ import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetTopCryptoListUseCase
 import dev.ohoussein.cryptoapp.crypto.presentation.core.ViewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class CryptoListViewModel(
@@ -13,7 +16,7 @@ class CryptoListViewModel(
 ) : ViewModel<CryptoListState, CryptoListEvents>(CryptoListState()) {
 
     init {
-        useCase.get()
+        useCase.observe()
             .map(modelMapper::convert)
             .onEach { data ->
                 mutableState.update { it.copy(cryptoList = data) }

@@ -3,22 +3,17 @@ package dev.ohoussein.cryptoapp.crypto.presentation.mapper
 import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
 import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
-import dev.ohoussein.cryptoapp.crypto.presentation.model.Crypto
-import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
-import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoInfo
-import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoPrice
-import dev.ohoussein.cryptoapp.crypto.presentation.model.LabelValue
+import dev.ohoussein.cryptoapp.crypto.presentation.model.*
 
 class DomainModelMapper(
     private val priceFormatter: PriceFormatter,
     private val percentFormatter: PercentFormatter,
     private val locale: Locale,
 ) {
-    fun convert(domain: CryptoListModel): List<Crypto> {
-        return domain.list.map { convert(it) }
+    fun convert(domain: List<CryptoModel>): List<Crypto> {
+        return domain.map { convert(it) }
     }
 
     @Suppress("MagicNumber")

@@ -1,7 +1,6 @@
 package dev.ohoussein.cryptoapp.data.database.crypto.mock
 
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.random.Random
@@ -19,12 +18,9 @@ object TestDataFactory {
         order = idIndex.toInt(),
     )
 
-    fun makeCryptoList(count: Int) =
-        CryptoListModel(
-            list = (0..count).map {
-                randomCrypto(it.toString())
-            }
-        )
+    fun makeCryptoList(count: Int) = (0..count).map {
+        randomCrypto(it.toString())
+    }
 
     fun randomCryptoDetails(
         suffix: String,

@@ -4,12 +4,10 @@ import app.cash.sqldelight.coroutines.asFlow
 import app.cash.sqldelight.coroutines.mapToList
 import app.cash.sqldelight.coroutines.mapToOneOrNull
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.database.CryptoDB
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 class CryptoDAOImpl(
@@ -30,11 +28,10 @@ class CryptoDAOImpl(
         }
     }
 
-    override fun selectAll(): Flow<CryptoListModel> {
+    override fun selectAll(): Flow<List<CryptoModel>> {
         return database.cryptoQueries.getAllCrypto(dbModelMapper::toCryptoModel)
             .asFlow()
             .mapToList(ioDispatcher)
-            .map(::CryptoListModel)
     }
 
     override suspend fun insert(cryptoDetails: CryptoDetailsModel): Unit = withContext(ioDispatcher) {

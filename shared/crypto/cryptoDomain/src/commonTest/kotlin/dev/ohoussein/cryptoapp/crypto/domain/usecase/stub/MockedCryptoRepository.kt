@@ -1,33 +1,31 @@
 package dev.ohoussein.cryptoapp.crypto.domain.usecase.stub
 
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
-import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoListModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.FakeCryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.repo.ICryptoRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
 
 internal class MockedCryptoRepository : ICryptoRepository {
 
-    var countGetTopCryptoList = 0
-    var countRefreshTopCryptoList = 0
-    val getCryptoDetailsParams = mutableListOf<String>()
-    val refreshCryptoDetailsParams = mutableListOf<String>()
+    private val cryptoList = MutableStateFlow<List<CryptoModel>?>(null)
+    private val cryptoDetails = MutableStateFlow<CryptoDetailsModel?>(null)
 
-    override fun getTopCryptoList(): Flow<CryptoListModel> {
-        countGetTopCryptoList++
-        return flowOf()
+    override fun getTopCryptoList(): Flow<List<CryptoModel>> {
+        return cryptoList.filterNotNull()
     }
 
     override suspend fun refreshTopCryptoList() {
-        countRefreshTopCryptoList++
+        cryptoList.value = FakeCryptoModel.cryptoList(5)
     }
 
     override fun getCryptoDetails(cryptoId: String): Flow<CryptoDetailsModel> {
-        getCryptoDetailsParams += cryptoId
-        return flowOf()
+        return cryptoDetails.filterNotNull()
     }
 
     override suspend fun refreshCryptoDetails(cryptoId: String) {
-        refreshCryptoDetailsParams += cryptoId
+        cryptoDetails.value = FakeCryptoModel.cryptoDetails()
     }
 }

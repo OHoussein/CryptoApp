@@ -11,6 +11,7 @@ kover = "0.6.1"
 paparazziVersion = "1.3.1"
 sqldelight = "2.0.2"
 compose-plugin = "1.6.10"
+compose-navigation = "2.8.0-alpha02"
 
 timberVersion = "5.0.1"
 appcompatVersion = "1.6.1"
@@ -47,6 +48,7 @@ koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinCore" }
 koin-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinCore" }
 
+compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }

@@ -28,15 +28,15 @@ import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoItem
 import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 
 const val CryptoListTestTag = "CryptoListTestTag"
 const val CryptoItemTestTag = "CryptoItemTestTag"
 
 @Composable
 fun CryptoListScreen(
-    viewModel: CryptoListViewModel,
+    viewModel: CryptoListViewModel = koinInject(),
     navigateToCryptoDetails: (Crypto) -> Unit,
 ) {
 
@@ -53,7 +53,6 @@ fun CryptoListScreen(
     }
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 private fun CryptoListScreenContent(
     modifier: Modifier = Modifier,

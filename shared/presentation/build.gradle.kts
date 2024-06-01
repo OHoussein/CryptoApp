@@ -1,5 +1,3 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     id("dev.ohoussein.cryptoapp.kmp.compose.library")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
@@ -45,8 +43,8 @@ kotlin {
             implementation(compose.foundation)
             implementation(compose.material)
             implementation(compose.ui)
-            @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+            implementation(libs.compose.navigation)
             // api(libs.decompose.core)
             // implementation(libs.decompose.compose)
             implementation(libs.koin.compose)

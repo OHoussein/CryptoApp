@@ -9,6 +9,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
 import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoDetailsHeader
@@ -16,14 +17,16 @@ import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoLinks
 import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
-import org.koin.compose.koinInject
+import org.koin.compose.getKoin
+import org.koin.core.Koin
 import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CryptoDetailsScreen(
     cryptoId: String,
-    viewModel: CryptoDetailsViewModel = koinInject { parametersOf(cryptoId) },
-    // externalRouter: ExternalRouter,
+    // This is a workaround while the viewModel builder from koin is ready
+    koin: Koin = getKoin(),
+    viewModel: CryptoDetailsViewModel = viewModel { koin.get { parametersOf(cryptoId) } },
     onBackClicked: () -> Unit,
 ) {
 

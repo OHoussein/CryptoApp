@@ -20,6 +20,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import cryptoapp.shared.crypto.presentation.generated.resources.Res
 import cryptoapp.shared.crypto.presentation.generated.resources.retry
 import dev.ohoussein.cryptoapp.crypto.presentation.model.Crypto
@@ -29,17 +30,19 @@ import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
 import org.jetbrains.compose.resources.stringResource
-import org.koin.compose.koinInject
+import org.koin.compose.getKoin
+import org.koin.core.Koin
 
 const val CryptoListTestTag = "CryptoListTestTag"
 const val CryptoItemTestTag = "CryptoItemTestTag"
 
 @Composable
 fun CryptoListScreen(
-    viewModel: CryptoListViewModel = koinInject(),
+    //TODO This is a workaround while the viewModel builder from koin is ready
+    koin: Koin = getKoin(),
+    viewModel: CryptoListViewModel = viewModel { koin.get() },
     navigateToCryptoDetails: (Crypto) -> Unit,
 ) {
-
     val state by viewModel.state.collectAsState()
 
     CryptoAppScaffold {

@@ -16,6 +16,7 @@ kotlin {
             implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
             implementation(libs.compose.navigation)
+            implementation(libs.compose.lifecycle)
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.coil.compose)

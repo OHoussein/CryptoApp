@@ -16,10 +16,13 @@ import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoLinks
 import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
+import org.koin.compose.koinInject
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CryptoDetailsScreen(
-    viewModel: CryptoDetailsViewModel,
+    cryptoId: String,
+    viewModel: CryptoDetailsViewModel = koinInject { parametersOf(cryptoId) },
     // externalRouter: ExternalRouter,
     onBackClicked: () -> Unit,
 ) {

@@ -1,6 +1,6 @@
 package dev.ohoussein.cryptoapp.crypto.presentation
 
-object NavPath {
+object CryptoFeatNavPath {
     const val HOME = "home"
 
     object CryptoDetailsPath {

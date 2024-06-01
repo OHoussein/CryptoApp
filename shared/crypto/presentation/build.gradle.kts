@@ -24,5 +24,9 @@ kotlin {
             implementation(project(":shared:crypto:cryptoData"))
             implementation(project(":shared:core:formatter"))
         }
+
+        commonTest.dependencies {
+            implementation(libs.test.turbine)
+        }
     }
 }

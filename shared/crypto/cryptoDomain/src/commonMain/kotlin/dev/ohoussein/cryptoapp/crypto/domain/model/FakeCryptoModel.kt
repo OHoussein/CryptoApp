@@ -1,7 +1,5 @@
 package dev.ohoussein.cryptoapp.crypto.domain.model
 
-import kotlin.random.Random
-
 object FakeCryptoModel {
 
     fun crypto(
@@ -9,11 +7,11 @@ object FakeCryptoModel {
         order: Int = 1,
     ) = CryptoModel(
         id = id,
-        name = id,
-        imageUrl = "Http://$id.com",
-        symbol = id,
-        price = Random.nextDouble(),
-        priceChangePercentIn24h = Random.nextDouble(-12.0, 12.0),
+        name = "crypto $id",
+        imageUrl = "https://$id.com",
+        symbol = "CR-$id",
+        price = 70.0,
+        priceChangePercentIn24h = -2.0,
         order = order,
     )
 
@@ -26,9 +24,9 @@ object FakeCryptoModel {
         id: String = "bitcoin",
     ) = CryptoDetailsModel(
         id = id,
-        name = id,
-        imageUrl = "Http://image-$id.com",
-        symbol = id,
+        name = "crypto $id",
+        imageUrl = "https://image-$id.com",
+        symbol = "CR-$id",
         hashingAlgorithm = "SHA-256",
         homePageUrl = "http://home-$id.com",
         blockchainSite = "http://blockchain-$id.com",

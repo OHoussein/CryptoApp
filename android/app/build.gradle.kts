@@ -47,8 +47,6 @@ dependencies {
 
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.junit4)
-    testImplementation(libs.test.mockito.kotlin)
-    testImplementation(libs.test.mockito.inline)
     testImplementation(libs.test.android.arch.core)
     testImplementation(libs.test.coroutines)
 }

@@ -20,7 +20,6 @@ coil = "3.0.0-alpha06"
 activityComposeVersion = "1.8.1"
 ktor = "2.3.7"
 
-mockitoVersion = "5.1.0"
 mockk = "1.13.8"
 mockkCommon = "1.12.5"
 junitVersion = "4.13.2"
@@ -71,10 +70,8 @@ data-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version
 data-sqldelight-ext-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 
 test-junit = { module = "junit:junit", version.ref = "junitVersion" }
-test-mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoVersion" }
 test-mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
 test-mockk-common = { module = "io.mockk:mockk-common", version.ref = "mockkCommon" }
-test-mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoVersion" }
 test-android-arch-core = { module = "androidx.arch.core:core-testing", version.ref = "archCoreTestingVersion" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineVersion" }

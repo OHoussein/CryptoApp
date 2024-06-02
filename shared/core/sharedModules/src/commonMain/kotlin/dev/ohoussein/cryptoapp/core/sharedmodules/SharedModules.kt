@@ -3,6 +3,7 @@ package dev.ohoussein.cryptoapp.core.sharedmodules
 import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
 import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
 import dev.ohoussein.cryptoapp.core.formatter.formatModule
+import dev.ohoussein.cryptoapp.core.router.routerModule
 import dev.ohoussein.cryptoapp.crypto.data.cryptoDataModule
 import dev.ohoussein.cryptoapp.crypto.domain.cryptoDomainModule
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
@@ -20,6 +21,7 @@ val sharedModules: List<Module> = listOf(
     networkModule,
     cryptoDomainModule,
     cryptoDataModule,
+    routerModule,
 )
 
 private val koin: Koin by lazy { startKoin() }

@@ -5,6 +5,6 @@ import dev.ohoussein.cryptoapp.crypto.presentation.di.cryptoModule
 import org.koin.dsl.module
 
 val sharedPresentationModules = module {
-    includes(cryptoModule)
     includes(sharedModules)
+    includes(cryptoModule)
 }

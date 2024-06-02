@@ -2,7 +2,6 @@ package dev.ohoussein.cryptoapp.data.database
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
-import dev.ohoussein.cryptoapp.database.CryptoDB
 import java.io.File
 
 actual class DatabaseDriverFactory {

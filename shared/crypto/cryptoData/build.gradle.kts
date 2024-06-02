@@ -14,15 +14,13 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.core.kotlin.coroutines.core)
-                implementation(libs.koin.core)
-                implementation(project(":shared:data:network"))
-                implementation(project(":shared:data:database"))
-                implementation(project(":shared:data:cache"))
-                implementation(project(":shared:crypto:cryptoDomain"))
-            }
+        commonMain.dependencies {
+            implementation(libs.core.kotlin.coroutines.core)
+            implementation(libs.koin.core)
+            implementation(project(":shared:data:network"))
+            implementation(project(":shared:data:database"))
+            implementation(project(":shared:data:cache"))
+            implementation(project(":shared:crypto:cryptoDomain"))
         }
     }
 }

@@ -15,38 +15,28 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.koin.core)
-                implementation(libs.data.ktor.core)
-                implementation(libs.data.ktor.logging)
-                implementation(libs.data.ktor.content.negotiation)
-                implementation(libs.data.ktor.json)
-            }
+        commonMain.dependencies {
+            implementation(libs.koin.core)
+            implementation(libs.data.ktor.core)
+            implementation(libs.data.ktor.logging)
+            implementation(libs.data.ktor.content.negotiation)
+            implementation(libs.data.ktor.json)
         }
 
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.data.ktor.mock)
-            }
+        commonTest.dependencies {
+            implementation(libs.data.ktor.mock)
         }
 
-        val androidMain by getting {
-            dependencies {
-                implementation(libs.data.ktor.android)
-            }
+        androidMain.dependencies {
+            implementation(libs.data.ktor.android)
         }
 
-        val iosMain by getting {
-            dependencies {
-                implementation(libs.data.ktor.ios)
-            }
+        iosMain.dependencies {
+            implementation(libs.data.ktor.ios)
         }
 
-        val desktopMain by getting {
-            dependencies {
-                implementation(libs.data.ktor.apache)
-            }
+        desktopMain.dependencies {
+            implementation(libs.data.ktor.apache)
         }
     }
 }

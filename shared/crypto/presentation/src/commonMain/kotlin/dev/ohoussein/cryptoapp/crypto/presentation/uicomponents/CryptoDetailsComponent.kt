@@ -87,7 +87,7 @@ fun CryptoDetailsHeader(
                     descriptionOverflow = !layout.hasVisualOverflow
                 }
             )
-            if (!descriptionOverflow)
+            if (!descriptionOverflow) {
                 TextButton(onClick = { expandDescription = true }) {
                     Icon(
                         imageVector = Icons.Outlined.ExpandMore,
@@ -103,6 +103,7 @@ fun CryptoDetailsHeader(
                         style = MaterialTheme.typography.caption,
                     )
                 }
+            }
         }
     }
 }
@@ -152,7 +153,6 @@ fun CryptoLinks(
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
     onSourceCodeClicked: (CryptoDetails) -> Unit,
 ) {
-
     Column(modifier = modifier.width(IntrinsicSize.Min)) {
         Text(
             text = stringResource(Res.string.crypto_details_links_section),

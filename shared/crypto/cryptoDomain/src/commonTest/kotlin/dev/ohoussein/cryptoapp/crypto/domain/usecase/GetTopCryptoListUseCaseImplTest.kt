@@ -2,10 +2,10 @@ package dev.ohoussein.cryptoapp.crypto.domain.usecase
 
 import app.cash.turbine.test
 import dev.ohoussein.cryptoapp.crypto.domain.usecase.stub.MockedCryptoRepository
+import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import kotlinx.coroutines.test.runTest
 
 class GetTopCryptoListUseCaseImplTest {
 

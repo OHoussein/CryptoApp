@@ -38,7 +38,7 @@ const val CryptoItemTestTag = "CryptoItemTestTag"
 
 @Composable
 fun CryptoListScreen(
-    //TODO This is a workaround while the viewModel builder from koin is ready
+    // TODO This is a workaround while the viewModel builder from koin is ready
     koin: Koin = getKoin(),
     viewModel: CryptoListViewModel = viewModel { koin.get() },
     navigateToCryptoDetails: (Crypto) -> Unit,
@@ -65,7 +65,6 @@ private fun CryptoListScreenContent(
     onClick: (Crypto) -> Unit,
     onRefresh: () -> Unit,
 ) {
-
     when {
         cryptoList != null -> {
             Box(
@@ -115,7 +114,6 @@ fun CryptoList(
     onRefresh: () -> Unit,
     isRefreshing: Boolean,
 ) {
-
     val pullRefreshState = rememberPullRefreshState(isRefreshing, onRefresh)
 
     Box(

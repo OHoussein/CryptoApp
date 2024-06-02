@@ -7,13 +7,13 @@ import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePercentFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePriceFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
-import kotlin.test.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import kotlin.test.*
 
 @ExperimentalCoroutinesApi
 class CryptoListViewModelTest {

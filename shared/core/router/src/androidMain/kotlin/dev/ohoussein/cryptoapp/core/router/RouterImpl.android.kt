@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
 
-class AndroidRouter(private val context: Context) : Router {
+class RouterImpl(private val context: Context) : Router {
     override fun openUrl(url: String) {
         runCatching {
             context.startActivity(

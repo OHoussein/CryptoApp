@@ -1,10 +1,10 @@
 package dev.ohoussein.cryptoapp.data.cache
 
-import kotlin.test.Test
-import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class CachedDataRepositoryImplTest {
 

@@ -14,15 +14,11 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting {
-            dependencies {
-                implementation(libs.core.kotlin.coroutines.core)
-            }
+        commonMain.dependencies {
+            implementation(libs.core.kotlin.coroutines.core)
         }
-        val commonTest by getting {
-            dependencies {
-                implementation(libs.test.coroutines)
-            }
+        commonTest.dependencies {
+            implementation(libs.test.coroutines)
         }
     }
 }

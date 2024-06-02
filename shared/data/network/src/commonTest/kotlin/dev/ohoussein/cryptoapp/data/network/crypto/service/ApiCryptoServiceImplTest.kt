@@ -5,11 +5,11 @@ import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockCryptoDetailsJson
 import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockTopCryptoListJson
 import dev.ohoussein.cryptoapp.data.network.crypto.service.utils.mockedHttpClient
+import kotlinx.coroutines.runBlocking
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
-import kotlinx.coroutines.runBlocking
 
 class ApiCryptoServiceImplTest {
 

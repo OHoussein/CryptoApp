@@ -12,7 +12,7 @@ val cryptoPresentationModule = module {
     factoryOf(::DomainModelMapper)
     factoryOf(::CryptoListViewModel)
     factory { params ->
-        CryptoDetailsViewModel(get(), get(), params.get())
+        CryptoDetailsViewModel(get(), get(), get(), params.get())
     }
 }
 

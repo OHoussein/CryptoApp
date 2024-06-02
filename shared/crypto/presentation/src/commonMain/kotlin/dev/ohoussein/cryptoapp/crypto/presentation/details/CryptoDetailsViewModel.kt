@@ -1,5 +1,6 @@
 package dev.ohoussein.cryptoapp.crypto.presentation.details
 
+import dev.ohoussein.cryptoapp.core.router.Router
 import dev.ohoussein.cryptoapp.crypto.domain.usecase.GetCryptoDetailsUseCase
 import dev.ohoussein.cryptoapp.crypto.presentation.core.ViewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.mapper.DomainModelMapper
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 class CryptoDetailsViewModel(
     private val useCase: GetCryptoDetailsUseCase,
     private val modelMapper: DomainModelMapper,
+    private val router: Router,
     private val cryptoId: String,
 ) : ViewModel<CryptoDetailsState, CryptoDetailsEvents>(CryptoDetailsState()) {
 
@@ -30,6 +32,16 @@ class CryptoDetailsViewModel(
     override fun dispatch(event: CryptoDetailsEvents) {
         when (event) {
             CryptoDetailsEvents.Refresh -> refresh()
+
+            CryptoDetailsEvents.BlockchainSiteClicked ->
+                state.value.cryptoDetails?.blockchainSite?.let { router.openUrl(it) }
+
+            CryptoDetailsEvents.HomePageClicked ->
+                state.value.cryptoDetails?.homePageUrl?.let { router.openUrl(it) }
+
+            CryptoDetailsEvents.SourceCodeClicked ->
+                state.value.cryptoDetails?.mainRepoUrl?.let { router.openUrl(it) }
+
         }
     }
 

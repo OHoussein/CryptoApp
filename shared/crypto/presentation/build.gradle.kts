@@ -26,6 +26,7 @@ kotlin {
             implementation(project(":shared:crypto:cryptoDomain"))
             implementation(project(":shared:crypto:cryptoData"))
             implementation(project(":shared:core:formatter"))
+            implementation(project(":shared:core:router"))
         }
 
         commonTest.dependencies {

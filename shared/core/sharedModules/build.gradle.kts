@@ -18,6 +18,7 @@ kotlin {
             dependencies {
                 implementation(libs.koin.core)
                 implementation(project(":shared:core:formatter"))
+                implementation(project(":shared:core:router"))
                 implementation(project(":shared:data:database"))
                 implementation(project(":shared:data:network"))
                 implementation(project(":shared:crypto:cryptoDomain"))

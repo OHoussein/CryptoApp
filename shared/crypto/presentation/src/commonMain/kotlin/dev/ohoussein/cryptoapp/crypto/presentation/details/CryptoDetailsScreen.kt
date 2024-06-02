@@ -26,7 +26,9 @@ fun CryptoDetailsScreen(
     cryptoId: String,
     // This is a workaround while the viewModel builder from koin is ready
     koin: Koin = getKoin(),
-    viewModel: CryptoDetailsViewModel = viewModel { koin.get { parametersOf(cryptoId) } },
+    viewModel: CryptoDetailsViewModel = viewModel {
+        koin.get { parametersOf(cryptoId) }
+    },
     onBackClicked: () -> Unit,
 ) {
 
@@ -44,13 +46,13 @@ fun CryptoDetailsScreen(
             error = (state.status as? DataStatus.Error)?.message,
             onRefresh = { viewModel.dispatch(CryptoDetailsEvents.Refresh) },
             onHomePageClicked = { crypto ->
-                //crypto.homePageUrl?.let { externalRouter.openWebUrl(it) }
+                viewModel.dispatch(CryptoDetailsEvents.HomePageClicked)
             },
             onBlockchainSiteClicked = { crypto ->
-                //crypto.blockchainSite?.let { externalRouter.openWebUrl(it) }
+                viewModel.dispatch(CryptoDetailsEvents.BlockchainSiteClicked)
             },
             onSourceCodeClicked = { crypto ->
-                // crypto.mainRepoUrl?.let { externalRouter.openWebUrl(it) }
+                viewModel.dispatch(CryptoDetailsEvents.SourceCodeClicked)
             },
         )
     }

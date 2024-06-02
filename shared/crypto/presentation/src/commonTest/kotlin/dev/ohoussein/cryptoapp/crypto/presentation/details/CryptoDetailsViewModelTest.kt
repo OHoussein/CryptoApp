@@ -5,6 +5,7 @@ import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakeGetCryptoDetailsUseCase
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePercentFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePriceFormatter
+import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakeRouter
 import dev.ohoussein.cryptoapp.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
 import kotlinx.coroutines.Dispatchers
@@ -40,10 +41,11 @@ class CryptoDetailsViewModelTest {
     }
 
     @Test
-    fun `Given a list of crypto When observe the state Then should set the state of the crypto list`() = runTest {
+    fun `Given a crypto When observe the state Then should set the state of the crypto details`() = runTest {
         val viewModel = CryptoDetailsViewModel(
             useCase = useCase,
             modelMapper = modelMapper,
+            router = FakeRouter(),
             cryptoId = "bitcoin",
         )
 
@@ -63,12 +65,58 @@ class CryptoDetailsViewModelTest {
     }
 
     @Test
+    fun `Given a crypto When SourceCodeClicked Then it should open the url`() = runTest {
+        val router = FakeRouter()
+        val viewModel = CryptoDetailsViewModel(
+            useCase = useCase,
+            modelMapper = modelMapper,
+            router = router,
+            cryptoId = "bitcoin",
+        )
+
+        viewModel.dispatch(CryptoDetailsEvents.SourceCodeClicked)
+
+        assertEquals(listOf("http://repo-bitcoin.com"), router.openedUrls)
+    }
+
+    @Test
+    fun `Given a crypto When HomePageClicked Then it should open the url`() = runTest {
+        val router = FakeRouter()
+        val viewModel = CryptoDetailsViewModel(
+            useCase = useCase,
+            modelMapper = modelMapper,
+            router = router,
+            cryptoId = "bitcoin",
+        )
+
+        viewModel.dispatch(CryptoDetailsEvents.HomePageClicked)
+
+        assertEquals(listOf("http://home-bitcoin.com"), router.openedUrls)
+    }
+
+    @Test
+    fun `Given a crypto When BlockchainSiteClicked Then it should open the url`() = runTest {
+        val router = FakeRouter()
+        val viewModel = CryptoDetailsViewModel(
+            useCase = useCase,
+            modelMapper = modelMapper,
+            router = router,
+            cryptoId = "bitcoin",
+        )
+
+        viewModel.dispatch(CryptoDetailsEvents.BlockchainSiteClicked)
+
+        assertEquals(listOf("http://blockchain-bitcoin.com"), router.openedUrls)
+    }
+
+    @Test
     fun `Given an error then success When observe and refresh Then it should set the error then the success state`() =
         runTest {
             useCase.shouldThrowOnRefresh = true
             val viewModel = CryptoDetailsViewModel(
                 useCase = useCase,
                 modelMapper = modelMapper,
+                router = FakeRouter(),
                 cryptoId = "bitcoin",
             )
 

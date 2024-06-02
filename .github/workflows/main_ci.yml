@@ -94,7 +94,7 @@ jobs:
           java-version: 17
 
       - name: Setup shared modules
-        run: ./gradlew :shared:core:sharedModules:generateDummyFramework
+        run: ./gradlew :shared:presentation:generateDummyFramework
         working-directory: ${{ github.workspace }}
 
       - name: Install cocoapods

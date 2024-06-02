@@ -2,12 +2,12 @@ package dev.ohoussein.cryptoapp.data.database.crypto
 
 import dev.ohoussein.cryptoapp.data.database.createDatabase
 import dev.ohoussein.cryptoapp.data.database.crypto.mock.TestDataFactory
-import kotlin.test.assertEquals
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
+import kotlin.test.assertEquals
 
 class CryptoDAOImplTest {
 

@@ -31,7 +31,6 @@ fun CryptoDetailsScreen(
     },
     onBackClicked: () -> Unit,
 ) {
-
     val state: CryptoDetailsState by viewModel.state.collectAsState()
 
     LaunchedEffect(Unit) {
@@ -99,7 +98,6 @@ fun CryptoDetailsContent(
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
     onSourceCodeClicked: (CryptoDetails) -> Unit,
 ) {
-
     val scrollState = rememberScrollState()
 
     Column(

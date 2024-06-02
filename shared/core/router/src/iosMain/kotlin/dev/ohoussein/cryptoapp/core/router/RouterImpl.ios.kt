@@ -3,7 +3,7 @@ package dev.ohoussein.cryptoapp.core.router
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 
-class IOSRouter : Router {
+class RouterImpl : Router {
     override fun openUrl(url: String) {
         runCatching {
             UIApplication.sharedApplication.openURL(

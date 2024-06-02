@@ -15,7 +15,6 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":shared:core:coroutinesTools"))
             implementation(libs.core.kotlin.coroutines.core)
             implementation(libs.koin.core)
         }

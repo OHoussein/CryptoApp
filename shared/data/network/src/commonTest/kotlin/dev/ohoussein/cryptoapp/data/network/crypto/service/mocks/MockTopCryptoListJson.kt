@@ -1,4 +1,5 @@
 @file:Suppress("MaxLineLength")
+
 package dev.ohoussein.cryptoapp.data.network.crypto.service.mocks
 
 val mockTopCryptoListJson = """

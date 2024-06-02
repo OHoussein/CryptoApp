@@ -7,4 +7,3 @@ import dev.ohoussein.cryptoapp.database.CryptoDB
 actual class DatabaseDriverFactory {
     actual fun createDriver(): SqlDriver = NativeSqliteDriver(CryptoDB.Schema, "CryptoDatabase.db")
 }
-

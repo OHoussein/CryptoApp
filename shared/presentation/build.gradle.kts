@@ -5,9 +5,6 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
 }
-dependencies {
-    implementation(project(":shared:core:sharedModules"))
-}
 
 kotlin {
     listOf(
@@ -18,12 +15,6 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Presentation"
             isStatic = true
-
-            // export(libs.decompose.core)
-            // export("com.arkivanov.essenty:lifecycle:2.0.0-alpha02")
-            // // For state preservation on Darwin targets
-            // export("com.arkivanov.essenty:state-keeper:2.0.0-alpha02")
-            // export("com.arkivanov.parcelize.darwin:runtime:2.0.0-alpha02")
         }
     }
 
@@ -45,8 +36,7 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(libs.compose.navigation)
-            // api(libs.decompose.core)
-            // implementation(libs.decompose.compose)
+
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.coil.compose)
@@ -54,9 +44,14 @@ kotlin {
 
             implementation(project(":shared:crypto:presentation"))
             implementation(project(":shared:designsystem"))
-            implementation(project(":shared:core:sharedModules"))
-            // implementation(project(":shared:data"))
-            // implementation(project(":shared:router"))
+
+            // For DI injection
+            implementation(project(":shared:core:formatter"))
+            implementation(project(":shared:core:router"))
+            implementation(project(":shared:data:database"))
+            implementation(project(":shared:data:network"))
+            implementation(project(":shared:crypto:cryptoDomain"))
+            implementation(project(":shared:crypto:cryptoData"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

@@ -93,28 +93,41 @@ jobs:
           distribution: 'adopt'
           java-version: 20
 
-      - name: Setup shared modules
-        run: ./gradlew :shared:presentation:generateDummyFramework
-        working-directory: ${{ github.workspace }}
-
-      - name: Install cocoapods
-        run: gem install cocoapods
-
-      - name: Install dependencies
-        run: pod install
-        working-directory: ./CryptoAppiOS
-
       - name: Build
-        working-directory: ./CryptoAppiOS
         run: |
-          xcodebuild -scheme CryptoAppiOS -workspace ./CryptoAppiOS.xcworkspace \
-           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO \
-           -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.2' \
-           -derivedDataPath \
-           build
+          xcodebuild \
+          -workspace app-iOS/appiOS.xcodeproj/project.xcworkspace \
+          -configuration Release \
+          -scheme appiOS \
+          -sdk iphonesimulator \
+          -derivedDataPath app-iOS/build
 
       - name: Upload iOS APP
         uses: actions/upload-artifact@v3
         with:
-          name: ios_app
-          path: CryptoAppiOS/build/Build/Products/Debug-iphonesimulator/CryptoAppiOS.app
+          name: 'ios_app'
+          path: app-iOS/build/Build/Products/Release-iphonesimulator/CryptoApp.app
+
+  Desktop:
+    name: Desktop Build
+    runs-on: macOS-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'adopt'
+          java-version: 17
+
+      - name: Build app
+        run: bash ./gradlew app-desktop:packageDmg
+
+      - name: Upload Desktop binaries
+        uses: actions/upload-artifact@v3
+        with:
+          name: 'desktop_app'
+          path: ./app-desktop/build/compose/binaries/main/dmg/dev.ohoussein.cryptoapp-1.0.0.dmg
+

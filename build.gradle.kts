@@ -59,14 +59,9 @@ task("generateScreenshots", Exec::class) {
 }
 
 
-val ignoredCoverageModules = listOf(
-    ":android:core:test",
-)
 
 allprojects {
     apply(plugin = "kover")
-    if (ignoredCoverageModules.contains(project.name))
-        return@allprojects
     if (extensions.findByType<kotlinx.kover.api.KoverProjectConfig>() != null) {
         extensions.configure<kotlinx.kover.api.KoverProjectConfig> {
             isDisabled.set(false)
@@ -101,10 +96,6 @@ koverMerged {
                 "*Generated",
                 "Composable",
             )
-        }
-
-        projects {
-            excludes += ignoredCoverageModules
         }
     }
 

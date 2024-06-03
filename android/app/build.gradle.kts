@@ -1,9 +1,6 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("kotlin-kapt")
-    id("org.jetbrains.kotlin.android")
     id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.android.app")
     id("dev.ohoussein.cryptoapp.koin")
@@ -13,13 +10,11 @@ android {
     namespace = "dev.ohoussein.cryptoapp"
 
     buildTypes {
-        @Suppress("UNUSED_VARIABLE")
-        val debug by getting {
+        debug {
             applicationIdSuffix = ".debug"
         }
 
-        @Suppress("UNUSED_VARIABLE")
-        val release by getting {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -29,24 +24,14 @@ android {
     }
 }
 
-kapt {
-    correctErrorTypes = true
-}
-
 dependencies {
     implementation(project(":shared:presentation"))
     // Common
     implementation(libs.core.kotlin.coroutines.core)
     implementation(libs.core.kotlin.coroutines.android)
-    implementation(libs.core.timber)
 
     // Presentation
     implementation(libs.android.appcompat)
     implementation(libs.android.compose.activity)
     implementation(libs.android.material)
-
-    testImplementation(libs.koin.test)
-    testImplementation(libs.koin.junit4)
-    testImplementation(libs.test.android.arch.core)
-    testImplementation(libs.test.coroutines)
 }

@@ -14,18 +14,12 @@ compose-plugin = "1.6.10"
 compose-navigation = "2.8.0-alpha02"
 compose-lifecycle = "2.8.0"
 
-timberVersion = "5.0.1"
 appcompatVersion = "1.6.1"
 materialVersion = "1.9.0"
 compose = "1.6.5"
 coil = "3.0.0-alpha06"
 activityComposeVersion = "1.8.1"
 ktor = "2.3.7"
-
-mockk = "1.13.8"
-mockkCommon = "1.12.5"
-junitVersion = "4.13.2"
-archCoreTestingVersion = "2.2.0"
 turbineVersion = "1.0.0"
 
 
@@ -42,12 +36,10 @@ core-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutin
 core-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutineVersion" }
 core-kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "coroutine" }
 
-core-timber = { module = "com.jakewharton.timber:timber", version.ref = "timberVersion" }
 koin-android-core = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinCore" }
-koin-junit4 = { module = "io.insert-koin:koin-test-junit4", version.ref = "koinCore" }
 
 compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "compose-navigation" }
 compose-lifecycle = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "compose-lifecycle" }
@@ -73,10 +65,6 @@ data-sqldelight-android = { module = "app.cash.sqldelight:android-driver", versi
 data-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
 data-sqldelight-ext-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 
-test-junit = { module = "junit:junit", version.ref = "junitVersion" }
-test-mockk-core = { module = "io.mockk:mockk", version.ref = "mockk" }
-test-mockk-common = { module = "io.mockk:mockk-common", version.ref = "mockkCommon" }
-test-android-arch-core = { module = "androidx.arch.core:core-testing", version.ref = "archCoreTestingVersion" }
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }
 test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutineVersion" }
 
@@ -84,5 +72,3 @@ test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }

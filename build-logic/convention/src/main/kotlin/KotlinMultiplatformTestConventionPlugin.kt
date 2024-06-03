@@ -26,12 +26,6 @@ class KotlinMultiplatformTestConventionPlugin : Plugin<Project> {
                     implementation(kotlin("test-common"))
                     implementation(libs.findLibrary("test-turbine").get())
                 }
-
-                sourceSets.getByName("androidUnitTest").dependencies {
-                    implementation(libs.findLibrary("test-mockk-core").get())
-                    implementation(libs.findLibrary("test-junit").get())
-                    implementation(libs.findLibrary("test-mockk-common").get())
-                }
             }
 
             afterEvaluate {

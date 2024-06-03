@@ -1,4 +1,4 @@
-package dev.ohoussein.cryptoapp.dev.ohoussein.cryptoapp
+package dev.ohoussein.cryptoapp
 
 import SharedApp
 import androidx.activity.ComponentActivity

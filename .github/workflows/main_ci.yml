@@ -18,7 +18,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: 20
 
       - name: Run Detekt
         run: ./gradlew detekt
@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: 20
 
       - name: Run Release Unit Tests
         run: bash ./gradlew koverMergedReport
@@ -61,7 +61,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: 20
 
       - name: Build app
         run: bash ./gradlew assemble
@@ -91,7 +91,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: 20
 
       - name: Setup shared modules
         run: ./gradlew :shared:presentation:generateDummyFramework

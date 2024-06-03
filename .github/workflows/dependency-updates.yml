@@ -16,7 +16,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: 20
       - name: 'run dependencyUpdates'
         run: ./gradlew dependencyUpdates
       - name: Report file summary

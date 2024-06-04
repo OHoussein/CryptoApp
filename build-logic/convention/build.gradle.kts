@@ -24,34 +24,14 @@ gradlePlugin {
             implementationClass = "KotlinDetektConventionPlugin"
         }
 
-        register("robolectric") {
-            id = "${namespace}.android.robolectric"
-            implementationClass = "RobolectricConventionPlugin"
-        }
-
         register("android-app-module") {
             id = "${namespace}.android.app"
             implementationClass = "AndroidAppConventionPlugin"
         }
 
-        register("koin") {
-            id = "${namespace}.koin"
-            implementationClass = "KoinConventionPlugin"
-        }
-
         register("kotlinMultiplatformLibrary") {
             id = "${namespace}.kotlin.multiplatform.library"
             implementationClass = "KotlinMultiplatformLibraryConventionPlugin"
-        }
-
-        register("kotlinMultiplatformTest") {
-            id = "${namespace}.kotlin.multiplatform.test"
-            implementationClass = "KotlinMultiplatformTestConventionPlugin"
-        }
-
-        register("ComposeMultiplatformLibraryConventionPlugin") {
-            id = "${namespace}.kmp.compose.library"
-            implementationClass = "ComposeMultiplatformLibraryConventionPlugin"
         }
     }
 }

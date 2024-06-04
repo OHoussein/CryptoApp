@@ -1,7 +1,5 @@
 plugins {
-    id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
-    id("dev.ohoussein.cryptoapp.kotlin.multiplatform.test")
     id("app.cash.sqldelight")
 }
 
@@ -14,14 +12,6 @@ sqldelight {
 }
 
 kotlin {
-    cocoapods {
-        summary = "Database module"
-        version = "1.0"
-        framework {
-            baseName = "database"
-        }
-    }
-
     sourceSets {
         commonMain.dependencies {
             implementation(project(":shared:crypto:cryptoDomain"))
@@ -34,12 +24,12 @@ kotlin {
             implementation(libs.test.coroutines)
         }
 
-        androidUnitTest.dependencies {
-            implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
-        }
-
         androidMain.dependencies {
             implementation(libs.data.sqldelight.android)
+        }
+
+        androidUnitTest.dependencies {
+            implementation(libs.data.sqldelight.desktop)
         }
 
         iosMain.dependencies {
@@ -47,11 +37,7 @@ kotlin {
         }
 
         desktopMain.dependencies {
-            implementation("app.cash.sqldelight:sqlite-driver:2.0.2")
+            implementation(libs.data.sqldelight.desktop)
         }
     }
-}
-
-android {
-    namespace = "dev.ohoussein.cryptoapp.data.database"
 }

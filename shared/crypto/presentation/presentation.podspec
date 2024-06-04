@@ -1,23 +1,23 @@
 Pod::Spec.new do |spec|
-    spec.name                     = 'cryptoDomain'
-    spec.version                  = '1.0'
-    spec.homepage                 = 'https://github.com/OHoussein/android-ios-kmm-crypto-app'
+    spec.name                     = 'presentation'
+    spec.version                  = '1.0.0'
+    spec.homepage                 = ''
     spec.source                   = { :http=> ''}
     spec.authors                  = ''
     spec.license                  = ''
-    spec.summary                  = 'Crypto shared domain module'
-    spec.vendored_frameworks      = 'build/cocoapods/framework/cryptoDomain.framework'
+    spec.summary                  = ''
+    spec.vendored_frameworks      = 'build/cocoapods/framework/presentation.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target    = '15.0'
                 
                 
-    if !Dir.exist?('build/cocoapods/framework/cryptoDomain.framework') || Dir.empty?('build/cocoapods/framework/cryptoDomain.framework')
+                
+    if !Dir.exist?('build/cocoapods/framework/presentation.framework') || Dir.empty?('build/cocoapods/framework/presentation.framework')
         raise "
 
-        Kotlin framework 'cryptoDomain' doesn't exist yet, so a proper Xcode project can't be generated.
+        Kotlin framework 'presentation' doesn't exist yet, so a proper Xcode project can't be generated.
         'pod install' should be executed after running ':generateDummyFramework' Gradle task:
 
-            ./gradlew :shared:crypto:cryptoDomain:generateDummyFramework
+            ./gradlew :shared:crypto:presentation:generateDummyFramework
 
         Alternatively, proper pod installation is performed during Gradle sync in the IDE (if Podfile location is set)"
     end
@@ -27,13 +27,13 @@ Pod::Spec.new do |spec|
     }
                 
     spec.pod_target_xcconfig = {
-        'KOTLIN_PROJECT_PATH' => ':shared:crypto:cryptoDomain',
-        'PRODUCT_MODULE_NAME' => 'cryptoDomain',
+        'KOTLIN_PROJECT_PATH' => ':shared:crypto:presentation',
+        'PRODUCT_MODULE_NAME' => 'presentation',
     }
                 
     spec.script_phases = [
         {
-            :name => 'Build cryptoDomain',
+            :name => 'Build presentation',
             :execution_position => :before_compile,
             :shell_path => '/bin/sh',
             :script => <<-SCRIPT
@@ -50,5 +50,5 @@ Pod::Spec.new do |spec|
             SCRIPT
         }
     ]
-                
+    spec.resources = ['build/compose/cocoapods/compose-resources']
 end

@@ -1,18 +1,8 @@
 plugins {
-    id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
-    id("dev.ohoussein.cryptoapp.kotlin.multiplatform.test")
 }
 
 kotlin {
-    cocoapods {
-        summary = "Shared crypto data network"
-        version = "1.0"
-        framework {
-            baseName = "cryptoData"
-        }
-    }
-
     sourceSets {
         commonMain.dependencies {
             implementation(libs.core.kotlin.coroutines.core)
@@ -23,8 +13,4 @@ kotlin {
             implementation(project(":shared:crypto:cryptoDomain"))
         }
     }
-}
-
-android {
-    namespace = "dev.ohoussein.cryptoapp.crypto.data"
 }

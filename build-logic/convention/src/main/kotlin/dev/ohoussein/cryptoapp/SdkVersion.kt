@@ -5,7 +5,3 @@ object SdkVersion {
     const val COMPILE_SDK_VERSION = 34
     const val TARGET_SDK_VERSION = 34
 }
-
-object IOSTargetVersions {
-    const val DEPLOYMENT_TARGET = "15.0"
-}

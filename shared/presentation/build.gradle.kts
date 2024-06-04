@@ -1,6 +1,5 @@
 plugins {
-    id("dev.ohoussein.cryptoapp.kmp.compose.library")
-    id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
@@ -15,19 +14,19 @@ kotlin {
         iosTarget.binaries.framework {
             baseName = "Presentation"
             isStatic = true
+            binaryOption("bundleId", "dev.ohoussein.cryptoapp")
+            binaryOption("bundleVersion", "1.0.0")
         }
     }
 
     sourceSets {
-        val desktopMain by getting
-
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.android.compose.activity)
 
             implementation(libs.compose.ui.tooling)
             implementation(libs.compose.ui.tooling.preview)
-            implementation(libs.koin.android.core)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)

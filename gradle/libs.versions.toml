@@ -36,7 +36,7 @@ core-kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutin
 core-kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutineVersion" }
 core-kotlin-coroutines-swing = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-swing", version = "coroutine" }
 
-koin-android-core = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koinCore" }
@@ -63,6 +63,7 @@ data-ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "kto
 data-ktor-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 data-sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelight" }
 data-sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelight" }
+data-sqldelight-desktop = { module = "app.cash.sqldelight:sqlite-driver", version.ref = "sqldelight" }
 data-sqldelight-ext-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelight" }
 
 test-turbine = { module = "app.cash.turbine:turbine", version.ref = "turbineVersion" }

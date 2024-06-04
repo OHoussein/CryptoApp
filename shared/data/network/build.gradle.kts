@@ -1,19 +1,9 @@
 plugins {
-    id("dev.ohoussein.cryptoapp.kotlin.detekt")
     id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
-    id("dev.ohoussein.cryptoapp.kotlin.multiplatform.test")
     kotlin("plugin.serialization") version libs.versions.kotlin
 }
 
 kotlin {
-    cocoapods {
-        summary = "Network module"
-        version = "1.0"
-        framework {
-            baseName = "network"
-        }
-    }
-
     sourceSets {
         commonMain.dependencies {
             implementation(libs.koin.core)
@@ -39,8 +29,4 @@ kotlin {
             implementation(libs.data.ktor.apache)
         }
     }
-}
-
-android {
-    namespace = "dev.ohoussein.cryptoapp.data.network"
 }

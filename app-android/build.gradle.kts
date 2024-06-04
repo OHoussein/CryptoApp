@@ -1,9 +1,8 @@
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("dev.ohoussein.cryptoapp.kotlin.detekt")
+
     id("dev.ohoussein.cryptoapp.android.app")
-    id("dev.ohoussein.cryptoapp.koin")
 }
 
 android {
@@ -28,6 +27,7 @@ dependencies {
     implementation(project(":shared:presentation"))
     // Common
     implementation(libs.core.kotlin.coroutines.core)
+    implementation(libs.koin.android)
     implementation(libs.core.kotlin.coroutines.android)
 
     // Presentation

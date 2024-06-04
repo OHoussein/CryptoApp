@@ -1,21 +1,27 @@
 import com.android.build.gradle.LibraryExtension
-import dev.ohoussein.cryptoapp.IOSTargetVersions
-import dev.ohoussein.cryptoapp.SdkVersion
+import dev.ohoussein.cryptoapp.getAndroidNameSpaceFromPath
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
+import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
+import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
-import org.jetbrains.kotlin.gradle.plugin.cocoapods.CocoapodsExtension
+import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest
+
+private const val PACKAGE = "com.ohoussein"
+private const val iosDeviceId = "iPhone 15 Pro"
 
 class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
+            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
             with(pluginManager) {
                 apply("com.android.library")
                 apply("org.jetbrains.kotlin.multiplatform")
-                apply("org.jetbrains.kotlin.native.cocoapods")
+                apply("dev.ohoussein.cryptoapp.kotlin.detekt")
             }
 
             extensions.configure<KotlinMultiplatformExtension> {
@@ -26,19 +32,27 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 jvm("desktop")
 
                 applyDefaultHierarchyTemplate()
-
-                this.cocoapods {
-                    homepage = "https://github.com/OHoussein/android-ios-kmm-crypto-app"
-                    ios.deploymentTarget = IOSTargetVersions.DEPLOYMENT_TARGET
-                    framework {
-                        isStatic = false
-                    }
-                }
             }
 
             extensions.configure<LibraryExtension> {
-                defaultConfig.targetSdk = SdkVersion.TARGET_SDK_VERSION
+                namespace = getAndroidNameSpaceFromPath(PACKAGE, path)
                 configureKotlinAndroid(this)
+            }
+
+            extensions.configure<KotlinMultiplatformExtension> {
+                sourceSets.getByName("commonTest").dependencies {
+                    implementation(kotlin("test"))
+                    implementation(kotlin("test-annotations-common"))
+                    implementation(kotlin("test-common"))
+                    implementation(libs.findLibrary("test.coroutines").get())
+                    implementation(libs.findLibrary("test-turbine").get())
+                }
+            }
+
+            afterEvaluate {
+                tasks.withType<KotlinNativeSimulatorTest> {
+                    device.set(iosDeviceId)
+                }
             }
 
             task("unitTestAll") {
@@ -51,9 +65,5 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 )
             }
         }
-    }
-
-    private fun KotlinMultiplatformExtension.cocoapods(block: CocoapodsExtension.() -> Unit) {
-        (this as ExtensionAware).extensions.configure("cocoapods", block)
     }
 }

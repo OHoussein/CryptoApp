@@ -4,6 +4,7 @@ plugins {
     kotlin("jvm")
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    id("dev.ohoussein.cryptoapp.kotlin.detekt")
 }
 
 group = "dev.ohoussein.cryptoapp"

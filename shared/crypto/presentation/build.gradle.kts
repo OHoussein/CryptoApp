@@ -1,6 +1,5 @@
 plugins {
-    id("dev.ohoussein.cryptoapp.kmp.compose.library")
-    id("dev.ohoussein.cryptoapp.kotlin.detekt")
+    id("dev.ohoussein.cryptoapp.kotlin.multiplatform.library")
     alias(libs.plugins.kotlinSerialization)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)

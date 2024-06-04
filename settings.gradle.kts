@@ -8,18 +8,11 @@ pluginManagement {
 }
 plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
-        //id("org.jetbrains.compose").version(libs.)
 }
 rootProject.name = "cryptoapp"
 
-include(":android")
-include(":android:app")
+include(":app-android")
 include(":app-desktop")
-// include(":android:crypto:presentation")
-// include(":android:core:test")
-// include(":android:core:common")
-// include(":android:core:injection")
-// include(":android:core:designsystem")
 include(":shared:data:cache")
 include(":shared:data:network")
 include(":shared:data:database")

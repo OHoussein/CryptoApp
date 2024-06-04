@@ -1,4 +1,4 @@
-bash ../gradlew :android:app:installRelease
+bash ../gradlew :app-android:installRelease
 adb shell screenrecord /sdcard/tmp/crypto_test.mp4 &
 maestro test android/android.yml
 kill $!

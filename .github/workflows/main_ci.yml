@@ -120,7 +120,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'adopt'
-          java-version: 17
+          java-version: 20
 
       - name: Build app
         run: bash ./gradlew app-desktop:packageDmg

@@ -64,7 +64,7 @@ jobs:
           java-version: 20
 
       - name: Build app
-        run: bash ./gradlew assemble
+        run: bash ./gradlew app-android:assembleRelease
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v3

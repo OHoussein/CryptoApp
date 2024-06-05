@@ -10,7 +10,7 @@ kotlin {
             implementation(project(":shared:data:network"))
             implementation(project(":shared:data:database"))
             implementation(project(":shared:data:cache"))
-            implementation(project(":shared:crypto:cryptoDomain"))
+            implementation(project(":shared:crypto:domain"))
         }
     }
 }

@@ -14,7 +14,7 @@ sqldelight {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(project(":shared:crypto:cryptoDomain"))
+            implementation(project(":shared:crypto:domain"))
             implementation(libs.core.kotlin.coroutines.core)
             implementation(libs.data.sqldelight.ext.coroutines)
             implementation(libs.koin.core)

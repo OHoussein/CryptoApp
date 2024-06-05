@@ -22,8 +22,8 @@ kotlin {
             implementation(libs.coil.network)
 
             implementation(project(":shared:designsystem"))
-            implementation(project(":shared:crypto:cryptoDomain"))
-            implementation(project(":shared:crypto:cryptoData"))
+            implementation(project(":shared:crypto:domain"))
+            implementation(project(":shared:crypto:data"))
             implementation(project(":shared:core:formatter"))
             implementation(project(":shared:core:router"))
         }

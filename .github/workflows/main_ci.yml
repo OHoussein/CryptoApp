@@ -97,7 +97,7 @@ jobs:
         run: |
           xcodebuild \
           -workspace app-iOS/appiOS.xcodeproj/project.xcworkspace \
-          -configuration Release \
+          -configuration Debug \
           -scheme appiOS \
           -sdk iphonesimulator \
           -derivedDataPath app-iOS/build
@@ -106,7 +106,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: 'ios_app'
-          path: app-iOS/build/Build/Products/Release-iphonesimulator/CryptoApp.app
+          path: app-iOS/build/Build/Products/Debug-iphonesimulator/CryptoApp.app
 
   Desktop:
     name: Desktop Build

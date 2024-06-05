@@ -49,8 +49,8 @@ kotlin {
             implementation(project(":shared:core:router"))
             implementation(project(":shared:data:database"))
             implementation(project(":shared:data:network"))
-            implementation(project(":shared:crypto:cryptoDomain"))
-            implementation(project(":shared:crypto:cryptoData"))
+            implementation(project(":shared:crypto:domain"))
+            implementation(project(":shared:crypto:data"))
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)

@@ -52,9 +52,18 @@ kotlin {
             implementation(project(":shared:crypto:domain"))
             implementation(project(":shared:crypto:data"))
         }
+
+        androidUnitTest.dependencies {
+            implementation(libs.koin.test)
+        }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.core.kotlin.coroutines.swing)
+        }
+
+        desktopTest.dependencies {
+            implementation(libs.koin.test)
         }
     }
 }

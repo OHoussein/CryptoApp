@@ -10,14 +10,11 @@ import dev.ohoussein.cryptoapp.data.database.databaseModule
 import dev.ohoussein.cryptoapp.data.network.networkModule
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
-import kotlin.test.Test
 import org.koin.core.annotation.KoinExperimentalAPI
-import org.koin.dsl.koinApplication
 import org.koin.dsl.module
-import org.koin.test.check.checkKoinModules
-import org.koin.test.check.checkModules
 import org.koin.test.verify.Verify.verify
 import org.koin.test.verify.verify
+import kotlin.test.Test
 
 val sharedPresentationModules = module {
     includes(

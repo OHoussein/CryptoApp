@@ -18,9 +18,11 @@ import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import dev.ohoussein.cryptoapp.crypto.presentation.fake.Fake.previewCrypto
 import dev.ohoussein.cryptoapp.crypto.presentation.model.Crypto
 import dev.ohoussein.cryptoapp.designsystem.theme.NegativeColor
 import dev.ohoussein.cryptoapp.designsystem.theme.PositiveColor
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun CryptoItem(
@@ -107,7 +109,6 @@ fun CryptoImage(
     )
 }
 
-/*
 @Preview
 @Composable
 private fun PreviewCryptoItem() {
@@ -116,4 +117,3 @@ private fun PreviewCryptoItem() {
         onClick = {},
     )
 }
-*/

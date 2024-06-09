@@ -1,27 +1,63 @@
-[![Android Main CI](https://github.com/OHoussein/android-ios-kmm-crypto-app/workflows/Android%20Main%20CI/badge.svg)](https://github.com/OHoussein/android-ios-kmm-crypto-app/actions/workflows/main_ci.yml)
+[![Main CI](https://github.com/OHoussein/android-ios-kmm-crypto-app/workflows/Android%20Main%20CI/badge.svg)](https://github.com/OHoussein/android-ios-kmm-crypto-app/actions/workflows/main_ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OHoussein_android-crypto-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=OHoussein_android-crypto-app)
 
 
-Implementation of the clean architecture using:
+A cross-platform app to display cryptocurrency prices, built using Kotlin Multiplatform and Compose Multiplatform. The app targets Android, iOS, and Desktop (JVM) platforms.
 
-## Stack
-#### Core
-* Kotlin multiplatform
-* Multi-module clean architecture
-* **Koin** for dependency injection
-* **Coroutine/Flow**
-* Ktor for API calls
-* SQLDelight for local database
-* end to end test with maestro
-* JUnit tests
-* **Kover** for tests coverage 
-#### Android
-* **Jetpack compose**
-* **Unit test** with kotest
-* **Github Action**
-#### iOS
-* **Swift UI**
-* **Publisher**
+## Features
+
+- View real-time cryptocurrency prices.
+- Offline first.
+- Cross-platform support: Android, iOS, and Desktop.
+- Coroutine and Flow for asynchronous operations.
+- Comprehensive testing with Maestro and JUnit.
+- Test coverage reports with Kover.
+
+## Tech Stack
+
+- **Kotlin Multiplatform**: Share code between Android, iOS, and Desktop.
+- **Compose Multiplatform**: Build UI across platforms with Jetpack Compose.
+- **Multi-module clean architecture**: Maintainable and scalable project structure.
+- **Koin**: Lightweight dependency injection framework.
+- **Coroutines/Flow**: Asynchronous programming.
+- **Ktor**: HTTP client.
+- **SQLDelight**: Type-safe SQL, and multiplatform persistence library.
+- **JUnit**: Unit testing framework.
+- **Kover**: Code coverage tool for Kotlin.
+- **Maestro**: End-to-end test automation framework.
+
+## Architecture
+
+The app follows the clean architecture principle, which includes:
+- **Domain Layer**: Contains business logic.
+- **Data Layer**: Handles data operations, including API calls and local database.
+- **Presentation Layer**: Contains UI components built with Compose Multiplatform.
+
+## Setup and Installation
+- **JDK 20** to build the app
+- [JVM](https://www.java.com/en/download/help/download_options.html) to run the desktop app
+- [Xcode](https://developer.apple.com/xcode/) to build the iOS app
+- Recommended IDE: [Intellij](https://www.jetbrains.com/idea/) or [Fleet](https://www.jetbrains.com/fleet/)
+- [Maestro CLI](https://maestro.mobile.dev/) if you want to run the end to end tests.
+
+## Build the app
+### Android
+```shell
+./gradlew app-android:assembleRelease
+```
+### iOS
+```shell
+xcodebuild \
+          -workspace app-iOS/appiOS.xcodeproj/project.xcworkspace \
+          -configuration Debug \
+          -scheme appiOS \
+          -sdk iphonesimulator \
+          -derivedDataPath app-iOS/build
+```
+### Desktop
+```shell
+./gradlew app-desktop:run
+```
 
 ## Screenshots 📸
 ## Android
@@ -62,41 +98,6 @@ Implementation of the clean architecture using:
 ### Android
 https://user-images.githubusercontent.com/10960959/212092726-0e661257-5d7f-4efa-ac1d-908b0c4e19a4.mp4
 
-## Porject setup
-### For Android & iOS
-Install JDK
-### iOS
-Install cocoapods
-```
-brew install cocoapods
-```
-Install pod dependencies
-```
-pod install
-```
-
-
-## Layers
-
-### Domain Layer
-
-This module should contain only Java/Kotlin classes and doesn't have any Android framework class. It
-defines the business aspect of the application. With the use case it combines data from the data
-layer It doesn't depend on any module. It communicates with the data module through a repository
-interface declared on the domain layer and implemented on the data layer.
-
-### Presentation Layer
-
-This is the platform specific layer, it contains UI coordinated by ViewModels which execute use
-cases. This layer depends on the Domain Layer. With the DomainModelMappers, domains models are
-converted to ui models.
-
-### Data Layer
-
-Contains remote, stored or in-memory data sources. With the DomainModelMappers, data models like api
-models or database model are converted to domain models.
-
-# Architecture
 
 ## Credit
 

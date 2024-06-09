@@ -13,6 +13,7 @@ object FakeCryptoModel {
         price = 70.0,
         priceChangePercentIn24h = -2.0,
         order = order,
+        sparkLine7d = null,
     )
 
     fun cryptoList(count: Int): List<CryptoModel> =

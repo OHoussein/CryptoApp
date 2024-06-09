@@ -29,6 +29,7 @@ internal class ApiCryptoServiceImpl(
             path("/api/v3/coins/markets")
             formData {
                 parameter("vs_currency", vsCurrency)
+                parameter("sparkline", true)
             }
         }
     }.body()

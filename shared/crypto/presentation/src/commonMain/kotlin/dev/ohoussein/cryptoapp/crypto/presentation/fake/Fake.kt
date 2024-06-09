@@ -19,7 +19,8 @@ object Fake {
             priceChangePercentIn24h = LabelValue(
                 1.13,
                 "1.13%"
-            )
+            ),
+            sparkline7d = null,
         )
     }
 
@@ -56,7 +57,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 21724.0, label = "$21,724.00")),
-            priceChangePercentIn24h = LabelValue(value = 0.99867, label = "1.00%")
+            priceChangePercentIn24h = LabelValue(value = 0.99867, label = "1.00%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -66,7 +68,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/279/large/ethereum.png?1595348880",
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 1711.9, label = "$1,711.90")),
-            priceChangePercentIn24h = LabelValue(value = 3.31843, label = "3.32%")
+            priceChangePercentIn24h = LabelValue(value = 3.31843, label = "3.32%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -76,7 +79,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/325/large/Tether-logo.png?1598003707",
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 1.0, label = "$1.00")),
-            priceChangePercentIn24h = LabelValue(value = -0.12258, label = "-0.12 %")
+            priceChangePercentIn24h = LabelValue(value = -0.12258, label = "-0.12 %"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -86,7 +90,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png?1547042389",
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 0.999751, label = "$1.00")),
-            priceChangePercentIn24h = LabelValue(value = -0.18671, label = "-0.19%")
+            priceChangePercentIn24h = LabelValue(value = -0.18671, label = "-0.19%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -96,7 +101,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1644979850"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 303.95, label = "$303.95")),
-            priceChangePercentIn24h = LabelValue(value = 2.08925, label = "2.09 %")
+            priceChangePercentIn24h = LabelValue(value = 2.08925, label = "2.09 %"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -106,7 +112,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/9576/large/BUSD.png?1568947766"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 1.001, label = "$1.00")),
-            priceChangePercentIn24h = LabelValue(value = -0.07009, label = "-0.07%")
+            priceChangePercentIn24h = LabelValue(value = -0.07009, label = "-0.07%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -116,7 +123,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1605778731"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 0.349139, label = "$0.35")),
-            priceChangePercentIn24h = LabelValue(value = 1.02258, label = "1.02%")
+            priceChangePercentIn24h = LabelValue(value = 1.02258, label = "1.02%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -126,7 +134,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/975/large/cardano.png?1547034860"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 0.46538, label = "$0.47")),
-            priceChangePercentIn24h = LabelValue(value = 0.56511, label = "0.57%")
+            priceChangePercentIn24h = LabelValue(value = 0.56511, label = "0.57%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -136,7 +145,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/4128/large/solana.png?1640133422"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 34.6, label = "$34.60")),
-            priceChangePercentIn24h = LabelValue(value = -4.03468, label = "-4.03%")
+            priceChangePercentIn24h = LabelValue(value = -4.03468, label = "-4.03%"),
+            sparkline7d = null,
         ),
         Crypto(
             info = CryptoInfo(
@@ -146,7 +156,8 @@ object Fake {
                 imageUrl = "https://assets.coingecko.com/coins/images/5/large/dogecoin.png?1547792256"
             ),
             price = CryptoPrice(labelValue = LabelValue(value = 0.068203, label = "$0.07")),
-            priceChangePercentIn24h = LabelValue(value = -3.44207, label = "-3.44 %")
+            priceChangePercentIn24h = LabelValue(value = -3.44207, label = "-3.44 %"),
+            sparkline7d = null,
         ),
     )
 }

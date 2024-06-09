@@ -16,6 +16,7 @@ object TestDataFactory {
         price = Random.nextDouble(),
         priceChangePercentIn24h = Random.nextDouble(-12.0, 12.0),
         order = idIndex.toInt(),
+        sparkLine7d = null,
     )
 
     fun makeCryptoList(count: Int) = (0..count).map {

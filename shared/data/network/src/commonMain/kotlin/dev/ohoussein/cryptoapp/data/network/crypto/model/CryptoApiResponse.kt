@@ -11,6 +11,7 @@ data class TopCryptoResponse(
     @SerialName("image") val image: String,
     @SerialName("current_price") val currentPrice: Double,
     @SerialName("price_change_percentage_24h") val priceChangePercentIn24h: Double?,
+    @SerialName("sparkline_in_7d") val sparklineIn7d: SparkLineDTO? = null,
 )
 
 @Serializable
@@ -38,4 +39,9 @@ data class CryptoLinksResponse(
     @SerialName("homepage") val homepage: List<String>,
     @SerialName("blockchain_site") val blockchainSite: List<String>,
     @SerialName("repos_url") val reposUrl: Map<String, List<String>>,
+)
+
+@Serializable
+data class SparkLineDTO(
+    val price: List<Double>,
 )

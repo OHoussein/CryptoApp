@@ -6,6 +6,7 @@ import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.crypto.presentation.model.*
+import dev.ohoussein.cryptoapp.designsystem.graph.model.GraphPoint
 
 class DomainModelMapper(
     private val priceFormatter: PriceFormatter,
@@ -16,7 +17,6 @@ class DomainModelMapper(
         return domain.map { convert(it) }
     }
 
-    @Suppress("MagicNumber")
     private fun convert(domain: CryptoModel): Crypto {
         return Crypto(
             info = CryptoInfo(
@@ -31,6 +31,9 @@ class DomainModelMapper(
             priceChangePercentIn24h = domain.priceChangePercentIn24h?.let {
                 LabelValue(it, percentFormatter(it / 100.0))
             },
+            sparkline7d = domain.sparkLine7d?.mapIndexed { index, value ->
+                GraphPoint(index.toDouble(), value)
+            }
         )
     }
 

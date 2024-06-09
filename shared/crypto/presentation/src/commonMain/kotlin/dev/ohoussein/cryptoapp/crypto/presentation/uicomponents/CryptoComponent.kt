@@ -20,6 +20,7 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.Fake.previewCrypto
 import dev.ohoussein.cryptoapp.crypto.presentation.model.Crypto
+import dev.ohoussein.cryptoapp.designsystem.graph.ui.SparkLineGraph
 import dev.ohoussein.cryptoapp.designsystem.theme.NegativeColor
 import dev.ohoussein.cryptoapp.designsystem.theme.PositiveColor
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -30,7 +31,7 @@ fun CryptoItem(
     crypto: Crypto,
     onClick: (Crypto) -> Unit,
 ) {
-    Box(modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
+    Box(modifier.padding(horizontal = 8.dp, vertical = 8.dp)) {
         Card(elevation = 12.dp) {
             // this additional box is a workaround for the ripple on the card background corner
             Box(
@@ -41,50 +42,73 @@ fun CryptoItem(
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
                     CryptoImage(
-                        modifier = Modifier.size(48.dp),
+                        modifier = Modifier.size(24.dp),
                         imageUrl = crypto.info.imageUrl,
                     )
-                    Column(Modifier.padding(horizontal = 8.dp)) {
-                        Row(
-                            Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
+                    Row(
+                        Modifier.padding(horizontal = 8.dp).fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        Column(
+                            horizontalAlignment = Alignment.Start,
+                            modifier = Modifier.weight(1f),
                         ) {
-                            Text(
-                                text = crypto.info.name,
-                                style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
-                                color = MaterialTheme.colors.onSurface,
-                            )
-                            Text(
-                                text = crypto.price.labelValue.label,
-                                style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
-                                color = MaterialTheme.colors.onSurface,
+                            CryptoLabel(crypto)
+                        }
+
+                        crypto.sparkline7d?.let {
+                            SparkLineGraph(
+                                points = it,
+                                color = MaterialTheme.colors.primaryVariant,
+                                modifier = Modifier.height(45.dp).weight(1f),
                             )
                         }
-                        Row(
-                            Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
+
+                        Column(
+                            horizontalAlignment = Alignment.End,
+                            modifier = Modifier.weight(1f),
                         ) {
-                            Text(
-                                text = crypto.info.symbol,
-                                style = MaterialTheme.typography.subtitle1,
-                                color = MaterialTheme.colors.onSurface,
-                                modifier = Modifier.padding(top = 4.dp)
-                            )
-                            crypto.priceChangePercentIn24h?.let { priceChangePercentIn24h ->
-                                Text(
-                                    text = priceChangePercentIn24h.label,
-                                    style = MaterialTheme.typography.subtitle1,
-                                    color = if (priceChangePercentIn24h.value >= 0) PositiveColor else NegativeColor,
-                                    modifier = Modifier.padding(top = 4.dp)
-                                )
-                            }
+                            CryptoPrice(crypto)
                         }
                     }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun CryptoLabel(crypto: Crypto) {
+    Text(
+        text = crypto.info.name,
+        style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
+        color = MaterialTheme.colors.onSurface,
+        maxLines = 1,
+    )
+    Text(
+        text = crypto.info.symbol,
+        style = MaterialTheme.typography.body2,
+        color = MaterialTheme.colors.onSurface,
+        modifier = Modifier.padding(top = 4.dp)
+    )
+}
+
+@Composable
+private fun CryptoPrice(crypto: Crypto) {
+    Text(
+        text = crypto.price.labelValue.label,
+        style = MaterialTheme.typography.body1.copy(fontWeight = FontWeight.Bold),
+        color = MaterialTheme.colors.onSurface,
+    )
+
+    crypto.priceChangePercentIn24h?.let { priceChangePercentIn24h ->
+        Text(
+            text = priceChangePercentIn24h.label,
+            style = MaterialTheme.typography.body2,
+            color = if (priceChangePercentIn24h.value >= 0) PositiveColor else NegativeColor,
+            modifier = Modifier.padding(top = 4.dp)
+        )
     }
 }
 

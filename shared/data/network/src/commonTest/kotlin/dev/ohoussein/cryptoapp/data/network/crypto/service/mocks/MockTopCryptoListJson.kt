@@ -30,7 +30,10 @@ val mockTopCryptoListJson = """
     "atl_change_percentage": 46954.08395,
     "atl_date": "2013-07-06T00:00:00.000Z",
     "roi": null,
-    "last_updated": "2021-07-16T21:17:18.791Z"
+    "last_updated": "2021-07-16T21:17:18.791Z",
+    "sparkline_in_7d": {
+		"price": [30000, 31000, 32000, 33000]
+	}
   },
   {
     "id": "ethereum",

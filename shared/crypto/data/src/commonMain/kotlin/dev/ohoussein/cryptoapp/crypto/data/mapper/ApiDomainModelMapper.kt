@@ -19,6 +19,7 @@ class ApiDomainModelMapper(private val locale: Locale) {
         price = data.currentPrice,
         priceChangePercentIn24h = data.priceChangePercentIn24h,
         order = index,
+        sparkLine7d = data.sparklineIn7d?.price?.takeIf { it.isNotEmpty() },
     )
 
     fun convert(data: CryptoDetailsResponse) = CryptoDetailsModel(

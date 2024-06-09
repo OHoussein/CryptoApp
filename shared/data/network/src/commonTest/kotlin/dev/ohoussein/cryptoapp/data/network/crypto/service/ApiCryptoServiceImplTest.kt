@@ -1,6 +1,7 @@
 package dev.ohoussein.cryptoapp.data.network.crypto.service
 
 import dev.ohoussein.cryptoapp.data.network.crypto.model.CryptoImageResponse
+import dev.ohoussein.cryptoapp.data.network.crypto.model.SparkLineDTO
 import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockCryptoDetailsJson
 import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockTopCryptoListJson
@@ -27,6 +28,9 @@ class ApiCryptoServiceImplTest {
             image = "https://assets.coingecko.com/coins/images/1/large/bitcoin.png?1547033579",
             currentPrice = 31827.0,
             priceChangePercentIn24h = -0.4901,
+            sparklineIn7d = SparkLineDTO(
+                price = listOf(30000.0, 31000.0, 32000.0, 33000.0)
+            )
         )
         assertEquals(expectedFirstItem, topCryptoList.first())
     }

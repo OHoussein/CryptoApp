@@ -5,7 +5,8 @@ CREATE TABLE Crypto (
     price REAL NOT NULL,
     symbol TEXT NOT NULL,
     priceChangePercentIn24h REAL,
-    orderInList INTEGER NOT NULL
+    orderInList INTEGER NOT NULL,
+    sparkLine7d TEXT
 );
 
 CREATE TABLE CryptoDetails (
@@ -23,7 +24,7 @@ CREATE TABLE CryptoDetails (
 );
 
 insertCrypto:
-INSERT INTO Crypto(id, name, imageUrl, price, symbol, priceChangePercentIn24h, orderInList)
+INSERT INTO Crypto(id, name, imageUrl, price, symbol, priceChangePercentIn24h, orderInList, sparkLine7d)
 VALUES ?;
 
 getAllCrypto:

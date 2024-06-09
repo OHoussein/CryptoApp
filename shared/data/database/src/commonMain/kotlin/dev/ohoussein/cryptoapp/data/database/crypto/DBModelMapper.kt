@@ -15,6 +15,7 @@ class DBModelMapper {
         symbol: String,
         priceChangePercentIn24h: Double?,
         orderInList: Long,
+        sparLines7dList: String?,
     ) = CryptoModel(
         id = id,
         symbol = symbol,
@@ -23,6 +24,7 @@ class DBModelMapper {
         price = price,
         priceChangePercentIn24h = priceChangePercentIn24h,
         order = orderInList.toInt(),
+        sparkLine7d = sparLines7dList?.let(::convertSparLinesStringList),
     )
 
     fun toDB(domain: CryptoModel) = DBCrypto(
@@ -33,6 +35,7 @@ class DBModelMapper {
         price = domain.price,
         priceChangePercentIn24h = domain.priceChangePercentIn24h,
         orderInList = domain.order.toLong(),
+        sparkLine7d = domain.sparkLine7d?.joinToString("|")
     )
 
     fun toDB(cryptoDetails: CryptoDetailsModel): DBCryptoDetails = DBCryptoDetails(
@@ -74,4 +77,9 @@ class DBModelMapper {
         sentimentDownVotesPercentage = sentimentDownVotesPercentage,
         description = description,
     )
+
+    private fun convertSparLinesStringList(list: String) = runCatching {
+        list.split("|")
+            .map { it.toDouble() }
+    }.getOrNull()
 }

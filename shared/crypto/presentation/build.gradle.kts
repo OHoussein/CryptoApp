@@ -13,7 +13,6 @@ kotlin {
             implementation(compose.material)
             implementation(compose.ui)
             implementation(compose.components.uiToolingPreview)
-            implementation(compose.preview)
             implementation(compose.materialIconsExtended)
             implementation(compose.components.resources)
             implementation(libs.compose.navigation)

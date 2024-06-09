@@ -14,6 +14,7 @@ data class CryptoModel(
     val symbol: String,
     val priceChangePercentIn24h: Double?,
     val order: Int,
+    val sparkLine7d: List<Double>?,
 )
 
 @ObjCName(name = "CryptoDetailsModel", exact = true)
@@ -30,9 +31,3 @@ data class CryptoDetailsModel(
     val sentimentDownVotesPercentage: Double?,
     val description: String,
 )
-
-@ObjCName(name = "CryptoListModel", exact = true)
-data class CryptoListModel(val list: List<CryptoModel>) {
-    val isEmpty: Boolean
-        get() = list.isEmpty()
-}

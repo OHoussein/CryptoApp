@@ -1,6 +1,7 @@
 package dev.ohoussein.cryptoapp.crypto.presentation.model
 
 import androidx.compose.runtime.Immutable
+import dev.ohoussein.cryptoapp.designsystem.graph.model.GraphPoint
 
 @Immutable
 data class CryptoInfo(
@@ -15,6 +16,7 @@ data class Crypto(
     val info: CryptoInfo,
     val price: CryptoPrice,
     val priceChangePercentIn24h: LabelValue<Double>?,
+    val sparkline7d: List<GraphPoint>?,
 )
 
 @Immutable

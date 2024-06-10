@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalResourceApi::class, ExperimentalResourceApi::class)
-
 package dev.ohoussein.cryptoapp.designsystem.base
 
 import androidx.compose.foundation.background
@@ -19,7 +17,6 @@ import cryptoapp.shared.designsystem.generated.resources.core_back
 import cryptoapp.shared.designsystem.generated.resources.ic_coin
 import dev.ohoussein.cryptoapp.designsystem.theme.AppbarFontFamily
 import dev.ohoussein.cryptoapp.designsystem.theme.CryptoAppTheme
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 

@@ -18,6 +18,15 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "dev.ohoussein.cryptoapp"
             packageVersion = "1.0.0"
+            macOS {
+                iconFile.set(project.file("src/main/resources/icon/app_icon.ico"))
+            }
+            windows {
+                iconFile.set(project.file("src/main/resources/icon/app_icon.ico"))
+            }
+            linux {
+                iconFile.set(project.file("src/main/resources/icon/app_icon.ico"))
+            }
         }
     }
 }

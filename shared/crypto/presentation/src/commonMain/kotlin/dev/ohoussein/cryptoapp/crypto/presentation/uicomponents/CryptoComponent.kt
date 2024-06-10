@@ -4,7 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -31,47 +30,43 @@ fun CryptoItem(
     crypto: Crypto,
     onClick: (Crypto) -> Unit,
 ) {
-    Box(modifier.padding(horizontal = 8.dp, vertical = 8.dp)) {
-        Card(elevation = 12.dp) {
-            // this additional box is a workaround for the ripple on the card background corner
-            Box(
-                modifier = Modifier.clickable { onClick(crypto) }
+    Box(
+        modifier
+            .clickable { onClick(crypto) }
+            .padding(8.dp)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            CryptoImage(
+                modifier = Modifier.size(32.dp),
+                imageUrl = crypto.info.imageUrl,
+            )
+            Row(
+                Modifier.padding(horizontal = 8.dp).fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                Row(
-                    modifier = Modifier.padding(8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
+                Column(
+                    horizontalAlignment = Alignment.Start,
+                    modifier = Modifier.weight(1f),
                 ) {
-                    CryptoImage(
-                        modifier = Modifier.size(24.dp),
-                        imageUrl = crypto.info.imageUrl,
+                    CryptoLabel(crypto)
+                }
+
+                crypto.sparkline7d?.let {
+                    SparkLineGraph(
+                        points = it,
+                        color = MaterialTheme.colors.primaryVariant,
+                        modifier = Modifier.height(45.dp).weight(1f),
                     )
-                    Row(
-                        Modifier.padding(horizontal = 8.dp).fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Column(
-                            horizontalAlignment = Alignment.Start,
-                            modifier = Modifier.weight(1f),
-                        ) {
-                            CryptoLabel(crypto)
-                        }
+                }
 
-                        crypto.sparkline7d?.let {
-                            SparkLineGraph(
-                                points = it,
-                                color = MaterialTheme.colors.primaryVariant,
-                                modifier = Modifier.height(45.dp).weight(1f),
-                            )
-                        }
-
-                        Column(
-                            horizontalAlignment = Alignment.End,
-                            modifier = Modifier.weight(1f),
-                        ) {
-                            CryptoPrice(crypto)
-                        }
-                    }
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier.weight(1f),
+                ) {
+                    CryptoPrice(crypto)
                 }
             }
         }

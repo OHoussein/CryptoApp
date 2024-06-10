@@ -5,9 +5,11 @@ import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
+import dev.ohoussein.cryptoapp.crypto.presentation.core.averageValues
 import dev.ohoussein.cryptoapp.crypto.presentation.model.*
 import dev.ohoussein.cryptoapp.designsystem.graph.model.GraphPoint
 
+private const val SPARKLINE_7D_MAX_VALUES = 7 * 4
 class DomainModelMapper(
     private val priceFormatter: PriceFormatter,
     private val percentFormatter: PercentFormatter,
@@ -31,7 +33,7 @@ class DomainModelMapper(
             priceChangePercentIn24h = domain.priceChangePercentIn24h?.let {
                 LabelValue(it, percentFormatter(it / 100.0))
             },
-            sparkline7d = domain.sparkLine7d?.mapIndexed { index, value ->
+            sparkline7d = domain.sparkLine7d?.averageValues(SPARKLINE_7D_MAX_VALUES)?.mapIndexed { index, value ->
                 GraphPoint(index.toDouble(), value)
             }
         )

@@ -13,8 +13,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
 import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoDetailsHeader
+import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoImage
 import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoLinks
 import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
+import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppTopBar
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
 import org.koin.compose.getKoin
@@ -37,20 +39,35 @@ fun CryptoDetailsScreen(
         viewModel.dispatch(CryptoDetailsEvents.Refresh)
     }
 
-    CryptoAppScaffold(onBackButton = onBackClicked) {
+    CryptoAppScaffold(
+        topBar = {
+            CryptoAppTopBar(
+                title = state.cryptoDetails?.let { "${it.base.name} (${it.base.symbol})" }.orEmpty(),
+                titlePrefix = {
+                    state.cryptoDetails?.let {
+                        CryptoImage(
+                            modifier = Modifier.width(42.dp),
+                            imageUrl = it.base.imageUrl,
+                        )
+                    }
+                },
+                onBackButton = onBackClicked,
+            )
+        }
+    ) {
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
             cryptoDetails = state.cryptoDetails,
             isLoading = state.status == DataStatus.Loading,
             error = (state.status as? DataStatus.Error)?.message,
             onRefresh = { viewModel.dispatch(CryptoDetailsEvents.Refresh) },
-            onHomePageClicked = { crypto ->
+            onHomePageClicked = {
                 viewModel.dispatch(CryptoDetailsEvents.HomePageClicked)
             },
-            onBlockchainSiteClicked = { crypto ->
+            onBlockchainSiteClicked = {
                 viewModel.dispatch(CryptoDetailsEvents.BlockchainSiteClicked)
             },
-            onSourceCodeClicked = { crypto ->
+            onSourceCodeClicked = {
                 viewModel.dispatch(CryptoDetailsEvents.SourceCodeClicked)
             },
         )

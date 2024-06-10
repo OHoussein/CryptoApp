@@ -27,7 +27,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cryptoapp.shared.crypto.presentation.generated.resources.*
@@ -54,21 +53,6 @@ fun CryptoDetailsHeader(
     var expandDescription by remember { mutableStateOf(false) }
 
     Column(modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        Row(
-            modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            CryptoImage(
-                modifier = Modifier.size(48.dp),
-                imageUrl = crypto.base.imageUrl,
-            )
-            Text(
-                text = "${crypto.base.name} (${crypto.base.symbol})",
-                style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
-                color = MaterialTheme.colors.onSurface,
-                modifier = Modifier.padding(horizontal = 8.dp)
-            )
-        }
         crypto.sentimentUpVotesPercentage?.let {
             CryptoSentiment(
                 modifier = Modifier.padding(8.dp),

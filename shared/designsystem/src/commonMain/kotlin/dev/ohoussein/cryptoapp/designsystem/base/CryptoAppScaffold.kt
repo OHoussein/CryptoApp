@@ -1,36 +1,29 @@
 package dev.ohoussein.cryptoapp.designsystem.base
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cryptoapp.shared.designsystem.generated.resources.Res
-import cryptoapp.shared.designsystem.generated.resources.core_app_bar_title
 import cryptoapp.shared.designsystem.generated.resources.core_back
-import cryptoapp.shared.designsystem.generated.resources.ic_coin
 import dev.ohoussein.cryptoapp.designsystem.theme.AppbarFontFamily
 import dev.ohoussein.cryptoapp.designsystem.theme.CryptoAppTheme
-import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CryptoAppScaffold(
     scaffoldState: ScaffoldState = rememberScaffoldState(),
-    onBackButton: (() -> Unit)? = null,
+    topBar: @Composable () -> Unit = {},
     content: @Composable (PaddingValues) -> Unit,
 ) {
     CryptoAppTheme {
         Scaffold(
             scaffoldState = scaffoldState,
-            topBar = { CryptoAppTopBar(onBackButton) },
-
+            topBar = topBar,
             content = content,
             modifier = Modifier
                 .fillMaxHeight()
@@ -41,12 +34,18 @@ fun CryptoAppScaffold(
 
 @Composable
 fun CryptoAppTopBar(
+    title: String,
+    titlePrefix: @Composable (() -> Unit)? = null,
     onBackButton: (() -> Unit)? = null,
 ) {
     TopAppBar(
         title = {
+            titlePrefix?.let {
+                titlePrefix()
+                Spacer(Modifier.width(24.dp))
+            }
             Text(
-                text = stringResource(Res.string.core_app_bar_title),
+                text = title,
                 style = LocalTextStyle.current.copy(fontFamily = AppbarFontFamily),
             )
         },
@@ -58,13 +57,6 @@ fun CryptoAppTopBar(
                         contentDescription = stringResource(Res.string.core_back)
                     )
                 }
-            } else {
-                Icon(
-                    painter = painterResource(Res.drawable.ic_coin),
-                    contentDescription = stringResource(Res.string.core_back),
-                    modifier = Modifier.padding(12.dp),
-                    tint = Color.Unspecified,
-                )
             }
         },
         contentColor = MaterialTheme.colors.onPrimary,

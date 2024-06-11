@@ -27,7 +27,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cryptoapp.shared.crypto.presentation.generated.resources.*
 import cryptoapp.shared.crypto.presentation.generated.resources.Res
@@ -36,6 +35,7 @@ import cryptoapp.shared.crypto.presentation.generated.resources.ic_bear
 import cryptoapp.shared.crypto.presentation.generated.resources.ic_bull
 import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.crypto.presentation.model.LabelValue
+import dev.ohoussein.cryptoapp.designsystem.base.LinkText
 import dev.ohoussein.cryptoapp.designsystem.theme.NegativeColor
 import dev.ohoussein.cryptoapp.designsystem.theme.PositiveColor
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -46,8 +46,9 @@ private const val CRYPTO_DESCRIPTION_MAX_LINES = 4
 
 @Composable
 fun CryptoDetailsHeader(
-    modifier: Modifier = Modifier,
     crypto: CryptoDetails,
+    onLinkClick: (url: String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     var descriptionOverflow by remember { mutableStateOf(false) }
     var expandDescription by remember { mutableStateOf(false) }
@@ -60,17 +61,17 @@ fun CryptoDetailsHeader(
             )
         }
         Column(horizontalAlignment = Alignment.End) {
-            Text(
-                text = crypto.description,
-                style = MaterialTheme.typography.body1,
-                color = MaterialTheme.colors.onSurface,
+            LinkText(
+                htmlText = crypto.description,
+                style = MaterialTheme.typography.body1.copy(color = MaterialTheme.colors.onSurface),
                 modifier = Modifier.padding(top = 8.dp),
-                overflow = TextOverflow.Clip,
                 maxLines = if (expandDescription) Int.MAX_VALUE else CRYPTO_DESCRIPTION_MAX_LINES,
                 onTextLayout = { layout ->
                     descriptionOverflow = !layout.hasVisualOverflow
-                }
+                },
+                onLinkClick = onLinkClick,
             )
+
             if (!descriptionOverflow) {
                 TextButton(onClick = { expandDescription = true }) {
                     Icon(

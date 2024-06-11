@@ -70,6 +70,9 @@ fun CryptoDetailsScreen(
             onSourceCodeClicked = {
                 viewModel.dispatch(CryptoDetailsEvents.SourceCodeClicked)
             },
+            onLinkClick = {
+                viewModel.dispatch(CryptoDetailsEvents.LinkClicked(it))
+            }
         )
     }
 }
@@ -84,6 +87,7 @@ fun CryptoDetailsStateScreen(
     onHomePageClicked: (CryptoDetails) -> Unit,
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
     onSourceCodeClicked: (CryptoDetails) -> Unit,
+    onLinkClick: (url: String) -> Unit,
 ) {
     cryptoDetails?.let { data ->
         CryptoDetailsContent(
@@ -92,6 +96,7 @@ fun CryptoDetailsStateScreen(
             onHomePageClicked = onHomePageClicked,
             onBlockchainSiteClicked = onBlockchainSiteClicked,
             onSourceCodeClicked = onSourceCodeClicked,
+            onLinkClick = onLinkClick,
         )
         return
     }
@@ -114,6 +119,7 @@ fun CryptoDetailsContent(
     onHomePageClicked: (CryptoDetails) -> Unit,
     onBlockchainSiteClicked: (CryptoDetails) -> Unit,
     onSourceCodeClicked: (CryptoDetails) -> Unit,
+    onLinkClick: (url: String) -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
@@ -123,8 +129,9 @@ fun CryptoDetailsContent(
             .verticalScroll(scrollState),
     ) {
         CryptoDetailsHeader(
-            Modifier.padding(top = 12.dp),
+            modifier = Modifier.padding(top = 12.dp),
             crypto = crypto,
+            onLinkClick = onLinkClick,
         )
         CryptoLinks(
             modifier = Modifier

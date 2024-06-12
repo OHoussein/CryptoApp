@@ -1,4 +1,4 @@
-[![Main CI](https://github.com/OHoussein/android-ios-kmm-crypto-app/workflows/Main%20CI/badge.svg)](https://github.com/OHoussein/android-ios-kmm-crypto-app/actions/workflows/main_ci.yml)
+[![Main CI](https://github.com/OHoussein/CryptoApp/workflows/Main%20CI/badge.svg)](https://github.com/OHoussein/CryptoApp/actions/workflows/main_ci.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=OHoussein_android-crypto-app&metric=alert_status)](https://sonarcloud.io/dashboard?id=OHoussein_android-crypto-app)
 
 
@@ -64,34 +64,34 @@ xcodebuild \
 #### Dark mode 🌚
 
 <div  align="center">
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_list_dark.png" align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_list_dark.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_details_dark.png" align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_details_dark.png" align="center" />
 </div>
 
 #### Light mode 🌕
 
 <div  align="center">
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_list_light.png" align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_list_light.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/android_crypto_details_light.png"  align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_details_light.png"  align="center" />
 </div>
 
 ## iOS
 #### Dark mode 🌚
 
 <div  align="center">
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_list_dark.png" align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_list_dark.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_details_dark.png" align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_details_dark.png" align="center" />
 </div>
 
 #### Light mode 🌕
 
 <div  align="center">
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_list_light.png" align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_list_light.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/android-ios-kmm-crypto-app/blob/main/design/ios_crypto_details_light.png"  align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_details_light.png"  align="center" />
 </div>
 
 ## End to end test

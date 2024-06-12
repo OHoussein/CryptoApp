@@ -73,21 +73,18 @@ fun CryptoDetailsHeader(
             )
 
             if (!descriptionOverflow) {
-                TextButton(onClick = { expandDescription = true }) {
-                    Icon(
-                        imageVector = Icons.Outlined.ExpandMore,
-                        contentDescription = null,
-                        modifier = Modifier
-                            .size(18.dp)
-                            .padding(end = 2.dp),
-                        tint = MaterialTheme.colors.onSurface,
-                    )
-                    Text(
-                        text = stringResource(Res.string.crypto_see_more),
-                        color = MaterialTheme.colors.onSurface,
-                        style = MaterialTheme.typography.caption,
-                    )
-                }
+                ExpandCollapseButton(
+                    onClick = { expandDescription = true },
+                    icon = Icons.Outlined.ExpandMore,
+                    text = stringResource(Res.string.crypto_see_more),
+                )
+            }
+            if (expandDescription) {
+                ExpandCollapseButton(
+                    onClick = { expandDescription = false },
+                    icon = Icons.Outlined.ExpandLess,
+                    text = stringResource(Res.string.crypto_see_less),
+                )
             }
         }
     }
@@ -204,6 +201,29 @@ fun ItemLink(
             imageVector = Icons.AutoMirrored.Outlined.NavigateNext,
             contentDescription = null,
             tint = MaterialTheme.colors.onSurface,
+        )
+    }
+}
+
+@Composable
+fun ExpandCollapseButton(
+    onClick: () -> Unit,
+    icon: ImageVector,
+    text: String,
+) {
+    TextButton(onClick = onClick) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            modifier = Modifier
+                .size(18.dp)
+                .padding(end = 2.dp),
+            tint = MaterialTheme.colors.onSurface,
+        )
+        Text(
+            text = text,
+            color = MaterialTheme.colors.onSurface,
+            style = MaterialTheme.typography.caption,
         )
     }
 }

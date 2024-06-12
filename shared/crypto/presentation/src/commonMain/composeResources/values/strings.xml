@@ -2,6 +2,7 @@
 <resources>
     <string name="retry">RETRY</string>
     <string name="crypto_see_more">SEE MORE</string>
+    <string name="crypto_see_less">SEE LESS</string>
     <string name="crypto_details_links_section">Links</string>
     <string name="crypto_details_link_home">Home page</string>
     <string name="crypto_details_link_source_code">Source code</string>

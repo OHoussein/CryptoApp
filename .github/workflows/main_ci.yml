@@ -81,7 +81,7 @@ jobs:
   iOS:
     name: iOS Build
     runs-on: macOS-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout

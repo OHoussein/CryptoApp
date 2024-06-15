@@ -4,12 +4,14 @@ import dev.ohoussein.cryptoapp.core.formatter.PercentFormatter
 import dev.ohoussein.cryptoapp.core.formatter.PriceFormatter
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.HistoricalPrice
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.crypto.presentation.core.averageValues
 import dev.ohoussein.cryptoapp.crypto.presentation.model.*
 import dev.ohoussein.cryptoapp.designsystem.graph.model.GraphPoint
 
 private const val SPARKLINE_7D_MAX_VALUES = 7 * 4
+
 class DomainModelMapper(
     private val priceFormatter: PriceFormatter,
     private val percentFormatter: PercentFormatter,
@@ -59,4 +61,7 @@ class DomainModelMapper(
             },
             description = domain.description,
         )
+
+    fun convertHistoricalPrices(domain: List<HistoricalPrice>): List<GraphPoint> = domain
+        .map { GraphPoint(it.timestamp.toDouble(), it.price) }
 }

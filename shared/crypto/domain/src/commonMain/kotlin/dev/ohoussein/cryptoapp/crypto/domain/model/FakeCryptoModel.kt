@@ -38,9 +38,7 @@ object FakeCryptoModel {
     )
 
     @Suppress("MagicNumber")
-    fun historicalPrices(): List<HistoricalPrice> = listOf(
-        HistoricalPrice(1711843200000, 69702.3087473573),
-        HistoricalPrice(1711929600000, 71246.95144060145),
-        HistoricalPrice(1711983682000, 68887.74951585678),
-    )
+    fun historicalPrices(count: Int = 7): List<HistoricalPrice> = (1..count).map {
+        HistoricalPrice(1711843200000 + it, 69702.0 + it * 1000)
+    }
 }

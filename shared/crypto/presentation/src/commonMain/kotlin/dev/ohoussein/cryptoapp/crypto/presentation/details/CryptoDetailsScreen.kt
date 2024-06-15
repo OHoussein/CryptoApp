@@ -1,12 +1,16 @@
 package dev.ohoussein.cryptoapp.crypto.presentation.details
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
@@ -18,6 +22,8 @@ import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppTopBar
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
+import dev.ohoussein.cryptoapp.designsystem.graph.model.GraphPoint
+import dev.ohoussein.cryptoapp.designsystem.graph.ui.LinearGraph
 import org.koin.compose.getKoin
 import org.koin.core.Koin
 import org.koin.core.parameter.parametersOf
@@ -53,21 +59,12 @@ fun CryptoDetailsScreen(
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
             cryptoDetails = state.cryptoDetails,
+            graphPrices = state.graphPrices,
             isLoading = state.status == DataStatus.Loading,
             error = (state.status as? DataStatus.Error)?.message,
-            onRefresh = { viewModel.dispatch(CryptoDetailsEvents.Refresh) },
-            onHomePageClicked = {
-                viewModel.dispatch(CryptoDetailsEvents.HomePageClicked)
-            },
-            onBlockchainSiteClicked = {
-                viewModel.dispatch(CryptoDetailsEvents.BlockchainSiteClicked)
-            },
-            onSourceCodeClicked = {
-                viewModel.dispatch(CryptoDetailsEvents.SourceCodeClicked)
-            },
-            onLinkClick = {
-                viewModel.dispatch(CryptoDetailsEvents.LinkClicked(it))
-            }
+            selectedInterval = state.selectedInterval,
+            allIntervals = state.allIntervals,
+            onEvent = viewModel::dispatch,
         )
     }
 }
@@ -76,22 +73,21 @@ fun CryptoDetailsScreen(
 fun CryptoDetailsStateScreen(
     modifier: Modifier = Modifier,
     cryptoDetails: CryptoDetails?,
+    graphPrices: List<GraphPoint>,
+    selectedInterval: Interval,
+    allIntervals: List<Interval>,
     isLoading: Boolean,
     error: String?,
-    onRefresh: () -> Unit,
-    onHomePageClicked: (CryptoDetails) -> Unit,
-    onBlockchainSiteClicked: (CryptoDetails) -> Unit,
-    onSourceCodeClicked: (CryptoDetails) -> Unit,
-    onLinkClick: (url: String) -> Unit,
+    onEvent: (CryptoDetailsEvents) -> Unit,
 ) {
     cryptoDetails?.let { data ->
         CryptoDetailsContent(
             modifier = modifier,
             crypto = data,
-            onHomePageClicked = onHomePageClicked,
-            onBlockchainSiteClicked = onBlockchainSiteClicked,
-            onSourceCodeClicked = onSourceCodeClicked,
-            onLinkClick = onLinkClick,
+            graphPrices = graphPrices,
+            selectedInterval = selectedInterval,
+            allIntervals = allIntervals,
+            onEvent = onEvent,
         )
         return
     }
@@ -100,7 +96,7 @@ fun CryptoDetailsStateScreen(
         error != null -> StateError(
             modifier = modifier,
             message = error,
-            onRetryClick = onRefresh,
+            onRetryClick = { onEvent(CryptoDetailsEvents.Refresh) },
         )
 
         isLoading -> StateLoading(modifier = modifier)
@@ -111,32 +107,88 @@ fun CryptoDetailsStateScreen(
 fun CryptoDetailsContent(
     modifier: Modifier = Modifier,
     crypto: CryptoDetails,
-    onHomePageClicked: (CryptoDetails) -> Unit,
-    onBlockchainSiteClicked: (CryptoDetails) -> Unit,
-    onSourceCodeClicked: (CryptoDetails) -> Unit,
-    onLinkClick: (url: String) -> Unit,
+    graphPrices: List<GraphPoint>,
+    selectedInterval: Interval,
+    allIntervals: List<Interval>,
+    onEvent: (CryptoDetailsEvents) -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
     Column(
         modifier
-            .padding(horizontal = 12.dp)
-            .verticalScroll(scrollState),
+            .verticalScroll(scrollState)
+            .padding(vertical = 12.dp),
     ) {
+        GraphPrices(
+            prices = graphPrices,
+            allIntervals = allIntervals,
+            selectedInterval = selectedInterval,
+            onSelectInterval = { onEvent(CryptoDetailsEvents.SelectInterval(it)) },
+            modifier = Modifier,
+        )
         CryptoDetailsHeader(
-            modifier = Modifier.padding(top = 12.dp),
+            modifier = Modifier.padding(all = 12.dp),
             crypto = crypto,
-            onLinkClick = onLinkClick,
+            onLinkClick = { onEvent(CryptoDetailsEvents.LinkClicked(it)) },
         )
         CryptoLinks(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp),
+                .padding(vertical = 24.dp, horizontal = 12.dp),
             crypto = crypto,
-            onHomePageClicked = onHomePageClicked,
-            onBlockchainSiteClicked = onBlockchainSiteClicked,
-            onSourceCodeClicked = onSourceCodeClicked,
+            onHomePageClicked = { onEvent(CryptoDetailsEvents.HomePageClicked) },
+            onBlockchainSiteClicked = { onEvent(CryptoDetailsEvents.BlockchainSiteClicked) },
+            onSourceCodeClicked = { onEvent(CryptoDetailsEvents.SourceCodeClicked) },
         )
         Spacer(modifier = Modifier.size(24.dp))
+    }
+}
+
+@Composable
+private fun GraphPrices(
+    prices: List<GraphPoint>,
+    allIntervals: List<Interval>,
+    selectedInterval: Interval,
+    onSelectInterval: (Interval) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Column(modifier = modifier) {
+        LinearGraph(
+            values = prices,
+            color = MaterialTheme.colors.primaryVariant,
+            stroke = 2.dp,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(250.dp),
+        )
+
+        GraphIntervals(
+            modifier = Modifier.padding(horizontal = 12.dp),
+            allIntervals = allIntervals,
+            selectedInterval = selectedInterval,
+            onSelectInterval = onSelectInterval,
+        )
+    }
+}
+
+@Composable
+private fun GraphIntervals(
+    allIntervals: List<Interval>,
+    selectedInterval: Interval,
+    onSelectInterval: (Interval) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(modifier) {
+        allIntervals.forEach { interval ->
+            val isSelected = selectedInterval == interval
+            Text(
+                text = interval.asString,
+                color = if (isSelected) MaterialTheme.colors.primaryVariant else Color.Unspecified,
+                modifier = Modifier
+                    .padding(12.dp)
+                    .clickable { onSelectInterval(interval) }
+
+            )
+        }
     }
 }

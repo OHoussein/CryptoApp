@@ -45,6 +45,7 @@ class AnnotatedStringTest {
             pushStyle(SpanStyle(textDecoration = TextDecoration.Underline))
             append("example link")
             pop()
+            pop()
             append(".")
         }
         assertEquals(expected.spanStyles, annotatedString.spanStyles)

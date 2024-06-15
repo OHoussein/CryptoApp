@@ -7,4 +7,10 @@
     <string name="crypto_details_link_home">Home page</string>
     <string name="crypto_details_link_source_code">Source code</string>
     <string name="crypto_details_link_blockchain">Blockchain</string>
+
+    <string name="interval_1_day">1D</string>
+    <string name="interval_7_days">7D</string>
+    <string name="interval_1_month">1M</string>
+    <string name="interval_3_months">3M</string>
+    <string name="interval_1_year">1Y</string>
 </resources>

@@ -60,6 +60,8 @@ class CryptoDetailsViewModelTest {
                     assertEquals("SHA-256", it.hashingAlgorithm)
                     assertEquals("http://home-bitcoin.com", it.homePageUrl)
                 }
+                assertTrue(graphPrices.isNotEmpty())
+                assertEquals(Interval.entries.size, allIntervals.size)
             }
         }
     }
@@ -120,15 +122,53 @@ class CryptoDetailsViewModelTest {
                 cryptoId = "bitcoin",
             )
 
-            viewModel.state.test {
-                assertIs<DataStatus.Error>(awaitItem().status)
-
-                useCase.shouldThrowOnRefresh = false
-                viewModel.dispatch(CryptoDetailsEvents.Refresh)
-                awaitItem().apply {
-                    assertIs<DataStatus.Success>(status)
-                    assertNotNull(cryptoDetails)
-                }
+            with(viewModel.state.value) {
+                assertIs<DataStatus.Error>(status)
+            }
+            useCase.shouldThrowOnRefresh = false
+            viewModel.dispatch(CryptoDetailsEvents.Refresh)
+            with(viewModel.state.value) {
+                assertIs<DataStatus.Success>(status)
+                assertNotNull(cryptoDetails)
             }
         }
+
+    @Test
+    fun `Given a crypto When SelectInterval Then it should set the new interval`() = runTest {
+        val router = FakeRouter()
+        val viewModel = CryptoDetailsViewModel(
+            useCase = useCase,
+            modelMapper = modelMapper,
+            router = router,
+            cryptoId = "bitcoin",
+        )
+
+        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_1_MONTH))
+
+        with(viewModel.state.value) {
+            assertEquals(Interval.INTERVAL_1_MONTH, selectedInterval)
+            assertEquals(30, graphPrices.size)
+        }
+    }
+
+    @Test
+    fun `Given a cached historical prices When Select the same Interval twice Then it should set the value from the cache`() = runTest {
+        val router = FakeRouter()
+        val viewModel = CryptoDetailsViewModel(
+            useCase = useCase,
+            modelMapper = modelMapper,
+            router = router,
+            cryptoId = "bitcoin",
+        )
+
+        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_1_MONTH))
+        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_3_MONTHS))
+        useCase.shouldThrowOnRefresh = true
+        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_1_MONTH))
+
+        with(viewModel.state.value) {
+            assertEquals(Interval.INTERVAL_1_MONTH, selectedInterval)
+            assertEquals(30, graphPrices.size)
+        }
+    }
 }

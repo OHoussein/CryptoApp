@@ -1,12 +1,15 @@
 package dev.ohoussein.cryptoapp.data.network.crypto.service
 
 import dev.ohoussein.cryptoapp.data.network.crypto.model.CryptoImageResponse
+import dev.ohoussein.cryptoapp.data.network.crypto.model.HistoricalPricesDTO
 import dev.ohoussein.cryptoapp.data.network.crypto.model.SparkLineDTO
 import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockCryptoDetailsJson
+import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockHistoricalPricesJson
 import dev.ohoussein.cryptoapp.data.network.crypto.service.mocks.mockTopCryptoListJson
 import dev.ohoussein.cryptoapp.data.network.crypto.service.utils.mockedHttpClient
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertContains
 import kotlin.test.assertEquals
@@ -64,5 +67,22 @@ class ApiCryptoServiceImplTest {
                 image
             )
         }
+    }
+
+    @Test
+    fun `Given a Json of historical prices When getHistoricalPrices it should return the right response`() = runTest {
+        val httpClient = mockedHttpClient(mockHistoricalPricesJson)
+        val apiCryptoService: ApiCryptoService = ApiCryptoServiceImpl(httpClient)
+
+        val response = apiCryptoService.getHistoricalPrices("USD", "bitcoin", 7)
+
+        val expectedResponse = HistoricalPricesDTO(
+            prices = listOf(
+                listOf(1711843200000.0, 69702.3087473573),
+                listOf(1711929600000.0, 71246.95144060145),
+                listOf(1711983682000.0, 68887.74951585678)
+            )
+        )
+        assertEquals(expectedResponse, response)
     }
 }

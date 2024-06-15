@@ -2,8 +2,10 @@ package dev.ohoussein.cryptoapp.crypto.data.mapper
 
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoDetailsModel
 import dev.ohoussein.cryptoapp.crypto.domain.model.CryptoModel
+import dev.ohoussein.cryptoapp.crypto.domain.model.HistoricalPrice
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.data.network.crypto.model.CryptoDetailsResponse
+import dev.ohoussein.cryptoapp.data.network.crypto.model.HistoricalPricesDTO
 import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 
 class ApiDomainModelMapper(private val locale: Locale) {
@@ -38,4 +40,9 @@ class ApiDomainModelMapper(private val locale: Locale) {
         description = data.description[locale.languageCode]
             ?: data.description["en"] ?: "",
     )
+
+    fun convert(dto: HistoricalPricesDTO): List<HistoricalPrice> =
+        dto.prices.map { volumePrice ->
+            HistoricalPrice(volumePrice[0].toLong(), volumePrice[1])
+        }
 }

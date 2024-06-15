@@ -38,4 +38,11 @@ class GetCryptoDetailsUseCaseImplTest {
             assertEquals(FakeCryptoModel.cryptoDetails(), item)
         }
     }
+
+    @Test
+    fun `Given historical prices WHEN getHistoricalPrices IT should return the data`() = runTest {
+        val result = useCase.getHistoricalPrices(cryptoId, 7)
+
+        assertEquals(3, result.getOrThrow().size)
+    }
 }

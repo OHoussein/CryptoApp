@@ -28,4 +28,7 @@ internal class MockedCryptoRepository : ICryptoRepository {
     override suspend fun refreshCryptoDetails(cryptoId: String) {
         cryptoDetails.value = FakeCryptoModel.cryptoDetails()
     }
+
+    override suspend fun getHistoricalPrices(cryptoId: String, days: Int) =
+        Result.success(FakeCryptoModel.historicalPrices())
 }

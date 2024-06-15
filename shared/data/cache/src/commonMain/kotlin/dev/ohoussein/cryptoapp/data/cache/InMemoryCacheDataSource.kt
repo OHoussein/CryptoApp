@@ -1,9 +1,9 @@
 package dev.ohoussein.cryptoapp.data.cache
 
-import kotlin.time.Duration
-import kotlin.time.TimeSource
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import kotlin.time.Duration
+import kotlin.time.TimeSource
 
 class InMemoryCacheDataSource<Key : Any, Data : Any>(
     private val fetcher: suspend (Key) -> Data,
@@ -34,14 +34,12 @@ class InMemoryCacheDataSource<Key : Any, Data : Any>(
     }
 
     override suspend fun write(key: Key, data: Data?) {
-        getKeyMutex(key).withLock {
-            if (data == null) {
-                cache.remove(key)
-            } else {
-                val writeTime = now.inWholeMilliseconds
-                println("new CacheEntry = ${CacheEntry(data, writeTime)}")
-                cache[key] = CacheEntry(data, writeTime)
-            }
+        if (data == null) {
+            cache.remove(key)
+        } else {
+            val writeTime = now.inWholeMilliseconds
+            println("new CacheEntry = ${CacheEntry(data, writeTime)}")
+            cache[key] = CacheEntry(data, writeTime)
         }
     }
 

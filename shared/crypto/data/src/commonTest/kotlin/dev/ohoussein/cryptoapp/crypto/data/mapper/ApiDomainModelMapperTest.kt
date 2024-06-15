@@ -1,5 +1,6 @@
 package dev.ohoussein.cryptoapp.crypto.data.mapper
 
+import dev.ohoussein.cryptoapp.crypto.domain.model.HistoricalPrice
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
 import dev.ohoussein.cryptoapp.data.network.crypto.model.*
 import kotlin.test.BeforeTest
@@ -85,5 +86,25 @@ class ApiDomainModelMapperTest {
         assertEquals(80.0, result.sentimentUpVotesPercentage!!, 0.0)
         assertEquals(20.0, result.sentimentDownVotesPercentage!!, 0.0)
         assertEquals("English description", result.description)
+    }
+
+    @Test
+    fun `Given a HistoricalPricesDTO When convert It should return the right domain model`() {
+        val dto = HistoricalPricesDTO(
+            prices = listOf(
+                listOf(1711843200000.0, 69702.3087473573),
+                listOf(1711929600000.0, 71246.95144060145),
+                listOf(1711983682000.0, 68887.74951585678)
+            )
+        )
+        val expectedDomain: List<HistoricalPrice> = listOf(
+            HistoricalPrice(1711843200000, 69702.3087473573),
+            HistoricalPrice(1711929600000, 71246.95144060145),
+            HistoricalPrice(1711983682000, 68887.74951585678),
+        )
+
+        val result = mapper.convert(dto)
+
+        assertEquals(expectedDomain, result)
     }
 }

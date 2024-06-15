@@ -2,6 +2,7 @@ package dev.ohoussein.cryptoapp.data.network.crypto.service
 
 import dev.ohoussein.cryptoapp.data.network.NetworkBuilder
 import dev.ohoussein.cryptoapp.data.network.crypto.model.CryptoDetailsResponse
+import dev.ohoussein.cryptoapp.data.network.crypto.model.HistoricalPricesDTO
 import dev.ohoussein.cryptoapp.data.network.crypto.model.TopCryptoResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -45,6 +46,22 @@ internal class ApiCryptoServiceImpl(
                 parameter("community_data", false)
                 parameter("developer_data", false)
                 parameter("sparkline", false)
+            }
+        }
+    }.body()
+
+    override suspend fun getHistoricalPrices(
+        vsCurrency: String,
+        cryptoId: String,
+        days: Int
+    ): HistoricalPricesDTO = httpClient.get {
+        url {
+            protocol = URLProtocol.HTTPS
+            host = baseUrl
+            path("/api/v3/coins/$cryptoId/market_chart")
+            formData {
+                parameter("vs_currency", vsCurrency)
+                parameter("days", days)
             }
         }
     }.body()

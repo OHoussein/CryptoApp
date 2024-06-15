@@ -45,3 +45,8 @@ data class CryptoLinksResponse(
 data class SparkLineDTO(
     val price: List<Double>,
 )
+
+@Serializable
+data class HistoricalPricesDTO(
+    val prices: List<List<Double>>,
+)

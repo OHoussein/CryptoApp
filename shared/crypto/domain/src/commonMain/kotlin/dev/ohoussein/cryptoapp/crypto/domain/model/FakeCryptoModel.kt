@@ -36,4 +36,11 @@ object FakeCryptoModel {
         sentimentDownVotesPercentage = 100 - 22.0,
         description = "details $id",
     )
+
+    @Suppress("MagicNumber")
+    fun historicalPrices(): List<HistoricalPrice> = listOf(
+        HistoricalPrice(1711843200000, 69702.3087473573),
+        HistoricalPrice(1711929600000, 71246.95144060145),
+        HistoricalPrice(1711983682000, 68887.74951585678),
+    )
 }

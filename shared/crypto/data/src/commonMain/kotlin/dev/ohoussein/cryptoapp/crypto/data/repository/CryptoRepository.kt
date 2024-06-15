@@ -63,5 +63,3 @@ class CryptoRepository(
         }
     }
 }
-
-internal data class HistoricalPriceKey(val cryptoId: String, val days: Int)

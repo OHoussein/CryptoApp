@@ -2,12 +2,15 @@ package dev.ohoussein.cryptoapp.crypto.presentation.details
 
 import app.cash.turbine.test
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
+import dev.ohoussein.cryptoapp.crypto.domain.model.defaultLocale
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakeGetCryptoDetailsUseCase
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePercentFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePriceFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakeRouter
+import dev.ohoussein.cryptoapp.crypto.presentation.graph.GraphGridGenerator
 import dev.ohoussein.cryptoapp.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
+import dev.ohoussein.cryptoapp.crypto.presentation.model.GraphInterval
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -46,6 +49,7 @@ class CryptoDetailsViewModelTest {
             useCase = useCase,
             modelMapper = modelMapper,
             router = FakeRouter(),
+            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
             cryptoId = "bitcoin",
         )
 
@@ -60,8 +64,8 @@ class CryptoDetailsViewModelTest {
                     assertEquals("SHA-256", it.hashingAlgorithm)
                     assertEquals("http://home-bitcoin.com", it.homePageUrl)
                 }
-                assertTrue(graphPrices.isNotEmpty())
-                assertEquals(Interval.entries.size, allIntervals.size)
+                assertTrue(graphState.graphPrices.isNotEmpty())
+                assertEquals(GraphInterval.entries.size, graphState.allIntervals.size)
             }
         }
     }
@@ -73,6 +77,7 @@ class CryptoDetailsViewModelTest {
             useCase = useCase,
             modelMapper = modelMapper,
             router = router,
+            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
             cryptoId = "bitcoin",
         )
 
@@ -88,6 +93,7 @@ class CryptoDetailsViewModelTest {
             useCase = useCase,
             modelMapper = modelMapper,
             router = router,
+            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
             cryptoId = "bitcoin",
         )
 
@@ -103,6 +109,7 @@ class CryptoDetailsViewModelTest {
             useCase = useCase,
             modelMapper = modelMapper,
             router = router,
+            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
             cryptoId = "bitcoin",
         )
 
@@ -119,6 +126,7 @@ class CryptoDetailsViewModelTest {
                 useCase = useCase,
                 modelMapper = modelMapper,
                 router = FakeRouter(),
+                graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
                 cryptoId = "bitcoin",
             )
 
@@ -140,35 +148,38 @@ class CryptoDetailsViewModelTest {
             useCase = useCase,
             modelMapper = modelMapper,
             router = router,
+            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
             cryptoId = "bitcoin",
         )
 
-        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_1_MONTH))
+        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_MONTH))
 
         with(viewModel.state.value) {
-            assertEquals(Interval.INTERVAL_1_MONTH, selectedInterval)
-            assertEquals(30, graphPrices.size)
+            assertEquals(GraphInterval.INTERVAL_1_MONTH, graphState.selectedInterval)
+            assertEquals(30, graphState.graphPrices.size)
         }
     }
 
     @Test
-    fun `Given a cached historical prices When Select the same Interval twice Then it should set the value from the cache`() = runTest {
-        val router = FakeRouter()
-        val viewModel = CryptoDetailsViewModel(
-            useCase = useCase,
-            modelMapper = modelMapper,
-            router = router,
-            cryptoId = "bitcoin",
-        )
+    fun `Given a cached historical prices When Select the same Interval twice Then it should set the value from the cache`() =
+        runTest {
+            val router = FakeRouter()
+            val viewModel = CryptoDetailsViewModel(
+                useCase = useCase,
+                modelMapper = modelMapper,
+                router = router,
+                graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
+                cryptoId = "bitcoin",
+            )
 
-        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_1_MONTH))
-        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_3_MONTHS))
-        useCase.shouldThrowOnRefresh = true
-        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(Interval.INTERVAL_1_MONTH))
+            viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_MONTH))
+            viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_DAY))
+            useCase.shouldThrowOnRefresh = true
+            viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_MONTH))
 
-        with(viewModel.state.value) {
-            assertEquals(Interval.INTERVAL_1_MONTH, selectedInterval)
-            assertEquals(30, graphPrices.size)
+            with(viewModel.state.value) {
+                assertEquals(GraphInterval.INTERVAL_1_MONTH, graphState.selectedInterval)
+                assertEquals(30, graphState.graphPrices.size)
+            }
         }
-    }
 }

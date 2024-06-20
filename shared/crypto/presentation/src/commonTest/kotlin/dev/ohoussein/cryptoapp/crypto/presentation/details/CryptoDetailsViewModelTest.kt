@@ -2,15 +2,9 @@ package dev.ohoussein.cryptoapp.crypto.presentation.details
 
 import app.cash.turbine.test
 import dev.ohoussein.cryptoapp.crypto.domain.model.Locale
-import dev.ohoussein.cryptoapp.crypto.domain.model.defaultLocale
-import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakeGetCryptoDetailsUseCase
-import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePercentFormatter
-import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePriceFormatter
-import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakeRouter
-import dev.ohoussein.cryptoapp.crypto.presentation.graph.GraphGridGenerator
+import dev.ohoussein.cryptoapp.crypto.presentation.fake.*
 import dev.ohoussein.cryptoapp.crypto.presentation.mapper.DomainModelMapper
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
-import dev.ohoussein.cryptoapp.crypto.presentation.model.GraphInterval
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -26,11 +20,13 @@ class CryptoDetailsViewModelTest {
 
     private lateinit var useCase: FakeGetCryptoDetailsUseCase
     private lateinit var modelMapper: DomainModelMapper
+    private lateinit var router: FakeRouter
 
     @BeforeTest
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         useCase = FakeGetCryptoDetailsUseCase()
+        router = FakeRouter()
         modelMapper = DomainModelMapper(
             priceFormatter = FakePriceFormatter(),
             percentFormatter = FakePercentFormatter(),
@@ -45,13 +41,7 @@ class CryptoDetailsViewModelTest {
 
     @Test
     fun `Given a crypto When observe the state Then should set the state of the crypto details`() = runTest {
-        val viewModel = CryptoDetailsViewModel(
-            useCase = useCase,
-            modelMapper = modelMapper,
-            router = FakeRouter(),
-            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
-            cryptoId = "bitcoin",
-        )
+        val viewModel = viewModel()
 
         viewModel.state.test {
             awaitItem().apply {
@@ -64,22 +54,13 @@ class CryptoDetailsViewModelTest {
                     assertEquals("SHA-256", it.hashingAlgorithm)
                     assertEquals("http://home-bitcoin.com", it.homePageUrl)
                 }
-                assertTrue(graphState.graphPrices.isNotEmpty())
-                assertEquals(GraphInterval.entries.size, graphState.allIntervals.size)
             }
         }
     }
 
     @Test
     fun `Given a crypto When SourceCodeClicked Then it should open the url`() = runTest {
-        val router = FakeRouter()
-        val viewModel = CryptoDetailsViewModel(
-            useCase = useCase,
-            modelMapper = modelMapper,
-            router = router,
-            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
-            cryptoId = "bitcoin",
-        )
+        val viewModel = viewModel()
 
         viewModel.dispatch(CryptoDetailsEvents.SourceCodeClicked)
 
@@ -93,7 +74,6 @@ class CryptoDetailsViewModelTest {
             useCase = useCase,
             modelMapper = modelMapper,
             router = router,
-            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
             cryptoId = "bitcoin",
         )
 
@@ -104,14 +84,7 @@ class CryptoDetailsViewModelTest {
 
     @Test
     fun `Given a crypto When BlockchainSiteClicked Then it should open the url`() = runTest {
-        val router = FakeRouter()
-        val viewModel = CryptoDetailsViewModel(
-            useCase = useCase,
-            modelMapper = modelMapper,
-            router = router,
-            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
-            cryptoId = "bitcoin",
-        )
+        val viewModel = viewModel()
 
         viewModel.dispatch(CryptoDetailsEvents.BlockchainSiteClicked)
 
@@ -122,13 +95,7 @@ class CryptoDetailsViewModelTest {
     fun `Given an error then success When observe and refresh Then it should set the error then the success state`() =
         runTest {
             useCase.shouldThrowOnRefresh = true
-            val viewModel = CryptoDetailsViewModel(
-                useCase = useCase,
-                modelMapper = modelMapper,
-                router = FakeRouter(),
-                graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
-                cryptoId = "bitcoin",
-            )
+            val viewModel = viewModel()
 
             with(viewModel.state.value) {
                 assertIs<DataStatus.Error>(status)
@@ -141,45 +108,10 @@ class CryptoDetailsViewModelTest {
             }
         }
 
-    @Test
-    fun `Given a crypto When SelectInterval Then it should set the new interval`() = runTest {
-        val router = FakeRouter()
-        val viewModel = CryptoDetailsViewModel(
-            useCase = useCase,
-            modelMapper = modelMapper,
-            router = router,
-            graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
-            cryptoId = "bitcoin",
-        )
-
-        viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_MONTH))
-
-        with(viewModel.state.value) {
-            assertEquals(GraphInterval.INTERVAL_1_MONTH, graphState.selectedInterval)
-            assertEquals(30, graphState.graphPrices.size)
-        }
-    }
-
-    @Test
-    fun `Given a cached historical prices When Select the same Interval twice Then it should set the value from the cache`() =
-        runTest {
-            val router = FakeRouter()
-            val viewModel = CryptoDetailsViewModel(
-                useCase = useCase,
-                modelMapper = modelMapper,
-                router = router,
-                graphGridGenerator = GraphGridGenerator(FakePriceFormatter(), defaultLocale),
-                cryptoId = "bitcoin",
-            )
-
-            viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_MONTH))
-            viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_DAY))
-            useCase.shouldThrowOnRefresh = true
-            viewModel.dispatch(CryptoDetailsEvents.SelectInterval(GraphInterval.INTERVAL_1_MONTH))
-
-            with(viewModel.state.value) {
-                assertEquals(GraphInterval.INTERVAL_1_MONTH, graphState.selectedInterval)
-                assertEquals(30, graphState.graphPrices.size)
-            }
-        }
+    private fun viewModel() = CryptoDetailsViewModel(
+        useCase = useCase,
+        modelMapper = modelMapper,
+        router = router,
+        cryptoId = "bitcoin",
+    )
 }

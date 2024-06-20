@@ -49,7 +49,7 @@ class CryptoListViewModelTest {
                 assertEquals(5, cryptoList!!.size)
                 assertIs<DataStatus.Success>(status)
                 val firstCrypto = cryptoList!!.first()
-                assertEquals("70.0 USD", firstCrypto.price.labelValue.label)
+                assertEquals("70 USD", firstCrypto.price.labelValue.label)
                 assertEquals(70.0, firstCrypto.price.labelValue.value)
                 assertEquals(-2.0, firstCrypto.priceChangePercentIn24h?.value)
                 assertEquals("1", firstCrypto.info.id)

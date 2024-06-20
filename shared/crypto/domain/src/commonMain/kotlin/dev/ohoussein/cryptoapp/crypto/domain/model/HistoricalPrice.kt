@@ -1,6 +1,6 @@
 package dev.ohoussein.cryptoapp.crypto.domain.model
 
 data class HistoricalPrice(
-    val timestamp: Long,
+    val timestampMillis: Long,
     val price: Double,
 )

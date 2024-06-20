@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
+import dev.ohoussein.cryptoapp.crypto.presentation.model.GraphInterval
 import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoDetailsHeader
 import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoImage
 import dev.ohoussein.cryptoapp.crypto.presentation.uicomponents.CryptoLinks
@@ -59,11 +60,10 @@ fun CryptoDetailsScreen(
         CryptoDetailsStateScreen(
             Modifier.fillMaxSize(),
             cryptoDetails = state.cryptoDetails,
-            graphPrices = state.graphPrices,
+            graphPrices = state.graphState.graphPrices,
             isLoading = state.status == DataStatus.Loading,
             error = (state.status as? DataStatus.Error)?.message,
-            selectedInterval = state.selectedInterval,
-            allIntervals = state.allIntervals,
+            graphState = state.graphState,
             onEvent = viewModel::dispatch,
         )
     }
@@ -74,8 +74,7 @@ fun CryptoDetailsStateScreen(
     modifier: Modifier = Modifier,
     cryptoDetails: CryptoDetails?,
     graphPrices: List<GraphPoint>,
-    selectedInterval: Interval,
-    allIntervals: List<Interval>,
+    graphState: GraphState,
     isLoading: Boolean,
     error: String?,
     onEvent: (CryptoDetailsEvents) -> Unit,
@@ -85,8 +84,7 @@ fun CryptoDetailsStateScreen(
             modifier = modifier,
             crypto = data,
             graphPrices = graphPrices,
-            selectedInterval = selectedInterval,
-            allIntervals = allIntervals,
+            graphState = graphState,
             onEvent = onEvent,
         )
         return
@@ -108,8 +106,7 @@ fun CryptoDetailsContent(
     modifier: Modifier = Modifier,
     crypto: CryptoDetails,
     graphPrices: List<GraphPoint>,
-    selectedInterval: Interval,
-    allIntervals: List<Interval>,
+    graphState: GraphState,
     onEvent: (CryptoDetailsEvents) -> Unit,
 ) {
     val scrollState = rememberScrollState()
@@ -121,8 +118,7 @@ fun CryptoDetailsContent(
     ) {
         GraphPrices(
             prices = graphPrices,
-            allIntervals = allIntervals,
-            selectedInterval = selectedInterval,
+            graphState = graphState,
             onSelectInterval = { onEvent(CryptoDetailsEvents.SelectInterval(it)) },
             modifier = Modifier,
         )
@@ -147,9 +143,8 @@ fun CryptoDetailsContent(
 @Composable
 private fun GraphPrices(
     prices: List<GraphPoint>,
-    allIntervals: List<Interval>,
-    selectedInterval: Interval,
-    onSelectInterval: (Interval) -> Unit,
+    graphState: GraphState,
+    onSelectInterval: (GraphInterval) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -157,6 +152,10 @@ private fun GraphPrices(
             values = prices,
             color = MaterialTheme.colors.primaryVariant,
             stroke = 2.dp,
+            gridColor = Color.LightGray.copy(alpha = 0.5f),
+            gridTextStyle = MaterialTheme.typography.caption,
+            horizontalGridPoints = graphState.horizontalGridPoints,
+            verticalGridPoints = graphState.verticalGridPoints,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(250.dp),
@@ -164,8 +163,8 @@ private fun GraphPrices(
 
         GraphIntervals(
             modifier = Modifier.padding(horizontal = 12.dp),
-            allIntervals = allIntervals,
-            selectedInterval = selectedInterval,
+            allIntervals = graphState.allIntervals,
+            selectedInterval = graphState.selectedInterval,
             onSelectInterval = onSelectInterval,
         )
     }
@@ -173,9 +172,9 @@ private fun GraphPrices(
 
 @Composable
 private fun GraphIntervals(
-    allIntervals: List<Interval>,
-    selectedInterval: Interval,
-    onSelectInterval: (Interval) -> Unit,
+    allIntervals: List<GraphInterval>,
+    selectedInterval: GraphInterval,
+    onSelectInterval: (GraphInterval) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(modifier) {

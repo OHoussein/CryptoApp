@@ -21,6 +21,7 @@ kotlin {
             implementation(libs.koin.compose)
             implementation(libs.coil.compose)
             implementation(libs.coil.network)
+            implementation(libs.core.kotlin.datetime)
 
             implementation(project(":shared:designsystem"))
             implementation(project(":shared:crypto:domain"))

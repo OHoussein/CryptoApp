@@ -63,5 +63,5 @@ class DomainModelMapper(
         )
 
     fun convertHistoricalPrices(domain: List<HistoricalPrice>): List<GraphPoint> = domain
-        .map { GraphPoint(it.timestamp.toDouble(), it.price) }
+        .map { GraphPoint(it.timestampMillis.toDouble(), it.price) }
 }

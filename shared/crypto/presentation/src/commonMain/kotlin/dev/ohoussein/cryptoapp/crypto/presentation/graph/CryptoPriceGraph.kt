@@ -46,7 +46,7 @@ private fun CryptoPriceGraphContent(
             values = graphState.graphPrices,
             color = MaterialTheme.colors.primaryVariant,
             stroke = 2.dp,
-            gridColor = Color.LightGray.copy(alpha = 0.5f),
+            gridColor = Color.Gray.copy(alpha = 0.8f),
             gridTextStyle = MaterialTheme.typography.caption,
             horizontalGridPoints = graphState.horizontalGridPoints,
             verticalGridPoints = graphState.verticalGridPoints,

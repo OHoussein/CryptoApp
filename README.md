@@ -81,11 +81,6 @@ xcodebuild \
 <img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/desktop_crypto_details_dark.png" align="center" />
 </div>
 
-## End to end test
-### Android
-https://user-images.githubusercontent.com/10960959/212092726-0e661257-5d7f-4efa-ac1d-908b0c4e19a4.mp4
-
-
 ## Credit
 
 Data are provided by the awesome [CoinGecko API](https://www.coingecko.com/en/api)

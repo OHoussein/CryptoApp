@@ -1,8 +1,7 @@
 appId: dev.ohoussein.cryptoapp
 ---
-- assertVisible: "CryptoApp"
-- takeScreenshot: screenshots/android_crypto_list
 - assertVisible: "Bitcoin"
+- takeScreenshot: screenshots/android_crypto_list
 - assertVisible: "BTC"
 - assertVisible: "Ethereum"
 - assertVisible: "ETH"

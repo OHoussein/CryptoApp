@@ -61,37 +61,24 @@ xcodebuild \
 
 ## Screenshots 📸
 ## Android
-#### Dark mode 🌚
-
 <div  align="center">
 <img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_list_dark.png" align="center" />
 &nbsp;
 <img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_details_dark.png" align="center" />
 </div>
 
-#### Light mode 🌕
-
-<div  align="center">
-<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_list_light.png" align="center" />
-&nbsp;
-<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/android_crypto_details_light.png"  align="center" />
-</div>
-
 ## iOS
-#### Dark mode 🌚
-
-<div  align="center">
-<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_list_dark.png" align="center" />
-&nbsp;
-<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_details_dark.png" align="center" />
-</div>
-
-#### Light mode 🌕
-
 <div  align="center">
 <img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_list_light.png" align="center" />
 &nbsp;
-<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_details_light.png"  align="center" />
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/ios_crypto_details_light.png" align="center" />
+</div>
+
+## Desktop
+<div  align="center">
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/desktop_crypto_list_dark.png" align="center" />
+&nbsp;
+<img width="250px" src="https://github.com/OHoussein/CryptoApp/blob/main/design/desktop_crypto_details_dark.png" align="center" />
 </div>
 
 ## End to end test

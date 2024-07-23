@@ -70,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: apk
-          path: ./app-android/build/outputs/apk/release/app-release.apk
+          path: ./app-android/build/outputs/apk/release/app-android-release.apk
 
       - name: Upload mapping file
         uses: actions/upload-artifact@v3

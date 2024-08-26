@@ -4,6 +4,7 @@ import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 internal fun Project.configureKotlinAndroid(
@@ -21,13 +22,13 @@ internal fun Project.configureKotlinAndroid(
     }
 
     tasks.withType<KotlinJvmCompile>().configureEach {
-        kotlinOptions {
+        compilerOptions {
             val warningsAsErrors: String? by project
-            allWarningsAsErrors = warningsAsErrors.toBoolean()
+            allWarningsAsErrors.set(warningsAsErrors.toBoolean())
 
-            jvmTarget = JavaVersion.VERSION_20.toString()
+            jvmTarget.set(JvmTarget.JVM_20)
 
-            freeCompilerArgs = freeCompilerArgs + listOf(
+            freeCompilerArgs.addAll(
                 "-opt-in=kotlin.RequiresOptIn",
                 "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
             )

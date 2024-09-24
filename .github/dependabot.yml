@@ -4,7 +4,15 @@ updates:
       directory: "/"
       schedule:
         interval: "weekly"
+      open-pull-requests-limit: 4
       groups:
-        actions-deps:
+        android-build-tools:
+          patterns:
+            - "com.android.tools.build*"
+        kotlin-dependencies:
+          patterns:
+            - "org.jetbrains.kotlinx*"
+            - "org.jetbrains.kotlin*"
+        app-dependencies:
           patterns:
             - "*"

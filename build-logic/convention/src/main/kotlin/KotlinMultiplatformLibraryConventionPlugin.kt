@@ -8,6 +8,7 @@ import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 private const val PACKAGE = "com.ohoussein"
 private const val iosDeviceId = "iPhone 15 Pro"
@@ -46,6 +47,14 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                     implementation(kotlin("test-common"))
                     implementation(libs.findLibrary("test.coroutines").get())
                     implementation(libs.findLibrary("test-turbine").get())
+                }
+            }
+
+            tasks.withType<KotlinCompile>().configureEach {
+                compilerOptions {
+                    freeCompilerArgs.addAll(
+                        "-Xexpect-actual-classes",
+                    )
                 }
             }
 

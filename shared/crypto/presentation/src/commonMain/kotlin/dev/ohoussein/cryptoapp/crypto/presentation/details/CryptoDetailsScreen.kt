@@ -106,7 +106,6 @@ fun CryptoDetailsContent(
         CryptoDetailsHeader(
             modifier = Modifier.padding(all = 12.dp),
             crypto = crypto,
-            onLinkClick = { onEvent(CryptoDetailsEvents.LinkClicked(it)) },
         )
         CryptoLinks(
             modifier = Modifier

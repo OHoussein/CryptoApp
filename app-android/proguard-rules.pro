@@ -55,3 +55,4 @@
 
 -dontwarn org.slf4j.impl.StaticLoggerBinder
 -dontwarn org.slf4j.impl.StaticMDCBinder
+-dontwarn io.ktor.utils.io.jvm.nio.WritingKt

@@ -44,7 +44,7 @@ jobs:
         run: bash ./gradlew koverMergedReport
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: build/reports/kover/merged/html/index.html
@@ -67,13 +67,13 @@ jobs:
         run: bash ./gradlew app-android:assembleRelease
 
       - name: Upload Release APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: apk
           path: ./app-android/build/outputs/apk/release/app-android-release.apk
 
       - name: Upload mapping file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: mapping
           path: ./app-android/build/outputs/mapping/release/mapping.txt
@@ -103,7 +103,7 @@ jobs:
           -derivedDataPath app-iOS/build
 
       - name: Upload iOS APP
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'ios_app'
           path: app-iOS/build/Build/Products/Debug-iphonesimulator/CryptoApp.app
@@ -126,7 +126,7 @@ jobs:
         run: bash ./gradlew app-desktop:packageDmg
 
       - name: Upload Desktop binaries
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: 'desktop_app'
           path: ./app-desktop/build/compose/binaries/main/dmg/dev.ohoussein.cryptoapp-1.0.0.dmg

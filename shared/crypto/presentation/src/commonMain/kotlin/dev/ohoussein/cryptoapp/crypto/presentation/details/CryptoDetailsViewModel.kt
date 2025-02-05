@@ -41,8 +41,6 @@ class CryptoDetailsViewModel(
 
             CryptoDetailsEvents.SourceCodeClicked ->
                 state.value.cryptoDetails?.mainRepoUrl?.let { router.openUrl(it) }
-
-            is CryptoDetailsEvents.LinkClicked -> router.openUrl(event.url)
         }
     }
 

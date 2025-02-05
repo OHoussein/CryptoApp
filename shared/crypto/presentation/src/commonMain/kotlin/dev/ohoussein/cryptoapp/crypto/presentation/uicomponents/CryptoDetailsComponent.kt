@@ -47,7 +47,6 @@ private const val CRYPTO_DESCRIPTION_MAX_LINES = 4
 @Composable
 fun CryptoDetailsHeader(
     crypto: CryptoDetails,
-    onLinkClick: (url: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     var descriptionOverflow by remember { mutableStateOf(false) }
@@ -69,7 +68,6 @@ fun CryptoDetailsHeader(
                 onTextLayout = { layout ->
                     descriptionOverflow = !layout.hasVisualOverflow
                 },
-                onLinkClick = onLinkClick,
             )
 
             if (!descriptionOverflow) {
@@ -227,23 +225,3 @@ fun ExpandCollapseButton(
         )
     }
 }
-
-// @Preview
-// @Composable
-// private fun PreviewCryptoDetails() {
-//     CryptoDetailsHeader(
-//         crypto = previewCryptoDetails,
-//     )
-// }
-//
-// @Preview
-// @Composable
-// private fun PreviewCryptoLinks() {
-//     CryptoLinks(
-//         modifier = Modifier.fillMaxWidth(),
-//         crypto = previewCryptoDetails,
-//         onHomePageClicked = {},
-//         onBlockchainSiteClicked = {},
-//         onSourceCodeClicked = {},
-//     )
-// }

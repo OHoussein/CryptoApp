@@ -1,17 +1,18 @@
 import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
-import com.android.build.api.dsl.LibraryExtension
-import com.android.build.api.dsl.androidLibrary
 import dev.ohoussein.cryptoapp.SdkVersion
 import dev.ohoussein.cryptoapp.getAndroidNameSpaceFromPath
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 import org.jetbrains.kotlin.gradle.targets.native.tasks.KotlinNativeSimulatorTest
+import org.gradle.api.tasks.compile.JavaCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 private const val PACKAGE = "com.ohoussein"
@@ -31,25 +32,15 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<KotlinMultiplatformExtension> {
-                // targets.withType<KotlinMultiplatformAndroidLibraryTarget>().configureEach {
-                //     namespace = getAndroidNameSpaceFromPath(PACKAGE, target.path)
-                //     compileSdk = SdkVersion.COMPILE_SDK_VERSION
-                //     minSdk = SdkVersion.MIN_SDK_VERSION
-                //     compilerOptions {
-                //         allWarningsAsErrors.set(warningsAsErrors.toBoolean())
-                //         jvmTarget.set(JvmTarget.JVM_20)
-                //         freeCompilerArgs.addAll(
-                //             "-Xexpect-actual-classes",
-                //             "-opt-in=kotlin.RequiresOptIn",
-                //             "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-                //         )
-                //     }
-                // }
-
-                androidLibrary {
+                val androidTarget = (this as ExtensionAware).extensions
+                    .getByType(KotlinMultiplatformAndroidLibraryTarget::class.java)
+                with(androidTarget) {
                     namespace = getAndroidNameSpaceFromPath(PACKAGE, target.path)
                     compileSdk = SdkVersion.COMPILE_SDK_VERSION
                     minSdk = SdkVersion.MIN_SDK_VERSION
+                    androidResources {
+                        enable = true
+                    }
                 }
 
                 iosArm64()
@@ -85,10 +76,16 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
 
             tasks.withType<KotlinCompile>().configureEach {
                 compilerOptions {
+                    jvmTarget.set(JvmTarget.JVM_21)
                     freeCompilerArgs.addAll(
                         "-Xexpect-actual-classes",
                     )
                 }
+            }
+
+            tasks.withType<JavaCompile>().configureEach {
+                sourceCompatibility = JavaVersion.VERSION_21.toString()
+                targetCompatibility = JavaVersion.VERSION_21.toString()
             }
 
             afterEvaluate {

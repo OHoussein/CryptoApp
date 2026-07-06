@@ -50,9 +50,11 @@ fun CryptoDetailsScreen(
                 onBackButton = onBackClicked,
             )
         }
-    ) {
+    ) { innerPadding ->
         CryptoDetailsStateScreen(
-            Modifier.fillMaxSize(),
+            Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
             cryptoDetails = state.cryptoDetails,
             isLoading = state.status == DataStatus.Loading,
             error = (state.status as? DataStatus.Error)?.message,
@@ -100,6 +102,7 @@ fun CryptoDetailsContent(
     Column(
         modifier
             .verticalScroll(scrollState)
+            .windowInsetsPadding(WindowInsets.navigationBars)
             .padding(vertical = 12.dp),
     ) {
         CryptoPriceGraph(cryptoId = crypto.base.id)

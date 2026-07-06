@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.LocalPlatformContext
 import coil3.compose.rememberAsyncImagePainter
@@ -22,7 +23,6 @@ import dev.ohoussein.cryptoapp.crypto.presentation.model.Crypto
 import dev.ohoussein.cryptoapp.designsystem.graph.ui.SparkLineGraph
 import dev.ohoussein.cryptoapp.designsystem.theme.NegativeColor
 import dev.ohoussein.cryptoapp.designsystem.theme.PositiveColor
-import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun CryptoItem(

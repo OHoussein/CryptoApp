@@ -61,5 +61,6 @@ fun CryptoAppTopBar(
         },
         contentColor = MaterialTheme.colors.onPrimary,
         backgroundColor = MaterialTheme.colors.primary,
+        windowInsets = WindowInsets.statusBars,
     )
 }

@@ -10,7 +10,6 @@ class AndroidAppConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.application")
-                apply("org.jetbrains.kotlin.android")
                 apply("dev.ohoussein.cryptoapp.kotlin.detekt")
             }
 

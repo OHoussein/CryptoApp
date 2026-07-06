@@ -1,9 +1,13 @@
 package dev.ohoussein.cryptoapp.crypto.presentation.list
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
@@ -76,7 +80,9 @@ private fun CryptoListScreenContent(
                 )
                 if (error != null) {
                     Snackbar(
-                        modifier = Modifier.padding(8.dp),
+                        modifier = Modifier
+                            .navigationBarsPadding()
+                            .padding(8.dp),
                         action = {
                             TextButton(onClick = onRefresh) {
                                 Text(text = stringResource(Res.string.retry))
@@ -119,8 +125,8 @@ fun CryptoList(
         LazyColumn(
             modifier = modifier
                 .fillMaxSize()
-                .testTag(CryptoListTestTag)
-
+                .testTag(CryptoListTestTag),
+            contentPadding = WindowInsets.systemBars.asPaddingValues(),
         ) {
             items(cryptoList) { crypto ->
                 CryptoItem(

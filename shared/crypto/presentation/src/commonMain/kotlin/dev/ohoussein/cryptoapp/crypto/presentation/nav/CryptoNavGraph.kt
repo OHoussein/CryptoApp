@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.savedstate.read
 import dev.ohoussein.cryptoapp.crypto.presentation.CryptoFeatNavPath
 import dev.ohoussein.cryptoapp.crypto.presentation.CryptoFeatNavPath.CryptoDetailsPath.ARG_CRYPTO_ID
 import dev.ohoussein.cryptoapp.crypto.presentation.details.CryptoDetailsScreen
@@ -35,12 +36,13 @@ private fun NavGraphBuilder.cryptoDetailsEntry(navController: NavHostController)
             }
         )
     ) { entry ->
-        entry.arguments?.getString(ARG_CRYPTO_ID)?.let {
+        val cryptoId = entry.arguments?.read { getStringOrNull(ARG_CRYPTO_ID) }
+        if (cryptoId != null) {
             CryptoDetailsScreen(
-                cryptoId = entry.arguments!!.getString(ARG_CRYPTO_ID)!!,
+                cryptoId = cryptoId,
                 onBackClicked = { navController.popBackStack() }
             )
-        } ?: run {
+        } else {
             StateError(
                 message = "Invalid arguments",
                 onRetryClick = {

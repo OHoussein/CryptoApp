@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 internal fun Project.configureKotlinAndroid(
-    commonExtension: CommonExtension<*, *, *, *, *, *>,
+    commonExtension: CommonExtension,
 ) = commonExtension.apply {
 
     compileSdk = SdkVersion.COMPILE_SDK_VERSION
@@ -17,10 +17,8 @@ internal fun Project.configureKotlinAndroid(
         minSdk = SdkVersion.MIN_SDK_VERSION
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_20
-        targetCompatibility = JavaVersion.VERSION_20
-    }
+    compileOptions.sourceCompatibility = JavaVersion.VERSION_20
+    compileOptions.targetCompatibility = JavaVersion.VERSION_20
 
     tasks.withType<KotlinJvmCompile>().configureEach {
         compilerOptions {
@@ -36,11 +34,9 @@ internal fun Project.configureKotlinAndroid(
         }
     }
 
-    packaging {
-        resources.excludes += arrayOf(
-            "**/attach_hotspot_windows.dll",
-            "META-INF/*",
-            "META-INF/licenses/**",
-        )
-    }
+    packaging.resources.excludes += arrayOf(
+        "**/attach_hotspot_windows.dll",
+        "META-INF/*",
+        "META-INF/licenses/**",
+    )
 }

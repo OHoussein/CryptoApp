@@ -4,8 +4,6 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
 }
 
-apply(plugin = "com.github.ben-manes.versions")
-
 buildscript {
     repositories {
         google()
@@ -16,7 +14,6 @@ buildscript {
     dependencies {
         classpath(libs.build.android.gradlePlugin)
         classpath(libs.build.kotlinPlugin)
-        classpath(libs.build.gradleVersionsPlugin)
         classpath(libs.build.detekt.plugin)
         classpath(libs.build.detekt.formatting)
         classpath(libs.build.paparazzi)
@@ -32,28 +29,21 @@ allprojects {
 }
 
 tasks.register("clean").configure {
+    group = "build"
+    description = "Deletes the root project build directory."
     delete("build")
 }
 
-tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
-    rejectVersionIf {
-        val version = candidate.version
-        val stableKeyword = listOf("RELEASE", "FINAL", "GA").any { version.uppercase().contains(it) }
-        val regex = "^[0-9,.v-]+(-r)?$".toRegex()
-        val isStable = stableKeyword || regex.matches(version)
-        isStable.not()
-    }
-}
-
-task("e2eTests", Exec::class) {
+tasks.register<Exec>("e2eTests") {
     group = "Verification"
     description = "Run e2e test on a connected device"
     workingDir = file("$projectDir/e2e_tests")
     commandLine = listOf("bash", "test_android.sh")
 }
 
-task("generateScreenshots", Exec::class) {
+tasks.register<Exec>("generateScreenshots") {
     group = "Tool"
+    description = "Generate screenshots on a connected device"
     workingDir = file("$projectDir/e2e_tests")
     commandLine = listOf("bash", "generate_screenshots.sh")
 }
@@ -61,7 +51,7 @@ task("generateScreenshots", Exec::class) {
 
 
 subprojects {
-    apply(plugin = "org.jetbrains.kotlinx.kover")
+    pluginManager.apply("org.jetbrains.kotlinx.kover")
 }
 
 // Aggregate coverage of every module into the root project's merged report.

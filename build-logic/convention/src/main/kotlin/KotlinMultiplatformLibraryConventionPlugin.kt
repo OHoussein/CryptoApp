@@ -94,13 +94,11 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 }
             }
 
-            task("unitTestAll") {
-                setDependsOn(
-                    listOf(
-                        "cleanTestReleaseUnitTest", "testReleaseUnitTest",
-                        "cleanDesktopTest", "desktopTest",
-                        "cleanIosSimulatorArm64Test", "iosSimulatorArm64Test"
-                    )
+            tasks.register("unitTestAll") {
+                dependsOn(
+                    "cleanTestAndroidHostTest", "testAndroidHostTest",
+                    "cleanDesktopTest", "desktopTest",
+                    "cleanIosSimulatorArm64Test", "iosSimulatorArm64Test",
                 )
             }
         }

@@ -9,7 +9,6 @@ kotlin {
     sourceSets {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling)
-            implementation(libs.composeMp.uiToolingPreview)
         }
         commonMain.dependencies {
             implementation(libs.composeMp.runtime)
@@ -18,7 +17,7 @@ kotlin {
             implementation(libs.composeMp.materialIconsExtended)
             implementation(libs.composeMp.ui)
             implementation(libs.composeMp.components.resources)
-            implementation(libs.composeMp.components.uiToolingPreview)
+            implementation(libs.composeMp.uiToolingPreview)
             implementation(libs.koin.compose)
             implementation(libs.koin.core)
             implementation(libs.coil.compose)

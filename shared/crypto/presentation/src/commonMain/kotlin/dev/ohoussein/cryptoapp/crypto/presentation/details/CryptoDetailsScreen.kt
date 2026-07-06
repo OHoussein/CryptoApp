@@ -7,8 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import dev.ohoussein.cryptoapp.crypto.presentation.fake.Fake.previewCryptoDetails
 import dev.ohoussein.cryptoapp.crypto.presentation.graph.CryptoPriceGraph
 import dev.ohoussein.cryptoapp.crypto.presentation.model.CryptoDetails
 import dev.ohoussein.cryptoapp.crypto.presentation.model.DataStatus
@@ -19,6 +21,7 @@ import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppScaffold
 import dev.ohoussein.cryptoapp.designsystem.base.CryptoAppTopBar
 import dev.ohoussein.cryptoapp.designsystem.base.StateError
 import dev.ohoussein.cryptoapp.designsystem.base.StateLoading
+import dev.ohoussein.cryptoapp.designsystem.theme.CryptoAppTheme
 import org.koin.compose.getKoin
 import org.koin.core.Koin
 import org.koin.core.parameter.parametersOf
@@ -120,5 +123,43 @@ fun CryptoDetailsContent(
             onSourceCodeClicked = { onEvent(CryptoDetailsEvents.SourceCodeClicked) },
         )
         Spacer(modifier = Modifier.size(24.dp))
+    }
+}
+
+// The price graph pulls its data from Koin, so this preview renders only the
+// header + links which stand on their own.
+@Preview
+@Composable
+private fun PreviewCryptoDetails() {
+    CryptoAppTheme {
+        CryptoAppScaffold(
+            topBar = {
+                CryptoAppTopBar(
+                    title = with(previewCryptoDetails.base) { "$name ($symbol)" },
+                    onBackButton = {},
+                )
+            }
+        ) { innerPadding ->
+            Column(
+                Modifier
+                    .fillMaxSize()
+                    .padding(innerPadding)
+                    .padding(vertical = 12.dp),
+            ) {
+                CryptoDetailsHeader(
+                    modifier = Modifier.padding(all = 12.dp),
+                    crypto = previewCryptoDetails,
+                )
+                CryptoLinks(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 24.dp, horizontal = 12.dp),
+                    crypto = previewCryptoDetails,
+                    onHomePageClicked = {},
+                    onBlockchainSiteClicked = {},
+                    onSourceCodeClicked = {},
+                )
+            }
+        }
     }
 }

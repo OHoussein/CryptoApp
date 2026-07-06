@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import cryptoapp.shared.designsystem.generated.resources.Res
 import cryptoapp.shared.designsystem.generated.resources.core_back
@@ -59,8 +60,9 @@ fun CryptoAppTopBar(
                 }
             }
         },
-        contentColor = MaterialTheme.colors.onPrimary,
-        backgroundColor = MaterialTheme.colors.primary,
+        elevation = 0.dp,
+        contentColor = MaterialTheme.colors.onSurface,
+        backgroundColor = Color.Transparent,
         windowInsets = WindowInsets.statusBars,
     )
 }

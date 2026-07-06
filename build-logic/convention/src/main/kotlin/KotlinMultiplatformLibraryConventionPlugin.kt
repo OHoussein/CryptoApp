@@ -1,11 +1,9 @@
-import com.android.build.api.dsl.KotlinMultiplatformAndroidLibraryTarget
 import dev.ohoussein.cryptoapp.SdkVersion
 import dev.ohoussein.cryptoapp.getAndroidNameSpaceFromPath
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
-import org.gradle.api.plugins.ExtensionAware
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.withType
@@ -32,9 +30,7 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
             }
 
             extensions.configure<KotlinMultiplatformExtension> {
-                val androidTarget = (this as ExtensionAware).extensions
-                    .getByType(KotlinMultiplatformAndroidLibraryTarget::class.java)
-                with(androidTarget) {
+                androidLibrary {
                     namespace = getAndroidNameSpaceFromPath(PACKAGE, target.path)
                     compileSdk = SdkVersion.COMPILE_SDK_VERSION
                     minSdk = SdkVersion.MIN_SDK_VERSION

@@ -37,6 +37,10 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                     androidResources {
                         enable = true
                     }
+                    // Creates the Android host (unit test) compilation so `androidUnitTest`
+                    // source sets are connected. Without this the new KMP android library
+                    // plugin leaves them unused.
+                    withHostTest { }
                 }
 
                 iosArm64()

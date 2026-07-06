@@ -28,7 +28,7 @@ kotlin {
             implementation(libs.data.sqldelight.android)
         }
 
-        androidUnitTest.dependencies {
+        getByName("androidHostTest").dependencies {
             implementation(libs.data.sqldelight.desktop)
         }
 

@@ -60,56 +60,48 @@ task("generateScreenshots", Exec::class) {
 
 
 
-allprojects {
-    apply(plugin = "kover")
-    if (extensions.findByType<kotlinx.kover.api.KoverProjectConfig>() != null) {
-        extensions.configure<kotlinx.kover.api.KoverProjectConfig> {
-            isDisabled.set(false)
+subprojects {
+    apply(plugin = "org.jetbrains.kotlinx.kover")
+}
+
+// Aggregate coverage of every module into the root project's merged report.
+dependencies {
+    subprojects.forEach { kover(project(it.path)) }
+}
+
+kover {
+    reports {
+        filters {
+            excludes {
+                classes(
+                    "*.ui.components.*",
+                    "*.designsystem.*",
+                    "*.activity.*",
+                    "*Activity",
+                    "*App",
+                    "*Module*",
+                    "*.model.*",
+                    "*.debug.*",
+                    "*.BuildConfig",
+                    "*.R",
+                    "*.mock",
+                    "*.mocks",
+                )
+                annotatedBy("*Generated", "*Composable")
+            }
+        }
+
+        verify {
+            // LINE unit and COVERED_PERCENTAGE aggregation are the defaults.
+            rule {
+                minBound(60)
+            }
         }
     }
 }
 
-
-koverMerged {
-    enable()
-
-    filters {
-        classes {
-            excludes += listOf(
-                "*.ui.components.*",
-                "*.designsystem.*",
-                "*.activity.*",
-                "**Activity",
-                "**App",
-                "*Module*",
-                "*.model.*",
-                "*.debug.*",
-                "*.BuildConfig",
-                "*.R",
-                "*.mock",
-                "*.mocks",
-            )
-        }
-
-        annotations {
-            excludes += listOf(
-                "*Generated",
-                "Composable",
-            )
-        }
-    }
-
-    verify {
-        onCheck.set(true)
-        rule {
-            isEnabled = true
-            target = kotlinx.kover.api.VerificationTarget.ALL
-
-            bound {
-                minValue = 70
-                counter = kotlinx.kover.api.CounterType.LINE
-                valueType = kotlinx.kover.api.VerificationValueType.COVERED_PERCENTAGE
-            }
-        }
-    }
+tasks.register("check") {
+    group = "verification"
+    description = "Runs the aggregated Kover coverage verification (koverVerify)."
+    dependsOn("koverVerify")
 }

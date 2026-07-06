@@ -29,11 +29,11 @@ kotlin {
             implementation(libs.koin.android)
         }
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
+            implementation(libs.composeMp.runtime)
+            implementation(libs.composeMp.foundation)
+            implementation(libs.composeMp.material)
+            implementation(libs.composeMp.ui)
+            implementation(libs.composeMp.components.resources)
             implementation(libs.compose.navigation)
 
             implementation(libs.koin.compose)
@@ -53,7 +53,7 @@ kotlin {
             implementation(project(":shared:crypto:data"))
         }
 
-        androidUnitTest.dependencies {
+        getByName("androidHostTest").dependencies {
             implementation(libs.koin.test)
         }
 

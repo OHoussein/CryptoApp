@@ -17,8 +17,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: 20
+          distribution: 'temurin'
+          java-version: 21
 
       - name: Run Detekt
         run: ./gradlew detekt
@@ -37,17 +37,17 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: 20
+          distribution: 'temurin'
+          java-version: 21
 
       - name: Run Release Unit Tests
-        run: bash ./gradlew koverMergedReport
+        run: bash ./gradlew koverHtmlReport
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: build/reports/kover/merged/html/index.html
+          path: build/reports/kover/html
 
   Android:
     name: Android Build
@@ -60,8 +60,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: 20
+          distribution: 'temurin'
+          java-version: 21
 
       - name: Build app
         run: bash ./gradlew app-android:assembleRelease
@@ -90,8 +90,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: 20
+          distribution: 'temurin'
+          java-version: 21
 
       - name: Build
         run: |
@@ -119,8 +119,8 @@ jobs:
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
-          java-version: 20
+          distribution: 'temurin'
+          java-version: 21
 
       - name: Build app
         run: bash ./gradlew app-desktop:packageDmg

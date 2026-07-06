@@ -33,5 +33,5 @@ compose.desktop {
 
 dependencies {
     implementation(project(":shared:presentation"))
-    implementation(compose.runtime)
+    implementation(libs.composeMp.runtime)
 }

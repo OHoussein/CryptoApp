@@ -8,13 +8,13 @@ plugins {
 kotlin {
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material)
-            implementation(compose.ui)
-            implementation(compose.components.uiToolingPreview)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.components.resources)
+            implementation(libs.composeMp.runtime)
+            implementation(libs.composeMp.foundation)
+            implementation(libs.composeMp.material)
+            implementation(libs.composeMp.ui)
+            implementation(libs.composeMp.components.uiToolingPreview)
+            implementation(libs.composeMp.materialIconsExtended)
+            implementation(libs.composeMp.components.resources)
             implementation(libs.compose.navigation)
             implementation(libs.compose.lifecycle)
             implementation(libs.koin.core)

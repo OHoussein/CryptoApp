@@ -8,7 +8,7 @@ koinCompose = "4.1.1"
 koinCore = "4.1.1"
 detektVersion = "1.23.8"
 gradleVersionsPluginVersion = "0.53.0"
-kover = "0.6.1"
+kover = "0.9.8"
 paparazziVersion = "1.3.5"
 sqldelight = "2.2.1"
 compose-plugin = "1.10.2"
@@ -47,6 +47,15 @@ compose-navigation = { module = "org.jetbrains.androidx.navigation:navigation-co
 compose-lifecycle = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "compose-lifecycle" }
 compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
+
+composeMp-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-plugin" }
+composeMp-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-plugin" }
+composeMp-material = { module = "org.jetbrains.compose.material:material", version.ref = "compose-plugin" }
+composeMp-materialIconsExtended = { module = "org.jetbrains.compose.material:material-icons-extended", version = "1.7.3" }
+composeMp-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-plugin" }
+composeMp-uiToolingPreview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-plugin" }
+composeMp-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose-plugin" }
+composeMp-components-uiToolingPreview = { module = "org.jetbrains.compose.components:components-ui-tooling-preview", version.ref = "compose-plugin" }
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-network = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
 

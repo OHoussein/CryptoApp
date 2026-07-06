@@ -12,7 +12,7 @@ kotlin {
             implementation(libs.composeMp.foundation)
             implementation(libs.composeMp.material)
             implementation(libs.composeMp.ui)
-            implementation(libs.composeMp.components.uiToolingPreview)
+            implementation(libs.composeMp.uiToolingPreview)
             implementation(libs.composeMp.materialIconsExtended)
             implementation(libs.composeMp.components.resources)
             implementation(libs.compose.navigation)

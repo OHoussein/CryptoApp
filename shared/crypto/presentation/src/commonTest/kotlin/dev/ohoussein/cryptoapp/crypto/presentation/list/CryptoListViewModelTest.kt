@@ -46,9 +46,9 @@ class CryptoListViewModelTest {
         viewModel.state.test {
             awaitItem().apply {
                 assertNotNull(cryptoList)
-                assertEquals(5, cryptoList!!.size)
+                assertEquals(5, cryptoList.size)
                 assertIs<DataStatus.Success>(status)
-                val firstCrypto = cryptoList!!.first()
+                val firstCrypto = cryptoList.first()
                 assertEquals("70 USD", firstCrypto.price.labelValue.label)
                 assertEquals(70.0, firstCrypto.price.labelValue.value)
                 assertEquals(-2.0, firstCrypto.priceChangePercentIn24h?.value)
@@ -77,7 +77,7 @@ class CryptoListViewModelTest {
                 awaitItem().apply {
                     assertIs<DataStatus.Success>(status)
                     assertNotNull(cryptoList)
-                    assertEquals(5, cryptoList!!.size)
+                    assertEquals(5, cryptoList.size)
                 }
             }
         }

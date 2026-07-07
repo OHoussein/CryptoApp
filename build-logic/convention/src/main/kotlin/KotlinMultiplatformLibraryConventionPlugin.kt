@@ -59,16 +59,9 @@ class KotlinMultiplatformLibraryConventionPlugin : Plugin<Project> {
                 }
             }
 
-            // extensions.configure<LibraryExtension> {
-            //     namespace = getAndroidNameSpaceFromPath(PACKAGE, path)
-            //     configureKotlinAndroid(this)
-            // }
-
             extensions.configure<KotlinMultiplatformExtension> {
                 sourceSets.getByName("commonTest").dependencies {
                     implementation(kotlin("test"))
-                    implementation(kotlin("test-annotations-common"))
-                    implementation(kotlin("test-common"))
                     implementation(libs.findLibrary("test.coroutines").get())
                     implementation(libs.findLibrary("test-turbine").get())
                 }

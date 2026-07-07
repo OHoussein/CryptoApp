@@ -47,13 +47,11 @@ class CryptoDetailsViewModelTest {
             awaitItem().apply {
                 assertNotNull(cryptoDetails)
                 assertIs<DataStatus.Success>(status)
-                cryptoDetails?.let {
-                    assertEquals("bitcoin", it.base.id)
-                    assertEquals("crypto bitcoin", it.base.name)
-                    assertEquals("CR-BITCOIN", it.base.symbol)
-                    assertEquals("SHA-256", it.hashingAlgorithm)
-                    assertEquals("http://home-bitcoin.com", it.homePageUrl)
-                }
+                assertEquals("bitcoin", cryptoDetails.base.id)
+                assertEquals("crypto bitcoin", cryptoDetails.base.name)
+                assertEquals("CR-BITCOIN", cryptoDetails.base.symbol)
+                assertEquals("SHA-256", cryptoDetails.hashingAlgorithm)
+                assertEquals("http://home-bitcoin.com", cryptoDetails.homePageUrl)
             }
         }
     }

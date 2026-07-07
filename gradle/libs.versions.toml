@@ -1,8 +1,8 @@
 [versions]
 androidGradlePluginVersion = "9.0.1"
-kotlin = "2.3.10"
-coroutineVersion = "1.10.2"
-kotlinDatetime = "0.7.1-0.6.x-compat"
+kotlin = "2.4.0"
+coroutineVersion = "1.11.0"
+kotlinDatetime = "0.8.0-0.6.x-compat"
 koin = "4.1.1"
 koinCompose = "4.1.1"
 koinCore = "4.1.1"

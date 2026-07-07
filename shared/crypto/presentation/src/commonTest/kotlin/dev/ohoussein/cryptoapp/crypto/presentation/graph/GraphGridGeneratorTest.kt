@@ -5,7 +5,7 @@ import dev.ohoussein.cryptoapp.crypto.domain.model.HistoricalPrice
 import dev.ohoussein.cryptoapp.crypto.domain.model.defaultLocale
 import dev.ohoussein.cryptoapp.crypto.presentation.fake.FakePriceFormatter
 import dev.ohoussein.cryptoapp.crypto.presentation.model.GraphInterval
-import kotlinx.datetime.Instant
+import kotlin.time.Instant
 import kotlinx.datetime.TimeZone
 import kotlin.test.Test
 import kotlin.test.assertEquals

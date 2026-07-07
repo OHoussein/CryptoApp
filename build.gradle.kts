@@ -76,6 +76,7 @@ kover {
                     "*.R",
                     "*.mock",
                     "*.mocks",
+                    "*.generated*"
                 )
                 annotatedBy("*Generated", "*Composable")
             }
